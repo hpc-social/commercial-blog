@@ -153,7 +153,7 @@ def parse_feeds(authors, output_dir, test=False):
         if "feeds" in author:
             feeds = author['feeds']
         else:
-            feeds = author['feed']
+            feeds = [author['feed']]
         
         for author_feed in feeds:
             feed = feedparser.parse(author_feed)
