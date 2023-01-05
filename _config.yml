@@ -13,6 +13,13 @@ twitter_username:  hpc_social
 github_username:   hpc-social
 logo: assets/images/hpc-social-blue.png 
 
+# We use the aqua color for this one
+badge_color: "#e0e0e1"
+
+# And our theme!
+theme: hpc-social-blog-theme
+
+
 author:
   name: hpc.social
   bio: High Performance Computing <br> Practitioners <br> and friends /#hpc
