@@ -1,12 +1,12 @@
-title: hpc.social - Aggregated Personal Blog
-description: Shared personal experiences and stories
+title: hpc.social - Aggregated Commercial Blog
+description: Vendor and commercial posts in the hpc.social community
 author: vsoch
-baseurl: "/personal-blog"
+baseurl: "/commercial-blog"
 url: "https://hpc.social"
 keywords: hpc, community
 lang: en-US
 timezone:  America/Denver
-repo: https://github.com/hpc-social/personal-blog
+repo: https://github.com/hpc-social/commercial-blog
 
 # Social Profiles
 twitter_username:  hpc_social

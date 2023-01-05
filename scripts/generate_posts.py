@@ -55,15 +55,21 @@ def validate_authors(authors):
     """
     valid = True
 
-    required_fields = ["feed", "url", "name", "tag"]
+    required_fields = ["url", "name", "tag"]
     tags = set()
 
     for author in authors:
 
+        if "feed" not in author and "feeds" not in author:
+            print("Author is missing feed or feeds")
+            print(author)
+            valid=False
+            continue
+
         # Ensure all required fields
         for field in required_fields:
             if field not in author:
-                print("Author is missing %s", field)
+                print("Author is missing %s" % field)
                 print(author)
                 valid = False
 
@@ -144,25 +150,31 @@ def parse_feeds(authors, output_dir, test=False):
                 print("[TEST] new author folder %s" % author_folder)
 
         # Parse the feed, each entry is written to file based on title
-        feed = feedparser.parse(author["feed"])
-        for entry in feed["entries"]:
+        if "feeds" in author:
+            feeds = author['feeds']
+        else:
+            feeds = author['feed']
+        
+        for author_feed in feeds:
+            feed = feedparser.parse(author_feed)
+            for entry in feed["entries"]:
 
-            markdown = get_markdown_file(author_folder, entry)
+                markdown = get_markdown_file(author_folder, entry)
 
-            # Write the file if it doesn't exist
-            if not os.path.exists(markdown):
+                # Write the file if it doesn't exist
+                if not os.path.exists(markdown):
 
-                print("Preparing new post: %s" % markdown)
-                post = generate_post(entry, author, feed)
+                    print("Preparing new post: %s" % markdown)
+                    post = generate_post(entry, author, feed)
 
-                # Custom parsing for blogger
-                post = clean_post(post)
+                    # Custom parsing for blogger
+                    post = clean_post(post)
 
-                if test is False:
+                    if test is False:
 
-                    # Write to file
-                    with open(markdown, "w") as filey:
-                        filey.write(frontmatter.dumps(post))
+                        # Write to file
+                        with open(markdown, "w") as filey:
+                            filey.write(frontmatter.dumps(post))
 
 
 def get_entry_summary(entry):
@@ -228,7 +240,8 @@ def get_markdown_file(author_folder, entry):
     day = entry["published_parsed"].tm_mday
 
     # The id is the last part of the url, lowercase
-    title = [x for x in entry["id"].split("/") if x][-1].lower()
+    url = entry.get('id') or entry.get('link')
+    title = [x for x in url.split("/") if x][-1].lower()
 
     # Replace any variable names (blogger, wordpress) with -
     for char in ["?", ":", ",", "."]:
