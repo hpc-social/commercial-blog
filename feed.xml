@@ -1,0 +1,2483 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://hpc.social/commercial-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://hpc.social/commercial-blog/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2023-03-14T20:49:21-06:00</updated><id>https://hpc.social/commercial-blog/feed.xml</id><title type="html">hpc.social - Aggregated Commercial Blog</title><subtitle>Vendor and commercial posts in the hpc.social community</subtitle><author><name>hpc.social</name><email>info@hpc.social</email></author><entry><title type="html">WordBot and Words, My Wordle Assistants</title><link href="https://hpc.social/commercial-blog/2023/wordbot-and-words-my-wordle-assistants/" rel="alternate" type="text/html" title="WordBot and Words, My Wordle Assistants" /><published>2023-03-11T19:07:02-07:00</published><updated>2023-03-11T19:07:02-07:00</updated><id>https://hpc.social/commercial-blog/2023/wordbot-and-words-my-wordle-assistants</id><content type="html" xml:base="https://hpc.social/commercial-blog/2023/wordbot-and-words-my-wordle-assistants/">&lt;div class=&quot;content&quot;&gt;&lt;!--introduction--&gt;&lt;p&gt;I am late joining the Wordle craze. Over a year ago, MATLAB programs for solving Wordle puzzles were described by &lt;a href=&quot;https://blogs.mathworks.com/loren/2022/01/18/building-a-wordle-solver/&quot;&gt;Adam Filion&lt;/a&gt; as a guest blogger on Loren's blog and by &lt;a href=&quot;https://www.youtube.com/watch?v=bVTcQtEnOlk&quot;&gt;Matt Tearle&lt;/a&gt; with a YouTube video. But my programs for Wordle Assistants are different. &lt;tt&gt;WordBot&lt;/tt&gt; doesn't try to solve any puzzles and &lt;tt&gt;Words&lt;/tt&gt; just supplies lists of possible words. I enjoy providing the solution logic myself.&lt;/p&gt;
+&lt;p&gt;Here are two examples, taken from recent Wordle puzzles in the &lt;a href=&quot;https://www.nytimes.com/games/wordle/index.html&quot;&gt;&lt;i&gt;New York Times&lt;/i&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;!--/introduction--&gt;&lt;h3&gt;Contents&lt;/h3&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#07e1455b-4718-47a2-93c5-cce24028b05f&quot;&gt;Wednesday&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#e5f6c4a9-b502-447f-9003-f6a351a4a093&quot;&gt;Thursday&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#f246159e-8444-40a5-9280-1750f81c8c5d&quot;&gt;Four Days in March&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#fa65c920-c034-4600-910d-ad06c3df4153&quot;&gt;Software&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;h4&gt;Wednesday&lt;a name=&quot;07e1455b-4718-47a2-93c5-cce24028b05f&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;tt&gt;WordBot&lt;/tt&gt; has a list of 4676 possible words, but knows nothing about their probabilities, so I don't ask for any assistance with the opening guess.&lt;/p&gt;
+&lt;p&gt;I like to use mathematical words whenever possible. I usually start with &lt;tt&gt;RATIO&lt;/tt&gt;, which has three vowels and two popular consonants. &lt;tt&gt;RATIO&lt;/tt&gt; was a good opening move for the puzzle in the &lt;i&gt;Times&lt;/i&gt; on Wednesday. It received a green &lt;tt&gt;R&lt;/tt&gt; and a gold &lt;tt&gt;A&lt;/tt&gt;. I informed &lt;tt&gt;WordBot&lt;/tt&gt; of our good fortune using 2, 1 and 0 to indicate green, gold and gray. My faithful assistant responded by reproducing the first graphic in the  &lt;i&gt;Times&lt;/i&gt;.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;    WordBot &lt;span class=&quot;string&quot;&gt;ratio&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;21000&lt;/span&gt;
+&lt;/pre&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/WordBot_blog_01.png&quot; vspace=&quot;5&quot; /&gt; &lt;p&gt;&lt;tt&gt;Words&lt;/tt&gt; is my suite of programs that produce lists of acceptable words for various scenarios.  In this situation with an &lt;tt&gt;R&lt;/tt&gt; as the first letter, an &lt;tt&gt;A&lt;/tt&gt; somewhere in the last three letters and &lt;tt&gt;T&lt;/tt&gt;, &lt;tt&gt;I&lt;/tt&gt; and &lt;tt&gt;O&lt;/tt&gt; on the gray list, &lt;tt&gt;Words&lt;/tt&gt; finds 25 words, starting with &lt;tt&gt;REACH&lt;/tt&gt; and ending with &lt;tt&gt;RUMBA&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;The last of those 25 words got my attention.  I decided to try &lt;tt&gt;RUMBA&lt;/tt&gt; on my second move. I knew &lt;tt&gt;RUMBA&lt;/tt&gt; was unlikely to succeed but would be spectacular if it did.  Sure enough, Wordle didn't want to dance.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;    WordBot &lt;span class=&quot;string&quot;&gt;rumba&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;20001&lt;/span&gt;
+&lt;/pre&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/WordBot_blog_02.png&quot; vspace=&quot;5&quot; /&gt; &lt;p&gt;Three more letters gray-listed and &lt;tt&gt;A&lt;/tt&gt; limited to two slots reduces the number of possible words from 25 to 18. The first word on the list is still &lt;tt&gt;REACH&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;    WordBot &lt;span class=&quot;string&quot;&gt;reach&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;22100&lt;/span&gt;
+&lt;/pre&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/WordBot_blog_03.png&quot; vspace=&quot;5&quot; /&gt; &lt;p&gt;There are now 11 possibilities.&lt;/p&gt;
+&lt;pre class=&quot;language-matlab&quot;&gt;READS
+READY
+REALS
+REAPS
+REARS
+REGAL
+RELAX
+RELAY
+RENAL
+REPAY
+RERAN
+&lt;/pre&gt;&lt;p&gt;I need to relax.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;    WordBot &lt;span class=&quot;string&quot;&gt;relax&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;22120&lt;/span&gt;
+&lt;/pre&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/WordBot_blog_04.png&quot; vspace=&quot;5&quot; /&gt; &lt;p&gt;I don't need another list of possibilities. I can quickly see the previous list has only two words that end in &lt;tt&gt;L&lt;/tt&gt;.  The  choice between &quot;fit for a monarch&quot; and &quot;pertaining to kidney function&quot; is clear. I have solved Wednesday's puzzle in five moves, including the Hail Mary at move two.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;    WordBot &lt;span class=&quot;string&quot;&gt;regal&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;22222&lt;/span&gt;
+&lt;/pre&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/WordBot_blog_05.png&quot; vspace=&quot;5&quot; /&gt; &lt;pre class=&quot;codeinput&quot;&gt;    close
+&lt;/pre&gt;&lt;h4&gt;Thursday&lt;a name=&quot;e5f6c4a9-b502-447f-9003-f6a351a4a093&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Thursday's puzzle in the &lt;i&gt;Times&lt;/i&gt; offered different challenges. As always, I started with &lt;tt&gt;RATIO&lt;/tt&gt;.  This time I get only one gold letter.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;    WordBot &lt;span class=&quot;string&quot;&gt;ratio&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;10000&lt;/span&gt;
+&lt;/pre&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/WordBot_blog_06.png&quot; vspace=&quot;5&quot; /&gt; &lt;p&gt;I need an &lt;tt&gt;R&lt;/tt&gt; somewhere in the last four positions and can't use &lt;tt&gt;A&lt;/tt&gt;, &lt;tt&gt;T&lt;/tt&gt;, &lt;tt&gt;I&lt;/tt&gt; or &lt;tt&gt;O&lt;/tt&gt;. &lt;tt&gt;Words&lt;/tt&gt; knows 229 qualified candidates. I choose another mathematical word.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;    WordBot &lt;span class=&quot;string&quot;&gt;perms&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;01100&lt;/span&gt;
+&lt;/pre&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/WordBot_blog_07.png&quot; vspace=&quot;5&quot; /&gt; &lt;p&gt;I now must have an &lt;tt&gt;R&lt;/tt&gt; and an &lt;tt&gt;E&lt;/tt&gt; and can't have any of those seven grays. &lt;tt&gt;Words&lt;/tt&gt; offers 72 possibilities.  Have I been in an accident?&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;    WordBot &lt;span class=&quot;string&quot;&gt;wreck&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;21200&lt;/span&gt;
+&lt;/pre&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/WordBot_blog_08.png&quot; vspace=&quot;5&quot; /&gt; &lt;p&gt;Well, that's much better.  Two greens, one gold, and nine grays. There is only one possibility.   The solution must be &lt;tt&gt;WHERE&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;    WordBot &lt;span class=&quot;string&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;22222&lt;/span&gt;
+&lt;/pre&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/WordBot_blog_09.png&quot; vspace=&quot;5&quot; /&gt; &lt;pre class=&quot;codeinput&quot;&gt;    close
+&lt;/pre&gt;&lt;h4&gt;Four Days in March&lt;a name=&quot;f246159e-8444-40a5-9280-1750f81c8c5d&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Wednesday, Thursday, Friday and Saturday.&lt;/p&gt;
+&lt;p&gt;If your browser isn't showing the animation, &lt;a href=&quot;https://blogs.mathworks.com/cleve/files/word_gif.gif&quot;&gt;look here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/word_gif.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Software&lt;a name=&quot;fa65c920-c034-4600-910d-ad06c3df4153&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;a href=&quot;https://blogs.mathworks.com/cleve/files/WordBot_2_mzip.m&quot;&gt;This code&lt;/a&gt; is immature.  Be gentle and let me know how it works for you.&lt;/p&gt;
+&lt;!-- 
+    function grabCode_a44a8488723741b3acf8277d1f858a07() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='a44a8488723741b3acf8277d1f858a07 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' a44a8488723741b3acf8277d1f858a07';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '&lt;' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2023 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('&lt;pre&gt;\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length &gt; 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length &gt; 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('&lt;/pre&gt;\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --&gt;&lt;p style=&quot;text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;&quot;&gt;&lt;br /&gt;&lt;a href=&quot;&quot;&gt;&lt;span style=&quot;font-size: x-small; font-style: italic;&quot;&gt;Get 
+      the MATLAB code &lt;noscript&gt;(requires JavaScript)&lt;/noscript&gt;&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
+      Published with MATLAB&amp;reg; R2023a&lt;br /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;!--
+a44a8488723741b3acf8277d1f858a07 ##### SOURCE BEGIN #####
+%% WordBot and Words, My Wordle Assistants
+% I am late joining the Wordle craze.
+% Over a year ago, MATLAB programs for solving Wordle puzzles 
+% were described by
+% &lt;https://blogs.mathworks.com/loren/2022/01/18/building-a-wordle-solver/
+% Adam Filion&gt; as a guest blogger on Loren's blog and by
+% &lt;https://www.youtube.com/watch?v=bVTcQtEnOlk
+% Matt Tearle&gt; with a YouTube video.
+% But my programs for Wordle Assistants are different.
+% |WordBot| doesn't try to solve any puzzles and
+% |Words| just supplies lists of possible words.
+% I enjoy providing the solution logic myself. 
+%
+% Here are two examples, taken from recent Wordle puzzles in the
+% &lt;https://www.nytimes.com/games/wordle/index.html
+% _New York Times_&gt;.
+
+
+%% Wednesday
+% |WordBot| has a list of 4676 possible words,
+% but knows nothing about their probabilities, so I don't ask
+% for any assistance with the opening guess.
+%
+% I like to use mathematical words whenever possible.
+% I usually start with |RATIO|, which has three vowels and two
+% popular consonants. |RATIO| was a good opening move
+% for the puzzle in the _Times_ on Wednesday.
+% It received a green |R| and a gold |A|.
+% I informed |WordBot| of our good fortune using
+% 2, 1 and 0 to indicate green, gold and gray.
+% My faithful assistant responded by reproducing the first 
+% graphic in the  _Times_.
+
+    WordBot ratio 21000
+
+
+%%
+% |Words| is my suite of programs that produce lists of
+% acceptable words for various scenarios.  In this situation
+% with an |R| as the first letter, an |A| somewhere in the last
+% three letters and |T|, |I| and |O| on the gray list, |Words|  
+% finds 25 words, starting with |REACH| and ending with |RUMBA|.
+% 
+% The last of those 25 words got my attention.  I decided to try |RUMBA|
+% on my second move.
+% I knew |RUMBA| was unlikely to succeed but would be
+% spectacular if it did.  Sure enough, Wordle didn't want to dance.
+
+    WordBot rumba 20001
+
+%%
+% Three more letters gray-listed and |A| limited to two slots reduces the
+% number of possible words from 25 to 18.
+% The first word on the list is still |REACH|.
+
+    WordBot reach 22100
+
+%%
+% There are now 11 possibilities.
+% 
+%   READS
+%   READY
+%   REALS
+%   REAPS
+%   REARS
+%   REGAL
+%   RELAX
+%   RELAY
+%   RENAL
+%   REPAY
+%   RERAN
+%
+% I need to relax.
+% 
+    WordBot relax 22120
+
+%%
+% I don't need another list of possibilities.
+% I can quickly see the previous list has only two words that
+% end in |L|.  The  choice between &quot;fit for a monarch&quot; and
+% &quot;pertaining to kidney function&quot; is clear.
+% I have solved Wednesday's puzzle in five moves, including the Hail Mary
+% at move two.
+
+    WordBot regal 22222
+
+%%
+    close
+
+%% Thursday
+% Thursday's puzzle in the _Times_ offered different challenges.
+% As always, I started with |RATIO|.  This time I get only one
+% gold letter.
+
+    WordBot ratio 10000
+
+%%
+% I need an |R| somewhere in the last four positions and can't
+% use |A|, |T|, |I| or |O|. |Words| knows 229 qualified candidates.
+% I choose another mathematical word.
+
+    WordBot perms 01100
+
+%%
+% I now must have an |R| and an |E| and can't have any of those seven
+% grays. |Words| offers 72 possibilities.  Have I been in an accident?
+
+    WordBot wreck 21200
+
+%% 
+% Well, that's much better.  Two greens, one gold, and nine grays.
+% There is only one possibility.   The solution must be |WHERE|.
+
+    WordBot where 22222
+
+%% 
+    close
+
+%% Four Days in March
+% Wednesday, Thursday, Friday and Saturday.
+%
+% If your browser isn't showing the animation,
+% &lt;https://blogs.mathworks.com/cleve/files/word_gif.gif
+% look here&gt;.
+%
+% &lt;&lt;word_gif.gif&gt;&gt;
+%
+
+%% Software
+% &lt;https://blogs.mathworks.com/cleve/files/WordBot_2_mzip.m
+% This code&gt; is immature.  Be gentle and let me know how it 
+% works for you.
+
+##### SOURCE END ##### a44a8488723741b3acf8277d1f858a07
+--&gt;</content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html">I am late joining the Wordle craze. Over a year ago, MATLAB programs for solving Wordle puzzles were described by Adam Filion as a guest blogger on Loren's blog and by Matt Tearle with a YouTube video. But my programs for Wordle Assistants are different. WordBot doesn't try to solve any puzzles and Words just supplies lists of possible words. I enjoy providing the solution logic myself. Here are two examples, taken from recent Wordle puzzles in the New York Times. ContentsWednesdayThursdayFour Days in MarchSoftware WednesdayWordBot has a list of 4676 possible words, but knows nothing about their probabilities, so I don't ask for any assistance with the opening guess. I like to use mathematical words whenever possible. I usually start with RATIO, which has three vowels and two popular consonants. RATIO was a good opening move for the puzzle in the Times on Wednesday. It received a green R and a gold A. I informed WordBot of our good fortune using 2, 1 and 0 to indicate green, gold and gray. My faithful assistant responded by reproducing the first graphic in the Times. WordBot ratio 21000 Words is my suite of programs that produce lists of acceptable words for various scenarios. In this situation with an R as the first letter, an A somewhere in the last three letters and T, I and O on the gray list, Words finds 25 words, starting with REACH and ending with RUMBA. The last of those 25 words got my attention. I decided to try RUMBA on my second move. I knew RUMBA was unlikely to succeed but would be spectacular if it did. Sure enough, Wordle didn't want to dance. WordBot rumba 20001 Three more letters gray-listed and A limited to two slots reduces the number of possible words from 25 to 18. The first word on the list is still REACH. WordBot reach 22100 There are now 11 possibilities. READS READY REALS REAPS REARS REGAL RELAX RELAY RENAL REPAY RERAN I need to relax. WordBot relax 22120 I don't need another list of possibilities. I can quickly see the previous list has only two words that end in L. The choice between &quot;fit for a monarch&quot; and &quot;pertaining to kidney function&quot; is clear. I have solved Wednesday's puzzle in five moves, including the Hail Mary at move two. WordBot regal 22222 close ThursdayThursday's puzzle in the Times offered different challenges. As always, I started with RATIO. This time I get only one gold letter. WordBot ratio 10000 I need an R somewhere in the last four positions and can't use A, T, I or O. Words knows 229 qualified candidates. I choose another mathematical word. WordBot perms 01100 I now must have an R and an E and can't have any of those seven grays. Words offers 72 possibilities. Have I been in an accident? WordBot wreck 21200 Well, that's much better. Two greens, one gold, and nine grays. There is only one possibility. The solution must be WHERE. WordBot where 22222 close Four Days in MarchWednesday, Thursday, Friday and Saturday. If your browser isn't showing the animation, look here. SoftwareThis code is immature. Be gentle and let me know how it works for you. &amp;lt;!-- function grabCode_a44a8488723741b3acf8277d1f858a07() { // Remember the title so we can use it in the new page title = document.title;</summary></entry><entry><title type="html">R2-D2, Rotations and Dilations in Two Dimensions</title><link href="https://hpc.social/commercial-blog/2023/r2-d2-rotations-and-dilations-in-two-dimensions/" rel="alternate" type="text/html" title="R2-D2, Rotations and Dilations in Two Dimensions" /><published>2023-03-03T19:50:25-07:00</published><updated>2023-03-03T19:50:25-07:00</updated><id>https://hpc.social/commercial-blog/2023/r2-d2-rotations-and-dilations-in-two-dimensions</id><content type="html" xml:base="https://hpc.social/commercial-blog/2023/r2-d2-rotations-and-dilations-in-two-dimensions/">&lt;div class=&quot;content&quot;&gt;&lt;!--introduction--&gt;&lt;p&gt;&lt;tt&gt;R2_D2&lt;/tt&gt; is is the name I've given a new MATLAB program that provides animations of 2-by-2 rotation and dilation matrices. I admit I chose &quot;dilations&quot; so the acronym would be memorable, but otherwise the code has little to do with the famous Star Wars droid.&lt;/p&gt;
+&lt;!--/introduction--&gt;&lt;h3&gt;Contents&lt;/h3&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#44861ff7-11fc-4399-ad23-d58213ec0d26&quot;&gt;House&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#23ac6c7d-9deb-4368-af3a-b72341fd82e0&quot;&gt;Hand&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#a87fd4bd-4298-4c71-a3c2-a9f90fa02fbe&quot;&gt;Rotation&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#4b0e42eb-235d-4dc6-8a7e-5cfafe76b486&quot;&gt;Dilation&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#3bd73ac8-4279-4bb6-b08e-9f866181f581&quot;&gt;Both&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#384f6c01-d1f5-456f-a0d0-b31ba5b772b2&quot;&gt;&lt;tt&gt;R2_D2&lt;/tt&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#f6931ffe-5f30-439a-97cb-2e04cab0aeaf&quot;&gt;Further Reading&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;h4&gt;House&lt;a name=&quot;44861ff7-11fc-4399-ad23-d58213ec0d26&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;This outline of a house is featured in &lt;a href=&quot;https://www.mathworks.com/moler/exm/chapters.html&quot;&gt;&lt;i&gt;Experiments with MATLAB&lt;/i&gt;&lt;/a&gt;. The data are the 11 blue dots.  The coordinates of each dot form a 2-by-1 vector; the 2-by-2 rotation and dilation matrices multiply each of these vectors separately. (The lines between the dots complete the picture and are not involved in any computation.)&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/house.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;p&gt;The house also appears in several editions of Gil Strang's textbooks. The cover of the third edition of Strang's &lt;a href=&quot;https://www.amazon.com/Introduction-Linear-Algebra-Gilbert-Strang/dp/0961408898&quot;&gt;&lt;i&gt;Introduction to Linear Algebra&lt;/i&gt;&lt;/a&gt; features nine houses on a quilt made by Gil's friend Chris Curtis.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/quilt.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Hand&lt;a name=&quot;23ac6c7d-9deb-4368-af3a-b72341fd82e0&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;This outline of a hand, which I made from measurements of my own hand, is also used in &lt;a href=&quot;https://www.mathworks.com/moler/exm/chapters.html&quot;&gt;&lt;i&gt;Experiments with MATLAB&lt;/i&gt;&lt;/a&gt;. There are 37 points, so &lt;tt&gt;Hand&lt;/tt&gt; is a 2-by-37 matrix.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/hand.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Rotation&lt;a name=&quot;a87fd4bd-4298-4c71-a3c2-a9f90fa02fbe&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Multiplication by this matrix produces a two-dimensional rotation by an angle &lt;tt&gt;theta&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;$$ R = \left(
+  \begin{array}{rr}
+     \cos{\theta} &amp;amp; \sin{\theta} \\
+     - \sin{\theta} &amp;amp; \cos{\theta}
+  \end{array}
+  \right) $$&lt;/p&gt;
+&lt;p&gt;&lt;tt&gt;R&lt;/tt&gt; is displayed in the first panel. If the house is not rotating in your browser, try this link: &lt;a href=&quot;https://blogs.mathworks.com/cleve/files/house_rotate.gif&quot;&gt;https://blogs.mathworks.com/cleve/files/house_rotate.gif&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/house_rotate.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Dilation&lt;a name=&quot;4b0e42eb-235d-4dc6-8a7e-5cfafe76b486&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Dilation is the process of making objects larger or smaller. Multiplication by this diagonal matrix produces a dilation by a factor &lt;tt&gt;sigma&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;$$ S = \left(
+  \begin{array}{rr}
+     \sigma &amp;amp; 0 \\
+     0 &amp;amp; \sigma
+  \end{array}
+  \right) $$&lt;/p&gt;
+&lt;p&gt;&lt;tt&gt;S&lt;/tt&gt; is displayed in the second panel. The animation is also available at: &lt;a href=&quot;https://blogs.mathworks.com/cleve/files/hand_dilate.gif&quot;&gt;https://blogs.mathworks.com/cleve/files/hand_dilate.gif&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/hand_dilate.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Both&lt;a name=&quot;3bd73ac8-4279-4bb6-b08e-9f866181f581&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Here rotation and dilation are combined. The product of the rotation and dilation matrices drives the action. If you are missing all the action, try: &lt;a href=&quot;https://blogs.mathworks.com/cleve/files/hand_both.gif&quot;&gt;https://blogs.mathworks.com/cleve/files/hand_both.gif&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/hand_both.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;&lt;tt&gt;R2_D2&lt;/tt&gt;&lt;a name=&quot;384f6c01-d1f5-456f-a0d0-b31ba5b772b2&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;When you run &lt;tt&gt;R2_D2&lt;/tt&gt; on your own computer, you can drive the rotations and dilations yourself.  Mousing outside of the object creates rotation and mousing inside produces dilation.&lt;/p&gt;
+&lt;p&gt;The &lt;tt&gt;R2_D2&lt;/tt&gt; program is available from &lt;a href=&quot;https://blogs.mathworks.com/cleve/files/R2_D2_4.m&quot;&gt;https://blogs.mathworks.com/cleve/files/R2_D2_4.m&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Further Reading&lt;a name=&quot;f6931ffe-5f30-439a-97cb-2e04cab0aeaf&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;If you are not familiar with matrices, or just want a quick refresher, check out the &lt;a href=&quot;https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/exm/chapters/matrices.pdf&quot;&gt;Matrices&lt;/a&gt; chapter of &lt;a href=&quot;https://www.mathworks.com/moler/exm/chapters.html&quot;&gt;&lt;i&gt;Experiments with MATLAB&lt;/i&gt;&lt;/a&gt;. Exercise 4.14 is particularly handy.&lt;/p&gt;
+&lt;!-- 
+    function grabCode_0fd9ed7550fd4ba3911f9d86fad47cd5() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='0fd9ed7550fd4ba3911f9d86fad47cd5 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 0fd9ed7550fd4ba3911f9d86fad47cd5';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '&lt;' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2023 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('&lt;pre&gt;\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length &gt; 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length &gt; 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('&lt;/pre&gt;\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --&gt;&lt;p style=&quot;text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;&quot;&gt;&lt;br /&gt;&lt;a href=&quot;&quot;&gt;&lt;span style=&quot;font-size: x-small; font-style: italic;&quot;&gt;Get 
+      the MATLAB code &lt;noscript&gt;(requires JavaScript)&lt;/noscript&gt;&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
+      Published with MATLAB&amp;reg; R2023a&lt;br /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;!--
+0fd9ed7550fd4ba3911f9d86fad47cd5 ##### SOURCE BEGIN #####
+%% R2-D2, Rotations and Dilations in Two Dimensions
+% |R2_D2| is is the name I've given a new MATLAB program that provides
+% animations of 2-by-2 rotation and dilation matrices.
+% I admit I chose &quot;dilations&quot;
+% so the acronym would be memorable, but otherwise
+% the code has little to do with the famous Star Wars droid.
+
+%% House
+% This outline of a house is featured in
+% &lt;https://www.mathworks.com/moler/exm/chapters.html
+% _Experiments with MATLAB_&gt;.
+% The data are the 11 blue dots.  The coordinates of each dot form a 2-by-1
+% vector; the 2-by-2 rotation and dilation matrices multiply each of
+% these vectors separately. (The lines between the dots complete the
+% picture and are not involved in any computation.)
+%
+% &lt;&lt;house.gif&gt;&gt;
+%
+% The house also appears in several editions of Gil Strang's textbooks.
+% The cover of the third edition of Strang's
+% &lt;https://www.amazon.com/Introduction-Linear-Algebra-Gilbert-Strang/dp/0961408898
+% _Introduction to Linear Algebra_&gt; features nine houses on a quilt 
+% made by Gil's friend Chris Curtis.
+%
+% &lt;&lt;quilt.png&gt;&gt;
+%
+
+
+%% Hand
+% This outline of a hand, which I made from measurements of my own hand,
+% is also used in 
+% &lt;https://www.mathworks.com/moler/exm/chapters.html
+% _Experiments with MATLAB_&gt;.
+% There are 37 points, so |Hand| is a 2-by-37 matrix.
+% 
+% &lt;&lt;hand.gif&gt;&gt;
+%
+
+%% Rotation
+% Multiplication by this matrix produces a two-dimensional
+% rotation by an angle |theta|.  
+%
+% $$ R = \left(
+%   \begin{array}{rr}
+%      \cos{\theta} &amp; \sin{\theta} \\
+%      - \sin{\theta} &amp; \cos{\theta}
+%   \end{array}
+%   \right) $$
+%
+% |R| is displayed in the first panel.
+% If the house is not rotating in your browser, try this link:
+% &lt;https://blogs.mathworks.com/cleve/files/house_rotate.gif&gt;
+%
+%
+% &lt;&lt;house_rotate.gif&gt;&gt;
+%
+
+%% Dilation
+% Dilation is the process of making objects larger or smaller.
+% Multiplication by this diagonal matrix
+% produces a dilation by a factor |sigma|.
+%
+% $$ S = \left(
+%   \begin{array}{rr}
+%      \sigma &amp; 0 \\
+%      0 &amp; \sigma
+%   \end{array}
+%   \right) $$
+%
+% |S| is displayed in the second panel.
+% The animation is also available at:
+% &lt;https://blogs.mathworks.com/cleve/files/hand_dilate.gif&gt;
+%
+%
+% &lt;&lt;hand_dilate.gif&gt;&gt;
+%
+
+%% Both
+% Here rotation and dilation are combined.
+% The product of the rotation and dilation matrices drives the action.
+% If you are missing all the action, try:
+% &lt;https://blogs.mathworks.com/cleve/files/hand_both.gif&gt;
+%
+% &lt;&lt;hand_both.gif&gt;&gt;
+%
+
+%% |R2_D2|
+% When you run |R2_D2| on your own computer, you can drive the
+% rotations and dilations yourself.  Mousing outside of the object
+% creates rotation and mousing inside produces dilation.
+%
+% The |R2_D2| program is available from
+% &lt;https://blogs.mathworks.com/cleve/files/R2_D2_4.m&gt;.
+%
+%% Further Reading
+% If you are not familiar with matrices, or just want a quick
+% refresher, check out the 
+% &lt;https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/exm/chapters/matrices.pdf
+% Matrices&gt; chapter of
+% &lt;https://www.mathworks.com/moler/exm/chapters.html
+% _Experiments with MATLAB_&gt;. 
+% Exercise 4.14 is particularly handy.
+##### SOURCE END ##### 0fd9ed7550fd4ba3911f9d86fad47cd5
+--&gt;</content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html">R2_D2 is is the name I've given a new MATLAB program that provides animations of 2-by-2 rotation and dilation matrices. I admit I chose &quot;dilations&quot; so the acronym would be memorable, but otherwise the code has little to do with the famous Star Wars droid. ContentsHouseHandRotationDilationBothR2_D2Further Reading HouseThis outline of a house is featured in Experiments with MATLAB. The data are the 11 blue dots. The coordinates of each dot form a 2-by-1 vector; the 2-by-2 rotation and dilation matrices multiply each of these vectors separately. (The lines between the dots complete the picture and are not involved in any computation.) The house also appears in several editions of Gil Strang's textbooks. The cover of the third edition of Strang's Introduction to Linear Algebra features nine houses on a quilt made by Gil's friend Chris Curtis. HandThis outline of a hand, which I made from measurements of my own hand, is also used in Experiments with MATLAB. There are 37 points, so Hand is a 2-by-37 matrix. RotationMultiplication by this matrix produces a two-dimensional rotation by an angle theta. $$ R = \left( \begin{array}{rr} \cos{\theta} &amp;amp; \sin{\theta} \\ - \sin{\theta} &amp;amp; \cos{\theta} \end{array} \right) $$ R is displayed in the first panel. If the house is not rotating in your browser, try this link: https://blogs.mathworks.com/cleve/files/house_rotate.gif DilationDilation is the process of making objects larger or smaller. Multiplication by this diagonal matrix produces a dilation by a factor sigma. $$ S = \left( \begin{array}{rr} \sigma &amp;amp; 0 \\ 0 &amp;amp; \sigma \end{array} \right) $$ S is displayed in the second panel. The animation is also available at: https://blogs.mathworks.com/cleve/files/hand_dilate.gif BothHere rotation and dilation are combined. The product of the rotation and dilation matrices drives the action. If you are missing all the action, try: https://blogs.mathworks.com/cleve/files/hand_both.gif R2_D2When you run R2_D2 on your own computer, you can drive the rotations and dilations yourself. Mousing outside of the object creates rotation and mousing inside produces dilation. The R2_D2 program is available from https://blogs.mathworks.com/cleve/files/R2_D2_4.m. Further ReadingIf you are not familiar with matrices, or just want a quick refresher, check out the Matrices chapter of Experiments with MATLAB. Exercise 4.14 is particularly handy. &amp;lt;!-- function grabCode_0fd9ed7550fd4ba3911f9d86fad47cd5() { // Remember the title so we can use it in the new page title = document.title;</summary></entry><entry><title type="html">My Chat With ChatGPT</title><link href="https://hpc.social/commercial-blog/2023/my-chat-with-chatgpt/" rel="alternate" type="text/html" title="My Chat With ChatGPT" /><published>2023-02-22T02:06:53-07:00</published><updated>2023-02-22T02:06:53-07:00</updated><id>https://hpc.social/commercial-blog/2023/my-chat-with-chatgpt</id><content type="html" xml:base="https://hpc.social/commercial-blog/2023/my-chat-with-chatgpt/">&lt;div class=&quot;content&quot;&gt;&lt;!--introduction--&gt;&lt;p&gt;While it is still fresh in my mind, I want to describe the conversation I had with &lt;a href=&quot;https://openai.com/blog/chatgpt/&quot;&gt;a publicly available version of ChatGPT&lt;/a&gt;, the much-discussed large language model, LLM, for conversational artificial intelligence.&lt;/p&gt;
+&lt;!--/introduction--&gt;&lt;h3&gt;Contents&lt;/h3&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#5c070bbf-dca9-48a1-8be7-ac106737302f&quot;&gt;Mixed Reception&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#6bc024ea-c1ab-40ea-b7de-687748c50bc9&quot;&gt;Where Is Sydney?&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#bfe0d37b-cc5a-4998-9d8d-f16c425327f8&quot;&gt;Me and AI&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#d44eee64-c400-46cb-ae9e-b18066fe1fb8&quot;&gt;Me and ChatGPT&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#3fca7af1-1ac0-4481-8135-c47e5a3db750&quot;&gt;AI Winters&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#ecb671af-be78-4da3-b321-d89f60308ce3&quot;&gt;Truth&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;h4&gt;Mixed Reception&lt;a name=&quot;5c070bbf-dca9-48a1-8be7-ac106737302f&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;A newer version of ChatGPT than the one I used is available to selected journalists and computer industry observers. Their reaction has been, shall I say, mixed. At first, some of the reports were positive and even ecstatic. Most of these early reports were from people whose primary concern is the stock market, not AI technology. Many of the more recent and more careful reports have been negative and critical.&lt;/p&gt;
+&lt;h4&gt;Where Is Sydney?&lt;a name=&quot;6bc024ea-c1ab-40ea-b7de-687748c50bc9&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;I have given ChatGPT the nickname &quot;Chad&quot;. Some early users of one of Chad's competitors asked deliberately provocative questions and encountered a cranky alter-ego named &quot;Sydney&quot;.  I didn't ask my Chad any unfair questions and didn't encounter any Sydney's.&lt;/p&gt;
+&lt;h4&gt;Me and AI&lt;a name=&quot;bfe0d37b-cc5a-4998-9d8d-f16c425327f8&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;I have been a long-time observer of -- although not a contributor to -- artificial intelligence research.&lt;/p&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;I took AI courses at Stanford from the inventor of   the field, John McCarthy.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;Bill McKeeman and I entered McCarthy's chess program in   a &lt;i&gt;San Francisco Chronicle's&lt;/i&gt; by-mail chess contest.   (The computer did not fair well.)&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;I used Joe Weizenbaum's computer program Eliza,   the very first Chat Bot.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;I was once married to someone with a PhD in AI.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;Symbolic Math, like MathWorks now does in our Toolbox, and which   we used to do with Macsyma and Maple, was once considered AI.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;The wild animal trail cameras project that I did a few years ago with   Heather Gorr and Jim Sanderson uses modern machine learning and AI.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;h4&gt;Me and ChatGPT&lt;a name=&quot;d44eee64-c400-46cb-ae9e-b18066fe1fb8&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;I talked to -- I should say chatted with, or actually typed at -- Chad for most of an hour on a recent evening. Think of Stephen Hawking in a Web Browser. Chad's responses were always courteous and conversational. And the majority of Chad's responses were factually correct.&lt;/p&gt;
+&lt;p&gt;However, a surprising number of Chad's answers were just plain wrong. Some examples:&lt;/p&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;I was neither born in, nor raised in, rural New Mexico.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;I did not get a PhD from the University of Michigan.   Neither did my wife, Patsy.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;Patsy is not the mother of my daughter Kam,   nor of my sister Betsy.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;Patsy is not an expert in   computational fluid dynamics.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;Ken Kennedy did not coin the term &quot;embarrassingly parallel.&quot;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;Pam McCorduck never worked for the Santa Fe Institute.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;I cannot find any reference to the guys Chad claimed   improved Sympletic Spacewar.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;p&gt;All of Chad's incorrect responses could have been fact-checked by simple Google queries.&lt;/p&gt;
+&lt;h4&gt;AI Winters&lt;a name=&quot;3fca7af1-1ac0-4481-8135-c47e5a3db750&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Everybody wants to combine the conversational style offered by large language models with the reliability and breadth provided by Google.  Now THAT sounds like a really good idea.&lt;/p&gt;
+&lt;p&gt;Artificial intelligence has a history of flush successes interspersed with fallow periods known as AI Winters.  I am afraid that continued obsession with Chat Bots might lead to another AI Winter.&lt;/p&gt;
+&lt;h4&gt;Truth&lt;a name=&quot;ecb671af-be78-4da3-b321-d89f60308ce3&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Steve Eddins revealed the Truth behind ChatGPT with this internal MathWorks Yammer post.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/ChatGPT_truth.jpg&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;!-- 
+    function grabCode_49d101acd4414820a4f6fe4b080b1113() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='49d101acd4414820a4f6fe4b080b1113 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 49d101acd4414820a4f6fe4b080b1113';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '&lt;' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2023 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('&lt;pre&gt;\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length &gt; 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length &gt; 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('&lt;/pre&gt;\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --&gt;&lt;p style=&quot;text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;&quot;&gt;&lt;br /&gt;&lt;a href=&quot;&quot;&gt;&lt;span style=&quot;font-size: x-small; font-style: italic;&quot;&gt;Get 
+      the MATLAB code &lt;noscript&gt;(requires JavaScript)&lt;/noscript&gt;&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
+      Published with MATLAB&amp;reg; R2023a&lt;br /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;!--
+49d101acd4414820a4f6fe4b080b1113 ##### SOURCE BEGIN #####
+%% My Chat with ChatGPT
+% While it is still fresh in my mind, I want to describe the conversation
+% I had with
+% &lt;https://openai.com/blog/chatgpt/ 
+% a publicly available version of ChatGPT&gt;, the much-discussed
+% large language model, LLM, for conversational artificial intelligence.
+
+%% Mixed Reception
+% A newer version of ChatGPT than the one I used is
+% available to selected journalists and computer industry observers.
+% Their reaction has been, shall I say, mixed.
+% At first, some of the reports were positive and even ecstatic.
+% Most of these early reports were from people whose primary concern
+% is the stock market, not AI technology. Many of the more recent and
+% more careful reports have been negative and critical.
+
+%% Where Is Sydney?
+% I have given ChatGPT the nickname &quot;Chad&quot;.
+% Some early users of one of Chad's competitors asked
+% deliberately provocative questions and encountered a cranky alter-ego
+% named &quot;Sydney&quot;.  I didn't ask my Chad any unfair questions and 
+% didn't encounter any Sydney's. 
+
+%% Me and AI
+% I have been a long-time observer of REPLACE_WITH_DASH_DASH although not a contributor to REPLACE_WITH_DASH_DASH
+% artificial intelligence research.
+%
+% * I took AI courses at Stanford from the inventor of 
+%   the field, John McCarthy.
+%
+% * Bill McKeeman and I entered McCarthy's chess program in
+%   a _San Francisco Chronicle's_ by-mail chess contest.
+%   (The computer did not fair well.)
+%
+% * I used Joe Weizenbaum's computer program Eliza, 
+%   the very first Chat Bot. 
+%
+% * I was once married to someone with a PhD in AI.
+% 
+% * Symbolic Math, like MathWorks now does in our Toolbox, and which
+%   we used to do with Macsyma and Maple, was once considered AI.
+%
+% * The wild animal trail cameras project that I did a few years ago with
+%   Heather Gorr and Jim Sanderson uses modern machine learning and AI.
+
+%% Me and ChatGPT
+% I talked to REPLACE_WITH_DASH_DASH I should say chatted with, or actually typed at REPLACE_WITH_DASH_DASH
+% Chad for most of an hour on a recent evening.
+% Think of Stephen Hawking in a Web Browser.
+% Chad's responses were always courteous and conversational.
+% And the majority of Chad's responses were factually correct.
+% 
+% However, a surprising number of Chad's answers were just plain wrong.
+% Some examples:
+%
+% * I was neither born in, nor raised in, rural New Mexico. 
+%
+% * I did not get a PhD from the University of Michigan.
+%   Neither did my wife, Patsy. 
+% 
+% * Patsy is not the mother of my daughter Kam, 
+%   nor of my sister Betsy.
+% 
+% * Patsy is not an expert in
+%   computational fluid dynamics.
+%
+% * Ken Kennedy did not coin the term &quot;embarrassingly parallel.&quot;
+%
+% * Pam McCorduck never worked for the Santa Fe Institute.
+%
+% * I cannot find any reference to the guys Chad claimed
+%   improved Sympletic Spacewar.
+%
+% All of Chad's incorrect responses could have been fact-checked
+% by simple Google queries.  
+
+%% AI Winters
+% Everybody wants to combine the conversational style offered by
+% large language models with the reliability and breadth provided
+% by Google.  Now THAT sounds like a really good idea.
+% 
+% Artificial intelligence has a history of flush successes interspersed
+% with fallow periods known as AI Winters.  I am afraid that
+% continued obsession with Chat Bots might lead to another AI Winter.
+
+%% Truth
+% Steve Eddins revealed the Truth behind ChatGPT with this internal
+% MathWorks Yammer post.
+%
+% &lt;&lt;ChatGPT_truth.jpg&gt;&gt;
+##### SOURCE END ##### 49d101acd4414820a4f6fe4b080b1113
+--&gt;</content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html">While it is still fresh in my mind, I want to describe the conversation I had with a publicly available version of ChatGPT, the much-discussed large language model, LLM, for conversational artificial intelligence. ContentsMixed ReceptionWhere Is Sydney?Me and AIMe and ChatGPTAI WintersTruth Mixed ReceptionA newer version of ChatGPT than the one I used is available to selected journalists and computer industry observers. Their reaction has been, shall I say, mixed. At first, some of the reports were positive and even ecstatic. Most of these early reports were from people whose primary concern is the stock market, not AI technology. Many of the more recent and more careful reports have been negative and critical. Where Is Sydney?I have given ChatGPT the nickname &quot;Chad&quot;. Some early users of one of Chad's competitors asked deliberately provocative questions and encountered a cranky alter-ego named &quot;Sydney&quot;. I didn't ask my Chad any unfair questions and didn't encounter any Sydney's. Me and AII have been a long-time observer of -- although not a contributor to -- artificial intelligence research. I took AI courses at Stanford from the inventor of the field, John McCarthy. Bill McKeeman and I entered McCarthy's chess program in a San Francisco Chronicle's by-mail chess contest. (The computer did not fair well.) I used Joe Weizenbaum's computer program Eliza, the very first Chat Bot. I was once married to someone with a PhD in AI. Symbolic Math, like MathWorks now does in our Toolbox, and which we used to do with Macsyma and Maple, was once considered AI. The wild animal trail cameras project that I did a few years ago with Heather Gorr and Jim Sanderson uses modern machine learning and AI. Me and ChatGPTI talked to -- I should say chatted with, or actually typed at -- Chad for most of an hour on a recent evening. Think of Stephen Hawking in a Web Browser. Chad's responses were always courteous and conversational. And the majority of Chad's responses were factually correct. However, a surprising number of Chad's answers were just plain wrong. Some examples: I was neither born in, nor raised in, rural New Mexico. I did not get a PhD from the University of Michigan. Neither did my wife, Patsy. Patsy is not the mother of my daughter Kam, nor of my sister Betsy. Patsy is not an expert in computational fluid dynamics. Ken Kennedy did not coin the term &quot;embarrassingly parallel.&quot; Pam McCorduck never worked for the Santa Fe Institute. I cannot find any reference to the guys Chad claimed improved Sympletic Spacewar. All of Chad's incorrect responses could have been fact-checked by simple Google queries. AI WintersEverybody wants to combine the conversational style offered by large language models with the reliability and breadth provided by Google. Now THAT sounds like a really good idea. Artificial intelligence has a history of flush successes interspersed with fallow periods known as AI Winters. I am afraid that continued obsession with Chat Bots might lead to another AI Winter. TruthSteve Eddins revealed the Truth behind ChatGPT with this internal MathWorks Yammer post. &amp;lt;!-- function grabCode_49d101acd4414820a4f6fe4b080b1113() { // Remember the title so we can use it in the new page title = document.title;</summary></entry><entry><title type="html">Grafix Users Guide</title><link href="https://hpc.social/commercial-blog/2023/grafix-users-guide/" rel="alternate" type="text/html" title="Grafix Users Guide" /><published>2023-02-10T18:36:06-07:00</published><updated>2023-02-10T18:36:06-07:00</updated><id>https://hpc.social/commercial-blog/2023/grafix-users-guide</id><content type="html" xml:base="https://hpc.social/commercial-blog/2023/grafix-users-guide/">&lt;div class=&quot;content&quot;&gt;&lt;!--introduction--&gt;&lt;p&gt;This is a quick look at &lt;tt&gt;Grafix&lt;/tt&gt;, our tool for exploring matrices via 3-D computer graphics.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Opening.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;!--/introduction--&gt;&lt;h3&gt;Contents&lt;/h3&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#21a702a7-c647-44ae-818a-6f571fa09592&quot;&gt;Matrices&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#7cfcc1d4-26d2-4b2e-b4cb-a0ca04383ff8&quot;&gt;Axis&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#6ce3a663-e301-4ddb-bc4d-58ae5e8f3b51&quot;&gt;Rx&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#f007d1f0-d76b-4e3e-bea3-49bd18805a1f&quot;&gt;Ry&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#200c71a6-5d9f-4c03-8a03-00476f103160&quot;&gt;Rz&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#8dd6ed79-ba75-409b-a59d-68244c928c7a&quot;&gt;Tx&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#a9651b74-3170-4b23-a015-890b537b778a&quot;&gt;Ty&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#ce30422a-3bb7-4beb-90c6-3dfe5eb88351&quot;&gt;Tz&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#20f8cb07-c525-4f1b-a1ae-f9b6320078eb&quot;&gt;S&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#e8ae8340-3615-4ed7-90e7-b185a33f370a&quot;&gt;Switches&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#097b4cbd-7971-430f-aa63-04db38192c6e&quot;&gt;Pitch, Roll, Yaw&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#e558e05a-1bc3-41ed-a63b-ff056cf04620&quot;&gt;Start, Reset, Viz&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#9d1fa1cc-0fe6-4d6f-9ca6-a50f0644fc62&quot;&gt;Apps/taxi&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#0c8793f3-d9d5-45ef-90a8-7ec0c83356ca&quot;&gt;Apps/takeoff&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#c20254e9-3887-4d66-9903-db87c5c7bb30&quot;&gt;Prop&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#1adf580c-785f-4333-9494-0f5657c1ce53&quot;&gt;Info&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#095cf406-3f28-4e05-ab8a-43d29a3310c1&quot;&gt;Exercises&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#6df5e80a-e9fa-45c4-aff2-03edb1ccb334&quot;&gt;Software&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;h4&gt;Matrices&lt;a name=&quot;21a702a7-c647-44ae-818a-6f571fa09592&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;The word &lt;i&gt;matrix&lt;/i&gt; comes from the Latin word &lt;i&gt;mater&lt;/i&gt;, which means &lt;i&gt;mother&lt;/i&gt; or  &lt;i&gt;origin&lt;/i&gt;.  Matrices provide the origins of much of modern applied mathematics and computational science.&lt;/p&gt;
+&lt;p&gt;&lt;tt&gt;Grafix&lt;/tt&gt; is a study of the matrices that describe rotation, translation and scaling of objects moving in three-dimensional space. These matrices are the building blocks of today's computer graphics and are essential to all popular video games, to all CAD (Computer Added Design) packages, to CGI (Computer Graphics Imagery) in films. and to MATLAB's Handle Graphics.&lt;/p&gt;
+&lt;p&gt;MATLAB is short for Matrix Laboratory. Matrices are also the foundation of MATLAB and of MathWorks.&lt;/p&gt;
+&lt;p&gt;The &lt;i&gt;homogeneous coordinates&lt;/i&gt; system used in modern computer graphics makes it possible to describe rotations, translations and many other operations with 4-by-4 matrices.  These matrices operate on vectors with the position of an objec in the first three components and, for now, a one as the fourth component, e.g. &lt;tt&gt;[x,y,z,1]'&lt;/tt&gt;,&lt;/p&gt;
+&lt;p&gt;The matrices, which we collectively denote by &lt;tt&gt;M&lt;/tt&gt;, are always shown in the panel in our displays.  Here is an animation of one important example.  Do you see the pattern in the evolving elements of this &lt;tt&gt;M&lt;/tt&gt;? How are they related to each other?  How long before they repeat?&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/mat_gif.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Axis&lt;a name=&quot;7cfcc1d4-26d2-4b2e-b4cb-a0ca04383ff8&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Here is the coordinate system used by &lt;tt&gt;view(3)&lt;/tt&gt;, MATLAB's default projection of our three-dimensional physical world onto the two-dimensional computer display. The positive &lt;tt&gt;x&lt;/tt&gt;-axis goes up and to the right on the screen, the positive &lt;tt&gt;y&lt;/tt&gt;-axis goes up and to the left, and the positive &lt;tt&gt;z&lt;/tt&gt;-axis goes straight up.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/axis.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Rx&lt;a name=&quot;6ce3a663-e301-4ddb-bc4d-58ae5e8f3b51&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;The three knobs at the lower right of the &lt;tt&gt;Grafix&lt;/tt&gt; window allow you to vary the angles of &lt;tt&gt;Rx&lt;/tt&gt;, &lt;tt&gt;Ry&lt;/tt&gt; and &lt;tt&gt;Rz&lt;/tt&gt;.  Here are snapshots of the resulting motion.  The &lt;tt&gt;Rx&lt;/tt&gt; knob produces rotation about the &lt;tt&gt;x&lt;/tt&gt;-axis, leaving &lt;tt&gt;x&lt;/tt&gt; unchanged while rotating &lt;tt&gt;y&lt;/tt&gt; and &lt;tt&gt;z&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Rx.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Ry&lt;a name=&quot;f007d1f0-d76b-4e3e-bea3-49bd18805a1f&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;tt&gt;Ry&lt;/tt&gt;, rotation about the &lt;tt&gt;y&lt;/tt&gt;-axis, leaves &lt;tt&gt;y&lt;/tt&gt; unchanged while rotating &lt;tt&gt;x&lt;/tt&gt; and &lt;tt&gt;z&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Ry.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Rz&lt;a name=&quot;200c71a6-5d9f-4c03-8a03-00476f103160&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;And, &lt;tt&gt;Rz&lt;/tt&gt;, rotation about the &lt;tt&gt;z&lt;/tt&gt;-axis, leaves &lt;tt&gt;z&lt;/tt&gt; unchanged while rotating &lt;tt&gt;x&lt;/tt&gt; and &lt;tt&gt;y&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Rz.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Tx&lt;a name=&quot;8dd6ed79-ba75-409b-a59d-68244c928c7a&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;The three sliders at the lower left of the &lt;tt&gt;Grafix&lt;/tt&gt; window control matrices with values in the fourth column. Multiplying a vector by &lt;tt&gt;Tx&lt;/tt&gt;, which has a nonzero element in the first row, produces a horizontal movement in the direction of the &lt;tt&gt;x&lt;/tt&gt;-axis.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Tx.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Ty&lt;a name=&quot;a9651b74-3170-4b23-a015-890b537b778a&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;tt&gt;Ty&lt;/tt&gt;, with a nonzero in the second row, is translation in the direction of the &lt;tt&gt;y&lt;/tt&gt;-axis.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Ty.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Tz&lt;a name=&quot;ce30422a-3bb7-4beb-90c6-3dfe5eb88351&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;And, &lt;tt&gt;Tz&lt;/tt&gt; is translation in the &lt;tt&gt;z&lt;/tt&gt; direction.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Tz.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;S&lt;a name=&quot;20f8cb07-c525-4f1b-a1ae-f9b6320078eb&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;The fourth slider controls &lt;tt&gt;S&lt;/tt&gt;, a diagonal matrix with a single scaling factor for all three axes.&lt;/p&gt;
+&lt;p&gt;The use of matrix multiplication allows translations and scaling to be combined with rotations and other operations in a uniform way. The arithmetic units on today's Graphics Processing Units, GPUs, are designed to do 4-by-4 matrix multiplications at speeds hundreds of times faster than general purpose Central Processing Units, CPUs.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/S.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Switches&lt;a name=&quot;e8ae8340-3615-4ed7-90e7-b185a33f370a&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;The switch on the left provides other objects that we will introduce later.  The switch on the right provides different &lt;tt&gt;views&lt;/tt&gt; of three dimensions.  The &lt;tt&gt;yz&lt;/tt&gt; plane view is shown here.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/switches.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Pitch, Roll, Yaw&lt;a name=&quot;097b4cbd-7971-430f-aa63-04db38192c6e&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;i&gt;Pitch&lt;/i&gt;, &lt;i&gt;roll&lt;/i&gt; and  &lt;i&gt;yaw&lt;/i&gt; are often used to describe the motion of aircraft and spacecraft. These terms are closely related to the rotations &lt;tt&gt;Rx&lt;/tt&gt;, &lt;tt&gt;Ry&lt;/tt&gt; and &lt;tt&gt;Rz&lt;/tt&gt;. The &lt;tt&gt;Pitch&lt;/tt&gt; button animates the &lt;tt&gt;Rx&lt;/tt&gt; knob.  Here is a snapshot near one extreme of the resulting motion.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/pitch.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Start, Reset, Viz&lt;a name=&quot;e558e05a-1bc3-41ed-a63b-ff056cf04620&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;The &lt;tt&gt;Start&lt;/tt&gt; button restarts &lt;tt&gt;Grafix&lt;/tt&gt;. The &lt;tt&gt;Reset&lt;/tt&gt; button resets all knobs and sliders.&lt;/p&gt;
+&lt;p&gt;The &lt;tt&gt;Viz&lt;/tt&gt; button turns off the display of buttons, knobs, sliders, and switches.  A small button, emphasized here with color, but usually barely visible, turns the display back on.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/viz.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Apps/taxi&lt;a name=&quot;9d1fa1cc-0fe6-4d6f-9ca6-a50f0644fc62&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;tt&gt;Grafix&lt;/tt&gt; is programable, in a primitive sort of way.  Apps are &lt;tt&gt;Grafix&lt;/tt&gt; programs.  &lt;tt&gt;Taxi&lt;/tt&gt; is a small app.  This is a snapshot.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/taxi.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Apps/takeoff&lt;a name=&quot;0c8793f3-d9d5-45ef-90a8-7ec0c83356ca&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;When the &lt;tt&gt;takeoff&lt;/tt&gt; app first appeared, I thought it was a bug in the code for &lt;tt&gt;Grafix&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;You can see the &lt;tt&gt;takeoff&lt;/tt&gt; program by entering &lt;tt&gt;type takeoff&lt;/tt&gt; at the MATLAB command prompt.  You can also &lt;tt&gt;edit takeoff&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/takeoffapp.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Prop&lt;a name=&quot;c20254e9-3887-4d66-9903-db87c5c7bb30&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;One of my favorite animations employs the rotations from the Matrices section to drive the propeller alone.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/prop_gif_small.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Info&lt;a name=&quot;1adf580c-785f-4333-9494-0f5657c1ce53&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;The &lt;tt&gt;info&lt;/tt&gt; button is a link to this User's Guide.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Guide.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Exercises&lt;a name=&quot;095cf406-3f28-4e05-ab8a-43d29a3310c1&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;What color is the beacon on top of the plane?&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;Demonstrate how matrix-vector multiplication, &lt;tt&gt;Mv&lt;/tt&gt;, of a position   vector, &lt;tt&gt;v = [x,y,z,1]'&lt;/tt&gt;, by a 4-by-4 matrix &lt;tt&gt;M&lt;/tt&gt;, achieves a rotation,   translation or scaling.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;Describe the evolution of the matrix values in the Matrices and   &lt;tt&gt;prop&lt;/tt&gt; animations.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;What angles are involved in the snapshots shown for   &lt;tt&gt;Rx&lt;/tt&gt;, &lt;tt&gt;Ry&lt;/tt&gt; and &lt;tt&gt;Rz&lt;/tt&gt;?&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;Why is the plane in the &lt;tt&gt;Pitch&lt;/tt&gt; animation upside down?&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;What angles and what matrices characterize the extremes of the &lt;tt&gt;Pitch&lt;/tt&gt;   animation?&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;Write another app like &lt;tt&gt;taxi&lt;/tt&gt; and &lt;tt&gt;takeoff&lt;/tt&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;h4&gt;Software&lt;a name=&quot;6df5e80a-e9fa-45c4-aff2-03edb1ccb334&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;The MATLAB code for &lt;tt&gt;Grafix&lt;/tt&gt; &lt;a href=&quot;https://blogs.mathworks.com/cleve/files/Grafix_mzip.m&quot;&gt;is available here.&lt;/a&gt;&lt;/p&gt;
+&lt;!-- 
+    function grabCode_c11525de7f124cdcb5896c8c3f89d4a8() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='c11525de7f124cdcb5896c8c3f89d4a8 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' c11525de7f124cdcb5896c8c3f89d4a8';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '&lt;' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2023 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('&lt;pre&gt;\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length &gt; 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length &gt; 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('&lt;/pre&gt;\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --&gt;&lt;p style=&quot;text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;&quot;&gt;&lt;br /&gt;&lt;a href=&quot;&quot;&gt;&lt;span style=&quot;font-size: x-small; font-style: italic;&quot;&gt;Get 
+      the MATLAB code &lt;noscript&gt;(requires JavaScript)&lt;/noscript&gt;&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
+      Published with MATLAB&amp;reg; R2023a&lt;br /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;!--
+c11525de7f124cdcb5896c8c3f89d4a8 ##### SOURCE BEGIN #####
+%% Grafix User's Guide
+% This is a quick look at
+% |Grafix|, our tool for exploring matrices via 3-D computer graphics.
+%
+% &lt;&lt;Opening.png&gt;&gt;
+%
+
+%% Matrices
+% The word _matrix_ comes from the Latin word _mater_, which means
+% _mother_ or  _origin_.  Matrices provide the origins of much of
+% modern applied mathematics and computational science.
+%
+% |Grafix| is a study of the matrices that describe rotation, translation 
+% and scaling of objects moving in three-dimensional space. 
+% These matrices are the building blocks of today's computer graphics
+% and are essential to all popular video games, 
+% to all CAD (Computer Added Design) packages, 
+% to CGI (Computer Graphics Imagery) in films.
+% and to MATLAB's Handle Graphics.
+%
+% MATLAB is short for Matrix Laboratory.
+% Matrices are also the foundation of MATLAB and of MathWorks.
+%
+% The _homogeneous coordinates_ system used in modern computer graphics
+% makes it possible to describe rotations, translations
+% and many other operations with 4-by-4 matrices.  These matrices
+% operate on vectors with the position of an objec
+% in the first three components and, for now, a one as the
+% fourth component, e.g. |[x,y,z,1]'|,
+%
+% The matrices, which we collectively denote by |M|, are always shown
+% in the panel in our displays.  Here is an animation of one important 
+% example.  Do you see the pattern in the evolving elements of this |M|?
+% How are they related to each other?  How long before they repeat?
+%
+% &lt;&lt;mat_gif.gif&gt;&gt;
+%
+
+%% Axis
+% Here is the coordinate system used by |view(3)|, MATLAB's default 
+% projection of our three-dimensional physical world onto the 
+% two-dimensional computer display.
+% The positive |x|-axis goes up and to the right on the screen, 
+% the positive |y|-axis goes up and to the left, and the positive 
+% |z|-axis goes straight up.
+%
+% &lt;&lt;axis.png&gt;&gt;
+
+%% Rx
+% The three knobs at the lower right of the |Grafix| window allow you
+% to vary the angles of |Rx|, |Ry| and |Rz|.  Here are snapshots
+% of the resulting motion.  The |Rx| knob produces rotation about the
+% |x|-axis, leaving |x| unchanged while rotating |y| and |z|. 
+%
+% &lt;&lt;Rx.png&gt;&gt;
+%
+
+%% Ry
+% |Ry|, rotation about the |y|-axis, leaves |y| unchanged while 
+% rotating |x| and |z|. 
+%
+% &lt;&lt;Ry.png&gt;&gt;
+%
+
+%% Rz
+% And, |Rz|, rotation about the |z|-axis, leaves |z| unchanged while
+% rotating |x| and |y|.
+%
+% &lt;&lt;Rz.png&gt;&gt;
+%
+
+%% Tx
+% The three sliders at the lower left of the |Grafix| window
+% control matrices with values in the fourth column.
+% Multiplying a vector by |Tx|, which has a nonzero element in the first
+% row, produces a horizontal movement in the direction of the |x|-axis.
+%
+% &lt;&lt;Tx.png&gt;&gt;
+%
+
+%% Ty
+% |Ty|, with a nonzero in the second row, is translation in the 
+% direction of the |y|-axis.
+%
+% &lt;&lt;Ty.png&gt;&gt;
+%
+
+%% Tz
+% And, |Tz| is translation in the |z| direction.
+%
+% &lt;&lt;Tz.png&gt;&gt;
+%
+
+%% S
+% The fourth slider controls |S|, a diagonal matrix with
+% a single scaling factor for all three axes. 
+%
+% The use of matrix multiplication allows translations and scaling
+% to be combined with rotations and other operations in a uniform way. 
+% The arithmetic units on today's
+% Graphics Processing Units, GPUs, are designed to do 4-by-4 matrix
+% multiplications at speeds hundreds of times faster than general
+% purpose Central Processing Units, CPUs.
+%
+% &lt;&lt;S.png&gt;&gt;
+%
+
+%% Switches
+% The switch on the left provides other objects that we will introduce
+% later.  The switch on the right provides different |views| 
+% of three dimensions.  The |yz| plane view is shown here.
+%
+% &lt;&lt;switches.png&gt;&gt;
+% 
+
+%% Pitch, Roll, Yaw
+% _Pitch_, _roll_ and  _yaw_ are often used to describe
+% the motion of aircraft and spacecraft.
+% These terms are closely related to the rotations |Rx|, |Ry| and |Rz|.
+% The |Pitch| button animates the |Rx| knob.  Here is a snapshot near
+% one extreme of the resulting motion.
+%
+% &lt;&lt;pitch.png&gt;&gt;
+%
+
+%% Start, Reset, Viz
+% The |Start| button restarts |Grafix|.
+% The |Reset| button resets all knobs and sliders.
+%
+% The |Viz| button turns off the display of buttons, knobs, sliders, and
+% switches.  A small button, emphasized here with color, but usually
+% barely visible, turns the display back on.
+%
+% &lt;&lt;viz.png&gt;&gt;
+%
+
+%% Apps/taxi
+% |Grafix| is programable, in a primitive sort of way.  Apps are |Grafix|
+% programs.  |Taxi| is a small app.  This is a snapshot.
+%
+% &lt;&lt;taxi.png&gt;&gt;
+%
+
+%% Apps/takeoff
+% When the |takeoff| app first appeared, I thought it was a bug in the 
+% code for |Grafix|.
+%
+% You can see the |takeoff| program by entering |type takeoff|
+% at the MATLAB command prompt.  You can also |edit takeoff|.
+%
+% &lt;&lt;takeoffapp.png&gt;&gt;
+%
+
+%% Prop
+% One of my favorite animations employs the rotations from the Matrices
+% section to drive the propeller alone.
+%
+% &lt;&lt;prop_gif_small.gif&gt;&gt;
+%
+
+%% Info
+% The |info| button is a link to this User's Guide.
+%
+% &lt;&lt;Guide.png&gt;&gt;
+%
+
+%% Exercises
+%
+% * What color is the beacon on top of the plane?
+%
+% * Demonstrate how matrix-vector multiplication, |Mv|, of a position
+%   vector, |v = [x,y,z,1]'|, by a 4-by-4 matrix |M|, achieves a rotation,
+%   translation or scaling.
+%
+% * Describe the evolution of the matrix values in the Matrices and
+%   |prop| animations.
+%
+% * What angles are involved in the snapshots shown for
+%   |Rx|, |Ry| and |Rz|?
+%
+% * Why is the plane in the |Pitch| animation upside down?
+%
+% * What angles and what matrices characterize the extremes of the |Pitch|
+%   animation? 
+%
+% * Write another app like |taxi| and |takeoff|.
+%
+
+%% Software
+%
+% The MATLAB code for |Grafix|
+% &lt;https://blogs.mathworks.com/cleve/files/Grafix_mzip.m is available here.&gt;
+##### SOURCE END ##### c11525de7f124cdcb5896c8c3f89d4a8
+--&gt;</content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html">This is a quick look at Grafix, our tool for exploring matrices via 3-D computer graphics. ContentsMatricesAxisRxRyRzTxTyTzSSwitchesPitch, Roll, YawStart, Reset, VizApps/taxiApps/takeoffPropInfoExercisesSoftware MatricesThe word matrix comes from the Latin word mater, which means mother or origin. Matrices provide the origins of much of modern applied mathematics and computational science. Grafix is a study of the matrices that describe rotation, translation and scaling of objects moving in three-dimensional space. These matrices are the building blocks of today's computer graphics and are essential to all popular video games, to all CAD (Computer Added Design) packages, to CGI (Computer Graphics Imagery) in films. and to MATLAB's Handle Graphics. MATLAB is short for Matrix Laboratory. Matrices are also the foundation of MATLAB and of MathWorks. The homogeneous coordinates system used in modern computer graphics makes it possible to describe rotations, translations and many other operations with 4-by-4 matrices. These matrices operate on vectors with the position of an objec in the first three components and, for now, a one as the fourth component, e.g. [x,y,z,1]', The matrices, which we collectively denote by M, are always shown in the panel in our displays. Here is an animation of one important example. Do you see the pattern in the evolving elements of this M? How are they related to each other? How long before they repeat? AxisHere is the coordinate system used by view(3), MATLAB's default projection of our three-dimensional physical world onto the two-dimensional computer display. The positive x-axis goes up and to the right on the screen, the positive y-axis goes up and to the left, and the positive z-axis goes straight up. RxThe three knobs at the lower right of the Grafix window allow you to vary the angles of Rx, Ry and Rz. Here are snapshots of the resulting motion. The Rx knob produces rotation about the x-axis, leaving x unchanged while rotating y and z. RyRy, rotation about the y-axis, leaves y unchanged while rotating x and z. RzAnd, Rz, rotation about the z-axis, leaves z unchanged while rotating x and y. TxThe three sliders at the lower left of the Grafix window control matrices with values in the fourth column. Multiplying a vector by Tx, which has a nonzero element in the first row, produces a horizontal movement in the direction of the x-axis. TyTy, with a nonzero in the second row, is translation in the direction of the y-axis. TzAnd, Tz is translation in the z direction. SThe fourth slider controls S, a diagonal matrix with a single scaling factor for all three axes. The use of matrix multiplication allows translations and scaling to be combined with rotations and other operations in a uniform way. The arithmetic units on today's Graphics Processing Units, GPUs, are designed to do 4-by-4 matrix multiplications at speeds hundreds of times faster than general purpose Central Processing Units, CPUs. SwitchesThe switch on the left provides other objects that we will introduce later. The switch on the right provides different views of three dimensions. The yz plane view is shown here. Pitch, Roll, YawPitch, roll and yaw are often used to describe the motion of aircraft and spacecraft. These terms are closely related to the rotations Rx, Ry and Rz. The Pitch button animates the Rx knob. Here is a snapshot near one extreme of the resulting motion. Start, Reset, VizThe Start button restarts Grafix. The Reset button resets all knobs and sliders. The Viz button turns off the display of buttons, knobs, sliders, and switches. A small button, emphasized here with color, but usually barely visible, turns the display back on. Apps/taxiGrafix is programable, in a primitive sort of way. Apps are Grafix programs. Taxi is a small app. This is a snapshot. Apps/takeoffWhen the takeoff app first appeared, I thought it was a bug in the code for Grafix. You can see the takeoff program by entering type takeoff at the MATLAB command prompt. You can also edit takeoff. PropOne of my favorite animations employs the rotations from the Matrices section to drive the propeller alone. InfoThe info button is a link to this User's Guide. ExercisesWhat color is the beacon on top of the plane? Demonstrate how matrix-vector multiplication, Mv, of a position vector, v = [x,y,z,1]', by a 4-by-4 matrix M, achieves a rotation, translation or scaling. Describe the evolution of the matrix values in the Matrices and prop animations. What angles are involved in the snapshots shown for Rx, Ry and Rz? Why is the plane in the Pitch animation upside down? What angles and what matrices characterize the extremes of the Pitch animation? Write another app like taxi and takeoff. SoftwareThe MATLAB code for Grafix is available here. &amp;lt;!-- function grabCode_c11525de7f124cdcb5896c8c3f89d4a8() { // Remember the title so we can use it in the new page title = document.title;</summary></entry><entry><title type="html">Matrices In Action, Grafix 2.0</title><link href="https://hpc.social/commercial-blog/2023/matrices-in-action-grafix-2-0/" rel="alternate" type="text/html" title="Matrices In Action, Grafix 2.0" /><published>2023-02-04T13:00:33-07:00</published><updated>2023-02-04T13:00:33-07:00</updated><id>https://hpc.social/commercial-blog/2023/matrices-in-action-grafix-2-0</id><content type="html" xml:base="https://hpc.social/commercial-blog/2023/matrices-in-action-grafix-2-0/">&lt;div class=&quot;content&quot;&gt;&lt;!--introduction--&gt;&lt;p&gt;The 4-by-4 matrices in the panels on the following screenshots are at the heart of computer graphics. They describe objects moving in three-dimensional space and are essential to MATLAB's Handle Graphics, to CAD (Computer Added Design) packages, to CGI (Computer Graphics Imagery) in  films, and to most popular video games.&lt;/p&gt;
+&lt;!--/introduction--&gt;&lt;h3&gt;Contents&lt;/h3&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#4c54a017-4a2d-4bd0-b5de-085c77696298&quot;&gt;Grafix 2.0&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#19ccc0f8-ccd0-45a3-a624-c4f466eea2af&quot;&gt;Rotations&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#4028a6e9-0449-4846-8e6e-c9a2c5ad64b6&quot;&gt;Pitch, Roll, and Yaw&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#e6dc8b74-fe6e-4fb5-a343-2b8fbfe28558&quot;&gt;Translations&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#9dbcd88d-756a-475c-bd7e-237261a3cdbe&quot;&gt;Horizontal and Vertical&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#54cb3b88-904f-441b-9c61-91dca0a68c0d&quot;&gt;Scalings&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#9bfb2311-6f44-4f2b-85aa-f09554da0cc6&quot;&gt;Larger and Smaller&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#ef53d281-53a4-437e-80f0-93b331367abf&quot;&gt;Suggestions&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;h4&gt;Grafix 2.0&lt;a name=&quot;4c54a017-4a2d-4bd0-b5de-085c77696298&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Here is the opening screen from version 2.0 of &lt;tt&gt;Grafix&lt;/tt&gt;, my tool for investigating the matrices involved in 3-D computer graphics. The MATLAB code for &lt;tt&gt;Grafix&lt;/tt&gt; &lt;a href=&quot;https://blogs.mathworks.com/cleve/files/Grafix_mzip.m&quot;&gt;is availble here.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I am interested in the matrix in the panel, which I call &lt;tt&gt;M&lt;/tt&gt;. Many matrices like this one describe the dyamic transformations to be made on a set of target objects in a complex three-dimensional scene. This particular &lt;tt&gt;M&lt;/tt&gt; is the product of a scaling and a rotation that results in the size and orientation of the plane shown.&lt;/p&gt;
+&lt;p&gt;I also want to point out the coordinate axes being used. This is &lt;tt&gt;view(3)&lt;/tt&gt;, MATLAB's default 3-D cordinate system.  The positive $x$-axis goes up and to the right on the screen, the positive $y$-axis up and to the left, and the positive $z$-axis goes straight up.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/grafix.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Rotations&lt;a name=&quot;19ccc0f8-ccd0-45a3-a624-c4f466eea2af&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;The &lt;i&gt;homogeneous coordinates&lt;/i&gt; system used in modern computer graphics makes it possible to describe rotations, translations and many other operations with 4-by-4 matrices.  These matrices operate on vectors with the position of an object in the first three components and, for now, a one as the fourth component, eg.  [ $x$, $y$, $z$, 1 ]',&lt;/p&gt;
+&lt;p&gt;Rotations are described by products of these matrices, each of which operates on only two of the first three components of the vector.  The first matrix, $R_x$, leaves $x$ unchanged while it rotates $y$ and $z$.  The second matrix, $R_y$, leaves $y$ unchanged while it rotates $x$ and $z$.  And the third matrix, $R_z$, leaves $z$ unchanged while it rotates $x$ and $y$.&lt;/p&gt;
+&lt;p&gt;$$ R_x(\theta) = \left[ \begin{array}{rrrr}
+  1  &amp;amp;             0  &amp;amp;              0  &amp;amp;  0 \\
+  0  &amp;amp;  \cos{\theta}  &amp;amp;  -\sin{\theta}  &amp;amp;  0 \\
+  0  &amp;amp;  \sin{\theta}  &amp;amp;   \cos{\theta}  &amp;amp;  0 \\
+  0  &amp;amp;             0  &amp;amp;              0  &amp;amp;  1
+  \end{array}  \right] $$&lt;/p&gt;
+&lt;p&gt;$$ R_y(\theta) = \left[ \begin{array}{rrrr}
+    \cos{\theta}  &amp;amp;  0  &amp;amp; -\sin{\theta}  &amp;amp;  0 \\
+               0  &amp;amp;  1  &amp;amp;             0  &amp;amp;  0 \\
+    \sin{\theta}  &amp;amp;  0  &amp;amp;  \cos{\theta}  &amp;amp;  0 \\
+               0  &amp;amp;  0  &amp;amp;             0  &amp;amp;  1
+  \end{array}  \right] $$&lt;/p&gt;
+&lt;p&gt;$$ R_z(\theta) = \left[ \begin{array}{rrrr}
+   \cos{\theta}  &amp;amp;  -\sin{\theta}  &amp;amp;  0  &amp;amp;  0 \\
+   \sin{\theta}  &amp;amp;   \cos{\theta}  &amp;amp;  0  &amp;amp;  0 \\
+              0  &amp;amp;              0  &amp;amp;  1  &amp;amp;  0 \\
+              0  &amp;amp;              0  &amp;amp;  0  &amp;amp;  1
+  \end{array}  \right] $$&lt;/p&gt;
+&lt;h4&gt;Pitch, Roll, and Yaw&lt;a name=&quot;4028a6e9-0449-4846-8e6e-c9a2c5ad64b6&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;The terms &lt;i&gt;pitch&lt;/i&gt;, &lt;i&gt;roll&lt;/i&gt; and  &lt;i&gt;yaw&lt;/i&gt; are often used to describe the motion of vehicles like aircraft, marine craft, and spacecraft. Pitch is $R_x$, rotation about the $x$-axis.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/pitchgif.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;p&gt;Roll is $R_y$, rotation about the $y$-axis.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/rollgif.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;p&gt;And yaw is $R_z$, rotation about the $z$-axis.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/yawgif.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Translations&lt;a name=&quot;e6dc8b74-fe6e-4fb5-a343-2b8fbfe28558&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Translations are described by matrices with values in the fourth column. Multiplying a vector by one of these matrices produces a translation in the direction of the corresponding axis.&lt;/p&gt;
+&lt;p&gt;$$ T_x(\delta) = \left[ \begin{array}{rrrr}
+   1  &amp;amp;  0  &amp;amp;  0  &amp;amp;  \delta \\
+   0  &amp;amp;  1  &amp;amp;  0  &amp;amp;         0 \\
+   0  &amp;amp;  0  &amp;amp;  1  &amp;amp;         0 \\
+   0  &amp;amp;  0  &amp;amp;  0  &amp;amp;         1
+  \end{array}  \right] $$&lt;/p&gt;
+&lt;p&gt;$$ T_y(\delta) = \left[ \begin{array}{rrrr}
+   1  &amp;amp;  0  &amp;amp;  0  &amp;amp;         0 \\
+   0  &amp;amp;  1  &amp;amp;  0  &amp;amp;  \delta \\
+   0  &amp;amp;  0  &amp;amp;  1  &amp;amp;         0 \\
+   0  &amp;amp;  0  &amp;amp;  0  &amp;amp;         1
+  \end{array}  \right] $$&lt;/p&gt;
+&lt;p&gt;$$ T_z(\delta) = \left[ \begin{array}{rrrr}
+   1  &amp;amp;  0  &amp;amp;  0  &amp;amp;         0 \\
+   0  &amp;amp;  1  &amp;amp;  0  &amp;amp;         0 \\
+   0  &amp;amp;  0  &amp;amp;  1  &amp;amp;  \delta \\
+   0  &amp;amp;  0  &amp;amp;  0  &amp;amp;         1
+  \end{array}  \right] $$&lt;/p&gt;
+&lt;p&gt;While it is true that translations could be accomplished simply by adding the increment to the specified coordiate, the use of matrix multiplication allows translations to be combined in a uniform way with rotations and other operations.  The arithmetic units on today's Graphics Processing Units, GPUs, are designed to do 4-by-4 matrix multiplications at speeds hundreds of times faster than general purpose Central Processing Units, CPUs.&lt;/p&gt;
+&lt;h4&gt;Horizontal and Vertical&lt;a name=&quot;9dbcd88d-756a-475c-bd7e-237261a3cdbe&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Inspired by David Singmaster's notation for Rubik's cubes, L, R, B, F, U, and D, we can use the descriptive terms &lt;i&gt;left&lt;/i&gt; and &lt;i&gt;right&lt;/i&gt; for horizontal motion in the $x$ direction; &lt;i&gt;back&lt;/i&gt; and &lt;i&gt;forth&lt;/i&gt; for horizontal motion in the $y$ direction; and &lt;i&gt;up&lt;/i&gt; and &lt;i&gt;down&lt;/i&gt; for vertical motion in the $z$ direction.&lt;/p&gt;
+&lt;p&gt;$T_x$, left and right.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Txgif.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;p&gt;$T_y$, back and forth.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Tygif.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;p&gt;$T_z$, up and down.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Tzgif.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Scalings&lt;a name=&quot;54cb3b88-904f-441b-9c61-91dca0a68c0d&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;This matrix applies a single scaling factor to all three axes.&lt;/p&gt;
+&lt;p&gt;$$ S(\sigma) = \left[ \begin{array}{rrrr}
+   \sigma  &amp;amp;  0  &amp;amp;  0    &amp;amp;  0 \\
+     0 &amp;amp; \sigma  &amp;amp;  0    &amp;amp;  0 \\
+     0 &amp;amp;   0  &amp;amp;  \sigma  &amp;amp;  0 \\
+     0  &amp;amp;  0  &amp;amp;     0    &amp;amp;  1
+  \end{array}  \right] $$&lt;/p&gt;
+&lt;h4&gt;Larger and Smaller&lt;a name=&quot;9bfb2311-6f44-4f2b-85aa-f09554da0cc6&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;$S$&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Sgif.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Suggestions&lt;a name=&quot;ef53d281-53a4-437e-80f0-93b331367abf&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Refresh your browser to syncronize the animations.&lt;/p&gt;
+&lt;p&gt;Download your own self-archiving copies of&lt;/p&gt;
+&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://blogs.mathworks.com/cleve/files/Grafix_mzip.m&quot;&gt;Grafix&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://blogs.mathworks.com/cleve/files/Qube_mzip-1.m&quot;&gt;Qube&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;!-- 
+    function grabCode_b13c7ab1c73c4ad7909fa2d7cd9764f2() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='b13c7ab1c73c4ad7909fa2d7cd9764f2 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' b13c7ab1c73c4ad7909fa2d7cd9764f2';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '&lt;' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2023 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('&lt;pre&gt;\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length &gt; 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length &gt; 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('&lt;/pre&gt;\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --&gt;&lt;p style=&quot;text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;&quot;&gt;&lt;br /&gt;&lt;a href=&quot;&quot;&gt;&lt;span style=&quot;font-size: x-small; font-style: italic;&quot;&gt;Get 
+      the MATLAB code &lt;noscript&gt;(requires JavaScript)&lt;/noscript&gt;&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
+      Published with MATLAB&amp;reg; R2023a&lt;br /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;!--
+b13c7ab1c73c4ad7909fa2d7cd9764f2 ##### SOURCE BEGIN #####
+%% Matrices In Action, Grafix 2.0
+% The 4-by-4 matrices in the panels on the following screenshots
+% are at the heart of computer graphics.
+% They describe objects moving in three-dimensional
+% space and are essential to MATLAB's Handle Graphics,
+% to CAD (Computer Added Design) packages, 
+% to CGI (Computer Graphics Imagery) in  films,
+% and to most popular video games.
+%
+
+%% Grafix 2.0
+% Here is the opening screen from version 2.0 of |Grafix|,
+% my tool for investigating the matrices involved in 3-D computer graphics.
+% The MATLAB code for |Grafix|
+% &lt;https://blogs.mathworks.com/cleve/files/Grafix_mzip.m is availble here.&gt;
+
+%%
+% I am interested in the matrix in the panel, which I call |M|.
+% Many matrices like this one describe the dyamic transformations to be
+% made on a set of target objects in a complex three-dimensional scene.
+% This particular |M| is the product of a scaling and a rotation that 
+% results in the size and orientation of the plane shown.
+%
+% I also want to point out the coordinate axes being used.
+% This is |view(3)|, MATLAB's default 3-D cordinate system.  The positive
+% $x$-axis goes up and to the right on the screen, the positive $y$-axis
+% up and to the left, and the positive $z$-axis goes straight up.
+%
+% &lt;&lt;grafix.png&gt;&gt;
+%
+
+%% Rotations
+% The _homogeneous coordinates_ system used in modern computer graphics
+% makes it possible to describe rotations, translations
+% and many other operations with 4-by-4 matrices.  These matrices
+% operate on vectors with the position of an object
+% in the first three components and, for now, a one as the
+% fourth component, eg.  [ $x$, $y$, $z$, 1 ]',
+%
+% Rotations are described by products of these matrices,
+% each of which operates on only two of the first three components of
+% the vector.  The first matrix, $R_x$, leaves $x$ unchanged while it 
+% rotates $y$ and $z$.  The second matrix, $R_y$, leaves $y$ unchanged
+% while it rotates $x$ and $z$.  And the third matrix, $R_z$,
+% leaves $z$ unchanged while it rotates $x$ and $y$.
+%
+% $$ R_x(\theta) = \left[ \begin{array}{rrrr}
+%   1  &amp;             0  &amp;              0  &amp;  0 \\
+%   0  &amp;  \cos{\theta}  &amp;  -\sin{\theta}  &amp;  0 \\
+%   0  &amp;  \sin{\theta}  &amp;   \cos{\theta}  &amp;  0 \\
+%   0  &amp;             0  &amp;              0  &amp;  1 
+%   \end{array}  \right] $$
+%   
+%
+% $$ R_y(\theta) = \left[ \begin{array}{rrrr}
+%     \cos{\theta}  &amp;  0  &amp; -\sin{\theta}  &amp;  0 \\
+%                0  &amp;  1  &amp;             0  &amp;  0 \\ 
+%     \sin{\theta}  &amp;  0  &amp;  \cos{\theta}  &amp;  0 \\
+%                0  &amp;  0  &amp;             0  &amp;  1 
+%   \end{array}  \right] $$
+%   
+%
+% $$ R_z(\theta) = \left[ \begin{array}{rrrr}
+%    \cos{\theta}  &amp;  -\sin{\theta}  &amp;  0  &amp;  0 \\
+%    \sin{\theta}  &amp;   \cos{\theta}  &amp;  0  &amp;  0 \\
+%               0  &amp;              0  &amp;  1  &amp;  0 \\
+%               0  &amp;              0  &amp;  0  &amp;  1 
+%   \end{array}  \right] $$
+%
+
+%% Pitch, Roll, and Yaw
+% The terms _pitch_, _roll_ and  _yaw_ are often used to describe
+% the motion of vehicles like aircraft, marine craft, and spacecraft.
+% Pitch is $R_x$, rotation about the $x$-axis.
+%
+% &lt;&lt;pitchgif.gif&gt;&gt;
+%
+
+%%
+% Roll is $R_y$, rotation about the $y$-axis.
+%
+% &lt;&lt;rollgif.gif&gt;&gt;
+%
+
+%%
+% And yaw is $R_z$, rotation about the $z$-axis.
+%
+% &lt;&lt;yawgif.gif&gt;&gt;
+%
+
+%% Translations
+% Translations are described by matrices with values in the fourth column.
+% Multiplying a vector by one of these matrices produces a translation
+% in the direction of the corresponding axis.
+%
+% $$ T_x(\delta) = \left[ \begin{array}{rrrr}
+%    1  &amp;  0  &amp;  0  &amp;  \delta \\
+%    0  &amp;  1  &amp;  0  &amp;         0 \\
+%    0  &amp;  0  &amp;  1  &amp;         0 \\
+%    0  &amp;  0  &amp;  0  &amp;         1 
+%   \end{array}  \right] $$
+%
+% $$ T_y(\delta) = \left[ \begin{array}{rrrr}
+%    1  &amp;  0  &amp;  0  &amp;         0 \\
+%    0  &amp;  1  &amp;  0  &amp;  \delta \\
+%    0  &amp;  0  &amp;  1  &amp;         0 \\
+%    0  &amp;  0  &amp;  0  &amp;         1 
+%   \end{array}  \right] $$
+%
+% $$ T_z(\delta) = \left[ \begin{array}{rrrr}
+%    1  &amp;  0  &amp;  0  &amp;         0 \\
+%    0  &amp;  1  &amp;  0  &amp;         0 \\
+%    0  &amp;  0  &amp;  1  &amp;  \delta \\
+%    0  &amp;  0  &amp;  0  &amp;         1 
+%   \end{array}  \right] $$
+%
+% While it is true that translations could be accomplished simply by
+% adding the increment to the specified coordiate, the use of matrix
+% multiplication allows translations to be combined in a uniform way
+% with rotations and other operations.  The arithmetic units on today's
+% Graphics Processing Units, GPUs, are designed to do 4-by-4 matrix
+% multiplications at speeds hundreds of times faster than general
+% purpose Central Processing Units, CPUs.
+
+%% Horizontal and Vertical
+% Inspired by David Singmaster's notation for Rubik's cubes, 
+% L, R, B, F, U, and D,
+% we can use the descriptive terms _left_ and _right_ for
+% horizontal motion in the $x$ direction; _back_ and _forth_
+% for horizontal motion in the $y$ direction; and _up_ and _down_
+% for vertical motion in the $z$ direction.
+%
+% $T_x$, left and right.
+%
+% &lt;&lt;Txgif.gif&gt;&gt;
+%
+%
+% $T_y$, back and forth.
+%
+% &lt;&lt;Tygif.gif&gt;&gt;
+%
+% $T_z$, up and down.
+%
+% &lt;&lt;Tzgif.gif&gt;&gt;
+%
+
+%% Scalings
+% This matrix applies a single scaling factor to all three axes. 
+%
+% $$ S(\sigma) = \left[ \begin{array}{rrrr}
+%    \sigma  &amp;  0  &amp;  0    &amp;  0 \\
+%      0 &amp; \sigma  &amp;  0    &amp;  0 \\
+%      0 &amp;   0  &amp;  \sigma  &amp;  0 \\
+%      0  &amp;  0  &amp;     0    &amp;  1 
+%   \end{array}  \right] $$
+
+%% Larger and Smaller
+%
+% $S$
+%
+% &lt;&lt;Sgif.gif&gt;&gt;
+%
+
+%% Suggestions
+% Refresh your browser to syncronize the animations.
+% 
+% Download your own self-archiving copies of
+%
+% * &lt;https://blogs.mathworks.com/cleve/files/Grafix_mzip.m Grafix&gt;
+% * &lt;https://blogs.mathworks.com/cleve/files/Qube_mzip-1.m Qube&gt;
+%
+##### SOURCE END ##### b13c7ab1c73c4ad7909fa2d7cd9764f2
+--&gt;</content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html">The 4-by-4 matrices in the panels on the following screenshots are at the heart of computer graphics. They describe objects moving in three-dimensional space and are essential to MATLAB's Handle Graphics, to CAD (Computer Added Design) packages, to CGI (Computer Graphics Imagery) in films, and to most popular video games. ContentsGrafix 2.0RotationsPitch, Roll, and YawTranslationsHorizontal and VerticalScalingsLarger and SmallerSuggestions Grafix 2.0Here is the opening screen from version 2.0 of Grafix, my tool for investigating the matrices involved in 3-D computer graphics. The MATLAB code for Grafix is availble here. I am interested in the matrix in the panel, which I call M. Many matrices like this one describe the dyamic transformations to be made on a set of target objects in a complex three-dimensional scene. This particular M is the product of a scaling and a rotation that results in the size and orientation of the plane shown. I also want to point out the coordinate axes being used. This is view(3), MATLAB's default 3-D cordinate system. The positive $x$-axis goes up and to the right on the screen, the positive $y$-axis up and to the left, and the positive $z$-axis goes straight up. RotationsThe homogeneous coordinates system used in modern computer graphics makes it possible to describe rotations, translations and many other operations with 4-by-4 matrices. These matrices operate on vectors with the position of an object in the first three components and, for now, a one as the fourth component, eg. [ $x$, $y$, $z$, 1 ]', Rotations are described by products of these matrices, each of which operates on only two of the first three components of the vector. The first matrix, $R_x$, leaves $x$ unchanged while it rotates $y$ and $z$. The second matrix, $R_y$, leaves $y$ unchanged while it rotates $x$ and $z$. And the third matrix, $R_z$, leaves $z$ unchanged while it rotates $x$ and $y$. $$ R_x(\theta) = \left[ \begin{array}{rrrr} 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\ 0 &amp;amp; \cos{\theta} &amp;amp; -\sin{\theta} &amp;amp; 0 \\ 0 &amp;amp; \sin{\theta} &amp;amp; \cos{\theta} &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 \end{array} \right] $$ $$ R_y(\theta) = \left[ \begin{array}{rrrr} \cos{\theta} &amp;amp; 0 &amp;amp; -\sin{\theta} &amp;amp; 0 \\ 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 \\ \sin{\theta} &amp;amp; 0 &amp;amp; \cos{\theta} &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 \end{array} \right] $$ $$ R_z(\theta) = \left[ \begin{array}{rrrr} \cos{\theta} &amp;amp; -\sin{\theta} &amp;amp; 0 &amp;amp; 0 \\ \sin{\theta} &amp;amp; \cos{\theta} &amp;amp; 0 &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 \end{array} \right] $$ Pitch, Roll, and YawThe terms pitch, roll and yaw are often used to describe the motion of vehicles like aircraft, marine craft, and spacecraft. Pitch is $R_x$, rotation about the $x$-axis. Roll is $R_y$, rotation about the $y$-axis. And yaw is $R_z$, rotation about the $z$-axis. TranslationsTranslations are described by matrices with values in the fourth column. Multiplying a vector by one of these matrices produces a translation in the direction of the corresponding axis. $$ T_x(\delta) = \left[ \begin{array}{rrrr} 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; \delta \\ 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 \end{array} \right] $$ $$ T_y(\delta) = \left[ \begin{array}{rrrr} 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\ 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; \delta \\ 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 \end{array} \right] $$ $$ T_z(\delta) = \left[ \begin{array}{rrrr} 1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\ 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; \delta \\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 \end{array} \right] $$ While it is true that translations could be accomplished simply by adding the increment to the specified coordiate, the use of matrix multiplication allows translations to be combined in a uniform way with rotations and other operations. The arithmetic units on today's Graphics Processing Units, GPUs, are designed to do 4-by-4 matrix multiplications at speeds hundreds of times faster than general purpose Central Processing Units, CPUs. Horizontal and VerticalInspired by David Singmaster's notation for Rubik's cubes, L, R, B, F, U, and D, we can use the descriptive terms left and right for horizontal motion in the $x$ direction; back and forth for horizontal motion in the $y$ direction; and up and down for vertical motion in the $z$ direction. $T_x$, left and right. $T_y$, back and forth. $T_z$, up and down. ScalingsThis matrix applies a single scaling factor to all three axes. $$ S(\sigma) = \left[ \begin{array}{rrrr} \sigma &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 \\ 0 &amp;amp; \sigma &amp;amp; 0 &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; \sigma &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 \end{array} \right] $$ Larger and Smaller$S$ SuggestionsRefresh your browser to syncronize the animations. Download your own self-archiving copies of GrafixQube &amp;lt;!-- function grabCode_b13c7ab1c73c4ad7909fa2d7cd9764f2() { // Remember the title so we can use it in the new page title = document.title;</summary></entry><entry><title type="html">Singular Matrix Pencils and the QZ Algorithm, Update</title><link href="https://hpc.social/commercial-blog/2023/singular-matrix-pencils-and-the-qz-algorithm-update/" rel="alternate" type="text/html" title="Singular Matrix Pencils and the QZ Algorithm, Update" /><published>2023-01-10T21:45:12-07:00</published><updated>2023-01-10T21:45:12-07:00</updated><id>https://hpc.social/commercial-blog/2023/singular-matrix-pencils-and-the-qz-algorithm-update</id><content type="html" xml:base="https://hpc.social/commercial-blog/2023/singular-matrix-pencils-and-the-qz-algorithm-update/">&lt;div class=&quot;content&quot;&gt;&lt;!--introduction--&gt;&lt;p&gt;(The January 5 posting was premature and incomplete.)&lt;/p&gt;
+&lt;p&gt;This year, 2023, is the 50-th anniversary of the QZ algorithm for the generalized matrix eigenvalue problem,&lt;/p&gt;
+&lt;pre&gt;  Ax = &amp;#955;Bx&lt;/pre&gt;&lt;p&gt;The algorithm avoids inverting either &lt;tt&gt;A&lt;/tt&gt; or &lt;tt&gt;B&lt;/tt&gt;. And, importantly, the QZ algorithm can be used to detect and analyze exceptional instances of the problem known as &lt;i&gt;singular pencils&lt;/i&gt;. These pencils do not occur in the standard eigenvalue problem where &lt;tt&gt;B&lt;/tt&gt; is the identity matrix.&lt;/p&gt;
+&lt;!--/introduction--&gt;&lt;h3&gt;Contents&lt;/h3&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#59d30988-fe9f-4381-bf4b-70b9181f1d24&quot;&gt;Singular pencils&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#aa953fcf-a488-43bb-8976-bef668d4b373&quot;&gt;3-by-3 example&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#ebedf1c8-dc25-443b-9232-8e963a75eed3&quot;&gt;Wilkinson example&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#2c8b301b-125b-4389-a5ea-fd8eccc8d4ba&quot;&gt;References&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;h4&gt;Singular pencils&lt;a name=&quot;59d30988-fe9f-4381-bf4b-70b9181f1d24&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;A matrix pencil is &lt;i&gt;singular&lt;/i&gt; if both &lt;tt&gt;A&lt;/tt&gt; and &lt;tt&gt;B&lt;/tt&gt; are singular and, moreover, &lt;tt&gt;A&lt;/tt&gt; - &amp;#955; &lt;tt&gt;B&lt;/tt&gt; is singular for all &amp;#955;.  Equivalently,&lt;/p&gt;
+&lt;pre&gt;  det(A - &amp;#955;B) = 0 for all &amp;#955;.&lt;/pre&gt;&lt;p&gt;Singular pencils are more insidious than might appear at first glance. In some sense, the spectrum is the entire complex plane.&lt;/p&gt;
+&lt;p&gt;There are no singular pencils with the standard eigenvalue problem&lt;/p&gt;
+&lt;pre&gt;  Ax = &amp;#955;x&lt;/pre&gt;&lt;p&gt;where &lt;tt&gt;B&lt;/tt&gt; is the identity matrix and certainly nonsingular.&lt;/p&gt;
+&lt;p&gt;If &lt;tt&gt;A&lt;/tt&gt; and &lt;tt&gt;B&lt;/tt&gt; are both real symmetric or complex Hermitian, but neither is positive definite, the pencil may or may not be singular. Symmetric problems occur frequently and there are separate algorithms and perturbation and convergence theories.&lt;/p&gt;
+&lt;p&gt;The QZ algorithm does not compute the eigenvalues &amp;#955; until the very last step.  It stably reduces &lt;tt&gt;A&lt;/tt&gt; and &lt;tt&gt;B&lt;/tt&gt; to triangular form with diagonals &amp;#945; and &amp;#946;. The eigenvalues are then the ratios&lt;/p&gt;
+&lt;pre&gt;  &amp;#955; = &amp;#945;./&amp;#946;&lt;/pre&gt;&lt;p&gt;Isolated zeros in &amp;#945; or &amp;#946; yield zero or infinite eigenvalues with no special difficulties.  Singular pencils occur if and only if zeros in &amp;#945; and &amp;#946; occur &lt;i&gt;with the same index&lt;/i&gt; and (with exact arithmetic) lead to &amp;#955; = 0/0 = NaN.&lt;/p&gt;
+&lt;p&gt;With a singular pencil, some, perhaps all, of the diagonal values in &amp;#945; and &amp;#946; are highly sensitive to perturbation, and all of the eigenvalues computed from the ratios are suspect.  Theoretically the ill-conditioned eigenvalues can be determined from the Kronecker Canonical Form, a generalization of the notorious Jordan Canonical Form.  But, like the Jordan Form, the Kronecker Form cannot provide a stable numerical algorithm.&lt;/p&gt;
+&lt;h4&gt;3-by-3 example&lt;a name=&quot;aa953fcf-a488-43bb-8976-bef668d4b373&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;pre class=&quot;codeinput&quot;&gt;   A = [9 8 7; 6 5 4; 3 2 1]
+
+   B = [1 3 2; 4 6 5; 7 9 8]
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+A =
+
+     9     8     7
+     6     5     4
+     3     2     1
+
+
+B =
+
+     1     3     2
+     4     6     5
+     7     9     8
+
+&lt;/pre&gt;&lt;p&gt;Let's verify that this is a singular pencil. Use the Symbolic Math Toolbox to introduce a free variable.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;   syms &lt;span class=&quot;string&quot;&gt;lambda&lt;/span&gt;
+   AB = A - lambda*B
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt; 
+AB =
+ 
+[  9 - lambda, 8 - 3*lambda, 7 - 2*lambda]
+[6 - 4*lambda, 5 - 6*lambda, 4 - 5*lambda]
+[3 - 7*lambda, 2 - 9*lambda, 1 - 8*lambda]
+ 
+&lt;/pre&gt;&lt;p&gt;Without further computation, we can see that the second row is the average of the first and third rows for all &lt;tt&gt;lambda&lt;/tt&gt; and consequently that the determinant must be identically zero.&lt;/p&gt;
+&lt;p&gt;With exact arithmetic, each of these statements would produce the same eigenvalues.  After the introduction of some roundoff error, two of the &lt;tt&gt;lambdas&lt;/tt&gt; are indeterminant, but &lt;tt&gt;lambda = -1&lt;/tt&gt; is present in all four results. Is &lt;tt&gt;lambda = -1&lt;/tt&gt; a stable eigenvalue?&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;   lambda_AB = eig(A,B)
+   lambda_BA = 1./eig(B,A)
+   lambda_ATBT = eig(A',B')
+   lambda_BTAT = 1./eig(B',A')
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+lambda_AB =
+
+    1.8984
+   -1.0000
+   -0.0807
+
+
+lambda_BA =
+
+   -1.0000
+    0.5837
+   -0.9274
+
+
+lambda_ATBT =
+
+    0.0829
+       Inf
+   -1.0000
+
+
+lambda_BTAT =
+
+   -0.9661
+         0
+   -1.0000
+
+&lt;/pre&gt;&lt;p&gt;The triangular matrices for &lt;tt&gt;lambda_AB&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;   [QAZ,QBZ] = qz(A,B);
+   QAZ
+   QBZ
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+QAZ =
+
+    1.6131   10.2664  -11.0905
+         0   -4.2969    5.9613
+         0         0   -0.0000
+
+
+QBZ =
+
+    0.7898    6.8901  -13.5242
+         0    4.2969   -5.9613
+         0         0    0.0000
+
+&lt;/pre&gt;&lt;p&gt;Careful examination of the diagonals reveals that &lt;tt&gt;alfa(2)/beta(2)&lt;/tt&gt; is producing the &lt;tt&gt;-1&lt;/tt&gt;, while &lt;tt&gt;alfa(3)/beta(3)&lt;/tt&gt; is roundoff over roundoff.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;   format &lt;span class=&quot;string&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;e&lt;/span&gt;
+   alfa = diag(QAZ)
+   beta = diag(QBZ)
+   format &lt;span class=&quot;string&quot;&gt;short&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+alfa =
+
+     1.613087771308989e+00
+    -4.296911800112353e+00
+    -1.965207685813115e-15
+
+
+beta =
+
+     7.898460671891234e-01
+     4.296911800112357e+00
+     1.359052275299816e-15
+
+&lt;/pre&gt;&lt;h4&gt;Wilkinson example&lt;a name=&quot;ebedf1c8-dc25-443b-9232-8e963a75eed3&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Jim Wilkinson published a survey paper about QZ and Kronecker products in 1979.  One of his examples is&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;   A = [4 3 2 5; 6 4 2 7; -1 -1 -2 -2; 5 3 2 6]
+
+   B = [2 1 3 4; 3 3 3 5;  0  0 -3 -2; 3 1 3 5]
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+A =
+
+     4     3     2     5
+     6     4     2     7
+    -1    -1    -2    -2
+     5     3     2     6
+
+
+B =
+
+     2     1     3     4
+     3     3     3     5
+     0     0    -3    -2
+     3     1     3     5
+
+&lt;/pre&gt;&lt;p&gt;Use the Symbolic Math Toolbox to verify that this is a singular pencil.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;   syms &lt;span class=&quot;string&quot;&gt;lambda&lt;/span&gt;
+   AB = A - lambda*B
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt; 
+AB =
+ 
+[4 - 2*lambda,   3 - lambda, 2 - 3*lambda, 5 - 4*lambda]
+[6 - 3*lambda, 4 - 3*lambda, 2 - 3*lambda, 7 - 5*lambda]
+[          -1,           -1, 3*lambda - 2, 2*lambda - 2]
+[5 - 3*lambda,   3 - lambda, 2 - 3*lambda, 6 - 5*lambda]
+ 
+&lt;/pre&gt;&lt;p&gt;The determinant is identically zero for all &lt;tt&gt;lambda&lt;/tt&gt;.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;   d = det(AB)
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt; 
+d =
+ 
+0
+ 
+&lt;/pre&gt;&lt;p&gt;With exact arithmetic, each of these statements would produce the same eigenvalues, but in practice each set is different. None of the eigenvalues is stable.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;   lambda_AB = eig(A,B)
+   lambda_BA = 1./eig(B,A)
+   lambda_ATBT = eig(A',B')
+   lambda_BTAT = 1./eig(B',A')
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+lambda_AB =
+
+    1.2056
+    0.7055
+   -1.0000
+      -Inf
+
+
+lambda_BA =
+
+    1.5097
+    0.6408
+         0
+   -1.0000
+
+
+lambda_ATBT =
+
+  -0.2141 + 0.2033i
+  -0.2141 - 0.2033i
+   0.7013 + 0.0000i
+   1.4508 + 0.0000i
+
+
+lambda_BTAT =
+
+    0.3168
+    0.9823
+    1.2325
+         0
+
+&lt;/pre&gt;&lt;p&gt;The triangular matrices for &lt;tt&gt;lambda_AB&lt;/tt&gt; are&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;   [QAZ,QBZ] = qz(A,B);
+   QAZ
+   QBZ
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+QAZ =
+
+    0.7437    4.1769  -12.7279   -5.5000
+         0    0.0000    5.2328    2.1602
+         0         0    0.7857    0.0123
+         0         0         0   -0.2887
+
+
+QBZ =
+
+    0.5005    6.6143   -8.4853   -2.5000
+         0    0.0000    3.2668    2.0105
+         0         0    1.1525   -0.7904
+         0         0         0    0.2887
+
+&lt;/pre&gt;&lt;p&gt;Examine the diagonals more carefully. &lt;tt&gt;alfa(2)/beta(2)&lt;/tt&gt; is the only roundoff over roundoff, but all four eigenvalues are unstable.&lt;/p&gt;
+&lt;pre class=&quot;codeinput&quot;&gt;   format &lt;span class=&quot;string&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;e&lt;/span&gt;
+   alfa = diag(QAZ)
+   beta = diag(QBZ)
+   format &lt;span class=&quot;string&quot;&gt;short&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+alfa =
+
+     7.437114999643711e-01
+     1.216947725307920e-14
+     7.857314232211017e-01
+    -2.886751345948121e-01
+
+
+beta =
+
+     5.005405248737872e-01
+     1.021080292327182e-13
+     1.152509249099882e+00
+     2.886751345948153e-01
+
+&lt;/pre&gt;&lt;h4&gt;References&lt;a name=&quot;2c8b301b-125b-4389-a5ea-fd8eccc8d4ba&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;C. B. Moler and G. W. Stewart, &quot;An Algorithm for Generalized Matrix Eigenvalue Problems&quot;, &lt;i&gt;SIAM J. Numerical Analysis&lt;/i&gt;, Vol.10, No.2, April 1973. Also available at &lt;a href=&quot;https://blogs.mathworks.com/cleve/files/cbm_gws.pdf&quot;&gt;cbm_gws.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;J. H. Wilkinson, &quot;Kronecker's Canonical Form and the QZ Algorithm&quot;, &lt;i&gt;Linear Algebra and its Applications&lt;/i&gt;, Vol. 28, 1979. Also available at &lt;a href=&quot;https://blogmathworks.com/cleve/files/wilkinson.pdf&quot;&gt;wilkinson.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;!-- 
+    function grabCode_8891e70a294b4c03bb99ac1e6e01b5a5() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='8891e70a294b4c03bb99ac1e6e01b5a5 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 8891e70a294b4c03bb99ac1e6e01b5a5';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '&lt;' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2023 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('&lt;pre&gt;\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length &gt; 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length &gt; 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('&lt;/pre&gt;\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --&gt;&lt;p style=&quot;text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;&quot;&gt;&lt;br /&gt;&lt;a href=&quot;&quot;&gt;&lt;span style=&quot;font-size: x-small; font-style: italic;&quot;&gt;Get 
+      the MATLAB code &lt;noscript&gt;(requires JavaScript)&lt;/noscript&gt;&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
+      Published with MATLAB&amp;reg; R2023a&lt;br /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;!--
+8891e70a294b4c03bb99ac1e6e01b5a5 ##### SOURCE BEGIN #####
+%% Singular Matrix Pencils and the QZ Algorithm, Update
+% (The January 5 posting was premature and incomplete.)
+%
+% This year, 2023, is the 50-th anniversary of the QZ algorithm
+% for the generalized matrix eigenvalue problem,
+% 
+%    Ax = λBx
+%
+% The algorithm avoids inverting either |A| or |B|.
+% And, importantly, the QZ algorithm can be used to detect and analyze 
+% exceptional instances of the problem known as _singular pencils_.
+% These pencils do not occur in the standard eigenvalue problem where
+% |B| is the identity matrix.
+
+%% Singular pencils
+% A matrix pencil is _singular_ if both |A| and |B| are singular and,
+% moreover, |A| - λ |B| is singular for all λ.  Equivalently,
+% 
+%    det(A - λB) = 0 for all λ.
+%
+% Singular pencils are more insidious than might appear at first glance.
+% In some sense, the spectrum is the entire complex plane.
+%
+% There are no singular pencils with the standard eigenvalue problem
+% 
+%    Ax = λx
+%
+% where |B| is the identity matrix and certainly nonsingular.
+%
+% If |A| and |B| are both real symmetric or complex Hermitian, but neither
+% is positive definite, the pencil may or may not be singular.
+% Symmetric problems occur frequently and there are
+% separate algorithms and perturbation and convergence theories.
+%
+% The QZ algorithm does not compute the eigenvalues λ until the very last
+% step.  It stably reduces |A| and |B| to triangular form
+% with diagonals α and β. The eigenvalues are then the ratios
+%
+%    λ = α./β
+%
+% Isolated zeros in α or β yield zero or infinite eigenvalues with no
+% special difficulties.  Singular pencils occur if and only if zeros in
+% α and β occur _with the same index_ and (with exact arithmetic) lead to
+% λ = 0/0 = NaN.
+%
+% With a singular pencil, some, perhaps all, of the diagonal values
+% in α and β are highly sensitive to perturbation, and all of the
+% eigenvalues computed from the ratios are suspect.  Theoretically
+% the ill-conditioned eigenvalues can be determined from the Kronecker
+% Canonical Form, a generalization of the notorious Jordan Canonical
+% Form.  But, like the Jordan Form, the Kronecker Form cannot provide        
+% a stable numerical algorithm.
+
+%% 3-by-3 example
+
+   A = [9 8 7; 6 5 4; 3 2 1]
+
+   B = [1 3 2; 4 6 5; 7 9 8]
+
+%%
+% Let's verify that this is a singular pencil.
+% Use the Symbolic Math Toolbox to introduce a free variable.
+
+   syms lambda
+   AB = A - lambda*B
+
+%%
+% Without further computation,
+% we can see that the second row is the average of the first and third
+% rows for all |lambda| and consequently that the determinant must be
+% identically zero.
+
+%%
+% With exact arithmetic, each of these statements would produce the
+% same eigenvalues.  After the introduction of some roundoff error,
+% two of the |lambdas| are indeterminant,
+% but |lambda = -1| is present in all four results.
+% Is |lambda = -1| a stable eigenvalue?
+
+   lambda_AB = eig(A,B)
+   lambda_BA = 1./eig(B,A)
+   lambda_ATBT = eig(A',B')
+   lambda_BTAT = 1./eig(B',A')
+
+%%
+% The triangular matrices for |lambda_AB|.
+
+   [QAZ,QBZ] = qz(A,B); 
+   QAZ
+   QBZ
+
+%%
+% Careful examination of the diagonals reveals that |alfa(2)/beta(2)| 
+% is producing the |-1|, while |alfa(3)/beta(3)| is roundoff over roundoff.
+
+   format long e
+   alfa = diag(QAZ)
+   beta = diag(QBZ)
+   format short
+
+
+%% Wilkinson example
+% Jim Wilkinson published a survey paper about QZ and Kronecker products
+% in 1979.  One of his examples is
+
+   A = [4 3 2 5; 6 4 2 7; -1 -1 -2 -2; 5 3 2 6]
+
+   B = [2 1 3 4; 3 3 3 5;  0  0 -3 -2; 3 1 3 5]
+
+%%
+% Use the Symbolic Math Toolbox to verify that this is a singular pencil.
+
+   syms lambda
+   AB = A - lambda*B
+
+%%
+% The determinant is identically zero for all |lambda|.
+
+   d = det(AB)
+
+%%
+% With exact arithmetic, each of these statements would produce the
+% same eigenvalues, but in practice each set is different.
+% None of the eigenvalues is stable.
+
+   lambda_AB = eig(A,B)
+   lambda_BA = 1./eig(B,A)
+   lambda_ATBT = eig(A',B')
+   lambda_BTAT = 1./eig(B',A')
+
+%%
+% The triangular matrices for |lambda_AB| are
+
+   [QAZ,QBZ] = qz(A,B); 
+   QAZ
+   QBZ
+
+%%
+% Examine the diagonals more carefully. |alfa(2)/beta(2)| is the only
+% roundoff over roundoff, but all four eigenvalues are unstable.
+
+   format long e
+   alfa = diag(QAZ)
+   beta = diag(QBZ)
+   format short
+
+%% References
+% C. B. Moler and G. W. Stewart,
+% &quot;An Algorithm for Generalized Matrix Eigenvalue Problems&quot;,
+% _SIAM J. Numerical Analysis_, Vol.10, No.2, April 1973.
+% Also available at 
+% &lt;https://blogs.mathworks.com/cleve/files/cbm_gws.pdf cbm_gws.pdf&gt;
+%
+% J. H. Wilkinson,
+% &quot;Kronecker's Canonical Form and the QZ Algorithm&quot;,
+% _Linear Algebra and its Applications_, Vol. 28, 1979.
+% Also available at
+% &lt;https://blogmathworks.com/cleve/files/wilkinson.pdf wilkinson.pdf&gt;
+##### SOURCE END ##### 8891e70a294b4c03bb99ac1e6e01b5a5
+--&gt;</content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html">(The January 5 posting was premature and incomplete.) This year, 2023, is the 50-th anniversary of the QZ algorithm for the generalized matrix eigenvalue problem, Ax = &amp;#955;BxThe algorithm avoids inverting either A or B. And, importantly, the QZ algorithm can be used to detect and analyze exceptional instances of the problem known as singular pencils. These pencils do not occur in the standard eigenvalue problem where B is the identity matrix. ContentsSingular pencils3-by-3 exampleWilkinson exampleReferences Singular pencilsA matrix pencil is singular if both A and B are singular and, moreover, A - &amp;#955; B is singular for all &amp;#955;. Equivalently, det(A - &amp;#955;B) = 0 for all &amp;#955;.Singular pencils are more insidious than might appear at first glance. In some sense, the spectrum is the entire complex plane. There are no singular pencils with the standard eigenvalue problem Ax = &amp;#955;xwhere B is the identity matrix and certainly nonsingular. If A and B are both real symmetric or complex Hermitian, but neither is positive definite, the pencil may or may not be singular. Symmetric problems occur frequently and there are separate algorithms and perturbation and convergence theories. The QZ algorithm does not compute the eigenvalues &amp;#955; until the very last step. It stably reduces A and B to triangular form with diagonals &amp;#945; and &amp;#946;. The eigenvalues are then the ratios &amp;#955; = &amp;#945;./&amp;#946;Isolated zeros in &amp;#945; or &amp;#946; yield zero or infinite eigenvalues with no special difficulties. Singular pencils occur if and only if zeros in &amp;#945; and &amp;#946; occur with the same index and (with exact arithmetic) lead to &amp;#955; = 0/0 = NaN. With a singular pencil, some, perhaps all, of the diagonal values in &amp;#945; and &amp;#946; are highly sensitive to perturbation, and all of the eigenvalues computed from the ratios are suspect. Theoretically the ill-conditioned eigenvalues can be determined from the Kronecker Canonical Form, a generalization of the notorious Jordan Canonical Form. But, like the Jordan Form, the Kronecker Form cannot provide a stable numerical algorithm. 3-by-3 example A = [9 8 7; 6 5 4; 3 2 1]</summary></entry><entry><title type="html">Singular Matrix Pencils and the QZ Algorithm</title><link href="https://hpc.social/commercial-blog/2023/singular-matrix-pencils-and-the-qz-algorithm/" rel="alternate" type="text/html" title="Singular Matrix Pencils and the QZ Algorithm" /><published>2023-01-05T16:37:04-07:00</published><updated>2023-01-05T16:37:04-07:00</updated><id>https://hpc.social/commercial-blog/2023/singular-matrix-pencils-and-the-qz-algorithm</id><content type="html" xml:base="https://hpc.social/commercial-blog/2023/singular-matrix-pencils-and-the-qz-algorithm/">&lt;div class=&quot;content&quot;&gt;&lt;!--introduction--&gt;&lt;p&gt;This year, 2023, is the 50-th anniversary of the QZ algorithm for generalized matrix eignenvalue problems,&lt;/p&gt;
+&lt;pre class=&quot;language-matlab&quot;&gt;Ax = &amp;#955;Bx
+&lt;/pre&gt;&lt;p&gt;The algorithm computes these eigevalues without inverting either &lt;tt&gt;A&lt;/tt&gt; or &lt;tt&gt;B&lt;/tt&gt;.  And, the QZ-algorithm can help detect and analyze exceptional situaions known as &lt;i&gt;singular pencils&lt;/i&gt;.&lt;/p&gt;
+&lt;!--/introduction--&gt;&lt;h3&gt;Contents&lt;/h3&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#19d0dd38-a456-4a63-bf2f-18e02689531d&quot;&gt;Matrix pencils&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#31c19b00-cfd8-493d-b712-08610ce3c5aa&quot;&gt;Example&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#0f5d9fb9-0792-4d4c-a9ac-c5fd3e1e7691&quot;&gt;Wilkinson example&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#cbe4eaf1-8a19-41e7-badd-1b8e69f74b61&quot;&gt;References&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;h4&gt;Matrix pencils&lt;a name=&quot;19d0dd38-a456-4a63-bf2f-18e02689531d&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;If &lt;tt&gt;A&lt;/tt&gt; and &lt;tt&gt;B&lt;/tt&gt; are two square matrices, the &lt;i&gt;linear matrix pencil&lt;/i&gt; is the matrix-valued function&lt;/p&gt;
+&lt;pre&gt;  A - &amp;#955;B&lt;/pre&gt;&lt;p&gt;A pencil is &lt;i&gt;regular&lt;/i&gt; if there is at least one value of &amp;#955; for which A - &amp;#955;B if not singular.  The pencil is &lt;i&gt;singular&lt;/i&gt; if both &lt;tt&gt;A&lt;/tt&gt; and &lt;tt&gt;B&lt;/tt&gt; are singular and, moreover, A - &amp;#955;B is singular for all &amp;#955;.  In other words,&lt;/p&gt;
+&lt;pre&gt;  det(A - &amp;#955;B) = 0 for all &amp;#955;.&lt;/pre&gt;&lt;p&gt;Singular pencils are more insiduous than migt appear at first glance.&lt;/p&gt;
+&lt;h4&gt;Example&lt;a name=&quot;31c19b00-cfd8-493d-b712-08610ce3c5aa&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;pre class=&quot;codeinput&quot;&gt;   A = [9 8 7; 6 5 4; 3 2 1]
+
+   B = [7 9 8; 4 6 5; 1 3 2]
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+A =
+
+     9     8     7
+     6     5     4
+     3     2     1
+
+
+B =
+
+     7     9     8
+     4     6     5
+     1     3     2
+
+&lt;/pre&gt;&lt;pre class=&quot;codeinput&quot;&gt;   syms &lt;span class=&quot;string&quot;&gt;s&lt;/span&gt;
+
+   AB = A - s*B
+
+   d = det(AB)
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt; 
+AB =
+ 
+[9 - 7*s, 8 - 9*s, 7 - 8*s]
+[6 - 4*s, 5 - 6*s, 4 - 5*s]
+[  3 - s, 2 - 3*s, 1 - 2*s]
+ 
+ 
+d =
+ 
+0
+ 
+&lt;/pre&gt;&lt;pre class=&quot;codeinput&quot;&gt;   eig1 = eig(A,B)
+
+   eig2 = 1./eig(B,A)
+
+   [QAZ,QBZ,Q,Z,V,W] = qz(A,B); QAZ, QBZ
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+eig1 =
+
+   -0.4071
+    1.0000
+    0.2439
+
+
+eig2 =
+
+   -2.0000
+    1.0000
+    0.3536
+
+
+QAZ =
+
+   -1.0298  -13.0363    7.7455
+         0    5.6991   -4.6389
+         0         0    0.0000
+
+
+QBZ =
+
+    2.4396  -11.4948    9.6394
+         0    5.6991   -4.6389
+         0         0    0.0000
+
+&lt;/pre&gt;&lt;pre class=&quot;codeinput&quot;&gt;   eig3 = eig(A',B')
+
+   eig4 = 1./eig(B',A')
+
+   [QATZ,QBTZ,Q,Z,V,W] = qz(A',B'); QATZ, QBTZ
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+eig3 =
+
+   -0.2169
+       Inf
+    1.0000
+
+
+eig4 =
+
+   -0.0738
+         0
+    1.0000
+
+
+QATZ =
+
+   -0.0000  -15.0218    6.8390
+         0    2.6729   -2.2533
+         0         0    0.5922
+
+
+QBTZ =
+
+    0.0000  -15.2578    7.1280
+         0         0    1.0203
+         0         0    0.5922
+
+&lt;/pre&gt;&lt;h4&gt;Wilkinson example&lt;a name=&quot;0f5d9fb9-0792-4d4c-a9ac-c5fd3e1e7691&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;pre class=&quot;codeinput&quot;&gt;   clear
+
+   A = [4 3 2 5; 6 4 2 7; -1 -1 -2 -2; 5 3 2 6]
+
+   B = [2 1 3 4; 3 3 3 5; 0 0 -3 -2; 3 1 3 5]
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+A =
+
+     4     3     2     5
+     6     4     2     7
+    -1    -1    -2    -2
+     5     3     2     6
+
+
+B =
+
+     2     1     3     4
+     3     3     3     5
+     0     0    -3    -2
+     3     1     3     5
+
+&lt;/pre&gt;&lt;pre class=&quot;codeinput&quot;&gt;   syms &lt;span class=&quot;string&quot;&gt;s&lt;/span&gt;
+
+   AB = A - s*B
+
+   d = det(AB)
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt; 
+AB =
+ 
+[4 - 2*s,   3 - s, 2 - 3*s, 5 - 4*s]
+[6 - 3*s, 4 - 3*s, 2 - 3*s, 7 - 5*s]
+[     -1,      -1, 3*s - 2, 2*s - 2]
+[5 - 3*s,   3 - s, 2 - 3*s, 6 - 5*s]
+ 
+ 
+d =
+ 
+0
+ 
+&lt;/pre&gt;&lt;pre class=&quot;codeinput&quot;&gt;   eig1 = eig(A,B)
+
+   eig2 = 1./eig(B,A)
+
+   [QAZ,QBZ,Q,Z,V,W] = qz(A,B); QAZ, QBZ
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+eig1 =
+
+    1.2056
+    0.7055
+   -1.0000
+      -Inf
+
+
+eig2 =
+
+    1.5097
+    0.6408
+         0
+   -1.0000
+
+
+QAZ =
+
+    0.7437    4.1769  -12.7279   -5.5000
+         0    0.0000    5.2328    2.1602
+         0         0    0.7857    0.0123
+         0         0         0   -0.2887
+
+
+QBZ =
+
+    0.5005    6.6143   -8.4853   -2.5000
+         0    0.0000    3.2668    2.0105
+         0         0    1.1525   -0.7904
+         0         0         0    0.2887
+
+&lt;/pre&gt;&lt;pre class=&quot;codeinput&quot;&gt;   eig3 = eig(A',B')
+
+   eig4 = 1./eig(B',A')
+
+   [QATZ,QBTZ,Q,Z,V,W] = qz(A',B'); QATZ, QBTZ
+&lt;/pre&gt;&lt;pre class=&quot;codeoutput&quot;&gt;
+eig3 =
+
+  -0.2141 + 0.2033i
+  -0.2141 - 0.2033i
+   0.7013 + 0.0000i
+   1.4508 + 0.0000i
+
+
+eig4 =
+
+    0.3168
+    0.9823
+    1.2325
+         0
+
+
+QATZ =
+
+   0.1281 - 0.2434i   0.2665 + 0.0169i   0.2663 + 1.4905i   0.3721 + 3.5350i
+   0.0000 + 0.0000i   0.0587 + 0.1116i   5.2603 - 1.6197i  12.7878 - 4.0110i
+   0.0000 + 0.0000i   0.0000 + 0.0000i   0.0000 + 0.0000i   4.1745 + 0.0000i
+   0.0000 + 0.0000i   0.0000 + 0.0000i   0.0000 + 0.0000i   0.7572 + 0.0000i
+
+
+QBTZ =
+
+   0.9052 + 0.0000i   0.6130 - 0.6141i  -0.2443 + 0.8738i   1.2233 + 2.5485i
+   0.0000 + 0.0000i   0.4150 + 0.0000i   3.5658 - 1.2114i   8.0696 - 2.2671i
+   0.0000 + 0.0000i   0.0000 + 0.0000i   0.0000 + 0.0000i   6.6127 + 0.0000i
+   0.0000 + 0.0000i   0.0000 + 0.0000i   0.0000 + 0.0000i   0.5220 + 0.0000i
+
+&lt;/pre&gt;&lt;h4&gt;References&lt;a name=&quot;cbe4eaf1-8a19-41e7-badd-1b8e69f74b61&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;C. B. Moler and G. W. Stewart, &quot;An Algorithm for Generalized Matrix Eigenvalue Problems&quot;, SIAM J.NUMER.ANAL. Vol.10, No.2, April 1973.  Also available at &lt;a href=&quot;https://blogs.mathworks.com/cleve/files/cbm_gws.pdf&quot;&gt;cbm_gws.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;J. H. Wilkinson, Kronecker's Canonical Form and the QZ Algorithm&quot;, LINEAR ALGEBRA AND ITS APPPLICATIONS, Vol. 28, 1979.    Also available at Also available at &lt;a href=&quot;https://blogs.mathworks.com/cleve/files/wilkinson.pdf&quot;&gt;wilkinson.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;!-- 
+    function grabCode_a9bf4a4405b542598f6dba1c3d53fdbd() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='a9bf4a4405b542598f6dba1c3d53fdbd ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' a9bf4a4405b542598f6dba1c3d53fdbd';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '&lt;' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2023 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('&lt;pre&gt;\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length &gt; 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length &gt; 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('&lt;/pre&gt;\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --&gt;&lt;p style=&quot;text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;&quot;&gt;&lt;br /&gt;&lt;a href=&quot;&quot;&gt;&lt;span style=&quot;font-size: x-small; font-style: italic;&quot;&gt;Get 
+      the MATLAB code &lt;noscript&gt;(requires JavaScript)&lt;/noscript&gt;&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
+      Published with MATLAB&amp;reg; R2023a&lt;br /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;!--
+a9bf4a4405b542598f6dba1c3d53fdbd ##### SOURCE BEGIN #####
+%% Singular Matrix Pencils and the QZ Algorithm
+% This year, 2023, is the 50-th anniversary of the QZ algorithm
+% for generalized matrix eignenvalue problems,
+% 
+%   Ax = λBx
+%
+% The algorithm computes these eigevalues without inverting
+% either |A| or |B|.  And, the QZ-algorithm can help detect and analyze 
+% exceptional situaions known as _singular pencils_.
+
+%% Matrix pencils
+% If |A| and |B| are two square matrices, the _linear matrix pencil_
+% is the matrix-valued function
+%
+%    A - λB
+%
+% A pencil is _regular_ if there is at least one value of λ for which
+% A - λB if not singular.  The pencil is 
+% _singular_ if both |A| and |B| are singular and, moreover, A - λB is 
+% singular for all λ.  In other words,
+% 
+%    det(A - λB) = 0 for all λ.
+
+%%
+% Singular pencils are more insiduous than migt appear at first glance.
+%% Example
+
+   A = [9 8 7; 6 5 4; 3 2 1]
+
+   B = [7 9 8; 4 6 5; 1 3 2]
+
+%%
+
+   syms s
+
+   AB = A - s*B
+
+   d = det(AB)
+
+%%
+
+   eig1 = eig(A,B)
+
+   eig2 = 1./eig(B,A)
+
+   [QAZ,QBZ,Q,Z,V,W] = qz(A,B); QAZ, QBZ
+
+
+%%
+
+   eig3 = eig(A',B')
+
+   eig4 = 1./eig(B',A')
+
+   [QATZ,QBTZ,Q,Z,V,W] = qz(A',B'); QATZ, QBTZ
+
+%% Wilkinson example
+
+   clear
+
+   A = [4 3 2 5; 6 4 2 7; -1 -1 -2 -2; 5 3 2 6]
+
+   B = [2 1 3 4; 3 3 3 5; 0 0 -3 -2; 3 1 3 5]
+
+
+%%
+
+   syms s
+
+   AB = A - s*B
+
+   d = det(AB)
+
+%%
+
+   eig1 = eig(A,B)
+
+   eig2 = 1./eig(B,A)
+
+   [QAZ,QBZ,Q,Z,V,W] = qz(A,B); QAZ, QBZ
+
+%%
+
+   eig3 = eig(A',B')
+
+   eig4 = 1./eig(B',A')
+
+   [QATZ,QBTZ,Q,Z,V,W] = qz(A',B'); QATZ, QBTZ
+
+%% References
+% C. B. Moler and G. W. Stewart,
+% &quot;An Algorithm for Generalized Matrix Eigenvalue Problems&quot;,
+% SIAM J.NUMER.ANAL. Vol.10, No.2, April 1973.  Also available at 
+% &lt;https://blogs.mathworks.com/cleve/files/cbm_gws.pdf cbm_gws.pdf&gt;
+%
+% J. H. Wilkinson,
+% Kronecker's Canonical Form and the QZ Algorithm&quot;,
+% LINEAR ALGEBRA AND ITS APPPLICATIONS, Vol. 28, 1979.    Also available at Also available at 
+% &lt;https://blogs.mathworks.com/cleve/files/wilkinson.pdf wilkinson.pdf&gt;
+
+##### SOURCE END ##### a9bf4a4405b542598f6dba1c3d53fdbd
+--&gt;</content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html">This year, 2023, is the 50-th anniversary of the QZ algorithm for generalized matrix eignenvalue problems, Ax = &amp;#955;Bx The algorithm computes these eigevalues without inverting either A or B. And, the QZ-algorithm can help detect and analyze exceptional situaions known as singular pencils. ContentsMatrix pencilsExampleWilkinson exampleReferences Matrix pencilsIf A and B are two square matrices, the linear matrix pencil is the matrix-valued function A - &amp;#955;BA pencil is regular if there is at least one value of &amp;#955; for which A - &amp;#955;B if not singular. The pencil is singular if both A and B are singular and, moreover, A - &amp;#955;B is singular for all &amp;#955;. In other words, det(A - &amp;#955;B) = 0 for all &amp;#955;.Singular pencils are more insiduous than migt appear at first glance. Example A = [9 8 7; 6 5 4; 3 2 1]</summary></entry><entry><title type="html">Color Cube Meets Rubik’s Cube</title><link href="https://hpc.social/commercial-blog/2022/color-cube-meets-rubik-s-cube/" rel="alternate" type="text/html" title="Color Cube Meets Rubik’s Cube" /><published>2022-12-10T02:41:01-07:00</published><updated>2022-12-10T02:41:01-07:00</updated><id>https://hpc.social/commercial-blog/2022/color-cube-meets-rubik-s-cube</id><content type="html" xml:base="https://hpc.social/commercial-blog/2022/color-cube-meets-rubik-s-cube/">&lt;div class=&quot;content&quot;&gt;&lt;!--introduction--&gt;&lt;p&gt;I have made a half dozen blog posts about &lt;a href=&quot;https://blogs.mathworks.com/cleve/2022/09/05/rubiks-cube-superflips-and-gods-number/&quot;&gt;Rubik's Cube&lt;/a&gt; so far this year.  And, during the MATLAB Central Mini Hack in October, I resurrected an old code about the &lt;a href=&quot;https://blogs.mathworks.com/cleve/2022/10/21/an-interactive-version-of-colorcubes/&quot;&gt;Color Cube&lt;/a&gt;.  Now, a combination of the two, Rubik/Color Qube, creates an elegant tool for investigating &lt;i&gt;Matrices in Action&lt;/i&gt;.&lt;/p&gt;
+&lt;!--/introduction--&gt;&lt;h3&gt;Contents&lt;/h3&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#c4ab2cc4-7c62-45b6-b8d6-b58e96dd8c07&quot;&gt;Opening&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#3426fb76-f361-4a32-b165-f771bba3fb03&quot;&gt;Rubik and Color&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#28b692dc-0d85-4c30-905e-300857741d5c&quot;&gt;Color Qube&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#f9469ecf-8b7e-41d3-8f47-ac23128f5f7d&quot;&gt;Rotations&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#eb4d3e17-82e6-4b1e-b966-c75328d89269&quot;&gt;n-by-n-by-n&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#715fe67d-21d9-46c4-a0b5-b2864db8776f&quot;&gt;2-by-2-by-2&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#b23519d3-2aa0-46a3-9160-90f256981b7e&quot;&gt;Software&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;h4&gt;Opening&lt;a name=&quot;c4ab2cc4-7c62-45b6-b8d6-b58e96dd8c07&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Here is the opening screen shot of Rubik/Color Qube, one of the most elaborate MATLAB programs that I have ever written.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/screen_shot1.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Rubik and Color&lt;a name=&quot;3426fb76-f361-4a32-b165-f771bba3fb03&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;There are two modes, &lt;tt&gt;rubik&lt;/tt&gt; and &lt;tt&gt;color&lt;/tt&gt;. In &lt;tt&gt;rubik&lt;/tt&gt; mode, the large cube is formed from 27 identical copies of a single small &lt;i&gt;cubelet&lt;/i&gt;.  The six cubelet faces have six different colors.  Red, white and blue are visible initially.  Orange, yellow and green become visible as the faces are rotated.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/rubik.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;p&gt;In &lt;tt&gt;color&lt;/tt&gt; mode, the large cube is formed from 27 &lt;i&gt;cubelets&lt;/i&gt;, each with a different solid color.  Three of the corner cubelets are the primary colors in the RGB color model -- red, green and blue.  Three more corners are the complementary cyan, magenta and yellow. White and black complete the list of corners.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/color.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Color Qube&lt;a name=&quot;28b692dc-0d85-4c30-905e-300857741d5c&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;All of the familiar Rubik's moves are available in &lt;tt&gt;color&lt;/tt&gt; mode. Here is a screen shot after a few rotations.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/screen_shot2.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Rotations&lt;a name=&quot;f9469ecf-8b7e-41d3-8f47-ac23128f5f7d&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Rotation matrices defined by this &lt;tt&gt;Rk&lt;/tt&gt; function are the basic mathematical tool employed by &lt;tt&gt;Qube&lt;/tt&gt;.  The animation provides a detailed look at the action produced by the F key, counter-clockwise rotation of the Front face.  This is the y-axis, case 2 in &lt;tt&gt;Rk&lt;/tt&gt;.  The detail is provided by taking &lt;tt&gt;d = 0:3:90&lt;/tt&gt;, so there are 30 steps of 3 degrees.&lt;/p&gt;
+&lt;pre class=&quot;language-matlab&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; R = Rk(axis,d)
+    &lt;span class=&quot;comment&quot;&gt;%  Rk(axis,d), Rotation by d degrees about the x-, y-, or z-axis.&lt;/span&gt;
+    c = cosd(d);
+    s = sind(d);
+    &lt;span class=&quot;keyword&quot;&gt;switch&lt;/span&gt; axis
+        &lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; 1, R = [ 1  0  0
+                      0  c  s
+                      0 -s  c ];
+        &lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; 2, R = [ c  0  s
+                      0  1  0
+                     -s  0  c ];
+        &lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; 3, R = [ c  s  0
+                     -s  c  0
+                      0  0  1 ];
+    &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;
+    fmat = findobj(&lt;span class=&quot;string&quot;&gt;'tag'&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;'fmat'&lt;/span&gt;);
+    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; ~isempty(fmat)
+        fmat.String = mat3(R);
+    &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/dpm3.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;n-by-n-by-n&lt;a name=&quot;eb4d3e17-82e6-4b1e-b966-c75328d89269&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;tt&gt;Qube&lt;/tt&gt; generalizes the classic 3-by-3-by-3 Rubik's Cube to n-by-n-by-n cubes for any n.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/n_by_n.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;2-by-2-by-2&lt;a name=&quot;715fe67d-21d9-46c4-a0b5-b2864db8776f&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;The 2-by-2-by-2 cubes are good starting points for investigation of mathematical properties.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/2_by_2.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/2_by_2_color.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Software&lt;a name=&quot;b23519d3-2aa0-46a3-9160-90f256981b7e&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;tt&gt;Qube&lt;/tt&gt; is available as a self-extracting MATLAB archive at this link, &lt;a href=&quot;https://blogs.mathworks.com/cleve/files/Qube_mzip.m&quot;&gt;Qube_mzip.m&lt;/a&gt;.&lt;/p&gt;
+&lt;!-- 
+    function grabCode_ce9c453c88254608ad0e691ca4711df7() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='ce9c453c88254608ad0e691ca4711df7 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' ce9c453c88254608ad0e691ca4711df7';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '&lt;' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2022 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('&lt;pre&gt;\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length &gt; 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length &gt; 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('&lt;/pre&gt;\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --&gt;&lt;p style=&quot;text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;&quot;&gt;&lt;br /&gt;&lt;a href=&quot;&quot;&gt;&lt;span style=&quot;font-size: x-small; font-style: italic;&quot;&gt;Get 
+      the MATLAB code &lt;noscript&gt;(requires JavaScript)&lt;/noscript&gt;&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
+      Published with MATLAB&amp;reg; R2022b&lt;br /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;!--
+ce9c453c88254608ad0e691ca4711df7 ##### SOURCE BEGIN #####
+%% Color Cube Meets Rubik's Cube
+% I have made a half dozen blog posts about
+% &lt;https://blogs.mathworks.com/cleve/2022/09/05/rubiks-cube-superflips-and-gods-number/
+% Rubik's Cube&gt; so far this year.  And, during the MATLAB Central Mini 
+% Hack in October, I resurrected an old code about the 
+% &lt;https://blogs.mathworks.com/cleve/2022/10/21/an-interactive-version-of-colorcubes/
+% Color Cube&gt;.  Now, a combination of the two, Rubik/Color Qube,
+% creates an elegant
+% tool for investigating _Matrices in Action_.
+
+%% Opening
+% Here is the opening screen shot of Rubik/Color Qube, one of the most
+% elaborate MATLAB programs that I have ever written.
+%
+% &lt;&lt;screen_shot1.png&gt;&gt;
+%
+
+%% Rubik and Color
+% There are two modes, |rubik| and |color|.
+% In |rubik| mode, the large cube is formed from 27 identical copies
+% of a single small _cubelet_.  The six cubelet faces have six different
+% colors.  Red, white and blue are visible initially.  Orange, yellow
+% and green become visible as the faces are rotated.
+%
+% &lt;&lt;rubik.gif&gt;&gt;
+%
+% In |color| mode, the large cube is formed from 27 _cubelets_,
+% each with a different solid color.  Three of the corner cubelets are the
+% primary colors in the RGB color model REPLACE_WITH_DASH_DASH red, green and blue.  Three
+% more corners are the complementary cyan, magenta and yellow.
+% White and black complete the list of corners.
+%
+% &lt;&lt;color.gif&gt;&gt;
+%
+
+%% Color Qube
+% All of the familiar Rubik's moves are available in |color| mode.
+% Here is a screen shot after a few rotations.
+%
+% &lt;&lt;screen_shot2.png&gt;&gt;
+%
+
+%% Rotations
+% Rotation matrices defined by this |Rk| function are the basic 
+% mathematical tool employed by |Qube|.  The animation provides a detailed 
+% look at the action produced by the F key, counter-clockwise rotation of
+% the Front face.  This is the y-axis, case 2 in |Rk|.  The detail is 
+% provided by taking |d = 0:3:90|, so there are 30 steps of 3 degrees.
+% 
+%   function R = Rk(axis,d)
+%       %  Rk(axis,d), Rotation by d degrees about the x-, y-, or z-axis.
+%       c = cosd(d); 
+%       s = sind(d);
+%       switch axis
+%           case 1, R = [ 1  0  0  
+%                         0  c  s
+%                         0 -s  c ];
+%           case 2, R = [ c  0  s  
+%                         0  1  0
+%                        -s  0  c ];
+%           case 3, R = [ c  s  0  
+%                        -s  c  0
+%                         0  0  1 ];
+%       end
+%       fmat = findobj('tag','fmat');
+%       if ~isempty(fmat)
+%           fmat.String = mat3(R);
+%       end
+%   end
+%
+%
+% &lt;&lt;dpm3.gif&gt;&gt;
+%
+
+%% n-by-n-by-n
+% |Qube| generalizes the classic 3-by-3-by-3 Rubik's Cube
+% to n-by-n-by-n cubes for any n.
+%
+% &lt;&lt;n_by_n.gif&gt;&gt;
+%
+
+%% 2-by-2-by-2
+% The 2-by-2-by-2 cubes are good starting points for investigation
+% of mathematical properties.
+%
+% &lt;&lt;2_by_2.png&gt;&gt;
+%
+% &lt;&lt;2_by_2_color.png&gt;&gt;
+%
+
+%% Software
+% |Qube| is available as a self-extracting MATLAB archive at this link,
+% &lt;https://blogs.mathworks.com/cleve/files/Qube_mzip.m Qube_mzip.m&gt;.
+##### SOURCE END ##### ce9c453c88254608ad0e691ca4711df7
+--&gt;</content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html">I have made a half dozen blog posts about Rubik's Cube so far this year. And, during the MATLAB Central Mini Hack in October, I resurrected an old code about the Color Cube. Now, a combination of the two, Rubik/Color Qube, creates an elegant tool for investigating Matrices in Action. ContentsOpeningRubik and ColorColor QubeRotationsn-by-n-by-n2-by-2-by-2Software OpeningHere is the opening screen shot of Rubik/Color Qube, one of the most elaborate MATLAB programs that I have ever written. Rubik and ColorThere are two modes, rubik and color. In rubik mode, the large cube is formed from 27 identical copies of a single small cubelet. The six cubelet faces have six different colors. Red, white and blue are visible initially. Orange, yellow and green become visible as the faces are rotated. In color mode, the large cube is formed from 27 cubelets, each with a different solid color. Three of the corner cubelets are the primary colors in the RGB color model -- red, green and blue. Three more corners are the complementary cyan, magenta and yellow. White and black complete the list of corners. Color QubeAll of the familiar Rubik's moves are available in color mode. Here is a screen shot after a few rotations. RotationsRotation matrices defined by this Rk function are the basic mathematical tool employed by Qube. The animation provides a detailed look at the action produced by the F key, counter-clockwise rotation of the Front face. This is the y-axis, case 2 in Rk. The detail is provided by taking d = 0:3:90, so there are 30 steps of 3 degrees. function R = Rk(axis,d) % Rk(axis,d), Rotation by d degrees about the x-, y-, or z-axis. c = cosd(d); s = sind(d); switch axis case 1, R = [ 1 0 0 0 c s 0 -s c ]; case 2, R = [ c 0 s 0 1 0 -s 0 c ]; case 3, R = [ c s 0 -s c 0 0 0 1 ]; end fmat = findobj('tag','fmat'); if ~isempty(fmat) fmat.String = mat3(R); end end n-by-n-by-nQube generalizes the classic 3-by-3-by-3 Rubik's Cube to n-by-n-by-n cubes for any n. 2-by-2-by-2The 2-by-2-by-2 cubes are good starting points for investigation of mathematical properties. SoftwareQube is available as a self-extracting MATLAB archive at this link, Qube_mzip.m. &amp;lt;!-- function grabCode_ce9c453c88254608ad0e691ca4711df7() { // Remember the title so we can use it in the new page title = document.title;</summary></entry><entry><title type="html">Christian Reinsch, Roland Bulirsch, and the SVD</title><link href="https://hpc.social/commercial-blog/2022/christian-reinsch-roland-bulirsch-and-the-svd/" rel="alternate" type="text/html" title="Christian Reinsch, Roland Bulirsch, and the SVD" /><published>2022-10-23T23:41:27-06:00</published><updated>2022-10-23T23:41:27-06:00</updated><id>https://hpc.social/commercial-blog/2022/christian-reinsch-roland-bulirsch-and-the-svd</id><content type="html" xml:base="https://hpc.social/commercial-blog/2022/christian-reinsch-roland-bulirsch-and-the-svd/">&lt;div class=&quot;content&quot;&gt;&lt;!--introduction--&gt;&lt;p&gt;Christian Reinsch and Roland Bulirsch both passed away recently, Reinsch on October 8 and Bulirsch on September 21. Reinsch was 88 years old and Bulirsch was 89. Both of them were retired professors of numerical analysis at the Technical University of Munich. Both of them were friends of mine. But in almost all other ways, they were very different people.&lt;/p&gt;
+&lt;!--/introduction--&gt;&lt;h3&gt;Contents&lt;/h3&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#0ac36cdd-70e0-4088-9e69-ed2d4f0ca1b2&quot;&gt;Wilkinson and Reinsch&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#639c5ab8-be39-47d9-ad03-85ef8bfdb2d4&quot;&gt;Wilkinson versus Reinsch&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#0f4a7aaa-052c-4af3-91d2-afa776ca9db7&quot;&gt;Reinsch Personal Life&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#52c11caf-6fe1-4b50-9418-ced2ab57b498&quot;&gt;SVD&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#b7a10e23-f5b3-4749-a571-a11b1c543e58&quot;&gt;Stoer and Bulirsch&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#7d54ff86-6fef-4065-9b83-20dc7c627151&quot;&gt;Bulirsch Personal Life&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#4d6e1726-75b6-4959-89de-d60322a4a857&quot;&gt;Munich Visit&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;h4&gt;Wilkinson and Reinsch&lt;a name=&quot;0ac36cdd-70e0-4088-9e69-ed2d4f0ca1b2&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;The &lt;i&gt;Handbook for Automatic Computation, Volume II, Linear Algebra&lt;/i&gt;, is a research monograph published in 1971 by Springer-Verlag.  This &lt;i&gt;Handbook&lt;/i&gt; was edited by J. H. Wilkinson and Christian Reinsch and includes dozens of Algol procedures by 19 different authors for solving systems of simultaneous equations and computing matrix eigenvalues and singular values.&lt;/p&gt;
+&lt;p&gt;Wilkinson and colleagues at the National Physical Laboratory in Teddington, England wrote around half of the Algol procedures in the &lt;i&gt;Handbook&lt;/i&gt;.  Reinsch authored several procedures himself and reviewed and tested most, if not all, of the entire &lt;i&gt;Handbook&lt;/i&gt;.&lt;/p&gt;
+&lt;p&gt;Translations into Fortran of many of the Algol codes produced the EISPACK subroutine library that led to the first MATLAB. I think it is fair to say that without the work of Jim Wilkinson and Christian Reinsch on the &lt;i&gt;Handbook&lt;/i&gt; there might never have been a MATLAB.&lt;/p&gt;
+&lt;h4&gt;Wilkinson versus Reinsch&lt;a name=&quot;639c5ab8-be39-47d9-ad03-85ef8bfdb2d4&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;I would have loved to listen in to discussions between Jim and Christian during the development of the &lt;i&gt;Handbook&lt;/i&gt;.  Here were two very talented, proud individuals working together at the detailed level required of scientific computer programing.  It must have been exciting.&lt;/p&gt;
+&lt;p&gt;One small example: what subscripts do you use for the &lt;tt&gt;n-1&lt;/tt&gt; off-diagonal elements of the symmetric, tridiagonal matrix of order &lt;tt&gt;n&lt;/tt&gt; produced in one procedure and passed to another? Is it &lt;tt&gt;e(1:n-1)&lt;/tt&gt; or &lt;tt&gt;e(2:n)&lt;/tt&gt;?  (A &quot;modern&quot; &lt;tt&gt;e(0:n-2)&lt;/tt&gt; is not a possibility.)  The first statement of the Algol procedures for the QR algorithms is&lt;/p&gt;
+&lt;pre&gt;  for i := 2 step 1 until n do e[i-1] := e[i];&lt;/pre&gt;&lt;p&gt;Was there some kind of disconnect between Teddington and Munich?&lt;/p&gt;
+&lt;h4&gt;Reinsch Personal Life&lt;a name=&quot;0f4a7aaa-052c-4af3-91d2-afa776ca9db7&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Christian Reinsch was born in Chemnitz, Germany, in 1934. He spent most of his career at the Technical University Munich, where he was a close associate of &lt;a href=&quot;https://blogs.mathworks.com/cleve/2015/06/01/friedrich-bauer&quot;&gt;Fritz Bauer&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Christian was an intensely private person.  He never married and lived alone. He visited Argonne Laboratory in the 1970s, when we were working on EISPACK, and he attended a few Gatlinburg/Householder meetings. Other than that, he rarely travelled far from Munich.&lt;/p&gt;
+&lt;p&gt;This photo, taken by his colleague Christoph Zenger, is the only photo of Reinsch that I have ever seen.  And, as far as I know, it will be the first photo of him available on the Internet.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Reinsch_1.jpg&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;p&gt;Photo credit: Christoph Zenger&lt;/p&gt;
+&lt;h4&gt;SVD&lt;a name=&quot;52c11caf-6fe1-4b50-9418-ced2ab57b498&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Gene Golub is known as &lt;a href=&quot;https://www.mathworks.com/company/newsletters/articles/professor-svd.html&quot;&gt;Professor SVD&lt;/a&gt; because he did more than anyone else to develop the algorithms for computing the decomposition and for popularizing its applications.  A 1965 paper by Golub and Velvel Kahan provides the first practical method for computing the SVD.  The Golub/Kahan approach is based on the eigenvalues of the &lt;i&gt;2n-by-2n&lt;/i&gt; block matrix &lt;tt&gt;[0 A; A' 0]&lt;/tt&gt; .&lt;/p&gt;
+&lt;p&gt;Peter Businger was a grad student at Stanford in the 1960's who worked with Golub on several projects.  A 1967 Stanford technical report by Golub and Businger includes an Algol procedure, written by Businger, for computing the SVD that is based on bidiagonalizing &lt;tt&gt;A&lt;/tt&gt; itself.  Both Golub/Kahan and Golub/Businger suggest Sturm sequences and Givens rotations for ultimately computing the singular values.&lt;/p&gt;
+&lt;p&gt;At the same time, Christian Reinsch independently developed his own method for computing the SVD.  His review work on the &lt;i&gt;Handbook&lt;/i&gt; gave Reinsch access to the implicit tridiagonal QR techniques for matrix eigenvalues that Francis and Wilkinson were investigating.  So, Reinsch adapted implicit QR with Wilkinson shifts to the singular value situation.&lt;/p&gt;
+&lt;p&gt;Both Gene Golub and Christian Reinsch offered SVD contributions for the &lt;i&gt;Handbook&lt;/i&gt; .  It turns out that, with exact arithmetic and the same shifts, Golub/Businger and Reinsch would produce the same results.  But Golub and Businger never used Wilkinson shifts and Golub did not join the QR club until later. Fortunately, Fritz Bauer, editor in chief of the &lt;i&gt;Handbook&lt;/i&gt;, brokered a joint authorship arrangement and the Golub-Reinsch algorithm for computing the SVD resulted.&lt;/p&gt;
+&lt;p&gt;Walter Gander has investigated the history of SVD algorithms. The slides for the talk he presented at a workshop in Lanzhou University are available &lt;a href=&quot;https://people.inf.ethz.ch/gander/talks/Vortrag2022.pdf&quot;&gt;at this link&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Stoer and Bulirsch&lt;a name=&quot;b7a10e23-f5b3-4749-a571-a11b1c543e58&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;i&gt;Einfuhrung in die Numerische Mathematik&lt;/i&gt;, &lt;i&gt;Introduction to Numerical Analysis&lt;/i&gt;, is a classic textbook by Josef Stoer and Roland Bulirsch. The original German editions were published by Springer-Verlag in 1972 and 1976.  The English translations were published in 1980 and 1993. A complete PDF of the second English edition is available &lt;a href=&quot;https://zhilin.math.ncsu.edu/TEACHING/MA580/Stoer_Bulirsch.pdf&quot;&gt;at this link&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I think of Stoer &amp;amp; Bulirsch as one of the best theoretical textbooks in numerical analysis.  It is comparable to Isaacson &amp;amp; Keller. There are theorems and proofs. There are algorithms, but no software.  There are a few, but not many, numerical examples. There are many excellent exercises.&lt;/p&gt;
+&lt;h4&gt;Bulirsch Personal Life&lt;a name=&quot;7d54ff86-6fef-4065-9b83-20dc7c627151&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Roland Bulirsch was born in Liberec, in the former Czechoslovkia, in 1932.  After visiting U. C. San Diego in the 1960's, he spent most of his career at the Technical University Munich. In contrast to Reinsch, Bulirsch was a very gregarious, public person. He adored his grand children and they adored him.  The three-part &lt;a href=&quot;https://bulirsch.eu/anlagen/Bulirsch_80_Jahre_1.pdf&quot;&gt;photo collection&lt;/a&gt; assembled for his 80th birthday has hundreds of snapshots and portraits.&lt;/p&gt;
+&lt;p&gt;Roland was an avid body-builder.  He had the broadest shoulders that I have ever seen -- and they were twice as broad as his waist. He had huge hands and huge biceps.  One of my favorite stories about Roland explains the photo on his desk that was signed,&lt;/p&gt;
+&lt;pre&gt;  &quot;Thanks for everything -- Arnie&quot;&lt;/pre&gt;&lt;p&gt;It turns out that Roland and a body-builder from Austria named Arnold Swartzenegger trained together in Munich in the 1960's. Roland and some friends from the gym took up a collection to help the ambitious young Arnie emigrate to America.&lt;/p&gt;
+&lt;p&gt;Here are a few photos from Roland's albums.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Roland_1.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/Arnie_1.png&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Munich Visit&lt;a name=&quot;4d6e1726-75b6-4959-89de-d60322a4a857&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;My last visit to T. U. Munich was in 2015. I gave my stump speech, &lt;a href=&quot;https://www.youtube.com/watch?v=ekcLT8QgB60&quot;&gt;The Evolution of MATLAB&lt;/a&gt;, in a big, new lecture hall named after Friedrich Bauer.  Christian Reinsch was in the audience (skip to time stamp 13:59 &lt;a href=&quot;https://www.youtube.com/watch?v=ekcLT8QgB60f&quot;&gt;in the video&lt;/a&gt;). He was over 70 years old at the time and had just finished his daily 50-kilometer bicycle ride.&lt;/p&gt;
+&lt;p&gt;After the talk, a few of us found our way to one of the famous Munich &lt;i&gt;Biergarten&lt;/i&gt;.  Christian came along but did not stay for dinner. He was not a beer drinker.&lt;/p&gt;
+&lt;p&gt;Roland Bulirsch was able to join us for dinner, however, and we managed to polish off a few of those one-liter German beer steins before closing down the place.&lt;/p&gt;
+&lt;!-- 
+    function grabCode_f2dde2cc84e245d09b99f58b9781b0eb() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='f2dde2cc84e245d09b99f58b9781b0eb ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' f2dde2cc84e245d09b99f58b9781b0eb';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '&lt;' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2022 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('&lt;pre&gt;\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length &gt; 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length &gt; 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('&lt;/pre&gt;\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --&gt;&lt;p style=&quot;text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;&quot;&gt;&lt;br /&gt;&lt;a href=&quot;&quot;&gt;&lt;span style=&quot;font-size: x-small; font-style: italic;&quot;&gt;Get 
+      the MATLAB code &lt;noscript&gt;(requires JavaScript)&lt;/noscript&gt;&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
+      Published with MATLAB&amp;reg; R2022a&lt;br /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;!--
+f2dde2cc84e245d09b99f58b9781b0eb ##### SOURCE BEGIN #####
+%% Christian Reinsch, Roland Bulirsch, and the SVD
+% Christian Reinsch and Roland Bulirsch both passed away recently,
+% Reinsch on October 8 and Bulirsch on September 21.
+% Reinsch was 88 years old and Bulirsch was 89.
+% Both of them were retired professors of numerical analysis at the
+% Technical University of Munich.
+% Both of them were friends of mine.
+% But in almost all other ways, they were very different people.
+
+%% Wilkinson and Reinsch
+% The _Handbook for Automatic Computation, Volume II, Linear Algebra_, is a
+% research monograph published in 1971 by Springer-Verlag.  This _Handbook_
+% was edited by J. H. Wilkinson and Christian Reinsch and includes dozens
+% of Algol procedures by 19 different authors for solving systems of
+% simultaneous equations and computing matrix eigenvalues and singular
+% values.
+
+%%
+% Wilkinson and colleagues at the National Physical Laboratory in
+% Teddington, England wrote around half of the Algol procedures in the
+% _Handbook_.  Reinsch authored several procedures himself
+% and reviewed and tested most, if not all, of the entire _Handbook_.
+%
+% Translations into Fortran of many of the Algol codes produced the
+% EISPACK subroutine library that led to the first MATLAB.
+% I think it is fair to say that without the work of Jim Wilkinson and
+% Christian Reinsch on the _Handbook_ there might never have been a MATLAB.
+
+%% Wilkinson versus Reinsch
+% I would have loved to listen in to discussions between Jim and Christian
+% during the development of the _Handbook_.  Here were two very talented,
+% proud individuals working together at the detailed level required of
+% scientific computer programing.  It must have been exciting.
+%
+% One small example: what subscripts do you use for the |n-1| off-diagonal
+% elements of the symmetric, tridiagonal matrix of order |n| produced in
+% one procedure and passed to another?
+% Is it |e(1:n-1)| or |e(2:n)|?  (A &quot;modern&quot; |e(0:n-2)| is
+% not a possibility.)  The first statement of the Algol procedures
+% for the QR algorithms is
+% 
+%    for i := 2 step 1 until n do e[i-1] := e[i];
+%
+% Was there some kind of disconnect between Teddington and Munich?
+
+%% Reinsch Personal Life
+% Christian Reinsch was born in Chemnitz, Germany, in 1934.
+% He spent most of his career at the Technical University Munich, where
+% he was a close associate of
+% &lt;https://blogs.mathworks.com/cleve/2015/06/01/friedrich-bauer
+% Fritz Bauer&gt;.
+%
+% Christian was an intensely private person.  He never married and lived
+% alone. He visited Argonne Laboratory in the 1970s, when we were working 
+% on EISPACK, and he attended a few Gatlinburg/Householder meetings.
+% Other than that, he rarely travelled far from Munich.
+%
+% This photo, taken by his colleague Christoph Zenger,
+% is the only photo of Reinsch that I have ever seen.  And, as far as I
+% know, it will be the first photo of him available on the Internet.
+%
+% &lt;&lt;Reinsch_1.jpg&gt;&gt;
+%
+% Photo credit: Christoph Zenger
+%
+
+%% SVD
+% Gene Golub is known as
+% &lt;https://www.mathworks.com/company/newsletters/articles/professor-svd.html
+% Professor SVD&gt; because he did more than anyone
+% else to develop the algorithms for computing the decomposition and
+% for popularizing its applications.  A 1965 paper by Golub and 
+% Velvel Kahan provides the first practical method for computing the
+% SVD.  The Golub/Kahan approach is based on the eigenvalues of the
+% _2n-by-2n_ block matrix |[0 A; A' 0]| .
+%
+% Peter Businger was a grad student at Stanford in the 1960's who
+% worked with Golub on several projects.  A 1967 Stanford technical
+% report by Golub and Businger includes an Algol procedure, written by
+% Businger, for computing the SVD that is based on bidiagonalizing |A|
+% itself.  Both Golub/Kahan and Golub/Businger suggest Sturm sequences
+% and Givens rotations for ultimately computing the singular values.
+%
+% At the same time, Christian Reinsch independently developed his own
+% method for computing the SVD.  His review work on the _Handbook_
+% gave Reinsch access to the implicit tridiagonal QR techniques for
+% matrix eigenvalues that Francis and Wilkinson were investigating.  So,
+% Reinsch adapted implicit QR with Wilkinson shifts to the singular value
+% situation.
+% 
+% Both Gene Golub and Christian Reinsch offered SVD 
+% contributions for the _Handbook_ .  It turns out that, with exact
+% arithmetic and the same shifts, Golub/Businger and Reinsch would
+% produce the same results.  But Golub and Businger never used
+% Wilkinson shifts and Golub did not join the QR club until later.
+% Fortunately, Fritz Bauer, editor in chief of the _Handbook_, brokered
+% a joint authorship arrangement and the Golub-Reinsch algorithm
+% for computing the SVD resulted.
+%
+% Walter Gander has investigated the history of SVD algorithms.
+% The slides for the talk he presented at a workshop in
+% Lanzhou University are available 
+% &lt;https://people.inf.ethz.ch/gander/talks/Vortrag2022.pdf
+% at this link&gt;.
+
+%%  Stoer and Bulirsch
+% _Einfuhrung in die Numerische Mathematik_, _Introduction to Numerical
+% Analysis_, is a classic textbook by Josef Stoer and Roland Bulirsch.
+% The original German editions were published by Springer-Verlag in 1972
+% and 1976.  The English translations were published in 1980 and 1993.
+% A complete PDF of the second English edition is available 
+% &lt;https://zhilin.math.ncsu.edu/TEACHING/MA580/Stoer_Bulirsch.pdf 
+% at this link&gt;.
+%
+% I think of Stoer &amp; Bulirsch as one of the best theoretical
+% textbooks in numerical analysis.  It is comparable to Isaacson &amp; Keller.
+% There are theorems and proofs. There are algorithms, but no
+% software.  There are a few, but not many, numerical examples.
+% There are many excellent exercises.
+
+%% Bulirsch Personal Life
+% Roland Bulirsch was born in Liberec, in the former Czechoslovkia,
+% in 1932.  After visiting U. C. San Diego in the 1960's,
+% he spent most of his career at the Technical University Munich.
+% In contrast to Reinsch, Bulirsch was a very gregarious, public person. 
+% He adored his grand children and they adored him.  The three-part 
+% &lt;https://bulirsch.eu/anlagen/Bulirsch_80_Jahre_1.pdf photo collection&gt;
+% assembled for his 80th birthday has hundreds of snapshots and portraits.
+%
+% Roland was an avid body-builder.  He had the broadest shoulders that
+% I have ever seen REPLACE_WITH_DASH_DASH and they were twice as broad as his waist.  
+% He had huge hands and huge biceps.  One of my favorite stories about
+% Roland explains the photo on his desk that was signed,
+%
+%    &quot;Thanks for everything REPLACE_WITH_DASH_DASH Arnie&quot;
+%
+% It turns out that Roland and a body-builder from Austria
+% named Arnold Swartzenegger trained together in Munich in the 1960's.
+% Roland and some friends from the gym took up a collection to help
+% the ambitious young Arnie emigrate to America.
+
+%%
+% Here are a few photos from Roland's albums.
+%
+% &lt;&lt;Roland_1.png&gt;&gt;
+%
+% &lt;&lt;Arnie_1.png&gt;&gt;
+%   
+
+%% Munich Visit
+% My last visit to T. U. Munich was in 2015.
+% I gave my stump speech, 
+% &lt;https://www.youtube.com/watch?v=ekcLT8QgB60 The Evolution of MATLAB&gt;,
+% in a big, new lecture hall named after Friedrich Bauer.  Christian
+% Reinsch was in the audience (skip to time stamp 13:59
+% &lt;https://www.youtube.com/watch?v=ekcLT8QgB60f in the video&gt;).
+% He was over 70 years old at the time and had just finished his daily
+% 50-kilometer bicycle ride.
+%
+% After the talk, a few of us found our way to one of the famous Munich
+% _Biergarten_.  Christian came along but did not stay for dinner.
+% He was not a beer drinker.
+%
+% Roland Bulirsch was able to join us for dinner, however, and we managed
+% to polish off a few of those one-liter German beer steins before 
+% closing down the place.
+##### SOURCE END ##### f2dde2cc84e245d09b99f58b9781b0eb
+--&gt;</content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html">Christian Reinsch and Roland Bulirsch both passed away recently, Reinsch on October 8 and Bulirsch on September 21. Reinsch was 88 years old and Bulirsch was 89. Both of them were retired professors of numerical analysis at the Technical University of Munich. Both of them were friends of mine. But in almost all other ways, they were very different people. ContentsWilkinson and ReinschWilkinson versus ReinschReinsch Personal LifeSVDStoer and BulirschBulirsch Personal LifeMunich Visit Wilkinson and ReinschThe Handbook for Automatic Computation, Volume II, Linear Algebra, is a research monograph published in 1971 by Springer-Verlag. This Handbook was edited by J. H. Wilkinson and Christian Reinsch and includes dozens of Algol procedures by 19 different authors for solving systems of simultaneous equations and computing matrix eigenvalues and singular values. Wilkinson and colleagues at the National Physical Laboratory in Teddington, England wrote around half of the Algol procedures in the Handbook. Reinsch authored several procedures himself and reviewed and tested most, if not all, of the entire Handbook. Translations into Fortran of many of the Algol codes produced the EISPACK subroutine library that led to the first MATLAB. I think it is fair to say that without the work of Jim Wilkinson and Christian Reinsch on the Handbook there might never have been a MATLAB. Wilkinson versus ReinschI would have loved to listen in to discussions between Jim and Christian during the development of the Handbook. Here were two very talented, proud individuals working together at the detailed level required of scientific computer programing. It must have been exciting. One small example: what subscripts do you use for the n-1 off-diagonal elements of the symmetric, tridiagonal matrix of order n produced in one procedure and passed to another? Is it e(1:n-1) or e(2:n)? (A &quot;modern&quot; e(0:n-2) is not a possibility.) The first statement of the Algol procedures for the QR algorithms is for i := 2 step 1 until n do e[i-1] := e[i];Was there some kind of disconnect between Teddington and Munich? Reinsch Personal LifeChristian Reinsch was born in Chemnitz, Germany, in 1934. He spent most of his career at the Technical University Munich, where he was a close associate of Fritz Bauer. Christian was an intensely private person. He never married and lived alone. He visited Argonne Laboratory in the 1970s, when we were working on EISPACK, and he attended a few Gatlinburg/Householder meetings. Other than that, he rarely travelled far from Munich. This photo, taken by his colleague Christoph Zenger, is the only photo of Reinsch that I have ever seen. And, as far as I know, it will be the first photo of him available on the Internet. Photo credit: Christoph Zenger SVDGene Golub is known as Professor SVD because he did more than anyone else to develop the algorithms for computing the decomposition and for popularizing its applications. A 1965 paper by Golub and Velvel Kahan provides the first practical method for computing the SVD. The Golub/Kahan approach is based on the eigenvalues of the 2n-by-2n block matrix [0 A; A' 0] . Peter Businger was a grad student at Stanford in the 1960's who worked with Golub on several projects. A 1967 Stanford technical report by Golub and Businger includes an Algol procedure, written by Businger, for computing the SVD that is based on bidiagonalizing A itself. Both Golub/Kahan and Golub/Businger suggest Sturm sequences and Givens rotations for ultimately computing the singular values. At the same time, Christian Reinsch independently developed his own method for computing the SVD. His review work on the Handbook gave Reinsch access to the implicit tridiagonal QR techniques for matrix eigenvalues that Francis and Wilkinson were investigating. So, Reinsch adapted implicit QR with Wilkinson shifts to the singular value situation. Both Gene Golub and Christian Reinsch offered SVD contributions for the Handbook . It turns out that, with exact arithmetic and the same shifts, Golub/Businger and Reinsch would produce the same results. But Golub and Businger never used Wilkinson shifts and Golub did not join the QR club until later. Fortunately, Fritz Bauer, editor in chief of the Handbook, brokered a joint authorship arrangement and the Golub-Reinsch algorithm for computing the SVD resulted. Walter Gander has investigated the history of SVD algorithms. The slides for the talk he presented at a workshop in Lanzhou University are available at this link. Stoer and BulirschEinfuhrung in die Numerische Mathematik, Introduction to Numerical Analysis, is a classic textbook by Josef Stoer and Roland Bulirsch. The original German editions were published by Springer-Verlag in 1972 and 1976. The English translations were published in 1980 and 1993. A complete PDF of the second English edition is available at this link. I think of Stoer &amp;amp; Bulirsch as one of the best theoretical textbooks in numerical analysis. It is comparable to Isaacson &amp;amp; Keller. There are theorems and proofs. There are algorithms, but no software. There are a few, but not many, numerical examples. There are many excellent exercises. Bulirsch Personal LifeRoland Bulirsch was born in Liberec, in the former Czechoslovkia, in 1932. After visiting U. C. San Diego in the 1960's, he spent most of his career at the Technical University Munich. In contrast to Reinsch, Bulirsch was a very gregarious, public person. He adored his grand children and they adored him. The three-part photo collection assembled for his 80th birthday has hundreds of snapshots and portraits. Roland was an avid body-builder. He had the broadest shoulders that I have ever seen -- and they were twice as broad as his waist. He had huge hands and huge biceps. One of my favorite stories about Roland explains the photo on his desk that was signed, &quot;Thanks for everything -- Arnie&quot;It turns out that Roland and a body-builder from Austria named Arnold Swartzenegger trained together in Munich in the 1960's. Roland and some friends from the gym took up a collection to help the ambitious young Arnie emigrate to America. Here are a few photos from Roland's albums. Munich VisitMy last visit to T. U. Munich was in 2015. I gave my stump speech, The Evolution of MATLAB, in a big, new lecture hall named after Friedrich Bauer. Christian Reinsch was in the audience (skip to time stamp 13:59 in the video). He was over 70 years old at the time and had just finished his daily 50-kilometer bicycle ride. After the talk, a few of us found our way to one of the famous Munich Biergarten. Christian came along but did not stay for dinner. He was not a beer drinker. Roland Bulirsch was able to join us for dinner, however, and we managed to polish off a few of those one-liter German beer steins before closing down the place. &amp;lt;!-- function grabCode_f2dde2cc84e245d09b99f58b9781b0eb() { // Remember the title so we can use it in the new page title = document.title;</summary></entry><entry><title type="html">An Interactive Version of colorcubes</title><link href="https://hpc.social/commercial-blog/2022/an-interactive-version-of-colorcubes/" rel="alternate" type="text/html" title="An Interactive Version of colorcubes" /><published>2022-10-21T20:58:02-06:00</published><updated>2022-10-21T20:58:02-06:00</updated><id>https://hpc.social/commercial-blog/2022/an-interactive-version-of-colorcubes</id><content type="html" xml:base="https://hpc.social/commercial-blog/2022/an-interactive-version-of-colorcubes/">&lt;div class=&quot;content&quot;&gt;&lt;!--introduction--&gt;&lt;p&gt;A 231-character static version of &lt;a href=&quot;https://www.mathworks.com/matlabcentral/communitycontests/contests/5/entries/11543&quot;&gt;colorcubes&lt;/a&gt; in the current &lt;a href=&quot;https://www.mathworks.com/matlabcentral/communitycontests/contests/5/entries&quot;&gt;MiniHack&lt;/a&gt; generated quite a bit of interest. So I am posting the full version, where you can change number of cubes and the view point, &lt;a href=&quot;https://blogs.mathworks.com/cleve/files/colorcubes.m&quot;&gt;at this link&lt;/a&gt;.&lt;/p&gt;
+&lt;!--/introduction--&gt;&lt;h3&gt;Contents&lt;/h3&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#2842fcd2-e0df-4ec2-bc84-82fad5a13e51&quot;&gt;Animation&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://feeds.feedburner.com/mathworks/moler#530668b0-ea28-4376-a885-fa4d1a9c2037&quot;&gt;Quiz&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;h4&gt;Animation&lt;a name=&quot;2842fcd2-e0df-4ec2-bc84-82fad5a13e51&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;img alt=&quot;&quot; hspace=&quot;5&quot; src=&quot;http://blogs.mathworks.com/cleve/files/color_cubes.gif&quot; vspace=&quot;5&quot; /&gt; &lt;/p&gt;
+&lt;h4&gt;Quiz&lt;a name=&quot;530668b0-ea28-4376-a885-fa4d1a9c2037&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;What is the color of the cubelet, or cubelets, in the center?&lt;/p&gt;
+&lt;!-- 
+    function grabCode_0796b1601674403b8501c6cc237cbce2() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='0796b1601674403b8501c6cc237cbce2 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 0796b1601674403b8501c6cc237cbce2';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '&lt;' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2022 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('&lt;pre&gt;\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length &gt; 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length &gt; 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('&lt;/pre&gt;\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --&gt;&lt;p style=&quot;text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;&quot;&gt;&lt;br /&gt;&lt;a href=&quot;&quot;&gt;&lt;span style=&quot;font-size: x-small; font-style: italic;&quot;&gt;Get 
+      the MATLAB code &lt;noscript&gt;(requires JavaScript)&lt;/noscript&gt;&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;
+      Published with MATLAB&amp;reg; R2022a&lt;br /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;!--
+0796b1601674403b8501c6cc237cbce2 ##### SOURCE BEGIN #####
+%% An Interactive Version of colorcubes
+% A 231-character static version of 
+% &lt;https://www.mathworks.com/matlabcentral/communitycontests/contests/5/entries/11543
+% colorcubes&gt; in the current
+% &lt;https://www.mathworks.com/matlabcentral/communitycontests/contests/5/entries
+% MiniHack&gt; generated quite a bit of interest.
+% So I am posting the full version, where you can change number of cubes
+% and the view point,
+% &lt;https://blogs.mathworks.com/cleve/files/colorcubes.m
+% at this link&gt;.
+
+%% Animation
+%
+% &lt;&lt;color_cubes.gif&gt;&gt;
+%
+
+%% Quiz
+% What is the color of the cubelet, or cubelets, in the center?
+##### SOURCE END ##### 0796b1601674403b8501c6cc237cbce2
+--&gt;</content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html">A 231-character static version of colorcubes in the current MiniHack generated quite a bit of interest. So I am posting the full version, where you can change number of cubes and the view point, at this link. ContentsAnimationQuiz Animation QuizWhat is the color of the cubelet, or cubelets, in the center? &amp;lt;!-- function grabCode_0796b1601674403b8501c6cc237cbce2() { // Remember the title so we can use it in the new page title = document.title;</summary></entry></feed>
