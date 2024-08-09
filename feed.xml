@@ -1,0 +1,2811 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://hpc.social/commercial-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://hpc.social/commercial-blog/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2024-08-08T20:47:56-06:00</updated><id>https://hpc.social/commercial-blog/feed.xml</id><title type="html">hpc.social - Aggregated Commercial Blog</title><subtitle>Vendor and commercial posts in the hpc.social community</subtitle><author><name>hpc.social</name><email>info@hpc.social</email></author><entry><title type="html">A Treacherous SVD</title><link href="https://hpc.social/commercial-blog/2024/a-treacherous-svd/" rel="alternate" type="text/html" title="A Treacherous SVD" /><published>2024-07-15T15:39:04-06:00</published><updated>2024-07-15T15:39:04-06:00</updated><id>https://hpc.social/commercial-blog/2024/a-treacherous-svd</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/a-treacherous-svd/"><![CDATA[<div class="content"><!--introduction-->
+<p>A few days ago, a bug report from our office in Cambridge caught my attention. Computing the singular values and singular vectors of a particular matrix would sometimes cause MATLAB to crash.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#687983f8-4f5c-4ab6-8c9a-670d933db516">Two Computers</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#bb7d2817-a6f9-4636-b9a4-ec93834d3c2f">Math Libraries</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#b76d6ed5-ea1c-4dc5-876b-9e32dd95c51e">G3366394</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#66e487ba-0c85-4c88-a56d-87408f340dd4">Rank</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#0848e46c-23e0-40b5-9f63-5d781d53d2d0">Zero rows</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#b08e8c96-055a-4909-8778-d590028d1cb3">Fuzz</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#f72bffb3-25d4-4136-a01c-35ce3294dcc5">Flip</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#0a7fccdf-a476-4cd7-b66e-e52d0349aa3b">Now what?</a>
+</li>
+</ul>
+</div>
+
+<h4>Two Computers<a name="687983f8-4f5c-4ab6-8c9a-670d933db516"></a>
+</h4>
+<p>I use two different two computers regularly. The machine in my home office is a Lenovo ThinkPad&reg; model T14, loaded with two external monitors, several external disc drives, a sound bar and a dedicated internet connection. My traveling machine is a Lenovo ThinkPad X1 Nano with no external hardware.</p>
+
+<p>The report of a crash in the SVD became even more interesting when I found that it happens on my office computer, but not on the portable. A quick check revealed that the CPUs on the two machines come from different manufacturers. The office computer uses an AMD&reg; Ryzen Pro 5 while the traveling machine uses an Intel&reg; Core i7.</p>
+
+<h4>Math Libraries<a name="bb7d2817-a6f9-4636-b9a4-ec93834d3c2f"></a>
+</h4>
+<p>The crash occurs several software layers deep in <a href="https://netlib.org/lapack/explore-3.3.0-html/d5/d1f/cgesvd_8f_source.html">CGESVD</a>, the LAPACK driver for single precision complex SVD. Various chip manufacturers provide math libraries that have been optimized for their CPUs. However, by default, MATLAB uses the reportedly faster Intel Math Kernel Library, MKL. It is possible to switch to other math libraries.</p>
+
+<p>We have experts at MathWorks who know far more about the details of these libraries than I do. They will soon sort this all out. In the meantime, here is what I have learned about the offending matrix.</p>
+
+<h4>G3366394<a name="b76d6ed5-ea1c-4dc5-876b-9e32dd95c51e"></a>
+</h4>
+<p>We refer to the matrix in the crash report by its case number in our bug tracking system. The matrix is of modest size but is otherwise unusual for several reasons. It is rectangular with fewer rows than columns, it is in single precision, and it is complex.</p>
+
+<pre>  clear
+  load g3366394 X
+  whos</pre>
+<pre>  Name        Size              Bytes  Class     Attributes
+  X         219x384            672768  single    complex</pre>
+<p>The following code calling SVD with three outputs will crash MATLAB on my T14, but not on my X1.</p>
+
+<pre>  trysvd = false
+  if trysvd
+      [U,S,V] = svd(X);
+      R = U*S*V' - X;
+      relres = norm(R)/norm(X)
+  end</pre>
+<pre>  trysvd =
+    logical
+      0</pre>
+<h4>Rank<a name="66e487ba-0c85-4c88-a56d-87408f340dd4"></a>
+</h4>
+<p>Computing the singular values without the vectors can be done on either machine. The following code uses double precision and then plots the singular values on a logarithmic scale with a line at single precision roundoff level.</p>
+
+<pre>  S = svd(X);
+  semilogy(S,'.-')
+  ep = eps('single');
+  line([0 230],[ep ep])
+  axis([0 230 1e-15 10])
+  legend({'singular values','eps(''single'')'})</pre>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/semilogy.png" vspace="5" /> </p>
+
+<p>We see that the matrix is far from full rank. About half of its singular values are negligible. This is confirmed by</p>
+
+<pre>   xrank = rank(X)</pre>
+<pre>   xrank =
+      110</pre>
+<h4>Zero rows<a name="0848e46c-23e0-40b5-9f63-5d781d53d2d0"></a>
+</h4>
+<p>The cause of the low rank is easy to find. This surf plot reveals that almost half of the rows are flat zero.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/full.png" vspace="5" /> </p>
+
+<p>Let's remove the zero rows.</p>
+
+<pre>  c = sum(abs(X),2)==0;
+  nnzc = nnz(c)
+  X(c&gt;0,:) = [];</pre>
+<pre>  nnzc =
+     109</pre>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/reduced.png" vspace="5" /> </p>
+
+<p>The remaining matrix is full rank and it is safe to compute its singular vectors.</p>
+
+<pre>  [U,S,V] = svd(X);
+  R = U*S*V' - X;
+  resnorm = norm(R)</pre>
+<pre>  resnorm =
+     2.8191e-06</pre>
+<h4>Fuzz<a name="b08e8c96-055a-4909-8778-d590028d1cb3"></a>
+</h4>
+<p>Removing the zero rows was the first work-around that I tried. There are many others. You can replace the zeros with any nonzero "fuzz".</p>
+
+<pre>  fuzz = 1.e-20;
+  [U,S,V] = svd(X + fuzz*randn(size(X)));</pre>
+<pre>  resnorm = norm(U*S*V'-X)</pre>
+<pre>  resnorm =
+     2.8222e-06</pre>
+<h4>Flip<a name="f72bffb3-25d4-4136-a01c-35ce3294dcc5"></a>
+</h4>
+<p>You can reorder the matrix so that the zero rows are not at the beginning.</p>
+
+<pre>  [U,S,V] = svd(flipud(X));
+  U = flipud(U);</pre>
+<pre>  resnorm = norm(U*S*V'-X)</pre>
+<pre>  resnorm =
+     2.3809e-06</pre>
+<h4>Now what?<a name="0a7fccdf-a476-4cd7-b66e-e52d0349aa3b"></a>
+</h4>
+<p>How to avoid the crash is not the most important question. What causes the crash with the original matrix? We will find out and get it fixed.</p>
+
+<!-- 
+    function grabCode_e32dbb50b2604a45be30742645bd3bea() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='e32dbb50b2604a45be30742645bd3bea ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' e32dbb50b2604a45be30742645bd3bea';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+e32dbb50b2604a45be30742645bd3bea ##### SOURCE BEGIN #####
+%% A Treacherous SVD 
+% A few days ago, a bug report from our office in Cambridge
+% caught my attention.  Computing the singular values and singular
+% vectors of a particular matrix would sometimes cause MATLAB to crash. 
+
+%% Two Computers
+% I use two different two computers regularly.
+% The machine in my home office is a Lenovo ThinkPad(R)
+% model T14, loaded with two external monitors, several external
+% disc drives, a sound bar and a dedicated internet connection.
+% My traveling machine is a Lenovo ThinkPad X1 Nano with no external
+% hardware.
+%
+% The report of a crash in the SVD became even more interesting when
+% I found that it happens on my office computer, but not on the portable.
+% A quick check revealed that the CPUs on the two machines come from 
+% different manufacturers.
+% The office computer uses an AMD(R) Ryzen Pro 5
+% while the traveling machine uses an Intel(R) Core i7.
+%
+
+%% Math Libraries
+% The crash occurs several software layers deep in
+% <https://netlib.org/lapack/explore-3.3.0-html/d5/d1f/cgesvd_8f_source.html
+% CGESVD>, the LAPACK driver for single precision complex SVD.
+% Various chip manufacturers provide math libraries that have been
+% optimized for their CPUs. However, by default, MATLAB uses 
+% the reportedly faster Intel Math Kernel Library, MKL.
+% It is possible to switch to other  math libraries.
+%
+% We have experts at MathWorks who know far more about the details
+% of these libraries than I do.  They will soon sort this all out.
+% In the meantime, here is what I have learned about the offending
+% matrix.
+
+%% G3366394
+% We refer to the matrix in the crash report by its case
+% number in our bug tracking system.
+% The matrix is of modest size but
+% is otherwise unusual for several reasons.
+% It is rectangular with fewer rows than columns,
+% it is in single precision, and it is complex.
+%
+%    clear
+%    load g3366394 X
+%    whos
+%
+%    Name        Size              Bytes  Class     Attributes
+%    X         219x384            672768  single    complex   
+
+
+%%
+% The following code calling SVD with three outputs
+% will crash MATLAB on  my T14, but not on my X1.
+%
+%    trysvd = false
+%    if trysvd
+%        [U,S,V] = svd(X);
+%        R = U*S*V' - X;
+%        relres = norm(R)/norm(X)
+%    end
+%
+%    trysvd =
+%      logical
+%        0
+
+%% Rank
+% Computing the singular values without the vectors can be done
+% on either machine.  The following code uses double precision and
+% then plots the singular values on a logarithmic scale with a
+% line at single precision roundoff level.
+%
+%    S = svd(X);
+%    semilogy(S,'.-')
+%    ep = eps('single');
+%    line([0 230],[ep ep])
+%    axis([0 230 1e-15 10])
+%    legend({'singular values','eps(''single'')'})
+%
+% <<semilogy.png>>
+ 
+%%
+% We see that the matrix is far from full rank.
+% About half of its singular values are negligible.
+% This is confirmed by
+%
+%     xrank = rank(X)
+%
+%     xrank =
+%        110
+
+%%  Zero rows
+% The cause of the low rank is easy to find.  
+% This surf plot reveals that almost half of the rows are flat zero.
+%
+% <<full.png>>
+%
+
+%% 
+% Let's remove the zero rows.
+%
+%    c = sum(abs(X),2)==0;
+%    nnzc = nnz(c)
+%    X(c>0,:) = [];
+%
+%    nnzc =
+%       109
+
+%%
+% <<reduced.png>>
+%
+
+%%
+% The remaining matrix is full rank and it is safe to compute its
+% singular vectors.
+%
+%    [U,S,V] = svd(X);
+%    R = U*S*V' - X;
+%    resnorm = norm(R)
+%
+%    resnorm =
+%       2.8191e-06
+
+%% Fuzz
+% Removing the zero rows was the first work-around that I tried.
+% There are many others.  You can replace the zeros with any
+% nonzero "fuzz".
+%
+%    fuzz = 1.e-20;
+%    [U,S,V] = svd(X + fuzz*randn(size(X)));
+%
+%    resnorm = norm(U*S*V'-X)
+%
+%    resnorm =
+%       2.8222e-06
+
+%% Flip
+% You can reorder the matrix so that the zero rows are not at the
+% beginning.
+%
+%    [U,S,V] = svd(flipud(X));
+%    U = flipud(U);
+%
+%    resnorm = norm(U*S*V'-X)
+%
+%    resnorm =
+%       2.3809e-06
+
+%% Now what?
+% How to avoid the crash is not the most important question.
+% What causes the crash with the original matrix?
+% We will find out and get it fixed.
+
+
+##### SOURCE END ##### e32dbb50b2604a45be30742645bd3bea
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[A few days ago, a bug report from our office in Cambridge caught my attention. Computing the singular values and singular vectors of a particular matrix would sometimes cause MATLAB to crash.]]></summary></entry><entry><title type="html">SuperSum, In Defense of Floating Point Arithmetic</title><link href="https://hpc.social/commercial-blog/2024/supersum-in-defense-of-floating-point-arithmetic/" rel="alternate" type="text/html" title="SuperSum, In Defense of Floating Point Arithmetic" /><published>2024-06-27T17:54:38-06:00</published><updated>2024-06-27T17:54:38-06:00</updated><id>https://hpc.social/commercial-blog/2024/supersum-in-defense-of-floating-point-arithmetic</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/supersum-in-defense-of-floating-point-arithmetic/"><![CDATA[<div class="content"><!--introduction-->
+<p>Floating point arithmetic doesn't get the respect it deserves. Many people consider it mysterious, fuzzy, unpredictable. These misgivings often occur in discussion of vector sums. Our provocatively named <i>SuperSum</i> is intended to calm these fears.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#6cc58603-9b70-4a29-bc08-fae5fe3d5db0">Ledgers</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#cc3635b6-5a76-4420-baeb-94c5b36a6573">Checksums</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#71f16826-8ff1-4a14-bc85-146da594d56f">Order</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#5356ff4e-b231-4d40-9404-17b0d0d882af">Speed</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#52953716-f4f9-4698-9680-8a5d38254f1e">Three Sums</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#f8a4c9a1-edd5-4ac3-9dca-bc7306b7de0f">Toy Example</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#8acba015-e19b-413e-8817-1e093e31ee2d">Second Test</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#e0e62ed1-a352-49ea-ac59-31107304d71e">Conclusion</a>
+</li>
+</ul>
+</div>
+
+<h4>Ledgers<a name="6cc58603-9b70-4a29-bc08-fae5fe3d5db0"></a>
+</h4>
+<p>A <i>ledger</i> is a list of transactions in an account. <i>Auditing</i> the ledger involves comparing the total of the items with the change in the account balance.</p>
+
+<p>If <i>v</i> is a vector of transaction amounts, then we need to compute</p>
+
+<pre>sum(v)</pre>
+<p>If this sum is equal to the change in the balance, then it is reasonable to assume that the ledger is correct. If not, the ledger must be examined line-by-line.</p>
+
+<h4>Checksums<a name="cc3635b6-5a76-4420-baeb-94c5b36a6573"></a>
+</h4>
+<p>Have you ever used a checksum for a file transfer? One checksum is computed before the file is sent. After the file has been sent over a questionable channel, a second checksum is computed on the receiving end. If the two checksums agree, the transmission was probably okay. If not, the file must be sent again.</p>
+
+<h4>Order<a name="71f16826-8ff1-4a14-bc85-146da594d56f"></a>
+</h4>
+<p>Floating point addition is not <i>associative</i>. This means</p>
+
+<pre>(a + b) + c</pre>
+<p>is not necessarily the same as</p>
+
+<pre class="language-matlab">a+(b+c).
+</pre>
+<p>So the <i>order</i> of doing a computation is important.</p>
+
+<p>Computers are deterministic devices. If the same computation is done <i>in the same order</i> more than once, the results must be the same. If you get different sums from different runs on a fixed computer, then it must be because the order has been changed.</p>
+
+<h4>Speed<a name="5356ff4e-b231-4d40-9404-17b0d0d882af"></a>
+</h4>
+<p>In recent years, we have made the built-in function <tt>sum(x)</tt> faster by parallelizing it. The input vector is broken into several pieces, the sum of each piece is computed separately and simultaneously, then the partial sums are combined to give the final result. If the number and size of the pieces varies from run to run, the order varies and consequently the computed sums may vary.</p>
+
+<h4>Three Sums<a name="52953716-f4f9-4698-9680-8a5d38254f1e"></a>
+</h4>
+<p>Here are three replacements for <tt>nansum(x)</tt>, the version of <tt>sum(x)</tt> that skips over <tt>NaNs</tt> and <tt>infs</tt>.</p>
+
+<p>
+<b>simplesum</b>
+</p>
+
+<p>Avoid the effect of blocking in the built-in sum(x).</p>
+
+<pre>function s = simplesum(x)
+     % simplesum.  s = simplesum(x), for vector(x).
+     % Force sequential order for sum(x).
+     % Skips NaNs and infs.</pre>
+<pre>     s = 0;
+     for k = 1:length(x)
+         if isfinite(x(k))
+             s = s + x(k);
+         end
+     end
+end</pre>
+<p>
+<b>KahanSum</b>
+</p>
+
+<p>This is the Kahan summation algorithm. The sum is accumulated in two words, the more significant <tt>s</tt> and the correction <tt>c</tt>. If you were able to form <tt>s + c</tt> exactly, it would be more accurate than <tt>s</tt> alone.</p>
+
+<pre>function s = KahanSum(x)
+     % KahanSum.  s = KahanSum(x), for vector(x).
+     % More accurate, but slower, than sum(x).
+     % Skips NaNs and infs.
+     % https://en.wikipedia.org/wiki/Kahan_summation_algorithm.</pre>
+<pre>     s = 0;  % sum
+     c = 0;  % correction
+     for k = 1:length(x)
+         if isfinite(x(k))
+             y = x(k) - c;
+             t = s + y;
+             c = (t - s) - y;
+             s = t;
+         end
+     end
+end</pre>
+<p>
+<b>SuperSum</b>
+</p>
+
+<p>I gave it a pretentious name to grab attention. Use extended precision, with enough digits to hold any MATLAB double.</p>
+
+<pre>function s = SuperSum(x)
+     % SuperSum.  s = SuperSum(x), for vector(x).
+     % Symbolic Math Toolbox extended precision.
+     % Skips NaNs and infs.
+     %
+     % 632 decimal digits holds every IEEE-754 double.
+     % 632 = ceil(log10(realmax) - log10(eps*realmin));
+     %
+     din = digits(632);  % Remember current setting
+     s = double(sum(sym(x(isfinite(x)),'D')));
+     digits(din)         % Restore
+end</pre>
+<h4>Toy Example<a name="f8a4c9a1-edd5-4ac3-9dca-bc7306b7de0f"></a>
+</h4>
+<p>A test case here at MathWorks, known by a French-Canadian name that translates to "toy example", has a vector <tt>e2</tt> of length 4243 and values that range from -3.3e7 to 6.8e9.</p>
+
+<p>When running tests involving floating point numbers it is a good idea to set the output format to <tt>hex</tt> so we can see every last bit.</p>
+
+<pre>format hex
+load jeuTest e2
+x = e2;</pre>
+<pre>[nansum(x)
+ simplesum(x)
+ KahanSum(x)
+ SuperSum(x)]</pre>
+<pre>ans =
+   423785e8206150e2
+   423785e8206150e0
+   423785e8206150e1
+   423785e8206150e1</pre>
+<p>For <tt>jeuTest</tt>, Kahan summation gets the same result as <tt>SuperSum</tt>, while <tt>nansum</tt> and <tt>simplesum</tt> differ in the last bit or two.</p>
+
+<h4>Second Test<a name="8acba015-e19b-413e-8817-1e093e31ee2d"></a>
+</h4>
+<p>The vector length is only three, but the third term completely cancels the first, and the second term rises from obscurity. In this situation, <tt>KahanSum</tt> is no more accurate than <tt>sum</tt>.</p>
+
+<pre>format hex
+x = [1 1e-14 -1]'</pre>
+<pre>[nansum(x)
+ simplesum(x)
+ KahanSum(x)
+ SuperSum(x)]</pre>
+<pre>x =
+   3ff0000000000000
+   3d06849b86a12b9b
+   bff0000000000000</pre>
+<pre>ans =
+   3d06800000000000
+   3d06800000000000
+   3d06800000000000
+   3d06849b86a12b9b</pre>
+<h4>Conclusion<a name="e0e62ed1-a352-49ea-ac59-31107304d71e"></a>
+</h4>
+<p>I will leave careful timing for another day. Let's just say that in situations like <tt>jeuTest</tt>, <tt>KahanSum</tt> is probably all you need. It is usually more accurate than <tt>sum</tt>, and not much slower.</p>
+
+<p>However, for complete reliability, use <tt>SuperSum</tt>. There is no substitute for the right answer.</p>
+
+<!-- 
+    function grabCode_7bd084f1e3e84c86b0c419e2b2dcd8b5() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='7bd084f1e3e84c86b0c419e2b2dcd8b5 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 7bd084f1e3e84c86b0c419e2b2dcd8b5';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+7bd084f1e3e84c86b0c419e2b2dcd8b5 ##### SOURCE BEGIN #####
+%% SuperSum, In Defense of Floating Point Arithmetic
+% Floating point arithmetic doesn't get the respect it deserves.
+% Many people consider it mysterious, fuzzy, unpredictable.
+% These misgivings often occur in
+% discussion of vector sums.  Our provocatively named
+% _SuperSum_ is intended to calm these fears.
+
+%% Ledgers
+% A _ledger_ is a list of transactions in an account.
+% _Auditing_ the ledger involves comparing the total of 
+% the items with the change in the account balance.
+%
+% If _v_ is a vector of transaction amounts, then we
+% need to compute
+%
+%  sum(v)
+% 
+% If this sum is equal to the change in the balance, then it is
+% reasonable to assume that the ledger is correct.
+% If not, the ledger must be examined line-by-line.
+%
+%% Checksums
+% Have you ever used a checksum for a file transfer?
+% One checksum is computed before the file is sent.  After the file
+% has been sent over a questionable channel, a second checksum is 
+% computed on the receiving end.  If the two checksums agree,
+% the transmission was probably okay.  If not, the file must be
+% sent again.
+
+%% Order
+% Floating point addition is not _associative_.  This means
+%
+%  (a + b) + c
+%
+% is not necessarily the same as
+%
+%   a + (b + c).
+%
+% So the _order_ of doing a computation is important.
+%
+% Computers are deterministic devices.  If the same
+% computation is done _in the same order_ more than once,
+% the results must be the same.
+% If you get different sums from different runs on a fixed
+% computer, then it must be because the order has been 
+% changed.
+
+%% Speed
+% In recent years, we have made the built-in function |sum(x)|
+% faster by parallelizing it.  The input vector is broken into
+% several pieces, the sum of each piece is computed separately
+% and simultaneously, then the partial sums are combined to give
+% the final result.  If the number and size of the pieces varies
+% from run to run, the order varies and consequently the computed
+% sums may vary.
+
+%% Three Sums
+% Here are three replacements for |nansum(x)|,
+% the version of |sum(x)| that skips over |NaNs| and |infs|.
+%
+% *simplesum*
+%
+% Avoid the effect of blocking in the built-in sum(x).
+%
+%  function s = simplesum(x)
+%       % simplesum.  s = simplesum(x), for vector(x).
+%       % Force sequential order for sum(x).
+%       % Skips NaNs and infs.
+%
+%       s = 0;
+%       for k = 1:length(x)
+%           if isfinite(x(k))
+%               s = s + x(k);
+%           end
+%       end
+%  end
+%
+% *KahanSum*
+%
+% This is the Kahan summation algorithm.
+% The sum is accumulated in two words, the more significant
+% |s| and the correction |c|.
+% If you were able to form |s + c| exactly, it would be more
+% accurate than |s| alone.
+%
+%  function s = KahanSum(x)
+%       % KahanSum.  s = KahanSum(x), for vector(x).
+%       % More accurate, but slower, than sum(x).
+%       % Skips NaNs and infs.
+%       % https://en.wikipedia.org/wiki/Kahan_summation_algorithm.
+%   
+%       s = 0;  % sum
+%       c = 0;  % correction
+%       for k = 1:length(x)
+%           if isfinite(x(k))
+%               y = x(k) - c;
+%               t = s + y;
+%               c = (t - s) - y;
+%               s = t;
+%           end
+%       end
+%  end
+%
+% *SuperSum*
+%
+% I gave it a pretentious name to grab attention.
+% Use extended precision, with enough digits to hold any MATLAB double.
+%
+%  function s = SuperSum(x) 
+%       % SuperSum.  s = SuperSum(x), for vector(x).
+%       % Symbolic Math Toolbox extended precision.
+%       % Skips NaNs and infs.
+%       %
+%       % 632 decimal digits holds every IEEE-754 double.
+%       % 632 = ceil(log10(realmax) - log10(eps*realmin));
+%       %
+%       din = digits(632);  % Remember current setting
+%       s = double(sum(sym(x(isfinite(x)),'D')));
+%       digits(din)         % Restore
+%  end
+
+%% Toy Example
+% A test case here at MathWorks, known by a French-Canadian name that
+% translates to "toy example", has a vector |e2|
+% of length 4243 and values that range from -3.3e7 to 6.8e9.
+%
+% When running tests involving floating point numbers
+% it is a good idea to set the output format to |hex|
+% so we can see every last bit.
+%
+%  format hex
+%  load jeuTest e2
+%  x = e2;
+%
+%  [nansum(x)
+%   simplesum(x)
+%   KahanSum(x)
+%   SuperSum(x)]
+%
+%  ans =
+%     423785e8206150e2
+%     423785e8206150e0
+%     423785e8206150e1
+%     423785e8206150e1
+%
+% For |jeuTest|,  Kahan summation gets the same result as |SuperSum|,
+% while |nansum| and |simplesum| differ in the last bit or two.
+%
+
+%% Second Test
+% The vector length is only three, but the third term completely
+% cancels the first, and the second term rises from obscurity.
+% In this situation, |KahanSum| is no more accurate than |sum|.
+% 
+%  format hex
+%  x = [1 1e-14 -1]'
+%
+%  [nansum(x)
+%   simplesum(x)
+%   KahanSum(x)
+%   SuperSum(x)]
+%
+%  x =
+%     3ff0000000000000
+%     3d06849b86a12b9b
+%     bff0000000000000
+%
+%  ans =
+%     3d06800000000000
+%     3d06800000000000
+%     3d06800000000000
+%     3d06849b86a12b9b
+
+%% Conclusion
+% I will leave careful timing for another day.  Let's just say that  
+% in situations like |jeuTest|, |KahanSum| is probably all you need.
+% It is usually more accurate than |sum|, and not much slower.
+%
+% However, for complete reliability, use |SuperSum|.  There is no
+% substitute for the right answer.
+##### SOURCE END ##### 7bd084f1e3e84c86b0c419e2b2dcd8b5
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[Floating point arithmetic doesn't get the respect it deserves. Many people consider it mysterious, fuzzy, unpredictable. These misgivings often occur in discussion of vector sums. Our provocatively named SuperSum is intended to calm these fears.]]></summary></entry><entry><title type="html">IBM Hexadecimal Floating Point</title><link href="https://hpc.social/commercial-blog/2024/ibm-hexadecimal-floating-point/" rel="alternate" type="text/html" title="IBM Hexadecimal Floating Point" /><published>2024-05-25T15:51:21-06:00</published><updated>2024-05-25T15:51:21-06:00</updated><id>https://hpc.social/commercial-blog/2024/ibm-hexadecimal-floating-point</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/ibm-hexadecimal-floating-point/"><![CDATA[<div class="content"><!--introduction-->
+<p>Our technical support group recently received a request for a tool that would convert IBM System/360 hexadecimal floating point numbers to the IEEE-754 format. I am probably the only one left at MathWorks that actually used IBM mainframe computers. I thought we had seen the last of hexadecimal arithmetic years ago. But, it turns out that the hexadecimal floating point format is alive and well.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#927291b6-bb83-4c85-937c-8f20844b3c74">IBM System/360</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#43cbbb43-f2f5-4415-99df-f6a6c114c912">Formats</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#5d482994-2d0d-42fa-86e2-c98bc728ebbe">Data</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#099df223-ed1e-405e-917f-0cccd1d54a26"><tt>Hex_ieee</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#126c1d80-75f5-4879-841f-de925f083fc1"><tt>ieee2ibm</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#88d3bc9c-b626-4578-872e-b95f02057e43"><tt>ibm2ieee</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#64f8c2ec-011c-40a2-a2f3-a2926ee929ac">Examples</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#41ed0fce-64bf-4471-b2c3-e22645d184f5">Comparison</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#9e4ce83f-58b7-498d-b480-9f17c5c1f6e0">Software</a>
+</li>
+</ul>
+</div>
+
+<h4>IBM System/360<a name="927291b6-bb83-4c85-937c-8f20844b3c74"></a>
+</h4>
+<p>The System/360 is a family of mainframe computers that IBM introduced in 1965 and that dominated the computer industry until PCs came along twenty years later. They range in size from desk-sized to systems that fill a large room.</p>
+
+<p>Here is a photo of a mid-sized model.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/ibm-360-60.png" vspace="5" /> </p>
+
+<p>
+<i>System/360, Model 60.</i> <i>Photo from Ken Shirrif's blog, IBM 360/System Summary</i>.</p>
+
+<p>The System/360 architecture is byte-oriented, so it can handle business data processing as well as scientific and engineering computation. This leads to base-16, rather than base-2 or base-10, floating point arithmetic.</p>
+
+<pre>* Binary      f*2^e    1/2&lt;=f&lt;1
+* Decimal     f*10^e   1/10&lt;=f&lt;1
+* Hexadecimal f*16^e   1/16&lt;=f&lt;1</pre>
+<h4>Formats<a name="43cbbb43-f2f5-4415-99df-f6a6c114c912"></a>
+</h4>
+<p>Floating point formats played an important role in technical computing in the early days. This table from <a href="https://www.amazon.com/exec/obidos/ASIN/0131653326/acmorg-20">FMM</a> lists formats that were in use in the 1970s, before IEEE-754 was introduced in 1985.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/fmm2.png" vspace="5" /> </p>
+
+<h4>Data<a name="5d482994-2d0d-42fa-86e2-c98bc728ebbe"></a>
+</h4>
+<p>The System/360 hexadecimal format is used in many industries for the preservation of data files.</p>
+
+<p>
+<a href="https://www.crewes.org/ResearchLinks/FreeSoftware">CREWES</a>. Teaching exploration seismology. Comprehensive MATLAB toolbox for use with the textbook "Numerical Methods of Exploration Seismology with algorithms in Matlab" by Gary F. Margrave, a geoscience professor at the University of Calgary.</p>
+
+<p>
+<a href="https://www.loc.gov/preservation/digital/formats/fdd/fdd000464.shtml">Library of Congress</a>. Government.</p>
+
+<p>
+<a href="https://nssdc.gsfc.nasa.gov/nssdc/formats/IBM_32-Bit.html">NASA</a>. Astronautics.</p>
+
+<p>
+<a href="https://support.sas.com/content/dam/SAS/support/en/technical-papers/record-layout-of-a-sas-version-5-or-6-data-set-in-sas-transport-xport-format.pdf">SAS</a>. Statistics and business analytics. SAS wrapers for C.</p>
+
+<p>
+<a href="https://github.com/enthought/ibm2ieee">Enthought</a>. Python wrappers for C.</p>
+
+<h4>
+<tt>Hex_ieee</tt><a name="099df223-ed1e-405e-917f-0cccd1d54a26"></a>
+</h4>
+<p> <a href="https://blogs.mathworks.com/cleve/files/Hex_ieee.m"><tt>Hex_ieee</tt></a>. I have two twenty-line MATLAB functions, <tt>ieee2ibm</tt> and <tt>ibm2ieee</tt>, that convert IEEE-754 floating point to and from IBM hexadecimal format.</p>
+
+<p>Three statements in the middle of <tt>ieee2ibm</tt> are the key to the entire operation. The first statement is</p>
+
+<pre>    [~,e] = log2(x)</pre>
+<p>With two output arguments, <tt>log2</tt> returns the mantissa and exponent of an IEEE-754 floating point number. The mantissa is not needed here.</p>
+
+<p>The second key statement</p>
+
+<pre>    e = ceil(e/4)</pre>
+<p>makes <tt>e</tt> divisible by 4. This turns <tt>e</tt> into the appropriate hexadecimal exponent so that the third statement</p>
+
+<pre>    f = x.*16.^(-e)</pre>
+<p>can produce the hexadecimal mantissa.</p>
+
+<h4>
+<tt>ieee2ibm</tt><a name="126c1d80-75f5-4879-841f-de925f083fc1"></a>
+</h4>
+<pre>function z = ieee2ibm(x)
+   Convert IEEE-754 to IBM System 360 hexadecimal.
+   z = ieee2ibm(x)
+      Input x, real column vector.
+      Output z, length(x)-by-16 char.
+   Example: ieee2ibm(-118.625) = 'C276A00000000000'.</pre>
+<pre>      s = sign(x);                      % -1, 0, or 1
+      x = abs(x);
+      x(x &lt; 16^(-65)) = 0;              % Underflow
+      x(x &gt;= 16^63) = (1-eps/2)*16^63;  % Overflow</pre>
+<pre>      [~,e] = log2(x);                  % base 2 exponent
+      e = ceil(e/4)                     % base 16 exponent
+      f = x.*16.^(-e);                  % base 16 mantissa</pre>
+<pre>      E = uint64((e+64)*2^56);          % Assemb1e output
+      F = uint64(f*2^56);
+      S = uint64((1-s)*2^62);           % 1 or 0
+      z = dec2hex(S + E + F);           % z = 'ZZFFFFFFFFFFFFFF'
+end</pre>
+<h4>
+<tt>ibm2ieee</tt><a name="88d3bc9c-b626-4578-872e-b95f02057e43"></a>
+</h4>
+<pre>function x = ibm2ieee(z)
+   Convert IBM System 360 hexadecimal to IEEE-754.
+   x = ibm2ieee(z)
+      Input z, n-by-16 char.
+      Output x, n-by-1 double.
+   Example: ibm2ieee('C276A00000000000') = -118.625.</pre>
+<pre>      E = hex2dec(z(:,1:2));           % Disassemble input
+      F1 = hex2dec(z(:,3:8));          % &lt; 16^6
+      F2 = hex2dec(z(:,9:end));        % &lt; 16^8
+      s = sign(128-E);                 % -1 or 1</pre>
+<pre>      e = E-(s&gt;0)*64-(s&lt;0)*192;        % base 16 exponent
+      f = F1/16^6 + F2/16^14;          % base 16 mantissa
+      x = s.*f.*16.^e;
+end</pre>
+<h4>Examples<a name="64f8c2ec-011c-40a2-a2f3-a2926ee929ac"></a>
+</h4>
+<p>Underflow. Anything <tt>&lt; 16^(-65)</tt> is too small and is flushed to zero. There are no denormals.</p>
+
+<p>Overflow. Anything <tt>&gt;= 16^63</tt> is too large. There is no <tt>inf</tt> or <tt>NaN</tt>.</p>
+
+<pre>* 1.0           4110000000000000
+* 0.1           401999999999999A
+* -pi           C13243F6A8885A30
+* 5.3976e-79    0010000000000000
+* 7.2370e+75    7FFFFFFFFFFFFFF8</pre>
+<h4>Comparison<a name="41ed0fce-64bf-4471-b2c3-e22645d184f5"></a>
+</h4>
+<p>S/360 hexadecimal has 7 exponent bits, while IEEE-754 has 11. Consequently, hexadecimal has a much smaller range, 5.4e-79 to 7.2e+75 versus 2.2e-308 to 1.8e+308.</p>
+
+<p>The base-16 normalization implies that hexadecimal effectively has between 53 and 56 mantissa bits. Counting the hidden bit, IEEE-754 also has 53. So, the accuracy of the two is pretty much the same.</p>
+
+<h4>Software<a name="9e4ce83f-58b7-498d-b480-9f17c5c1f6e0"></a>
+</h4>
+<p>My functions <tt>ieee2ibm</tt> and <tt>ieee2ibm</tt> described above, modified to handle both single and double, plus <tt>hex_test</tt>, which does what its name implies, are available at <a href="https://blogs.mathworks.com/cleve/files/Hex_ieee.m"><tt>Hex_ieee</tt></a>.</p>
+
+<p>Homework: What happens?</p>
+
+<pre>ok = 0;
+for k = 1:10
+     x = single(k/10);
+     ok(k) = hex_test(x);
+end
+ok</pre>
+<!-- 
+    function grabCode_54dd3908d741477c9a1ad45b553487d5() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='54dd3908d741477c9a1ad45b553487d5 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 54dd3908d741477c9a1ad45b553487d5';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+54dd3908d741477c9a1ad45b553487d5 ##### SOURCE BEGIN #####
+%% IBM Hexadecimal Floating Point
+% Our technical support group recently received a request
+% for a tool that would convert IBM System/360 hexadecimal
+% floating point numbers to the IEEE-754 format.
+% I am probably the only one left at MathWorks that actually used
+% IBM mainframe computers.
+% I thought we had seen the last of hexadecimal arithmetic years ago.
+% But, it turns out that the hexadecimal floating point format
+% is alive and well.
+
+%% IBM System/360
+% The System/360 is a family of mainframe computers that IBM
+% introduced in 1965 and that dominated the computer industry
+% until PCs came along twenty years later.  They range in size
+% from desk-sized to systems that fill a large room.
+%
+% Here is a photo of a mid-sized model.
+%
+% <<ibm-360-60.png>>
+%
+% _System/360, Model 60._
+% _Photo from Ken Shirrif's blog, IBM 360/System Summary_.
+%
+% The System/360 architecture is byte-oriented, so it can
+% handle business
+% data processing as well as scientific and engineering computation.
+% This leads to base-16, rather than base-2 or base-10,
+% floating point arithmetic.
+%
+%  * Binary      f*2^e    1/2<=f<1
+%  * Decimal     f*10^e   1/10<=f<1
+%  * Hexadecimal f*16^e   1/16<=f<1
+
+%% Formats
+% Floating point formats played an important role in
+% technical computing in the early days.
+% This table from
+% <https://www.amazon.com/exec/obidos/ASIN/0131653326/acmorg-20
+% FMM> lists formats that
+% were in use in the 1970s, before IEEE-754 was introduced in 1985.
+%
+% <<fmm2.png>>
+%
+
+%% Data
+% The System/360 hexadecimal format is used in many industries for the
+% preservation of data files.
+%
+% <https://www.crewes.org/ResearchLinks/FreeSoftware CREWES>.
+% Teaching exploration seismology.
+% Comprehensive MATLAB toolbox for use with the textbook
+% "Numerical Methods of Exploration Seismology with algorithms in Matlab" 
+% by Gary F. Margrave, a geoscience professor at the University of Calgary.
+%
+% <https://www.loc.gov/preservation/digital/formats/fdd/fdd000464.shtml
+% Library of Congress>. Government.
+%
+% <https://nssdc.gsfc.nasa.gov/nssdc/formats/IBM_32-Bit.html NASA>.
+% Astronautics.
+%
+% <https://support.sas.com/content/dam/SAS/support/en/technical-papers/record-layout-of-a-sas-version-5-or-6-data-set-in-sas-transport-xport-format.pdf
+% SAS>.  
+% Statistics and business analytics.  SAS wrapers for C.
+%
+% <https://github.com/enthought/ibm2ieee Enthought>.  Python wrappers for C. 
+%
+
+%% |Hex_ieee|
+% <https://blogs.mathworks.com/cleve/files/Hex_ieee.m |Hex_ieee|>.
+% I have two twenty-line MATLAB functions, |ieee2ibm| and |ibm2ieee|,
+% that convert IEEE-754 floating point to and from IBM hexadecimal format.
+%
+% Three statements in the middle of |ieee2ibm| are the key to
+% the entire operation. The first statement is
+%
+%      [~,e] = log2(x)
+% 
+% With two output arguments, |log2| returns the mantissa
+% and exponent of an IEEE-754 floating point number.
+% The mantissa is not needed here.
+%
+% The second key statement
+%
+%      e = ceil(e/4) 
+%
+% makes |e| divisible by 4. This turns |e| into the appropriate 
+% hexadecimal exponent so that the third statement
+%
+%      f = x.*16.^(-e)
+% 
+% can produce the hexadecimal mantissa.
+%   
+
+%% |ieee2ibm|
+%  function z = ieee2ibm(x)
+%     Convert IEEE-754 to IBM System 360 hexadecimal.
+%     z = ieee2ibm(x)
+%        Input x, real column vector.
+%        Output z, length(x)-by-16 char.
+%     Example: ieee2ibm(-118.625) = 'C276A00000000000'.
+%
+%        s = sign(x);                      % -1, 0, or 1
+%        x = abs(x);
+%        x(x < 16^(-65)) = 0;              % Underflow
+%        x(x >= 16^63) = (1-eps/2)*16^63;  % Overflow
+%
+%        [~,e] = log2(x);                  % base 2 exponent
+%        e = ceil(e/4)                     % base 16 exponent
+%        f = x.*16.^(-e);                  % base 16 mantissa
+%
+%        E = uint64((e+64)*2^56);          % Assemb1e output
+%        F = uint64(f*2^56);
+%        S = uint64((1-s)*2^62);           % 1 or 0
+%        z = dec2hex(S + E + F);           % z = 'ZZFFFFFFFFFFFFFF'
+% end
+
+%% |ibm2ieee|
+%  function x = ibm2ieee(z)
+%     Convert IBM System 360 hexadecimal to IEEE-754.
+%     x = ibm2ieee(z)
+%        Input z, n-by-16 char.
+%        Output x, n-by-1 double.
+%     Example: ibm2ieee('C276A00000000000') = -118.625.
+%
+%        E = hex2dec(z(:,1:2));           % Disassemble input
+%        F1 = hex2dec(z(:,3:8));          % < 16^6
+%        F2 = hex2dec(z(:,9:end));        % < 16^8
+%        s = sign(128-E);                 % -1 or 1
+%
+%        e = E-(s>0)*64-(s<0)*192;        % base 16 exponent
+%        f = F1/16^6 + F2/16^14;          % base 16 mantissa
+%        x = s.*f.*16.^e;
+%  end
+
+%% Examples
+% Underflow.  Anything |< 16^(-65)| is too small and is flushed to zero.
+% There are no denormals.
+%
+% Overflow.  Anything |>= 16^63| is too large.
+% There is no |inf| or |NaN|.
+%
+%  * 1.0           4110000000000000
+%  * 0.1           401999999999999A
+%  * -pi           C13243F6A8885A30
+%  * 5.3976e-79    0010000000000000
+%  * 7.2370e+75    7FFFFFFFFFFFFFF8
+
+%% Comparison
+% S/360 hexadecimal has 7 exponent bits, while IEEE-754 has 11.
+% Consequently, hexadecimal has a much smaller range, 5.4e-79 to 7.2e+75
+% versus 2.2e-308 to 1.8e+308.
+%
+% The base-16 normalization implies that hexadecimal effectively has
+% between 53 and 56 mantissa bits.  Counting the hidden bit,
+% IEEE-754 also has 53.  So, the accuracy of the two is pretty much the
+% same.
+
+%% Software
+% My functions |ieee2ibm| and |ieee2ibm| described above,
+% modified to handle both single and double,
+% plus |hex_test|, which does what its name implies, are available at
+% <https://blogs.mathworks.com/cleve/files/Hex_ieee.m |Hex_ieee|>.
+%
+% Homework: What happens?
+%
+%  ok = 0;
+%  for k = 1:10
+%       x = single(k/10);
+%       ok(k) = hex_test(x);
+%  end
+%  ok
+
+
+##### SOURCE END ##### 54dd3908d741477c9a1ad45b553487d5
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[Our technical support group recently received a request for a tool that would convert IBM System/360 hexadecimal floating point numbers to the IEEE-754 format. I am probably the only one left at MathWorks that actually used IBM mainframe computers. I thought we had seen the last of hexadecimal arithmetic years ago. But, it turns out that the hexadecimal floating point format is alive and well.]]></summary></entry><entry><title type="html">A Sixty-Year Old Program for Predicting the Future</title><link href="https://hpc.social/commercial-blog/2024/a-sixty-year-old-program-for-predicting-the-future/" rel="alternate" type="text/html" title="A Sixty-Year Old Program for Predicting the Future" /><published>2024-05-19T16:55:03-06:00</published><updated>2024-05-19T16:55:03-06:00</updated><id>https://hpc.social/commercial-blog/2024/a-sixty-year-old-program-for-predicting-the-future</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/a-sixty-year-old-program-for-predicting-the-future/"><![CDATA[<div class="content"><!--introduction-->
+<p>The graphics in <a href="https://blogs.mathworks.com/cleve/2024/05/04/r-squared-is-bigger-better/">my post about <tt>R^2</tt></a> were produced by an updated version of a sixty-year old program involving the U.S. census. Originally, the program was based on census data from 1900 to 1960 and sought to predict the population in 1970. The software back then was written in Fortran, the predominate technical programming language a half century ago. I have updated the MATLAB version of the program so that it now uses census data from 1900 to 2020.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#e46c5c76-356a-4c77-aea9-20aae3e00d62"><tt>censusapp2024</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#80c94327-eb2c-492a-8542-388485d68adc">Risky Business</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#97d3b2b7-4a14-4003-85b6-c7f854fc8d56">Splines</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#c8daccba-8dbe-4dbf-a0c6-6bb0b66a1e38">Exponentials</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#b1af50c9-b8ea-4211-884b-79f28e12d34f">Predictions</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#acb134fb-dc9a-43cb-840b-0e7934c63e24">Conclusion</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#d945ac16-2ef7-4c75-a529-d64d03f50776">Blogs</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#c7c11668-f0eb-404b-b951-52729c417b5c">FMM</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#906b81f5-b694-47e8-9dee-fb0586a19671">Software</a>
+</li>
+</ul>
+</div>
+
+<h4>
+<tt>censusapp2024</tt><a name="e46c5c76-356a-4c77-aea9-20aae3e00d62"></a>
+</h4>
+<p>The latest version of the census application is now available at <a href="https://blogs.mathworks.com/cleve/files/censusapp_2024.m">censusapp2024</a>. Here are the data and the opening screenshot.</p>
+
+<pre class="codeinput">[t,p]=UScensus;fprintf(<span class="string">'%12d%12.3f\n'</span>,[t,p]')
+</pre>
+<pre class="codeoutput">        1900      75.995
+        1910      91.972
+        1920     105.711
+        1930     123.203
+        1940     131.669
+        1950     150.697
+        1960     179.323
+        1970     203.212
+        1980     226.505
+        1990     249.633
+        2000     281.422
+        2010     308.746
+        2020     331.449
+</pre>
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/screenshot.png" vspace="5" /> </p>
+
+<h4>Risky Business<a name="80c94327-eb2c-492a-8542-388485d68adc"></a>
+</h4>
+<p>Today, MATLAB makes it easier to vary parameters and visualize results, but the underlying mathematical principles are unchanged:</p>
+
+<div>
+<ul>
+<li>Using polynomials to predict the future by extrapolating data is a risky business.</li>
+</ul>
+</div>
+
+<p>One new observation is added to the data every 10 years, when the United States does the decennial census. Originally there were only 7 observations; today there are 13. The program now allows you to fit the data exactly by interpolation with a polynomial of degree 12 or fit it approximately by polynomials of degree less than 12.</p>
+
+<p>Here are the least-squares fits with linear, cubic, and degree seven polynomials and the interpolating polynomial. As the polynomial degree increases, so does <tt>R^2</tt>, until <tt>R^2</tt> reaches one with the exact fit.</p>
+
+<p>Do any of these fits look like they could be used to predict future population growth?</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/polys.png" vspace="5" /> </p>
+
+<h4>Splines<a name="97d3b2b7-4a14-4003-85b6-c7f854fc8d56"></a>
+</h4>
+<p>In addition to polynomials, you can choose interpolation by three different <a href="https://blogs.mathworks.com/cleve/2019/04/29/makima-piecewise-cubic-interpolation/">piecewise Hermite cubics</a>.</p>
+
+<div>
+<ul>
+<li>
+<tt>spline</tt> Continuous second derivate, "not-a-knot" end condition.</li>
+<li>
+<tt>pchip</tt> Continuous first derivative, strictly shape-preserving.</li>
+<li>
+<tt>makima</tt> Continuous first derivative, relaxed shape-preserving.</li>
+</ul>
+</div>
+
+<p>Since these fits interpolate the data, all their <tt>R^2</tt> values are one. But before 1900 and after 2020 these functions are cubic polynomials that are not designed for extrapolation.</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/splines.png" vspace="5" /> </p>
+
+<h4>Exponentials<a name="c8daccba-8dbe-4dbf-a0c6-6bb0b66a1e38"></a>
+</h4>
+<p>It is also possible to do nonlinear least squares fits by an exponential, a logistic sigmoid, and an exponential of an exponetial known as the Gompertz model.</p>
+
+<div>
+<ul>
+<li>
+<tt>exponential exp(b*t+c)</tt>
+</li>
+<li>
+<tt>logistic a./(1+exp(-b*(t-c)))</tt>
+</li>
+<li>
+<tt>gompertz a*exp(-b*exp(-c*t))</tt>
+</li>
+</ul>
+</div>
+
+<p>An article by Kathleen and Even Tj&oslash;rve, from the Inland Norway University of Applied Sciences in Elverum, Norway, in the journal <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178691">PLOS ONE</a> has this to say about Gompertz. "The Gompertz model has been in use as a growth model even longer than its better known relative, the logistic model. The model, referred to at the time as the Gompertz theoretical law of mortality, was first suggested and first applied by Mr. Benjamin Gompertz in 1825. He fitted it to the relationship between increasing death rate and age, what he referred to as 'the average exhaustions of a man&rsquo;s power to avoid death&rdquo; or the 'portion of his remaining power to oppose destruction.' "</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/expos.png" vspace="5" /> </p>
+
+<h4>Predictions<a name="b1af50c9-b8ea-4211-884b-79f28e12d34f"></a>
+</h4>
+<p>Which fits are suitable for predicting future population size?</p>
+
+<p>Despite their large R^2 values, polynomials of any degree are not suitable because outside of the time interval they behave like polynomials and do not provide realistic predictions.</p>
+
+<p>Splines were never intended for extrapolation.</p>
+
+<p>That leaves the exponentials. The simple exponential model grows exponentially and is not suitable. The Gompertz fit does approach a finite asymptotic limit, but the value is an astronimical <tt>a</tt> = 2101, corresponding to 2.1 $\times 10^9$ inhabitants. Hopefully, that is out of the question.</p>
+
+<p>The logistic fit has an asymptotic limit of <tt>a</tt> = 655.7. We recently passed the value of <tt>t</tt> where <tt>p(t)</tt> reaches <tt>a/2</tt>, namely <tt>c</tt> = 2018. So, the logistic model predicts that the long-term size of the U.S. population will be about twice its current value. Is that realistic? Probably not.</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/expos_future.png" vspace="5" /> </p>
+
+<h4>Conclusion<a name="acb134fb-dc9a-43cb-840b-0e7934c63e24"></a>
+</h4>
+<p>The British statistician George Box once said, "all models are wrong, some are useful." This is true of the models of the U. S. Census that I have discussed over the past sixty years.</p>
+
+<p>Here is <tt>censusapp2024</tt> after all its buttons have been pushed. The extrapolation date is set to 2040. White noise has been added to the data. The model is a fourth-degree polynomial with an <tt>R^2</tt> = 0.99. The <tt>R^2</tt> value and the error estimates produced by <tt>errs</tt> account for errors in the data, but not in the model.</p>
+
+<p>This particular model does a lousy job of predicting even twenty years in the future. Some of the other models are better, many are worse. Hopefully, their study is worthwhile.</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/predict.png" vspace="5" /> </p>
+
+<h4>Blogs<a name="d945ac16-2ef7-4c75-a529-d64d03f50776"></a>
+</h4>
+<p>I have made blog posts about the census before, in <a href="https://blogs.mathworks.com/cleve/2020/11/06/anticipating-official-u-s-census-for-2020">2020</a> and in <a href="https://blogs.mathworks.com/cleve/2017/01/05/fitting-and-extrapolating-us-census-data">2017</a>.</p>
+
+<h4>FMM<a name="c7c11668-f0eb-404b-b951-52729c417b5c"></a>
+</h4>
+<p>Predicting population growth is featured in <i>Computer Methods for Mathematical Computations</i>, by George Forsythe, Mike Malcolm and myself, published by Prentice-Hall in 1977. That textbook is now available from an interesting smorgasbord of sources, including <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=rldfxOMAAAAJ&amp;citation_for_view=rldfxOMAAAAJ:buQ7SEKw-1sC">Google Scholar</a>, <a href="https://www.amazon.com/exec/obidos/ASIN/0131653326/acmorg-20">Amazon</a>, <a href="https://www.etsy.com/listing/1676520741/vintage-textbook-computer-methods-for">dizhasneatstuff</a>, <a href="https://www.abebooks.com/servlet/BookDetailsPL?bi=22650690419">Abe Books</a>, <a href="https://archive.org/details/computermethodsf00fors/page/18/mode/2up">Internet Archive</a>, <a href="https://www.pdas.com/fmm.html">PDAS</a>, <a href="https://search.worldcat.org/title/1150302502">WorldCat (Chinese)</a>.</p>
+
+<h4>Software<a name="906b81f5-b694-47e8-9dee-fb0586a19671"></a>
+</h4>
+<p>
+<tt>censusapp2024</tt> is available at <a href="https://blogs.mathworks.com/cleve/files/censusapp_2024.m">censusapp2024</a>.</p>
+
+<!-- 
+    function grabCode_02c7b1cd1f114211a874bb3dcae61323() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='02c7b1cd1f114211a874bb3dcae61323 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 02c7b1cd1f114211a874bb3dcae61323';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+02c7b1cd1f114211a874bb3dcae61323 ##### SOURCE BEGIN #####
+%% A Sixty-Year Old Program for Predicting the Future
+% The graphics in
+% <https://blogs.mathworks.com/cleve/2024/05/04/r-squared-is-bigger-better/
+% my post about |R^2|> were produced by an updated version of
+% a sixty-year old program involving the U.S. census.
+% Originally, the program was based on census data from 1900 to 1960
+% and sought to predict the population in 1970.
+% The software back then was written in Fortran, 
+% the predominate technical programming language a half century ago. 
+% I have updated the MATLAB version of the program
+% so that it now uses census data from 1900 to 2020.
+
+%% |censusapp2024|
+% The latest version of the census application is now available at
+% <https://blogs.mathworks.com/cleve/files/censusapp_2024.m
+% censusapp2024>.  Here are the data and the opening screenshot.
+
+   [t,p] = UScensus; fprintf('%12d%12.3f\n',[t,p]')
+
+%%
+% <<screenshot.png>>
+
+%% Risky Business
+% Today, MATLAB makes it easier to  vary parameters and visualize
+% results, but the underlying mathematical principles are unchanged:
+%
+% * Using polynomials to predict
+%    the future by extrapolating data is a risky business.
+%
+% One new observation is added to the data 
+% every 10 years, when the United States does the decennial census.  
+% Originally there were only 7 observations; today there are 13.
+% The program now allows you to fit the data exactly by interpolation with
+% a polynomial of degree 12 or fit it approximately by
+% polynomials of degree less than 12. 
+%
+% Here are the least-squares fits with linear, cubic, and degree seven 
+% polynomials and the interpolating polynomial.
+% As the polynomial degree increases, so does |R^2|, until |R^2| reaches
+% one with the exact fit.  
+%
+% Do any of these fits look like they could be used to predict future
+% population growth?
+%
+% <<polys.png>>
+
+%% Splines
+% In addition to polynomials, you can choose
+% interpolation by three different 
+% <https://blogs.mathworks.com/cleve/2019/04/29/makima-piecewise-cubic-interpolation/
+% piecewise Hermite cubics>.
+%
+% * |spline|    Continuous second derivate, "not-a-knot" end condition.
+% * |pchip|     Continuous first derivative, strictly shape-preserving.
+% * |makima|    Continuous first derivative, relaxed shape-preserving.
+%
+% Since these fits interpolate the data, all their |R^2| values are one.
+% But before 1900 and after 2020 these functions are cubic polynomials
+% that are not designed for extrapolation.
+%
+% <<splines.png>>
+
+%% Exponentials
+% It is also possible to do nonlinear least squares fits by an exponential,
+% a logistic sigmoid, and an exponential of an exponetial known as the
+% Gompertz model.
+%
+% * |exponential   exp(b*t+c)|
+% * |logistic      a./(1+exp(-b*(t-c)))|
+% * |gompertz      a*exp(-b*exp(-c*t))|
+% 
+% An article by Kathleen and Even Tjørve, from the 
+% Inland Norway University of Applied Sciences in Elverum, Norway,
+% in the journal
+% <https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178691
+% PLOS ONE> has this to say about Gompertz.
+% "The Gompertz model has been in use as a growth model even longer
+% than its better known relative, the logistic model. The model, 
+% referred to at the time as the Gompertz theoretical law of mortality, was 
+% first suggested and first applied by Mr. Benjamin Gompertz in 1825. 
+% He fitted it to the relationship between increasing death rate and age, 
+% what he referred to as 'the average exhaustions of a man’s power to 
+% avoid death” or the 'portion of his remaining power to oppose 
+% destruction.' "
+%
+% <<expos.png>>
+
+%% Predictions
+% Which fits are suitable for predicting future population size?
+%
+% Despite their large R^2 values, polynomials of any degree
+% are not suitable because outside of the time interval they behave
+% like polynomials and do not provide realistic predictions.
+%
+% Splines were never intended for extrapolation.
+%
+% That leaves the exponentials. The simple exponential model grows
+% exponentially and is not suitable. The Gompertz fit does approach
+% a finite asymptotic limit, but the value is an astronimical |a| = 2101,
+% corresponding to 2.1 $\times 10^9$ inhabitants. Hopefully, that is
+% out of the question.
+%
+% The logistic fit has an asymptotic limit of |a| = 655.7.
+% We recently passed the value of |t| where |p(t)| reaches |a/2|,
+% namely |c| = 2018.  So, the logistic model predicts that
+% the long-term size of the U.S. population will be about twice its
+% current value.  Is that realistic?  Probably not.
+%
+% <<expos_future.png>>
+%
+
+%% Conclusion
+% The British statistician George Box once said, "all models are wrong,
+% some are useful."  This is true of the models of the
+% U. S. Census that I have discussed over the past sixty years.
+%
+% Here is |censusapp2024| after all its buttons have been pushed.
+% The extrapolation date is set to 2040.
+% White noise has been added to the data.
+% The model is a fourth-degree polynomial with an |R^2| = 0.99.
+% The |R^2| value and the error estimates produced by |errs|
+% account for errors in the data, but not in the model.
+%
+% This particular model does a lousy job of predicting even twenty
+% years in the future.
+% Some of the other models are better, many are worse.
+% Hopefully, their study is worthwhile.
+%
+% <<predict.png>>
+
+%% Blogs
+% I have made blog posts about the census before, in
+% <https://blogs.mathworks.com/cleve/2020/11/06/anticipating-official-u-s-census-for-2020
+% 2020> and in
+% <https://blogs.mathworks.com/cleve/2017/01/05/fitting-and-extrapolating-us-census-data
+% 2017>.
+
+%% FMM
+% Predicting population growth is featured in
+% _Computer Methods for Mathematical Computations_, 
+% by George Forsythe, Mike Malcolm and myself,
+% published by Prentice-Hall in 1977.
+% That textbook is now available from an interesting smorgasbord of 
+% sources, including
+% <https://scholar.google.com/citations?view_op=view_citation&hl=en&user=rldfxOMAAAAJ&citation_for_view=rldfxOMAAAAJ:buQ7SEKw-1sC
+% Google Scholar>,
+% <https://www.amazon.com/exec/obidos/ASIN/0131653326/acmorg-20 Amazon>,
+% <https://www.etsy.com/listing/1676520741/vintage-textbook-computer-methods-for
+% dizhasneatstuff>,
+% <https://www.abebooks.com/servlet/BookDetailsPL?bi=22650690419
+% Abe  Books>,
+% <https://archive.org/details/computermethodsf00fors/page/18/mode/2up
+% Internet Archive>,
+% <https://www.pdas.com/fmm.html PDAS>,
+% <https://search.worldcat.org/title/1150302502 WorldCat (Chinese)>.
+
+%% Software
+% |censusapp2024| is available at
+% <https://blogs.mathworks.com/cleve/files/censusapp_2024.m
+% censusapp2024>.
+##### SOURCE END ##### 02c7b1cd1f114211a874bb3dcae61323
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[The graphics in my post about R^2 were produced by an updated version of a sixty-year old program involving the U.S. census. Originally, the program was based on census data from 1900 to 1960 and sought to predict the population in 1970. The software back then was written in Fortran, the predominate technical programming language a half century ago. I have updated the MATLAB version of the program so that it now uses census data from 1900 to 2020.]]></summary></entry><entry><title type="html">R-squared. Is Bigger Better?</title><link href="https://hpc.social/commercial-blog/2024/r-squared-is-bigger-better/" rel="alternate" type="text/html" title="R-squared. Is Bigger Better?" /><published>2024-05-04T14:33:38-06:00</published><updated>2024-05-04T14:33:38-06:00</updated><id>https://hpc.social/commercial-blog/2024/r-squared-is-bigger-better-</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/r-squared-is-bigger-better/"><![CDATA[<div class="content"><!--introduction-->
+<p>The <i>coefficient of determination</i>, R-squared or <tt>R^2</tt>, is a popular statistic that describes how well a regression model fits data. It measures the proportion of variation in data that is predicted by a model. However, that is <i>all</i> that <tt>R^2</tt> measures. It is <i>not</i> appropriate for any other use. For example, it does not support extrapolation beyond the domain of the data. It does not suggest that one model is preferable to another.</p>
+
+<p>I recently watched high school students participate in the final round of a national mathematical modeling competition. The teams' presentations were excellent; they were well-prepared, mathematically sophisticated, and informative. Unfortunately, many of the presentations abused <tt>R^2</tt>. It was used to compare different fits, to justify extrapolation, and to recommend public policy.</p>
+
+<p>This was not the first time that I have seen abuses of <tt>R^2</tt>. As educators and authors of mathematical software, we must do more to expose its limitations. There are dozens of pages and videos on the web describing <tt>R^2</tt>, but few of them warn about possible misuse.</p>
+
+<p>
+<tt>R^2</tt> is easily computed. If <tt>y</tt> is a vector of observations, <tt>f</tt> is a fit to the data and <tt>ybar = mean(y)</tt>, then</p>
+
+<pre>   R^2 = 1 - norm(y-f)^2/norm(y-ybar)^2</pre>
+<p>If the data are centered, then <tt>ybar = 0</tt> and <tt>R^2</tt> is between zero and one.</p>
+
+<!--/introduction-->
+<p>One of my favorite examples is the United States Census. Here is the population, in millions, every ten years since 1900.</p>
+
+<pre>   t         p
+  ____    _______
+  1900     75.995
+  1910     91.972
+  1920    105.711
+  1930    123.203
+  1940    131.669
+  1950    150.697
+  1960    179.323
+  1970    203.212
+  1980    226.505
+  1990    249.633
+  2000    281.422
+  2010    308.746
+  2020    331.449</pre>
+<p>There are 13 observations. So, we can do a least-squares fit by a polynomial of any degree less than 12 and can interpolate by a polynomial of degree 12. Here are four such fits and the corresponding <tt>R^2</tt> values. As the degree increases, so does <tt>R^2</tt>. Interpolation fits the data exactly and earns a perfect core.</p>
+
+<p>Which fit would you choose to predict the population in 2030, or even to estimate the population between census years?</p>
+
+<pre class="codeinput">R2_census
+</pre>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/R2_blog_01.png" vspace="5" /> <p>Thanks to Peter Perkins and Tom Lane for help with this post.</p>
+
+<!-- 
+    function grabCode_c876d07b32bc454d8001573d08d2f7aa() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='c876d07b32bc454d8001573d08d2f7aa ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' c876d07b32bc454d8001573d08d2f7aa';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+c876d07b32bc454d8001573d08d2f7aa ##### SOURCE BEGIN #####
+%% R-squared.  Is Bigger Better?
+% The _coefficient of determination_, R-squared or |R^2|, is a popular
+% statistic that describes how well a regression model fits data.
+% It measures the proportion of variation in data that is
+% predicted by a model.  However, that is _all_ that |R^2|
+% measures.  It is _not_ appropriate for any other use.  For example,
+% it does not support extrapolation beyond the domain of the data.
+% It does not suggest that one model is preferable to
+% another.  
+%
+% I recently watched high school students participate in the
+% final round of a national mathematical modeling competition.
+% The teams' presentations were excellent; they were
+% well-prepared, mathematically sophisticated, and informative.
+% Unfortunately, many of the presentations abused |R^2|.  It was
+% used to compare different fits, to justify extrapolation,
+% and to recommend public policy.
+%
+% This was not the first time that I have seen abuses of |R^2|.
+% As educators and authors of mathematical software, we must
+% do more to expose its limitations.  There are dozens of pages
+% and videos on the web describing |R^2|, but few of them warn
+% about possible misuse.
+%
+% |R^2| is easily computed. 
+% If |y| is a vector of observations, |f| is a fit to
+% the data and |ybar = mean(y)|, then
+% 
+%     R^2 = 1 - norm(y-f)^2/norm(y-ybar)^2 
+%
+% If the data are centered, then |ybar = 0| and |R^2| is between
+% zero and one.
+
+%%
+% One of my favorite examples is the United States Census.
+% Here is the population, in millions, every ten years since 1900. 
+%
+%     t         p   
+%    ____    _______
+%    1900     75.995
+%    1910     91.972
+%    1920    105.711
+%    1930    123.203
+%    1940    131.669
+%    1950    150.697
+%    1960    179.323
+%    1970    203.212
+%    1980    226.505
+%    1990    249.633
+%    2000    281.422
+%    2010    308.746
+%    2020    331.449
+%
+% There are 13 observations.  So, we can do a least-squares fit
+% by a polynomial of any degree less than 12 and can
+% interpolate by a polynomial of degree 12.  Here are four such
+% fits and the corresponding |R^2| values.  As the degree increases,
+% so does |R^2|.  Interpolation fits the data exactly and earns
+% a perfect core.
+%
+% Which fit would you choose to predict the population in 2030,
+% or even to estimate the population between census years?
+
+R2_census
+
+%%
+% Thanks to Peter Perkins and Tom Lane for help with this post.
+
+##### SOURCE END ##### c876d07b32bc454d8001573d08d2f7aa
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[The coefficient of determination, R-squared or R^2, is a popular statistic that describes how well a regression model fits data. It measures the proportion of variation in data that is predicted by a model. However, that is all that R^2 measures. It is not appropriate for any other use. For example, it does not support extrapolation beyond the domain of the data. It does not suggest that one model is preferable to another.]]></summary></entry><entry><title type="html">Closest Pair of Points Problem</title><link href="https://hpc.social/commercial-blog/2024/closest-pair-of-points-problem/" rel="alternate" type="text/html" title="Closest Pair of Points Problem" /><published>2024-03-28T20:00:00-06:00</published><updated>2024-03-28T20:00:00-06:00</updated><id>https://hpc.social/commercial-blog/2024/closest-pair-of-points-problem</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/closest-pair-of-points-problem/"><![CDATA[<div class="content"><!--introduction--><p>The Closest Pair of Points problem is a standard topic in an algorithms course today, but when I taught such a course fifty years ago, the algorithm was not yet known.</p>
+<!--/introduction--><h3>Contents</h3><div><ul><li><a href="https://feeds.feedburner.com/mathworks/moler#0f62a942-c8a3-4395-8f83-9509ed1dabd0">California Dreaming</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#825b1d10-1532-4f6e-8927-6d9e45dbdb49">Closest Pair of Points</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#92c53c07-0f81-494a-91a7-c364eb3132ea"><tt>Pairs</tt></a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#05e723c3-e7a0-4091-bb97-463ac017b7e0"><tt>DivCon</tt></a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#387c9a5e-eee6-47d0-be8a-6ea3d8d95f8f"><tt>Center</tt></a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#53330f5c-f9a0-4060-ba34-e5e98e1c9ed4">Complexity</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#5d10f4df-79d5-46b8-9375-01260abdba40">Timing</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#4de823af-8e67-4218-a471-d8def3204d38">Software</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#0dc6f3e8-7d3a-4381-8d34-13514fb2cad1">References</a></li></ul></div>
+<h4>California Dreaming<a name="0f62a942-c8a3-4395-8f83-9509ed1dabd0"></a></h4><p>Imagine you are driving a car on the Harbor Freeway in southern California with typical Los Angeles traffic conditions. Among the many things you might want to know is which pair of vehicles is nearest each other.</p>
+<p>This is an instance of the Closest Pair of Points problem:</p>
+<div><ul><li>Given the location of <tt>n</tt> points in the plane, which pair of points is closest to each other?</li></ul></div>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/traffic.png" vspace="5" /> </p>
+<h4>Closest Pair of Points<a name="825b1d10-1532-4f6e-8927-6d9e45dbdb49"></a></h4><p>It is convenient to represent the points by a vector of complex values. The distance between points <tt>z(k)</tt> and <tt>z(j)</tt> is then</p>
+<pre>  d = abs(z(k) - z(j))</pre><p>Here are a few points in the unit square.  The closest pair is highlighted.</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/pairs.png" vspace="5" /> </p>
+<h4><tt>Pairs</tt><a name="92c53c07-0f81-494a-91a7-c364eb3132ea"></a></h4><p>The first algorithm you might think of computes the distances between all possible pairs of points and finds the minimum.  This is a brute force approach that requires only a few lines of code.</p>
+<pre>function d = Pairs(z)
+    % Pairs.
+    % d = Pairs(z) is the minimum distance between any two elements
+    % of the complex vector z.</pre><pre>    n = length(z);
+    d = Inf;
+    for k = 1:n
+        for j = k+1:n
+            if abs(z(k) - z(j)) &lt; d
+                d = abs(z(k) - z(j));
+            end
+        end
+    end
+end</pre><h4><tt>DivCon</tt><a name="05e723c3-e7a0-4091-bb97-463ac017b7e0"></a></h4><p>DivCon stands for Divide and Conquer.  In outline, the steps are:</p>
+<div><ul><li>Divide the set of points into two halves.</li></ul></div>
+<div><ul><li>Recursively, find the closest pair in each half.</li></ul></div>
+<div><ul><li>Consider the case when the closest pair has one point in each half.</li></ul></div>
+<div><ul><li>Terminate the recursion with sets of two or three points.</li></ul></div>
+<pre>function d = DivCon(z,sorted)
+    % DivCon.
+    % d = DivCon(z) is the minimum distance between any two elements
+    % of the complex vector z.
+    %
+    % d = DivCon(z,true) is a recursive call with ascending real(z).</pre><pre>    n = length(z);
+    if n &lt;= 3
+       d = Pairs(z);
+    else
+       if nargin &lt; 2 || ~sorted
+           [~,p] = sort(real(z));
+           z = z(p);
+       end
+       m = floor(n/2);</pre><pre>       % Left half
+       dl = DivCon(z(1:m),true)</pre><pre>       % Right half
+       dr = DivCon(z(m+1:end),true);</pre><pre>       % Choose
+       d = min(dl,dr);</pre><pre>       % Center strip
+       ds = Center(z,d);
+       d = min(ds,d);
+    end
+end</pre><h4><tt>Center</tt><a name="387c9a5e-eee6-47d0-be8a-6ea3d8d95f8f"></a></h4><p>The delicate case involves the strip of points near the center dividing line.  The width of the strip is the closest distance found in the recursion.  Any closer pair with one point in each half must be in this strip.</p>
+<pre>function d = Center(z,d)
+    % Center(z,d) is used by DivCon to examine the
+    % strip of half-width d about the center point.</pre><pre>    n = length(z)
+    m = floor(n/2);
+    xh = real(z(m));
+    [~,p] = sort(imag(z));
+    z = z(p);
+    s = [];
+    for i = 1:n
+        if abs(real(z(i)) - xh) &lt;  d
+            s = [s; z(i)];
+        end
+    end</pre><pre>    ns = length(s);
+    for k = 1:ns
+        for j = k+1:ns
+            if (imag(s(j)) - imag(s(k))) &lt; d &amp;&amp; abs(s(k) - s(j)) &lt; d
+                d = abs(s(k) - s(j));
+            end
+        end
+    end
+end</pre><h4>Complexity<a name="53330f5c-f9a0-4060-ba34-e5e98e1c9ed4"></a></h4><p>Let <tt>n</tt> be the number of points.  An asymptotic execution-time complexity analysis involves <tt>n</tt> approaching infinity.</p>
+<p>It is not hard to see that the complexity of the brute force algorithm implemented in <tt>Pairs</tt> is O(<tt>n</tt>^2).</p>
+<p>There are <a href="https://www.google.com/search?q=closest+pair+of+points+(divide+and+conquer)">dozens of pages on the web</a> devoted to showing that the complexity of the divide and conquer algorithm implemented in <tt>DivCon</tt> and <tt>Center</tt> is O(<tt>n</tt>*log(<tt>n</tt>)).  The best page that I have seen is the <a href="https://www.youtube.com/watch?v=6u_hWxbOc7E">YouTube video by Ling Qi</a>. The key to the analysis is showing that the inner loop in <tt>Center</tt> is executed at most 7 times for any <tt>n</tt>.</p>
+<h4>Timing<a name="5d10f4df-79d5-46b8-9375-01260abdba40"></a></h4><p>We measured the execution time of <tt>Pairs(z)</tt> and <tt>DivCon(z)</tt> for <tt>n</tt> from 1,000 to 40,000 and computed the ratios of the two times. The complexity analysis predicts that this ratio is asymptotically</p>
+<pre>  O(n/log(n))</pre><p>Here are the timing results and a least square fit by <tt>n</tt>/log(<tt>n</tt>).</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/fit.png" vspace="5" /> </p>
+<h4>Software<a name="4de823af-8e67-4218-a471-d8def3204d38"></a></h4><p>A self-extracting MATLAB archive is available at <a href="https://blogs.mathworks.com/cleve/files/TestDivCon_mzip.m">https://blogs.mathworks.com/cleve/files/TestDivCon_mzip.m</a></p>
+<h4>References<a name="0dc6f3e8-7d3a-4381-8d34-13514fb2cad1"></a></h4><p>Ling Qi, IDeer7, <i>Closest Pair of Points (Divide and Conquer) Explained</i>. <a href="https://www.youtube.com/watch?v=6u_hWxbOc7E">https://www.youtube.com/watch?v=6u_hWxbOc7E</a>.</p>
+<p>Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford. <i>Introduction to Algorithms (4th ed.)</i>. MIT Press and McGraw-Hill. ISBN 0-262-04630-X. 1312 pp.</p>
+<!-- 
+    function grabCode_fc0430dede624952a83439140fe547ff() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='fc0430dede624952a83439140fe547ff ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' fc0430dede624952a83439140fe547ff';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --><p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;"><br /><a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript></span></a><br /><br />
+      Published with MATLAB&reg; R2023a<br /></p>
+</div>
+<!--
+fc0430dede624952a83439140fe547ff ##### SOURCE BEGIN #####
+%% The Closest Pair of Points Problem
+% The Closest Pair of Points problem is a standard topic in an
+% algorithms course today, but when I taught such 
+% a course fifty years ago, the algorithm was not yet known.
+
+%% California Dreaming 
+% Imagine you are driving a car on the Harbor Freeway in southern 
+% California with typical Los Angeles traffic conditions.
+% Among the many things you might want to know is which pair of 
+% vehicles is nearest each other.  
+%
+% This is an instance of the Closest Pair of Points problem:
+%
+% * Given the location of |n| points in the plane, which pair of points
+% is closest to each other?
+%
+% <<traffic.png>>
+%
+%% Closest Pair of Points
+% It is convenient to represent the points by a vector of complex values. 
+% The distance between points |z(k)| and |z(j)| is then
+%
+%    d = abs(z(k) - z(j))
+%
+% Here are a few points in the unit square.  The closest pair is
+% highlighted.
+%
+% <<pairs.png>>
+%
+
+%% |Pairs|
+% The first algorithm you might think of computes the distance
+% between all possible pairs of points and finds the minimum.  This is
+% a brute force approach that requires only a few lines of code.
+%
+%  function d = Pairs(z)
+%      % Pairs. 
+%      % d = Pairs(z) is the minimum distance between any two elements
+%      % of the complex vector z.  
+%
+%      n = length(z);
+%      d = Inf; 
+%      for k = 1:n
+%          for j = k+1:n
+%              if abs(z(k) - z(j)) < d
+%                  d = abs(z(k) - z(j));
+%              end    
+%          end
+%      end
+%  end
+
+%% |DivCon|
+% DivCon stands for Divide and Conquer.  In outline, the steps are:
+%
+% * Divide the set of points into two halves.
+%
+% * Recursively, find the closest pair in each half.
+%
+% * Consider the case when the closest pair has one point in each half. 
+%
+% * Terminate the recursion with sets of two or three points.
+%
+%  function d = DivCon(z,sorted)
+%      % DivCon. 
+%      % d = DivCon(z) is the minimum distance between any two elements
+%      % of the complex vector z. 
+%      %
+%      % d = DivCon(z,true) is a recursive call with ascending real(z).
+%
+%      n = length(z);
+%      if n <= 3
+%         d = Pairs(z);
+%      else
+%         if nargin < 2 || ~sorted
+%             [~,p] = sort(real(z));
+%             z = z(p);
+%         end
+%         m = floor(n/2);
+%   
+%         % Left half
+%         dl = DivCon(z(1:m),true)
+%   
+%         % Right half
+%         dr = DivCon(z(m+1:end),true);
+% 
+%         % Choose
+%         d = min(dl,dr);
+%   
+%         % Center strip
+%         ds = Center(z,d);
+%         d = min(ds,d);
+%      end
+%  end
+
+%% |Center|
+% The delicate case involves the strip of points near the 
+% center dividing line.  The width of the strip is the closest
+% distance found in the recursion.  Any closer pair with one point
+% in each half must be in this strip.
+%
+%  function d = Center(z,d)    
+%      % Center(z,d) is used by DivCon to examine the
+%      % strip of half-width d about the center point.
+%
+%      n = length(z) 
+%      m = floor(n/2);
+%      xh = real(z(m));
+%      [~,p] = sort(imag(z));
+%      z = z(p);
+%      s = [];
+%      for i = 1:n
+%          if abs(real(z(i)) - xh) <  d
+%              s = [s; z(i)];
+%          end
+%      end
+%
+%      ns = length(s);
+%      for k = 1:ns
+%          for j = k+1:ns
+%              if (imag(s(j)) - imag(s(k))) < d && abs(s(k) - s(j)) < d
+%                  d = abs(s(k) - s(j));
+%              end
+%          end
+%      end
+%  end
+
+%% Complexity
+% Let |n| be the number of points.  An asymptotic execution-time 
+% complexity analysis involves |n| approaching infinity.
+%
+% It is not hard to see that the complexity of the brute force algorithm
+% implemented in |Pairs| is O(|n|^2).  
+%
+% There are 
+% <https://www.google.com/search?q=closest+pair+of+points+(divide+and+conquer)
+% dozens of pages on the web> devoted to showing that the complexity
+% of the divide and conquer algorithm implemented in |DivCon| and |Center|
+% is O(|n|*log(|n|)).  The best page that I have seen is the 
+% <https://www.youtube.com/watch?v=6u_hWxbOc7E
+% YouTube video by Ling Qi>.
+% The key to the analysis is showing that the inner
+% loop in |Center| is executed at most 7 times for any |n|.  
+% 
+%% Timing
+% We measured the execution time of |Pairs(z)| and |DivCon(z)| for
+% |n| from 1,000 to 40,000 and computed the ratios of the two times.
+% The complexity analysis predicts that this ratio is asymptotically
+%
+%    O(n/log(n))
+%
+% Here are the timing results and a least square fit by |n|/log(|n|).
+%
+% <<fit.png>>
+
+%% Software
+% A self-extracting MATLAB archive is available at
+% <https://blogs.mathworks.com/cleve/files/TestDivCon_mzip.m>
+
+%% References
+%
+% Ling Qi, IDeer7, _Closest Pair of Points (Divide and Conquer) Explained_.
+% <https://www.youtube.com/watch?v=6u_hWxbOc7E>.
+%
+% Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; 
+% Stein, Clifford. _Introduction to Algorithms (4th ed.)_.
+% MIT Press and McGraw-Hill. ISBN 0-262-04630-X. 1312 pp.
+##### SOURCE END ##### fc0430dede624952a83439140fe547ff
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[The Closest Pair of Points problem is a standard topic in an algorithms course today, but when I taught such a course fifty years ago, the algorithm was not yet known. ContentsCalifornia DreamingClosest Pair of PointsPairsDivConCenterComplexityTimingSoftwareReferences California DreamingImagine you are driving a car on the Harbor Freeway in southern California with typical Los Angeles traffic conditions. Among the many things you might want to know is which pair of vehicles is nearest each other. This is an instance of the Closest Pair of Points problem: Given the location of n points in the plane, which pair of points is closest to each other? Closest Pair of PointsIt is convenient to represent the points by a vector of complex values. The distance between points z(k) and z(j) is then d = abs(z(k) - z(j))Here are a few points in the unit square. The closest pair is highlighted. PairsThe first algorithm you might think of computes the distances between all possible pairs of points and finds the minimum. This is a brute force approach that requires only a few lines of code. function d = Pairs(z) % Pairs. % d = Pairs(z) is the minimum distance between any two elements % of the complex vector z. n = length(z); d = Inf; for k = 1:n for j = k+1:n if abs(z(k) - z(j)) &lt; d d = abs(z(k) - z(j)); end end end endDivConDivCon stands for Divide and Conquer. In outline, the steps are: Divide the set of points into two halves. Recursively, find the closest pair in each half. Consider the case when the closest pair has one point in each half. Terminate the recursion with sets of two or three points. function d = DivCon(z,sorted) % DivCon. % d = DivCon(z) is the minimum distance between any two elements % of the complex vector z. % % d = DivCon(z,true) is a recursive call with ascending real(z). n = length(z); if n &lt;= 3 d = Pairs(z); else if nargin &lt; 2 || ~sorted [~,p] = sort(real(z)); z = z(p); end m = floor(n/2); % Left half dl = DivCon(z(1:m),true) % Right half dr = DivCon(z(m+1:end),true); % Choose d = min(dl,dr); % Center strip ds = Center(z,d); d = min(ds,d); end endCenterThe delicate case involves the strip of points near the center dividing line. The width of the strip is the closest distance found in the recursion. Any closer pair with one point in each half must be in this strip. function d = Center(z,d) % Center(z,d) is used by DivCon to examine the % strip of half-width d about the center point. n = length(z) m = floor(n/2); xh = real(z(m)); [~,p] = sort(imag(z)); z = z(p); s = []; for i = 1:n if abs(real(z(i)) - xh) &lt; d s = [s; z(i)]; end end ns = length(s); for k = 1:ns for j = k+1:ns if (imag(s(j)) - imag(s(k))) &lt; d &amp;&amp; abs(s(k) - s(j)) &lt; d d = abs(s(k) - s(j)); end end end endComplexityLet n be the number of points. An asymptotic execution-time complexity analysis involves n approaching infinity. It is not hard to see that the complexity of the brute force algorithm implemented in Pairs is O(n^2). There are dozens of pages on the web devoted to showing that the complexity of the divide and conquer algorithm implemented in DivCon and Center is O(n*log(n)). The best page that I have seen is the YouTube video by Ling Qi. The key to the analysis is showing that the inner loop in Center is executed at most 7 times for any n. TimingWe measured the execution time of Pairs(z) and DivCon(z) for n from 1,000 to 40,000 and computed the ratios of the two times. The complexity analysis predicts that this ratio is asymptotically O(n/log(n))Here are the timing results and a least square fit by n/log(n). SoftwareA self-extracting MATLAB archive is available at https://blogs.mathworks.com/cleve/files/TestDivCon_mzip.m ReferencesLing Qi, IDeer7, Closest Pair of Points (Divide and Conquer) Explained. https://www.youtube.com/watch?v=6u_hWxbOc7E. Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford. Introduction to Algorithms (4th ed.). MIT Press and McGraw-Hill. ISBN 0-262-04630-X. 1312 pp. &lt;!-- function grabCode_fc0430dede624952a83439140fe547ff() { // Remember the title so we can use it in the new page title = document.title;]]></summary></entry><entry><title type="html">Twenty Years of Parallel MATLAB</title><link href="https://hpc.social/commercial-blog/2024/twenty-years-of-parallel-matlab/" rel="alternate" type="text/html" title="Twenty Years of Parallel MATLAB" /><published>2024-03-15T18:05:58-06:00</published><updated>2024-03-15T18:05:58-06:00</updated><id>https://hpc.social/commercial-blog/2024/twenty-years-of-parallel-matlab</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/twenty-years-of-parallel-matlab/"><![CDATA[<div class="content"><!--introduction--><p>I have just returned from the MathWorks company meeting celebrating our 40th Anniversary. In one of the presentations, Jos Martin described how Parallel MATLAB was introduced almost twenty years ago.  Here are a few slides from Jos's talk.</p>
+<!--/introduction--><h3>Contents</h3><div><ul><li><a href="https://feeds.feedburner.com/mathworks/moler#eb526631-dc7b-4d6f-b20d-0df539aebec4">Why There Wasn't Any Parallel MATLAB</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#46778056-77d3-4a5c-b5fe-b52d97931018">Twenty-seven Parallel MATLABs</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#3df2759d-d597-4b19-9c05-c9112532cadc">Distributed Computing Toolbox</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#7c5caf72-f3b8-485b-8b12-1c06813855e0">Supercomputing Conference</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#9266c227-5e9f-4e31-9d7d-a8d89fc7b2d1">Bill Gates</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#85862059-8ccf-4c67-b17b-018619edab9f">Now There is a Parallel MATLAB</a></li></ul></div>
+<h4>Why There Wasn't Any Parallel MATLAB<a name="eb526631-dc7b-4d6f-b20d-0df539aebec4"></a></h4><p>In <i>MATLAB News and Notes</i> for spring 1995, I wrote a one-page Cleve's Corner titled "Why there isn't any parallel MATLAB." There were three reasons.</p>
+<div><ul><li>Memory model.  MATLAB would generate a matrix on a host machine, split it into roughly equally sized submatrices, and distribute each submatrix to a node.  But it took far longer to distribute the data then it did to do the computation.  Any matrix that would fit into memory on the host was too small to make  effective use of the parallel computer itself.</li></ul></div>
+<div><ul><li>Granularity.  The amount of work involved in a single matrix computation is too little to be effectively parallelized.</li></ul></div>
+<div><ul><li>Business situation.  There are too few potential customers at this time (1995) to undertake fundamental changes in MATLAB's architecture.</li></ul></div>
+<p>This one-page note turned out to be one of my most widely cited publications.</p>
+<p>.</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Picture3.png" vspace="5" /> </p>
+<p>.</p>
+<h4>Twenty-seven Parallel MATLABs<a name="46778056-77d3-4a5c-b5fe-b52d97931018"></a></h4><p><a href="https://citeseerx.ist.psu.edu/document?repid=rep1&amp;type=pdf&amp;doi=0b90279927d97c5e4e2ae48a07f5a44f1abe7bac">A 2001 survey by Ron Choy</a> at MIT found 27 different projects that were developing some way to run MATLAB in parallel. All of them involved a MATLAB-based host program calling a fixed library of parallel functions, written in some other language, on the workers. None of the systems were capable of running arbitrary MATLAB programs in parallel.  None of them were MathWorks products.</p>
+<h4>Distributed Computing Toolbox<a name="3df2759d-d597-4b19-9c05-c9112532cadc"></a></h4><p><a href="https://www.hpcwire.com/2004/11/09/mathworks-unveils-computing-toolbox-for-matlab-and-simulink/">MathWorks introduced</a> the MATLAB Distributed Computing Toolbox in November 2004. We improvised this demo setup at our first Supercomputing Conference, SC2004 in Pittsburg,</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/SC2004.png" vspace="5" /> </p>
+<p>.</p>
+<h4>Supercomputing Conference<a name="7c5caf72-f3b8-485b-8b12-1c06813855e0"></a></h4><p>A year later, SC2005 was in Seattle and our booth featured four worker machines on a wire shelving unit purchased at a local Home Depot.</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/SC2005.png" vspace="5" /> </p>
+<p>.</p>
+<h4>Bill Gates<a name="9266c227-5e9f-4e31-9d7d-a8d89fc7b2d1"></a></h4><p>Since Seattle was his home town, Bill Gates gave the keynote talk at SC2005.  He announced that Microsoft was going into High Performance Computing and used the MathWorks Distributed Computing Toolbox in his demonstration.</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Gates.png" vspace="5" /> </p>
+<p>.</p>
+<h4>Now There is a Parallel MATLAB<a name="85862059-8ccf-4c67-b17b-018619edab9f"></a></h4><p>So, a little more than ten years after the first Cleve's Corner about parallel computing, a second Cleve's Corner in <i>News and Notes</i> was able to reverse the situation.</p>
+<p>.</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Picture2.png" vspace="5" /> </p>
+<!-- 
+    function grabCode_14a73fc939e74d6a9266b6fa2deda9a3() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='14a73fc939e74d6a9266b6fa2deda9a3 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 14a73fc939e74d6a9266b6fa2deda9a3';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --><p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;"><br /><a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript></span></a><br /><br />
+      Published with MATLAB&reg; R2023a<br /></p>
+</div>
+<!--
+14a73fc939e74d6a9266b6fa2deda9a3 ##### SOURCE BEGIN #####
+%% Twenty Years of Parallel MATLAB
+% I have just returned from the MathWorks company meeting
+% celebrating our 40th Anniversary. In one of the presentations,
+% Jos Martin described how Parallel MATLAB was introduced 
+% almost twenty years ago.  Here are a few slides
+% from Jos's talk.
+
+%% Why There Wasn't Any Parallel MATLAB
+% In _MATLAB News and Notes_ for spring 1995, I wrote a one-page
+% Cleve's Corner titled "Why there isn't any parallel MATLAB."
+% There were three reasons.
+%
+% * Memory model.  MATLAB would generate a matrix on a host machine,
+% split it into roughly equally sized submatrices, and distribute
+% each submatrix to a node.  But it took far longer to distribute
+% the data then it did to do the computation.  Any matrix that would
+% fit into memory on the host was too small to make  effective use
+% of the parallel computer itself.
+%
+% * Granularity.  The amount of work involved in a single matrix 
+% computation is too little to be effectively parallelized. 
+%
+% * Business situation.  There are too few potential customers
+% at this time (1995) to undertake fundamental changes in 
+% MATLAB's architecture.
+% 
+% This one-page note turned out to be one of my most widely cited
+% publications.
+%
+% .
+% 
+% <<Picture3.png>>
+%
+% .
+%
+
+%% Twenty-seven Parallel MATLABs
+% <https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=0b90279927d97c5e4e2ae48a07f5a44f1abe7bac
+% A 2001 survey by Ron Choy> at MIT found 27 different projects
+% that were developing some way to run MATLAB in parallel.  
+% All of them involved a MATLAB-based host program calling a fixed 
+% library of parallel functions, written in some other language,
+% on the workers.
+% None of the systems were capable of running arbitrary MATLAB programs
+% in parallel.  None of them were MathWorks products.
+%
+
+%%% Distributed Computing Toolbox
+% <https://www.hpcwire.com/2004/11/09/mathworks-unveils-computing-toolbox-for-matlab-and-simulink/
+% MathWorks introduced>
+% the MATLAB Distributed Computing Toolbox in November 2004.
+% We improvised this demo setup at our first Supercomputing
+% Conference, SC2004 in Pittsburg,
+%
+% <<SC2004.png>>
+%
+% .
+%
+
+
+%% Supercomputing Conference
+% A year later, SC2005 was in Seattle and our booth featured four worker
+% machines on a wire shelving unit purchased at a local Home Depot.
+%
+% <<SC2005.png>>
+%
+% .
+%
+
+%% Bill Gates
+% Since Seattle was his home town, Bill Gates gave the keynote talk at
+% SC2005.  He announced that Microsoft was going into High Performance
+% Computing and used the MathWorks Distributed Computing Toolbox in
+% his demonstration.
+%
+% <<Gates.png>>
+%
+% .
+%
+
+
+%% Now There is a Parallel MATLAB
+% So, a little more than ten years after the first Cleve's Corner
+% about parallel computing, a second Cleve's Corner in _News and Notes_
+% was able to reverse the situation. 
+%
+% .
+%
+% <<Picture2.png>>
+%
+
+
+##### SOURCE END ##### 14a73fc939e74d6a9266b6fa2deda9a3
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[I have just returned from the MathWorks company meeting celebrating our 40th Anniversary. In one of the presentations, Jos Martin described how Parallel MATLAB was introduced almost twenty years ago. Here are a few slides from Jos's talk. ContentsWhy There Wasn't Any Parallel MATLABTwenty-seven Parallel MATLABsDistributed Computing ToolboxSupercomputing ConferenceBill GatesNow There is a Parallel MATLAB Why There Wasn't Any Parallel MATLABIn MATLAB News and Notes for spring 1995, I wrote a one-page Cleve's Corner titled "Why there isn't any parallel MATLAB." There were three reasons. Memory model. MATLAB would generate a matrix on a host machine, split it into roughly equally sized submatrices, and distribute each submatrix to a node. But it took far longer to distribute the data then it did to do the computation. Any matrix that would fit into memory on the host was too small to make effective use of the parallel computer itself. Granularity. The amount of work involved in a single matrix computation is too little to be effectively parallelized. Business situation. There are too few potential customers at this time (1995) to undertake fundamental changes in MATLAB's architecture. This one-page note turned out to be one of my most widely cited publications. . . Twenty-seven Parallel MATLABsA 2001 survey by Ron Choy at MIT found 27 different projects that were developing some way to run MATLAB in parallel. All of them involved a MATLAB-based host program calling a fixed library of parallel functions, written in some other language, on the workers. None of the systems were capable of running arbitrary MATLAB programs in parallel. None of them were MathWorks products. Distributed Computing ToolboxMathWorks introduced the MATLAB Distributed Computing Toolbox in November 2004. We improvised this demo setup at our first Supercomputing Conference, SC2004 in Pittsburg, . Supercomputing ConferenceA year later, SC2005 was in Seattle and our booth featured four worker machines on a wire shelving unit purchased at a local Home Depot. . Bill GatesSince Seattle was his home town, Bill Gates gave the keynote talk at SC2005. He announced that Microsoft was going into High Performance Computing and used the MathWorks Distributed Computing Toolbox in his demonstration. . Now There is a Parallel MATLABSo, a little more than ten years after the first Cleve's Corner about parallel computing, a second Cleve's Corner in News and Notes was able to reverse the situation. . &lt;!-- function grabCode_14a73fc939e74d6a9266b6fa2deda9a3() { // Remember the title so we can use it in the new page title = document.title;]]></summary></entry><entry><title type="html">Chaotic Swinging Sticks</title><link href="https://hpc.social/commercial-blog/2024/chaotic-swinging-sticks/" rel="alternate" type="text/html" title="Chaotic Swinging Sticks" /><published>2024-02-20T16:24:41-07:00</published><updated>2024-02-20T16:24:41-07:00</updated><id>https://hpc.social/commercial-blog/2024/chaotic-swinging-sticks</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/chaotic-swinging-sticks/"><![CDATA[<div class="content"><!--introduction-->
+<p>
+<a href="https://swingingsticks.com">The Swinging Sticks</a> is a kinetic sculpture that exhibits chaotic motion. The device became very popular after it upstaged Tony Stark in <a href="https://www.google.com/search?q=youtube+swinging+sticks+iron+man#fpstate=ive&amp;vld=cid:6a6186e3,vid:sbbjhNLiL3c,st:0">Iron Man 2</a>. My daughter Carolyn gave me a desktop version of Swinging Sticks for Christmas. I immediately set out to simulate it.</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/sculpture.png" vspace="5" /> </p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#a9143ab6-8f3f-482e-92ee-35cf3f9190de">Chaotic Motion</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#bf97f3ad-e2a5-4421-9892-a8466b18022a">Swinging Sticks</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#3862e132-f69e-4702-85b6-6aeeb1406839">Sculpture</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#dd331fb2-a5f9-42c6-a538-5b2cb8c9b486">Code</a>
+</li>
+</ul>
+</div>
+
+<h4>Chaotic Motion<a name="a9143ab6-8f3f-482e-92ee-35cf3f9190de"></a>
+</h4>
+<p>Chaotic motion appears random but isn't. Once the motion begins, the initial conditions together with Newton's law of motion, F = ma, determine subsequent behavior. There are no random forces. It may be difficult to predict positions, but they are well-determined, nonetheless.</p>
+
+<p>A classic example of chaotic motion is the double pendulum. One mass at end of a massless string swings about a fixed pivot, and a second mass is attached by a massless string to the first. My simulator of the classis double pendulum is available in Cleve's Lab, <a href="https://blogs.mathworks.com/cleve/2016/10/31/introducing-cleves-laboratory">swinger</a>, and a movie is available here <a href="https://blogs.mathworks.com/cleve/files/swinger.mp4">pendulum movie</a>.</p>
+
+<h4>Swinging Sticks<a name="bf97f3ad-e2a5-4421-9892-a8466b18022a"></a>
+</h4>
+<p>The swinging sticks are similar to the double pendulum. The sticks are two rods with uniformly distributed mass, different lengths and off-center pivots. The best way to view the motion is to download <a href="https://blogs.mathworks.com/cleve/files/swinging_sticks.m">this code</a> and run it in your own MATLAB. Otherwise, here in a short slow-motion animated GIF.</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/sticks_gif.gif" vspace="5" /> </p>
+
+<p>And, here is a longer <a href="https://blogs.mathworks.com/cleve/files/sticks.mp4">Swinging Sticks Video</a>.</p>
+
+<p>The motion of the shorter of the two rods is chaotic. Here are the orbits traced by the ends of the short rod.</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/chaos.png" vspace="5" /> </p>
+
+<h4>Sculpture<a name="3862e132-f69e-4702-85b6-6aeeb1406839"></a>
+</h4>
+<p>Swinging Sticks sculptures are available in various sizes and colors. <a href="https://swingingsticks.com">The Swinging Sticks</a>.</p>
+
+<p>Our mathematical model is of a frictionless perpetual motion machine. The real sculptures have an ingenious electromagnetic controller in the base that is claimed to run for two years on four AA batteries. Mine has been running since Christmas. An excellent <a href="https://www.youtube.com/watch?v=PWg6TG2bkFU">YouTube video</a> by Wayne Schmidt describes the controller.</p>
+
+<h4>Code<a name="dd331fb2-a5f9-42c6-a538-5b2cb8c9b486"></a>
+</h4>
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/swinging_sticks.m">https://blogs.mathworks.com/cleve/files/swinging_sticks.m</a>
+</p>
+
+<!-- 
+    function grabCode_3007bf720ec7402cb273ace1e6e2d61e() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='3007bf720ec7402cb273ace1e6e2d61e ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 3007bf720ec7402cb273ace1e6e2d61e';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+3007bf720ec7402cb273ace1e6e2d61e ##### SOURCE BEGIN #####
+%% Chaotic Swinging Sticks
+% <https://swingingsticks.com  
+% The Swinging Sticks> is a kinetic sculpture that exhibits chaotic motion.
+% The device became very popular after it upstaged Tony Stark in
+% <https://www.google.com/search?q=youtube+swinging+sticks+iron+man#fpstate=ive&vld=cid:6a6186e3,vid:sbbjhNLiL3c,st:0
+% Iron Man 2>.
+% My daughter Carolyn gave me a desktop version of Swinging Sticks
+% for Christmas.  I immediately set out to simulate it.
+%
+% <<sculpture.png>>
+
+
+%% Chaotic Motion
+% Chaotic motion appears random but isn't. Once the motion begins, the
+% initial conditions together with Newton's law of motion, F = ma,
+% determine subsequent behavior.  There are no random forces.  It may be
+% difficult to predict positions, but they are well-determined,
+% nonetheless.
+%
+% A classic example of chaotic motion is the double pendulum.
+% One mass at end of a massless string swings about a fixed pivot, and
+% a second mass is attached by a massless string to the first.
+% My simulator of the classis double pendulum is available in Cleve's Lab,
+% <https://blogs.mathworks.com/cleve/2016/10/31/introducing-cleves-laboratory
+% swinger>, and a movie is available here
+% <https://blogs.mathworks.com/cleve/files/swinger.mp4 pendulum movie>.
+
+%% Swinging Sticks
+% The swinging sticks are similar to the double pendulum.
+% The sticks are two rods with uniformly distributed mass,
+% different lengths and off-center pivots.
+% The best way to view the motion is to download
+% <https://blogs.mathworks.com/cleve/files/swinging_sticks.m
+% this code> and run it in your own MATLAB.
+% Otherwise, here in a short slow-motion animated GIF.
+% 
+% <<sticks_gif.gif>>
+%
+% And, here is a longer 
+% <https://blogs.mathworks.com/cleve/files/sticks.mp4
+% Swinging Sticks Video>.
+%
+% The motion of the shorter of the two rods is chaotic.  Here are the
+% orbits traced by the ends of the short rod.
+%
+% <<chaos.png>>
+
+
+%% Sculpture
+% Swinging Sticks sculptures are available in various sizes and 
+% colors. <https://swingingsticks.com  The Swinging Sticks>.
+%
+% Our mathematical model is of a frictionless perpetual motion machine.
+% The real sculptures have an ingenious electromagnetic controller in the
+% base that is claimed to run for two years on four AA batteries.
+% Mine has been running since Christmas.
+% An excellent <https://www.youtube.com/watch?v=PWg6TG2bkFU YouTube video>
+% by Wayne Schmidt describes the controller.
+
+%% Code
+% <https://blogs.mathworks.com/cleve/files/swinging_sticks.m>
+##### SOURCE END ##### 3007bf720ec7402cb273ace1e6e2d61e
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[The Swinging Sticks is a kinetic sculpture that exhibits chaotic motion. The device became very popular after it upstaged Tony Stark in Iron Man 2. My daughter Carolyn gave me a desktop version of Swinging Sticks for Christmas. I immediately set out to simulate it.]]></summary></entry><entry><title type="html">Nick Higham (1961-2024)</title><link href="https://hpc.social/commercial-blog/2024/nick-higham-1961-2024/" rel="alternate" type="text/html" title="Nick Higham (1961-2024)" /><published>2024-01-25T16:36:37-07:00</published><updated>2024-01-25T16:36:37-07:00</updated><id>https://hpc.social/commercial-blog/2024/nick-higham-1961-2024-</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/nick-higham-1961-2024/"><![CDATA[<div class="content"><!--introduction--><p>Nick Higham passed away last Saturday. Nick was a close friend of mine and a great friend of MATLAB. I will leave it to others to describe his research and teaching, his many honors, and his service to our community, especially SIAM. I have just a few, more personal, comments.</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/nick.png" vspace="5" /> </p>
+<!--/introduction--><h3>Contents</h3><div><ul><li><a href="https://feeds.feedburner.com/mathworks/moler#30541246-5968-4618-8d07-532c62fe2e2a">NA Digest</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#10c6af44-05e5-4256-a91f-c92e2d648323">Books</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#b0e711ae-b3d7-419b-ae0e-150ac24e7133">MATLAB</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#bc2af9b1-f993-4890-87ca-98922e77688e"><tt>gallery</tt></a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#81a97ac0-cabd-445f-9a83-2791ffc04ac4"><tt>expm</tt></a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#6b361048-1e6f-40a5-8b30-1b8f7361e4b8">Goodbye</a></li></ul></div>
+<h4>NA Digest<a name="30541246-5968-4618-8d07-532c62fe2e2a"></a></h4><p>Monday's NA Digest led off with this from Nick's wife Francoise and his brother Des.</p>
+<pre>Subject: Nick Higham (1961--2024)</pre><pre>With great sadness we report that Nick Higham, Royal Society Research
+Professor and Richardson Professor of Applied Mathematics at the
+University of Manchester, passed away on January 20, 2024, at the age
+of 62 after an 18 month struggle with a form of blood cancer. An
+obituary describing Nick's research and leadership contributions will
+appear in SIAM News in due course.</pre><pre>Francoise Tisseur and Des Higham</pre><h4>Books<a name="10c6af44-05e5-4256-a91f-c92e2d648323"></a></h4><p>Nick was an excellent writer, and an excellent writer about writing.</p>
+<p>Here are the covers of his six books.</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/book_covers.png" vspace="5" /> </p>
+<p>SIAM published five of these.  Two are surveys of Nick's research on the accuracy of numeric algorithms and the computation of matrix functions. Two more, one of them coauthored with Dennis Sherwood, are guides to mathematical exposition.</p>
+<p><i>MATLAB Guide</i>, by Des and Nick Higham, is one of my favorite books about MATLAB. It is a succinct introduction for newcomers and a valuable refresher for old-timers. The third edition, published in 2017, includes chapters on object-oriented computing, parallel computing, the Symbolic Math Toolbox and other recent additions.  Be sure to check out the <a href="https://nhigham.com/matlab-guide/"><i>MATLAB Guide</i> web site</a>.</p>
+<p>The only non-SIAM book pictured above is <a href="https://nhigham.com/the-princeton-companion-to-applied-mathematics/"><i>The Princeton Companion to Applied Mathematics</i></a>.  It is over 1,000 pages long and features nearly 200 sections written by an <a href="https://assets.press.princeton.edu/chapters/s1_10592.pdf">international team of experts</a>. Nick is the editor-in-chief and wrote many of the sections himself.</p>
+<h4>MATLAB<a name="b0e711ae-b3d7-419b-ae0e-150ac24e7133"></a></h4><p>Here is a <a href="https://nhigham.com">Word Cloud</a> from Nick's home page.  It shows the frequency of the tags for his blog and confirms his interest in MATLAB.</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/word_cloud.png" vspace="5" /> </p>
+<h4><tt>gallery</tt><a name="bc2af9b1-f993-4890-87ca-98922e77688e"></a></h4><p>Anyone interested in numerical linear algebra should also be interested in the <tt>gallery</tt> function, which is based on Nick's work.  Enter</p>
+<pre class="language-matlab">&gt;&gt; doc gallery
+</pre><p>Scroll down to <tt>matrixname</tt> and investigate over 70 different test matrices.</p>
+<p>If you find <tt>gallery</tt> irresistible, take a look at <a href="https://nhigham.com/2021/11/09/anymatrix/"><tt>anymatrix</tt></a>, an extensible matrix collection, by Nick and Mantas Mikaitis.</p>
+<h4><tt>expm</tt><a name="81a97ac0-cabd-445f-9a83-2791ffc04ac4"></a></h4><p>This is very personal for me. Thirty or forty years ago, Charlie Van Loan and I were regarded as authorities on computing the matrix exponential, $e^{A}$. The function <tt>expm</tt> has been in MATLAB since its very beginning. Around twenty years ago, we ceded the authority title to Nick and Awad Al-Mohy. <a href="https://eprints.maths.manchester.ac.uk/1300/1/alhi09a.pdf">Their code</a> for matrix exponential is now the basis for <tt>expm</tt>.</p>
+<h4>Goodbye<a name="6b361048-1e6f-40a5-8b30-1b8f7361e4b8"></a></h4><p>Our business has lost one of its superstars. I have lost a good friend, way too soon. Goodbye Nick.</p>
+<!-- 
+    function grabCode_062397ce6659461698190fb5b2757714() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='062397ce6659461698190fb5b2757714 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 062397ce6659461698190fb5b2757714';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --><p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;"><br /><a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript></span></a><br /><br />
+      Published with MATLAB&reg; R2023a<br /></p>
+</div>
+<!--
+062397ce6659461698190fb5b2757714 ##### SOURCE BEGIN #####
+%% Nick Higham (1961-2024)
+% Nick Higham passed away last Saturday. Nick was a close friend of mine
+% and a great friend of MATLAB. I will leave it to others to describe his
+% research and teaching, his many honors, and his service to our community,
+% especially SIAM. I have just a few, more personal, comments.
+%
+% <<nick.png>>
+%
+
+%% NA Digest
+%
+% Monday's NA Digest led off with this from
+% Nick's wife Francoise and his brother Des.
+%
+%  Subject: Nick Higham (1961REPLACE_WITH_DASH_DASH2024)
+%  
+%  With great sadness we report that Nick Higham, Royal Society Research
+%  Professor and Richardson Professor of Applied Mathematics at the
+%  University of Manchester, passed away on January 20, 2024, at the age
+%  of 62 after an 18 month struggle with a form of blood cancer. An
+%  obituary describing Nick's research and leadership contributions will
+%  appear in SIAM News in due course.
+%  
+%  Francoise Tisseur and Des Higham
+%
+
+%% Books
+% Nick was an excellent writer, and an excellent writer about writing.
+%
+% Here are the covers of his six books.
+%
+% <<book_covers.png>>
+%
+% SIAM published five of these.  Two are surveys of Nick's research
+% on the accuracy of numeric algorithms and
+% the computation of matrix functions.
+% Two more, one of them coauthored with Dennis Sherwood, are
+% guides to mathematical exposition.
+%
+% _MATLAB Guide_, by Des and Nick Higham, is one of my
+% favorite books about MATLAB.
+% It is a succinct introduction for newcomers
+% and a valuable refresher for old-timers.
+% The third edition, published in 2017, includes chapters on
+% object-oriented computing, parallel computing, the Symbolic Math
+% Toolbox and other recent additions.  Be sure to check out the
+% <https://nhigham.com/matlab-guide/ _MATLAB Guide_ web site>.
+%
+% The only non-SIAM book pictured above is
+% <https://nhigham.com/the-princeton-companion-to-applied-mathematics/
+% _The Princeton Companion to Applied Mathematics_>.  It is over 1,000 pages long and features
+% nearly 200 sections written by an 
+% <https://assets.press.princeton.edu/chapters/s1_10592.pdf 
+% international team of experts>.
+% Nick is the editor-in-chief and wrote many of the sections himself.
+
+%% MATLAB
+% Here is a <https://nhigham.com Word Cloud> from
+% Nick's home page.  It shows the frequency of the tags for his blog
+% and confirms his interest in MATLAB.
+%
+% <<word_cloud.png>>
+%
+
+%% |gallery|
+% Anyone interested in numerical linear algebra should also be interested
+% in the |gallery| function, which is based on Nick's work.  Enter
+%
+%   >> doc gallery
+%
+% Scroll down to |matrixname| and investigate over 70 different test
+% matrices. 
+%
+% If you find |gallery| irresistible, take a look at
+% <https://nhigham.com/2021/11/09/anymatrix/ |anymatrix|>, 
+% an extensible matrix collection, by Nick and Mantas Mikaitis.
+
+%% |expm|
+% This is very personal for me.
+% Thirty or forty years ago, Charlie Van Loan and I were regarded as
+% authorities on computing the matrix exponential, $e^{A}$.  
+% The function |expm| has been in MATLAB since its very beginning.
+% Around twenty years ago, we ceded the authority title to Nick and
+% Awad Al-Mohy.  
+% <https://eprints.maths.manchester.ac.uk/1300/1/alhi09a.pdf
+% Their code> for matrix exponential is now the basis for |expm|.
+
+%% Goodbye
+% Our business has lost one of its superstars.
+% I have lost a good friend, way too soon.
+% Goodbye Nick.
+
+##### SOURCE END ##### 062397ce6659461698190fb5b2757714
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[Nick Higham passed away last Saturday. Nick was a close friend of mine and a great friend of MATLAB. I will leave it to others to describe his research and teaching, his many honors, and his service to our community, especially SIAM. I have just a few, more personal, comments. ContentsNA DigestBooksMATLABgalleryexpmGoodbye NA DigestMonday's NA Digest led off with this from Nick's wife Francoise and his brother Des. Subject: Nick Higham (1961--2024)With great sadness we report that Nick Higham, Royal Society Research Professor and Richardson Professor of Applied Mathematics at the University of Manchester, passed away on January 20, 2024, at the age of 62 after an 18 month struggle with a form of blood cancer. An obituary describing Nick's research and leadership contributions will appear in SIAM News in due course.Francoise Tisseur and Des HighamBooksNick was an excellent writer, and an excellent writer about writing. Here are the covers of his six books. SIAM published five of these. Two are surveys of Nick's research on the accuracy of numeric algorithms and the computation of matrix functions. Two more, one of them coauthored with Dennis Sherwood, are guides to mathematical exposition. MATLAB Guide, by Des and Nick Higham, is one of my favorite books about MATLAB. It is a succinct introduction for newcomers and a valuable refresher for old-timers. The third edition, published in 2017, includes chapters on object-oriented computing, parallel computing, the Symbolic Math Toolbox and other recent additions. Be sure to check out the MATLAB Guide web site. The only non-SIAM book pictured above is The Princeton Companion to Applied Mathematics. It is over 1,000 pages long and features nearly 200 sections written by an international team of experts. Nick is the editor-in-chief and wrote many of the sections himself. MATLABHere is a Word Cloud from Nick's home page. It shows the frequency of the tags for his blog and confirms his interest in MATLAB. galleryAnyone interested in numerical linear algebra should also be interested in the gallery function, which is based on Nick's work. Enter &gt;&gt; doc gallery Scroll down to matrixname and investigate over 70 different test matrices. If you find gallery irresistible, take a look at anymatrix, an extensible matrix collection, by Nick and Mantas Mikaitis. expmThis is very personal for me. Thirty or forty years ago, Charlie Van Loan and I were regarded as authorities on computing the matrix exponential, $e^{A}$. The function expm has been in MATLAB since its very beginning. Around twenty years ago, we ceded the authority title to Nick and Awad Al-Mohy. Their code for matrix exponential is now the basis for expm. GoodbyeOur business has lost one of its superstars. I have lost a good friend, way too soon. Goodbye Nick. &lt;!-- function grabCode_062397ce6659461698190fb5b2757714() { // Remember the title so we can use it in the new page title = document.title;]]></summary></entry><entry><title type="html">Exponential Fitting, Separable Least Squares, and Quahogs</title><link href="https://hpc.social/commercial-blog/2024/exponential-fitting-separable-least-squares-and-quahogs/" rel="alternate" type="text/html" title="Exponential Fitting, Separable Least Squares, and Quahogs" /><published>2024-01-12T16:35:32-07:00</published><updated>2024-01-12T16:35:32-07:00</updated><id>https://hpc.social/commercial-blog/2024/exponential-fitting-separable-least-squares-and-quahogs</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/exponential-fitting-separable-least-squares-and-quahogs/"><![CDATA[<div class="content"><!--introduction--><p>We have been investigating a recent bug report about <tt>fitnlm</tt>, the Statistics and Machine Learning Toolbox function for robust fitting of nonlinear models.</p>
+<!--/introduction--><h3>Contents</h3><div><ul><li><a href="https://feeds.feedburner.com/mathworks/moler#e8d5954f-4051-48dd-9888-3729cc8d6313">Quahogs</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#1fd80451-cc63-4160-8fcc-b1a1448c7382">Acidification</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#faab8af3-c8dd-48bf-8621-b7fa14ade2fb">Separable Least Squares</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#8afd06c3-7aca-4df8-b636-b7d660a3b6ca">Centering Data</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#b8434e53-14a6-412e-97d9-39485ad02c07">Exponential Fitting</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#e6bd554c-66fa-4ebc-b3d4-2cd14229bed0">Results</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#dd10ff5a-44a4-4ad7-9ddb-7cb103a943eb">Software</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#7e09ac26-71d6-47be-aa47-13da26bc9755">Thanks</a></li></ul></div>
+<h4>Quahogs<a name="e8d5954f-4051-48dd-9888-3729cc8d6313"></a></h4><p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/quahogs.png" vspace="5" /> </p>
+<p>The bug report comes from Greg Pelletier, an independent research scientist and biogeochemical modeler in Olympia, Washington. Greg has been studying the vulnerability of sensitive marine organisms to increases in ocean acidification.  One of the most important of these organisms is <a href="https://en.wikipedia.org/wiki/Hard_clam">Mercenaria mercenaria</a>, the hard clam.</p>
+<p>Especially here in New England, hard clams are known by their traditional Native American name, <i>quahog</i>. They have a well-deserved reputation for making excellent clam chowder.</p>
+<h4>Acidification<a name="1fd80451-cc63-4160-8fcc-b1a1448c7382"></a></h4><p>We are all aware of increasing levels of carbon dioxide in the earth's atmosphere.  We may not be as aware of the effect this increase has on the health of the earth's oceans.  According to <a href="https://www.noaa.gov/education/resource-collections/ocean-coasts/ocean-acidification">NOAA</a>, the ocean absorbs about 30% of the atmospheric carbon dioxide.</p>
+<p>A definitive and controversial 2009 paper by Justin Ries and colleagues, then at the Woods Hole Oceanographic Institution, is "Marine calcifiers exhibit mixed responses to CO2-induced ocean acidification", <a href="https://doi.org/10.1130/G30210A.1">https://doi.org/10.1130/G30210A.1</a>. The hard clam example in Greg's bug report comes from figure 1K in the Ries et al. paper.</p>
+<p>The independent variable in experiments is the ratio of alkalinity of sea water to the concentration of dissolved inorganic carbon. The dependent variable is the calcification rate, which compares how fast the organism builds its shells to how fast the shells are dissolving.</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Ries_et_al.png" vspace="5" /> </p>
+<h4>Separable Least Squares<a name="faab8af3-c8dd-48bf-8621-b7fa14ade2fb"></a></h4><p>The model chosen by Ries at al. is</p>
+<p>$$ y \approx \beta_1 + \beta_2 e^{\lambda t} $$</p>
+<p>where $t$ is the ratio of alkalinity to dissolved carbon and $y$ is the calcification rate. The data have only four distinct values of $t$, with several observations of $y$ at each value.</p>
+<p>The parameters $\beta_1$, $\beta_2$ and $\lambda$ are determined by least squares curve fit.  This is a <i>separable least squares</i> problem. For any given value of $\lambda$, the parameters $\beta_1$ and $\beta_2$ occur linearly and the least squares solution can be obtained by MATLAB's backslash.</p>
+<p>Gene Golub and Victor Pereyra described separable least squares in 1973 and proposed solving it by a <i>variable projection algorithm</i>. Since 1973 a number of people, including Pereyra, Linda Kaufman, Fred Krogh, John Bolstadt and David Gay, have contributed to the development of a series of Fortran programs named <tt>varpro</tt>. In 2011, Dianne O'Leary and Burt Rust created a MATLAB version of <tt>varpro</tt>.  Their report, <a href="https://www.cs.umd.edu/~oleary/software/varpro/">https://www.cs.umd.edu/~oleary/software/varpro/</a>, is a good background source, as well as documentation for <tt>varpro.m</tt>.</p>
+<p>I have a section on separable least squares, and an example, <tt>expfitdemo</tt>, in NCM, <a href="https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/leastsquares.pdf">Numerical Computing with MATLAB</a>. I have modified <tt>expfitdemo</tt> to work on Greg's quahogs problem.</p>
+<h4>Centering Data<a name="8afd06c3-7aca-4df8-b636-b7d660a3b6ca"></a></h4><p>It turns out that the problem Greg encountered can be traced to the fact that the data are not centered.  The given values of $t$ are all positive.  This causes <tt>fitnlm</tt> to print a warning message and attempt to rectify the situation by changing the degrees of freedom from 22 to 23, but this only makes the situation worse. (We should take another look at the portion of <tt>fitnlm</tt> that adjusts the degrees of freedom.)</p>
+<p>It is always a good idea in curve fitting to center the data with something like</p>
+<pre>  t = t - mean(t)</pre><p>The values of $y$ are already pretty well centered. Rescaling $y$ with</p>
+<pre>  y = 10000*y</pre><p>makes interpretation of results easier.</p>
+<h4>Exponential Fitting<a name="b8434e53-14a6-412e-97d9-39485ad02c07"></a></h4><p>With the data centered and scaled, we have three different ways of tackling Greg's problem.  All three methods agree on the results they compute.</p>
+<div><ul><li><tt>fitnlm</tt>. Treats all parameters as if they were nonlinear.      Computes statistical quantities such as R-squared and      RMS Error.</li></ul></div>
+<div><ul><li><tt>varpro</tt>. Venerable software history.      Only one nonlinear parameter for the quahogs problem.      Delivers additional statistical quantities in <tt>Regression</tt> structure.</li></ul></div>
+<div><ul><li><tt>quahogsfit</tt>. Textbook separable least squares code.      Modification for the quahogs problem of <tt>expfitdemo</tt> from NCM.      Only one nonlinear parameter.  No statistics.</li></ul></div>
+<h4>Results<a name="e6bd554c-66fa-4ebc-b3d4-2cd14229bed0"></a></h4><div><ul><li><tt>fitnlm</tt></li></ul></div>
+<pre>Nonlinear regression model:
+    y ~ param1 + param2*exp(param3*xval)</pre><pre>Estimated Coefficients:
+              Estimate      SE        tStat       pValue
+              ________    _______    _______    __________</pre><pre>    param1     0.69536     0.1657     4.1964    0.00037344
+    param2    -0.26482    0.19909    -1.3302       0.19709
+    param3     -22.218     8.1494    -2.7263      0.012327</pre><pre>Number of observations: 25, Error degrees of freedom: 22
+Root Mean Squared Error: 0.307
+R-Squared: 0.828,  Adjusted R-Squared 0.813
+F-statistic vs. constant model: 53, p-value = 3.86e-09</pre><div><ul><li><tt>varpro</tt></li></ul></div>
+<pre>Linear Parameters:
+  0.695367   -0.264837
+Nonlinear Parameters:
+ -22.217495</pre><pre>Norm         of weighted residual  =   1.438935
+Norm         of data vector        =   3.545820
+Expected error of observations     =   0.306782
+Coefficient of determination       =   0.828145</pre><pre>Regression.t_ratio
+    4.1962
+   -1.3301
+   -2.7264</pre><pre>Regression.std_param
+    0.1657
+    0.1991
+    8.1490</pre><div><ul><li><tt>quahogsfit</tt></li></ul></div>
+<pre>lambda =
+  -22.2180
+condX =
+    4.3882
+beta =
+    0.6954
+   -0.2648
+normres =
+    1.4389</pre><p><tt>quahogsfit</tt> produces this plot, which can be compared with figure 1K from Ries et al, reproduced above.</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/quahogsfit.png" vspace="5" /> </p>
+<h4>Software<a name="dd10ff5a-44a4-4ad7-9ddb-7cb103a943eb"></a></h4><p>The codes for this post are available here <a href="https://blogs.mathworks.com/cleve/files/quahogs_driver.m">quahogs_driver.m</a> and here <a href="https://blogs.mathworks.com/cleve/files/varpro.m">varpro.m</a>.</p>
+<h4>Thanks<a name="7e09ac26-71d6-47be-aa47-13da26bc9755"></a></h4><p>Thanks to Greg Pelletier for the bug report and to Tom Lane for his statistical expertise.</p>
+<!-- 
+    function grabCode_0a292e90c48540ba9ef9da619b32e8e7() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='0a292e90c48540ba9ef9da619b32e8e7 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 0a292e90c48540ba9ef9da619b32e8e7';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --><p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;"><br /><a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript></span></a><br /><br />
+      Published with MATLAB&reg; R2023a<br /></p>
+</div>
+<!--
+0a292e90c48540ba9ef9da619b32e8e7 ##### SOURCE BEGIN #####
+%% Exponential Fitting, Separable Least Squares, and Quahogs
+% We have been investigating a recent bug report about |fitnlm|,
+% the Statistics and Machine Learning Toolbox function
+% for robust fitting of nonlinear models.
+
+%% Quahogs
+% <<quahogs.png>>
+%
+% The bug report comes from Greg Pelletier, an independent research
+% scientist and biogeochemical modeler in Olympia, Washington.
+% Greg has been studying the 
+% vulnerability of sensitive marine organisms to increases in ocean
+% acidification.  One of the most important of these organisms is
+% <https://en.wikipedia.org/wiki/Hard_clam Mercenaria mercenaria>,
+% the hard clam.
+% 
+% Especially here in New England, hard clams are known
+% by their traditional Native American name, _quahog_.
+% They have a well-deserved reputation for making excellent
+% clam chowder.
+
+%% Acidification
+% We are all aware of increasing levels of carbon dioxide in the earth's
+% atmosphere.  We may not be as aware of the effect this increase has
+% on the health of the earth's oceans.  According to
+% <https://www.noaa.gov/education/resource-collections/ocean-coasts/ocean-acidification
+% NOAA>, the ocean absorbs about 30% of the atmospheric carbon dioxide. 
+%
+% A definitive and controversial 2009 paper
+% by Justin Ries and colleagues,
+% then at the Woods Hole Oceanographic Institution, is
+% "Marine calcifiers exhibit mixed responses to CO2-induced ocean
+% acidification", <https://doi.org/10.1130/G30210A.1>.
+% The hard clam example in Greg's bug report comes from 
+% figure 1K in the Ries et al. paper.
+%
+% The independent variable in experiments is the
+% ratio of alkalinity of sea water
+% to the concentration of dissolved inorganic carbon.
+% The dependent variable is the calcification rate, which compares
+% how fast the organism builds its shells 
+% to how fast the shells are dissolving.
+%
+% <<Ries_et_al.png>>
+%
+%% Separable Least Squares
+% The model chosen by Ries at al. is
+%
+% $$ y \approx \beta_1 + \beta_2 e^{\lambda t} $$
+%
+% where $t$ is the ratio of alkalinity to dissolved carbon and $y$ is the 
+% calcification rate. The data have only four distinct values of $t$, with 
+% several observations of $y$ at each value.
+%
+% The parameters $\beta_1$, $\beta_2$ and $\lambda$ are determined by
+% least squares curve fit.  This is a _separable least squares_ problem.
+% For any given value of $\lambda$, the parameters $\beta_1$ and $\beta_2$
+% occur linearly and the least squares solution can be obtained by 
+% MATLAB's backslash.
+% 
+% Gene Golub and Victor Pereyra described separable least squares in 1973
+% and proposed solving it by a _variable projection algorithm_.
+% Since 1973 a number of people, including Pereyra, Linda Kaufman,
+% Fred Krogh, John Bolstadt and David Gay, have contributed to the
+% development of a series of Fortran programs named |varpro|.
+% In 2011, Dianne O'Leary and Burt Rust created a MATLAB version of
+% |varpro|.  Their report,
+% <https://www.cs.umd.edu/~oleary/software/varpro></https://www.cs.umd.edu/~oleary/software/varpro>, is a good background
+% source, as well as documentation for |varpro.m|.
+%
+% I have a section on separable least squares, and an example,
+% |expfitdemo|, in NCM,
+% <https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/leastsquares.pdf
+% Numerical Computing with MATLAB>. I have modified |expfitdemo| to
+% work on Greg's quahogs problem.
+
+%% Centering Data
+% It turns out that the problem Greg encountered can be traced to the 
+% fact that the data are not centered.  The given values of $t$ are all
+% positive.  This causes |fitnlm| to print a warning message and attempt
+% to rectify the situation by changing the degrees of freedom  
+% from 22 to 23, but this only makes the situation worse.
+% (We should take another look at the portion of |fitnlm| that adjusts 
+% the degrees of freedom.)
+%
+% It is always a good idea in curve fitting to center the 
+% data with something like
+%
+%    t = t - mean(t)
+%
+% The values of $y$ are already pretty well centered.
+% Rescaling $y$ with
+%
+%    y = 10000*y
+%
+% makes interpretation of results easier.
+
+%% Exponential Fitting
+% With the data centered and scaled, we have three different 
+% ways of tackling Greg's problem.  All three methods
+% agree on the results they compute.
+% 
+% * |fitnlm|. Treats all parameters as if they were nonlinear.
+%      Computes statistical quantities such as R-squared and
+%      RMS Error.
+% 
+% * |varpro|. Venerable software history.
+%      Only one nonlinear parameter for the quahogs problem.
+%      Delivers additional statistical quantities in |Regression| structure.
+%  
+% * |quahogsfit|. Textbook separable least squares code.
+%      Modification for the quahogs problem of |expfitdemo| from NCM.
+%      Only one nonlinear parameter.  No statistics.
+%
+
+%% Results
+% * |fitnlm| 
+%
+%  Nonlinear regression model:
+%      y ~ param1 + param2*exp(param3*xval)
+%  
+%  Estimated Coefficients:
+%                Estimate      SE        tStat       pValue  
+%                ________    _______    _______    __________
+%  
+%      param1     0.69536     0.1657     4.1964    0.00037344
+%      param2    -0.26482    0.19909    -1.3302       0.19709
+%      param3     -22.218     8.1494    -2.7263      0.012327
+%  
+%  
+%  Number of observations: 25, Error degrees of freedom: 22
+%  Root Mean Squared Error: 0.307
+%  R-Squared: 0.828,  Adjusted R-Squared 0.813
+%  F-statistic vs. constant model: 53, p-value = 3.86e-09
+%
+% * |varpro|
+%   
+%  Linear Parameters:
+%    0.695367   -0.264837
+%  Nonlinear Parameters:
+%   -22.217495
+%   
+%  Norm         of weighted residual  =   1.438935
+%  Norm         of data vector        =   3.545820
+%  Expected error of observations     =   0.306782
+%  Coefficient of determination       =   0.828145
+%
+%  Regression.t_ratio
+%      4.1962
+%     -1.3301
+%     -2.7264
+%
+%  Regression.std_param
+%      0.1657
+%      0.1991
+%      8.1490
+%
+% * |quahogsfit|
+%
+%  lambda =
+%    -22.2180
+%  condX =
+%      4.3882
+%  beta =
+%      0.6954
+%     -0.2648
+%  normres =
+%      1.4389
+%
+% |quahogsfit| produces this plot, which can be compared with
+% figure 1K from Ries et al, reproduced above.
+%
+% <<quahogsfit.png>>
+%
+
+%% Software
+% The codes for this post are available here
+% <https://blogs.mathworks.com/cleve/files/quahogs_driver.m  quahogs_driver.m>
+% and here 
+% <https://blogs.mathworks.com/cleve/files/varpro.m  varpro.m>.
+
+%% Thanks
+% Thanks to Greg Pelletier for the bug report and
+% to Tom Lane for his statistical expertise.
+
+##### SOURCE END ##### 0a292e90c48540ba9ef9da619b32e8e7
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[We have been investigating a recent bug report about fitnlm, the Statistics and Machine Learning Toolbox function for robust fitting of nonlinear models. ContentsQuahogsAcidificationSeparable Least SquaresCentering DataExponential FittingResultsSoftwareThanks Quahogs The bug report comes from Greg Pelletier, an independent research scientist and biogeochemical modeler in Olympia, Washington. Greg has been studying the vulnerability of sensitive marine organisms to increases in ocean acidification. One of the most important of these organisms is Mercenaria mercenaria, the hard clam. Especially here in New England, hard clams are known by their traditional Native American name, quahog. They have a well-deserved reputation for making excellent clam chowder. AcidificationWe are all aware of increasing levels of carbon dioxide in the earth's atmosphere. We may not be as aware of the effect this increase has on the health of the earth's oceans. According to NOAA, the ocean absorbs about 30% of the atmospheric carbon dioxide. A definitive and controversial 2009 paper by Justin Ries and colleagues, then at the Woods Hole Oceanographic Institution, is "Marine calcifiers exhibit mixed responses to CO2-induced ocean acidification", https://doi.org/10.1130/G30210A.1. The hard clam example in Greg's bug report comes from figure 1K in the Ries et al. paper. The independent variable in experiments is the ratio of alkalinity of sea water to the concentration of dissolved inorganic carbon. The dependent variable is the calcification rate, which compares how fast the organism builds its shells to how fast the shells are dissolving. Separable Least SquaresThe model chosen by Ries at al. is $$ y \approx \beta_1 + \beta_2 e^{\lambda t} $$ where $t$ is the ratio of alkalinity to dissolved carbon and $y$ is the calcification rate. The data have only four distinct values of $t$, with several observations of $y$ at each value. The parameters $\beta_1$, $\beta_2$ and $\lambda$ are determined by least squares curve fit. This is a separable least squares problem. For any given value of $\lambda$, the parameters $\beta_1$ and $\beta_2$ occur linearly and the least squares solution can be obtained by MATLAB's backslash. Gene Golub and Victor Pereyra described separable least squares in 1973 and proposed solving it by a variable projection algorithm. Since 1973 a number of people, including Pereyra, Linda Kaufman, Fred Krogh, John Bolstadt and David Gay, have contributed to the development of a series of Fortran programs named varpro. In 2011, Dianne O'Leary and Burt Rust created a MATLAB version of varpro. Their report, https://www.cs.umd.edu/~oleary/software/varpro/, is a good background source, as well as documentation for varpro.m. I have a section on separable least squares, and an example, expfitdemo, in NCM, Numerical Computing with MATLAB. I have modified expfitdemo to work on Greg's quahogs problem. Centering DataIt turns out that the problem Greg encountered can be traced to the fact that the data are not centered. The given values of $t$ are all positive. This causes fitnlm to print a warning message and attempt to rectify the situation by changing the degrees of freedom from 22 to 23, but this only makes the situation worse. (We should take another look at the portion of fitnlm that adjusts the degrees of freedom.) It is always a good idea in curve fitting to center the data with something like t = t - mean(t)The values of $y$ are already pretty well centered. Rescaling $y$ with y = 10000*ymakes interpretation of results easier. Exponential FittingWith the data centered and scaled, we have three different ways of tackling Greg's problem. All three methods agree on the results they compute. fitnlm. Treats all parameters as if they were nonlinear. Computes statistical quantities such as R-squared and RMS Error. varpro. Venerable software history. Only one nonlinear parameter for the quahogs problem. Delivers additional statistical quantities in Regression structure. quahogsfit. Textbook separable least squares code. Modification for the quahogs problem of expfitdemo from NCM. Only one nonlinear parameter. No statistics. Resultsfitnlm Nonlinear regression model: y ~ param1 + param2*exp(param3*xval)Estimated Coefficients: Estimate SE tStat pValue ________ _______ _______ __________ param1 0.69536 0.1657 4.1964 0.00037344 param2 -0.26482 0.19909 -1.3302 0.19709 param3 -22.218 8.1494 -2.7263 0.012327Number of observations: 25, Error degrees of freedom: 22 Root Mean Squared Error: 0.307 R-Squared: 0.828, Adjusted R-Squared 0.813 F-statistic vs. constant model: 53, p-value = 3.86e-09varpro Linear Parameters: 0.695367 -0.264837 Nonlinear Parameters: -22.217495Norm of weighted residual = 1.438935 Norm of data vector = 3.545820 Expected error of observations = 0.306782 Coefficient of determination = 0.828145Regression.t_ratio 4.1962 -1.3301 -2.7264Regression.std_param 0.1657 0.1991 8.1490quahogsfit lambda = -22.2180 condX = 4.3882 beta = 0.6954 -0.2648 normres = 1.4389quahogsfit produces this plot, which can be compared with figure 1K from Ries et al, reproduced above. SoftwareThe codes for this post are available here quahogs_driver.m and here varpro.m. ThanksThanks to Greg Pelletier for the bug report and to Tom Lane for his statistical expertise. &lt;!-- function grabCode_0a292e90c48540ba9ef9da619b32e8e7() { // Remember the title so we can use it in the new page title = document.title;]]></summary></entry></feed>
