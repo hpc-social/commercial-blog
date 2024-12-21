@@ -1,0 +1,3791 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://hpc.social/commercial-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://hpc.social/commercial-blog/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2024-12-20T19:57:12-07:00</updated><id>https://hpc.social/commercial-blog/feed.xml</id><title type="html">hpc.social - Aggregated Commercial Blog</title><subtitle>Vendor and commercial posts in the hpc.social community</subtitle><author><name>hpc.social</name><email>info@hpc.social</email></author><entry><title type="html">Code for Sonic and Ten Sonic Movies</title><link href="https://hpc.social/commercial-blog/2024/code-for-sonic-and-ten-sonic-movies/" rel="alternate" type="text/html" title="Code for Sonic and Ten Sonic Movies" /><published>2024-12-18T15:13:08-07:00</published><updated>2024-12-18T15:13:08-07:00</updated><id>https://hpc.social/commercial-blog/2024/code-for-sonic-and-ten-sonic-movies</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/code-for-sonic-and-ten-sonic-movies/"><![CDATA[<div class="content"><!--introduction-->
+<p>Two previous blog posts, <a href="https://blogs.mathworks.com/cleve/2024/12/08/sonic-adds-sound-to-logo-recaman-chaos/">Dec. 12, 2024</a> and <a href="https://blogs.mathworks.com/cleve/2024/11/16/lights-camera-action-and-sound/">Nov. 16, 2024</a>, introduced "Sonic", my new tool for incorporating sound in videos. Today's blog post includes a link to the MATLAB source code for Sonic, as well as links to new versions of ten examples.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#430e1f71-5674-4dd0-9822-ecdf14267246">Code</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#261cb182-c13b-4b1e-9932-f52485ff1334">Sonic</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#c9a4823d-d0b6-48fd-a9f0-388f00ec93b3">Ten Movies</a>
+</li>
+</ul>
+</div>
+
+<h4>Code<a name="430e1f71-5674-4dd0-9822-ecdf14267246"></a>
+</h4>
+<p>The MATLAB code for Sonic and all the examples is available in this 11 MB <tt>zip</tt> file.</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/Sonic.zip">Sonic.zip</a>
+</p>
+
+<h4>Sonic<a name="261cb182-c13b-4b1e-9932-f52485ff1334"></a>
+</h4>
+<p>There are two ways to generate the musical sounds. The three movies Warm-Up, TanSin and Blackjack use recordings of C-major scales played on three different pianos. All the other movies rely on <a href="https://www.mathworks.com/help/signal/ref/resample.html">resampling</a> a single note from a trumpet, xylophone or piano.</p>
+
+<p>The function <tt>sonic_examples(kases,n)</tt> is a driver for <tt>sonic</tt>. The first parameter, <tt>kases</tt>, is an integer vector of desired examples, 0 though 9. The second parameter, <tt>n</tt>, is the number of desired samples.</p>
+
+<div>
+<ul>
+<li>n = 25 is very fast</li>
+<li>n = 100 is reasonable</li>
+<li>n = 200 is the default</li>
+<li>n = 300 is overkill</li>
+</ul>
+</div>
+
+<h4>Ten Movies<a name="c9a4823d-d0b6-48fd-a9f0-388f00ec93b3"></a>
+</h4>
+<p>Here are links to new versions of the animated videos, and the final frames.</p>
+
+<p>
+<b>0. Warm-Up</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/sonic_examples_0.mp4">sonic_examples_0.mp4</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/sonic_examples_0.png" vspace="5" /> </p>
+
+<p>
+<b>1. Lissajous</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/sonic_examples_1.mp4">sonic_examples_1.mp4</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/sonic_examples_1.png" vspace="5" /> </p>
+
+<p>
+<b>2. Mertens</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/sonic_examples_2.mp4">sonic_examples_2.mp4</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/sonic_examples_2.png" vspace="5" /> </p>
+
+<p>
+<b>3. TanSin</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/sonic_examples_3.mp4">sonic_examples_3.mp4</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/sonic_examples_3.png" vspace="5" /> </p>
+
+<p>
+<b>4. Van der Pol</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/sonic_examples_4.mp4">sonic_examples_4.mp4</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/sonic_examples_4.png" vspace="5" /> </p>
+
+<p>
+<b>5. VdP Derivative</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/sonic_examples_5.mp4">sonic_examples_5.mp4</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/sonic_examples_5.png" vspace="5" /> </p>
+
+<p>
+<b>6. Blackjack</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/sonic_examples_6.mp4">sonic_examples_6.mp4</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/sonic_examples_6.png" vspace="5" /> </p>
+
+<p>
+<b>7. Vibrating L-shaped Membrane</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/sonic_examples_7.mp4">sonic_examples_7.mp4</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/sonic_examples_7.png" vspace="5" /> </p>
+
+<p>
+<b>8. Recam&aacute;n Sequence</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/sonic_examples_8.mp4">sonic_examples_8.mp4</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/sonic_examples_8.png" vspace="5" /> </p>
+
+<p>
+<b>9. Swinging Sticks</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/sonic_examples_9.mp4">sonic_examples_9.mp4</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/sonic_examples_9.png" vspace="5" /> </p>
+
+<!-- 
+    function grabCode_6be05d5d2be34097bc51738847d9f5b6() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='6be05d5d2be34097bc51738847d9f5b6 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 6be05d5d2be34097bc51738847d9f5b6';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024b<br />
+</p>
+
+</div>
+
+<!--
+6be05d5d2be34097bc51738847d9f5b6 ##### SOURCE BEGIN #####
+%% Code for Sonic and Ten Sonic Movies
+% Two previous blog posts,
+% <https://blogs.mathworks.com/cleve/2024/12/08/sonic-adds-sound-to-logo-recaman-chaos/
+% Dec. 12, 2024> and
+% <https://blogs.mathworks.com/cleve/2024/11/16/lights-camera-action-and-sound/
+% Nov. 16, 2024>,
+% introduced "Sonic", my new tool for incorporating sound in videos. 
+% Today's blog post includes a link to the MATLAB source code for Sonic,
+% as well as links to new versions of ten examples.
+
+%% Code
+% The MATLAB code for Sonic and all the examples is available in this
+% 11 MB |zip| file.
+%
+% <https://blogs.mathworks.com/cleve/files/Sonic.zip Sonic.zip>
+% 
+%% Sonic
+% There are two ways to generate the musical sounds.
+% The three movies Warm-Up, TanSin and Blackjack use recordings
+% of C-major scales played on three different pianos. 
+% All the other movies rely on 
+% <https://www.mathworks.com/help/signal/ref/resample.html resampling>
+% a single note from a trumpet, xylophone or piano.
+%
+% The function |sonic_examples(kases,n)| is a driver for |sonic|.
+% The first parameter, |kases|, is an integer vector of desired examples,
+% 0 though 9.  The second parameter, |n|, is the number of desired samples.
+%
+% * n = 25 is very fast
+% * n = 100 is reasonable 
+% * n = 200 is the default
+% * n = 300 is overkill
+
+%% Ten Movies
+% Here are links to new versions of the animated videos, and the final
+% frames.
+%
+% *0. Warm-Up*
+%
+% <https://blogs.mathworks.com/cleve/files/sonic_examples_0.mp4 sonic_examples_0.mp4>
+%
+% <<sonic_examples_0.png>>
+%
+
+%%
+% *1. Lissajous*
+%
+% <https://blogs.mathworks.com/cleve/files/sonic_examples_1.mp4 sonic_examples_1.mp4>
+%
+% <<sonic_examples_1.png>>
+
+%%
+% *2. Mertens*
+%
+% <https://blogs.mathworks.com/cleve/files/sonic_examples_2.mp4 sonic_examples_2.mp4>
+%
+% <<sonic_examples_2.png>>
+
+%%
+% *3. TanSin*
+%
+% <https://blogs.mathworks.com/cleve/files/sonic_examples_3.mp4 sonic_examples_3.mp4>
+%
+% <<sonic_examples_3.png>>
+
+%% 
+% *4. Van der Pol*
+%
+% <https://blogs.mathworks.com/cleve/files/sonic_examples_4.mp4 sonic_examples_4.mp4>
+%
+% <<sonic_examples_4.png>>
+
+%% 
+% *5. VdP Derivative*
+%
+% <https://blogs.mathworks.com/cleve/files/sonic_examples_5.mp4 sonic_examples_5.mp4>
+%
+% <<sonic_examples_5.png>>
+
+%%
+% *6. Blackjack*
+%
+% <https://blogs.mathworks.com/cleve/files/sonic_examples_6.mp4 sonic_examples_6.mp4>
+%
+% <<sonic_examples_6.png>>
+
+%%
+% *7. Vibrating L-shaped Membrane*
+%
+% <https://blogs.mathworks.com/cleve/files/sonic_examples_7.mp4 sonic_examples_7.mp4>
+%
+% <<sonic_examples_7.png>>
+
+%%
+% *8. Recamán Sequence*
+%
+% <https://blogs.mathworks.com/cleve/files/sonic_examples_8.mp4 sonic_examples_8.mp4>
+%
+% <<sonic_examples_8.png>>
+
+%%
+% *9. Swinging Sticks*
+%
+% <https://blogs.mathworks.com/cleve/files/sonic_examples_9.mp4 sonic_examples_9.mp4>
+%
+% <<sonic_examples_9.png>>
+   
+%%
+   
+
+##### SOURCE END ##### 6be05d5d2be34097bc51738847d9f5b6
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[Two previous blog posts, Dec. 12, 2024 and Nov. 16, 2024, introduced "Sonic", my new tool for incorporating sound in videos. Today's blog post includes a link to the MATLAB source code for Sonic, as well as links to new versions of ten examples.]]></summary></entry><entry><title type="html">Sonic Adds Sound to Logo, Recamán, Chaos</title><link href="https://hpc.social/commercial-blog/2024/sonic-adds-sound-to-logo-recam%C3%A1n-chaos/" rel="alternate" type="text/html" title="Sonic Adds Sound to Logo, Recamán, Chaos" /><published>2024-12-08T11:51:55-07:00</published><updated>2024-12-08T11:51:55-07:00</updated><id>https://hpc.social/commercial-blog/2024/sonic-adds-sound-to-logo-recam%C3%A1n-chaos</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/sonic-adds-sound-to-logo-recam%C3%A1n-chaos/"><![CDATA[<div class="content"><!--introduction-->
+<p>I introduced Sonic in my <a href="https://blogs.mathworks.com/cleve/2024/11/16/lights-camera-action-and-sound">blog post</a> last month. Today I will use Sonic to add sound to the graphics from three old posts, the vibrating L-shaped membrane, the Recam&aacute;n sequence and the chaotic behavior of the Swinging Sticks.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#8beb910f-b7ff-4f4a-957c-1af21319f187">Vibrating L-shaped Membrane</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#3e98e8b6-2291-4284-b4d0-c3b6da33bdc7">Recam&aacute;n</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#cf487494-235c-48ab-8849-b0e0d6a1099e">Swinging Sticks</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#1f278f40-79e9-42e7-877e-dad57ee84e1f">Triple feature</a>
+</li>
+</ul>
+</div>
+
+<h4>Vibrating L-shaped Membrane<a name="8beb910f-b7ff-4f4a-957c-1af21319f187"></a>
+</h4>
+<p>For almost fifty years, I have wanted to <i>hear</i> the MathWorks logo. I have written about the L-shaped membrane many times, <a href="https://www.mathworks.com/content/dam/mathworks/tag-team/Objects/t/72943_92021v00Cleve_L_Shaped_Membrane_Nov_2003.pdf">link #1</a>, <a href="https://blogs.mathworks.com/cleve/2014/10/13/mathworks-logo-part-one-why-is-it-l-shaped/">link #2</a>, <a href="https://blogs.mathworks.com/cleve/2014/11/17/mathworks-logo-part-four-method-of-particular-solutions-generates-the-logo/">link #3</a>.</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/L_membrane.mp4">Click on this link</a> and listen to the audio in a Sonic movie of the vibrating membrane. The sound is generated by resampling one tone from a xylophone.</p>
+
+<p>And here is one frame from the movie.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/L_membrane_png.png" vspace="5" /> </p>
+
+<h4>Recam&aacute;n<a name="3e98e8b6-2291-4284-b4d0-c3b6da33bdc7"></a>
+</h4>
+<p>The inventor of the <a href="https://en.wikipedia.org/wiki/Recam%C3%A1n%27s_sequence">Recam&aacute;n sequence</a> is a Columbian mathematician, Bernardo Recam&aacute;n Santos. The sequence is <a href="https://oeis.org/A005132">A005132</a> in the OEIS, the On-Line Encyclopedia of Integer Sequences. Here is <a href="https://blogs.mathworks.com/cleve/2018/07/09/the-oeis-and-the-recaman-sequence">my blog post</a>.</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/Recaman.mp4">Click on this link</a> and the listen to the audio in a Sonic movie of the Recam&aacute;n sequence. The sound is generated by resampling the middle-C key of a piano.</p>
+
+<p>Here is one frame from the movie.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Recaman_png.png" vspace="5" /> </p>
+
+<h4>Swinging Sticks<a name="cf487494-235c-48ab-8849-b0e0d6a1099e"></a>
+</h4>
+<p>The <a href="https://www.the-swinging-sticks.com/en">Swinging Sticks</a> is a kinetic sculpture that exhibits chaotic behavior. I have added sound to my <a href="https://blogs.mathworks.com/cleve/2024/02/20/chaotic-swinging-sticks/">blog post</a> about the sticks.</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/Sticks.mp4">Here is the link</a> to a Sonic movie of the Swinging Sticks. The audio is also generated by resampling one tone from a xylophone.</p>
+
+<p>And, here is one frame from the movie.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/sticks_png.png" vspace="5" /> </p>
+
+<h4>Triple feature<a name="1f278f40-79e9-42e7-877e-dad57ee84e1f"></a>
+</h4>
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/Sonic2_all.mp4">Click on this link</a> to see -- and <i>hear</i>-- all three movies.</p>
+
+<!-- 
+    function grabCode_91e688fef9a140df96e3d2ba28e351b3() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='91e688fef9a140df96e3d2ba28e351b3 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 91e688fef9a140df96e3d2ba28e351b3';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+91e688fef9a140df96e3d2ba28e351b3 ##### SOURCE BEGIN #####
+%% Sonic Adds Sound to Logo, Recamán, Chaos
+% I introduced Sonic in my
+% <https://blogs.mathworks.com/cleve/2024/11/16/lights-camera-action-and-sound
+% blog post> last month.  Today I will use Sonic to add sound to the 
+% graphics from three old posts, the vibrating L-shaped membrane,
+% the Recamán sequence and the chaotic behavior of the
+% Swinging Sticks.
+%
+%% Vibrating L-shaped Membrane
+% For almost fifty years, I have wanted to _hear_ the MathWorks logo.
+% I have written about the L-shaped membrane many times,
+% <https://www.mathworks.com/content/dam/mathworks/tag-team/Objects/t/72943_92021v00Cleve_L_Shaped_Membrane_Nov_2003.pdf
+% link #1>,
+% <https://blogs.mathworks.com/cleve/2014/10/13/mathworks-logo-part-one-why-is-it-l-shaped/
+% link #2>,
+% <https://blogs.mathworks.com/cleve/2014/11/17/mathworks-logo-part-four-method-of-particular-solutions-generates-the-logo/
+% link #3>.
+%
+% <https://blogs.mathworks.com/cleve/files/L_membrane.mp4
+% Click on this link> and
+% listen to the audio in a Sonic movie of the vibrating membrane.
+% The sound is generated by resampling one tone from a xylophone.
+%
+% And here is one frame from the movie.
+%
+% <<L_membrane_png.png>>
+%
+
+%% Recamán
+% The inventor of the
+% <https://en.wikipedia.org/wiki/Recam%C3%A1n%27s_sequence
+% Recamán sequence> is a Columbian mathematician, Bernardo Recamán Santos.
+% The sequence is <https://oeis.org/A005132 A005132> in the OEIS,
+% the On-Line Encyclopedia of Integer Sequences.
+% Here is
+% <https://blogs.mathworks.com/cleve/2018/07/09/the-oeis-and-the-recaman-sequence
+% my blog post>.
+%
+% <https://blogs.mathworks.com/cleve/files/Recaman.mp4
+% Click on this link> and the 
+% listen to the audio in a Sonic movie of the Recamán sequence.
+% The sound  is generated by resampling
+% the middle-C key of a piano.
+%
+% Here is one frame from the movie.
+%
+% <<Recaman_png.png>>
+%
+
+%% Swinging Sticks
+% The <https://www.the-swinging-sticks.com/en Swinging Sticks>
+% is a kinetic sculpture that exhibits chaotic behavior.
+% I have added sound to my
+% <https://blogs.mathworks.com/cleve/2024/02/20/chaotic-swinging-sticks/
+% blog post> about the sticks.
+%
+% <https://blogs.mathworks.com/cleve/files/Sticks.mp4
+% Here is the link> to a Sonic movie of the Swinging Sticks.
+% The audio is also generated by resampling
+% one tone from a xylophone.
+%
+%
+% And, here is one frame from the movie.
+%
+% <<sticks_png.png>>
+
+%% Triple feature
+% <https://blogs.mathworks.com/cleve/files/Sonic2_all.mp4
+% Click on this link> to see REPLACE_WITH_DASH_DASH and _hear_REPLACE_WITH_DASH_DASH
+% all three movies. 
+
+##### SOURCE END ##### 91e688fef9a140df96e3d2ba28e351b3
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[I introduced Sonic in my blog post last month. Today I will use Sonic to add sound to the graphics from three old posts, the vibrating L-shaped membrane, the Recam&aacute;n sequence and the chaotic behavior of the Swinging Sticks.]]></summary></entry><entry><title type="html">Lights, Camera, Action — and Sound</title><link href="https://hpc.social/commercial-blog/2024/lights-camera-action-and-sound/" rel="alternate" type="text/html" title="Lights, Camera, Action — and Sound" /><published>2024-11-16T06:03:58-07:00</published><updated>2024-11-16T06:03:58-07:00</updated><id>https://hpc.social/commercial-blog/2024/lights-camera-action-and-sound</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/lights-camera-action-and-sound/"><![CDATA[<div class="content"><!--introduction-->
+<p>I am very excited to incorporate sound in animations. This blog post has five examples with links to videos enclosed in <tt>'+ + + +'</tt>.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#beb66eab-d057-4b35-b679-ceb8341bac55">Mertens</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#acc96bc1-84ad-4503-af62-3207c0cddc9d">Lissajous</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#c8bcb2e7-342f-4b58-a7ba-b3d7f7034476">tansin</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#7e32cd92-b6a9-46ec-aa1c-980089ff6833">Van der Pol</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#e791b241-63f8-4987-a4d3-4451b5b8f39d">Blackjack</a>
+</li>
+</ul>
+</div>
+
+<h4>Mertens<a name="beb66eab-d057-4b35-b679-ceb8341bac55"></a>
+</h4>
+<p>I began making animations with sound while investigating the <a href="https://blogs.mathworks.com/cleve/2024/09/23/redheffer-mertens-and-one-million-dollars/">Mertens Conjecture</a>. The <a href="https://oeis.org/A002321">OEIS</a> page offers an opportunity to listen to the Mertens sequence, but I wanted more control.</p>
+
+<p>The <tt>resample</tt> function is the Signal Processing Toolbox resamples a signal at a fraction, <tt>p/q</tt>, times the original sample rate. The sound in this Mertens example is generated from a recording of piano playing middle C that is resampled to simulate the other notes.</p>
+
+<p>Here is a link to a 40-second video of <tt>M(n)</tt> and <tt>sqrt(n)</tt> for <tt>n = 200</tt>. (Homework: How long would the video last if <tt>n = 10^8</tt>? Post your answers in the comments.)</p>
+
+<p>
+<b>+ + + + + + + + + + + + + + + + + + + + + + + + + + +</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/mertens.mp4">https://blogs.mathworks.com/cleve/files/mertens.mp4</a>
+</p>
+
+<p>
+<b>+ + + + + + + + + + + + + + + + + + + + + + + + + + +</b>
+</p>
+
+<p>Here is a static graphic, the last frame of the video.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/mertens.png" vspace="5" /> </p>
+
+<h4>Lissajous<a name="acc96bc1-84ad-4503-af62-3207c0cddc9d"></a>
+</h4>
+<p>You may well have seen <a href="https://en.wikipedia.org/wiki/Lissajous_curve">Lissajous curves</a> before, but have you ever <i>listened</i> to them? They were first studied extensively by <a href="https://en.wikipedia.org/wiki/Jules_Antoine_Lissajous">Jules Lissajous</a>, a nineteenth-century French physicist. There are many Lissajous curves similar to the following, where the trajectory in the <tt>x-y</tt> plane is described by two functions of a parameter <tt>t</tt>.</p>
+
+<pre class="language-matlab">
+n = 200;
+t = 3*pi*(-1:2/n:1);
+x = 5*cos(t)+3*cos(5/3*t);
+y = 5*sin(t)-sin(5/3*t);
+</pre>
+<p>This 40-second video employs sound produced by resampling a note from a xylophone.</p>
+
+<p>
+<b>+ + + + + + + + + + + + + + + + + + + + + + + + + + +</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/lissajous.mp4">https://blogs.mathworks.com/cleve/files/lissajous.mp4</a>
+</p>
+
+<p>
+<b>+ + + + + + + + + + + + + + + + + + + + + + + + + + +</b>
+</p>
+
+<p>Here is the last frame.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/lissajous.png" vspace="5" /> </p>
+
+<h4>tansin<a name="c8bcb2e7-342f-4b58-a7ba-b3d7f7034476"></a>
+</h4>
+<p>I have used variations of <a href="https://blogs.mathworks.com/cleve/2012/09/24/supremum">this function</a> many times.</p>
+
+<pre>F = @(x) tan(sin(x))+sin(tan(x));</pre>
+<p>When <tt>x</tt> approaches an integer multiple of <tt>pi</tt>, both <tt>sin(x)</tt> and <tt>tan(x)</tt> approach zero, so <tt>F(x)</tt> also approaches zero. But when <tt>x</tt> approaches an odd multiple of <tt>pi/2</tt>, <tt>tan(x)</tt> becomes infinite, so both <tt>sin(tan(x))</tt> and <tt>F(x)</tt> oscillate infinitely often.</p>
+
+<p>Here is a link to a 45-second video of <tt>F(x)</tt> for <tt>n = 200</tt> evenly spaced values of <tt>x</tt> between <tt>-2pi</tt> and <tt>2pi</tt>. If we increase <tt>n</tt>, we would see more of the oscillations at the singularities. The sound comes from resampling a single note played by a trumpet.</p>
+
+<p>
+<b>+ + + + + + + + + + + + + + + + + + + + + + + + + + +</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/tansin.mp4">https://blogs.mathworks.com/cleve/files/tansin.mp4</a>
+</p>
+
+<p>
+<b>+ + + + + + + + + + + + + + + + + + + + + + + + + + +</b>
+</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/tansin.png" vspace="5" /> </p>
+
+<h4>Van der Pol<a name="7e32cd92-b6a9-46ec-aa1c-980089ff6833"></a>
+</h4>
+<p>Quoting <a href="https://en.wikipedia.org/wiki/Van_der_Pol_oscillator">Wikipedia</a>.</p>
+
+<pre>  In the study of dynamical systems, the van der Pol oscillator
+  (named for Dutch physicist Balthasar van der Pol) is a
+  non-conservative, oscillating system with non-linear damping.</pre>
+<p>In this video, we see -- and hear -- the numerical solution, computed by <tt>ode45</tt>, of the Van der Pol equation at <tt>n</tt> points between <tt>t = 0</tt> and <tt>t = 20</tt>. The damping parameter is <tt>mu = 2</tt>.</p>
+
+<p>The sound comes from a recording of a student practicing a piano. In this case we have scales spanning four octaves, so no resampling is required.</p>
+
+<p>
+<b>+ + + + + + + + + + + + + + + + + + + + + + + + + + +</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/vanderpol.mp4">https://blogs.mathworks.com/cleve/files/vanderpol.mp4</a>
+</p>
+
+<p>
+<b>+ + + + + + + + + + + + + + + + + + + + + + + + + + +</b>
+</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/vanderpol.png" vspace="5" /> </p>
+
+<h4>Blackjack<a name="e791b241-63f8-4987-a4d3-4451b5b8f39d"></a>
+</h4>
+<p>The card game Blackjack is another example that I use frequently; see <a href="https://www.mathworks.com/company/technical-articles/simulating-blackjack-with-matlab.html">"Simulating Blackjack"</a> and <a href="https://www.mathworks.com/matlabcentral/fileexchange/4404-blackjack">MATLAB file exchange</a>. The video shows a simulation of a few hundred hands, starting each hand with a $10 bet. The sound comes from a piano playing a C-major scale. Again, resampling is not necessary.</p>
+
+<p>The emerging histograms in the video, and the static outcome in the final frame, show the percentages observed for each of ten possible outcomes. The histograms can be compared with those in the <a href="https://www.mathworks.com/company/technical-articles/simulating-blackjack-with-matlab.html">"Simulating Blackjack"</a> article that describes the use of the Parallel Computing Toolbox to play 10,000 hands with these results.</p>
+
+<pre class="codeinput">bjpercent
+</pre>
+<pre class="codeoutput">    "   Push, player and dealer have equal totals not exceeding 21             "
+    "   Win, player's total is greater than dealer's and does not exceed 21    "
+    "   Lose, dealer's total is greater than player's and does not exceed 21   "
+    "   Blackjack, player has 21 with two cards, dealer does not               "
+    "                                                                          "
+    "   $-40     0.03     Split and double, lose both                          "
+    "   $-30     0.17     Split and double, lose one                           "
+    "   $-20     4.71     Split or double, lose                                "
+    "   $-10    42.94     Lose                                                 "
+    "   $  0     9.06     Push                                                 "
+    "   $+10    32.13     Win                                                  "
+    "   $+15     4.44     Blackjack                                            "
+    "   $+20     6.19     Split or double, win                                 "
+    "   $+30     0.28     Split and double, win one                            "
+    "   $+40     0.06     Split and double, win both                           "
+</pre>
+<p>(Homework. This simulation happens to have three hands with the very rare swings of more than $20. Find the hand numbers where such rare events occur. Post your answers in the comments. Hint: watch the emerging histograms.)</p>
+
+<p>
+<b>+ + + + + + + + + + + + + + + + + + + + + + + + + + + +</b>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/blackjack.mp4">https://blogs.mathworks.com/cleve/files/blackjack.mp4</a>
+</p>
+
+<p>
+<b>+ + + + + + + + + + + + + + + + + + + + + + + + + + + +</b>
+</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/blackjack.png" vspace="5" /> </p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/bj100K.png" vspace="5" /> </p>
+
+<!-- 
+    function grabCode_ef605386b1c14b589860f69f1d2032a2() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='ef605386b1c14b589860f69f1d2032a2 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' ef605386b1c14b589860f69f1d2032a2';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024b<br />
+</p>
+
+</div>
+
+<!--
+ef605386b1c14b589860f69f1d2032a2 ##### SOURCE BEGIN #####
+%% Lights, Camera, Action REPLACE_WITH_DASH_DASH and Sound
+% I am very excited to incorporate sound in animations.
+% This blog post has five examples with
+% links to videos enclosed in |'+ + + +'|.
+
+%% Mertens
+% I began making animations with sound while investigating the
+% <https://blogs.mathworks.com/cleve/2024/09/23/redheffer-mertens-and-one-million-dollars/
+% Mertens Conjecture>.
+% The <https://oeis.org/A002321 OEIS> page 
+% offers an opportunity to listen to the Mertens sequence, but
+% I wanted more control.
+%
+% The |resample| function is the Signal Processing Toolbox
+% resamples a signal at a fraction, |p/q|, times the original sample rate.
+% The sound in this Mertens example is generated from a recording of piano
+% playing middle C that is resampled to simulate the other notes.
+%
+% Here is a link to a 40-second video of |M(n)| and |sqrt(n)|
+% for |n = 200|. 
+% (Homework: How long would the video last if |n = 10^8|?
+% Post your answers in the comments.)
+%
+% *+ + + + + + + + + + + + + + + + + + + + + + + + + + +* 
+%
+% <https://blogs.mathworks.com/cleve/files/mertens.mp4>
+%
+% *+ + + + + + + + + + + + + + + + + + + + + + + + + + +* 
+%
+% Here is a static graphic, the last frame of the video.
+%
+% <<mertens.png>>
+%
+
+%% Lissajous
+% You may well have seen <https://en.wikipedia.org/wiki/Lissajous_curve 
+% Lissajous curves> before, but have you ever
+% _listened_ to them?
+% They were first studied extensively by 
+% <https://en.wikipedia.org/wiki/Jules_Antoine_Lissajous Jules Lissajous>,
+% a nineteenth-century French physicist.
+% There are many Lissajous curves similar to the following, where 
+% the trajectory in the |x-y| plane is described by two functions of 
+% a parameter |t|.
+%
+%   n = 200;
+%   t = 3*pi*(-1:2/n:1);
+%   x = 5*cos(t) + 3*cos(5/3*t);
+%   y = 5*sin(t) - sin(5/3*t);
+%
+% This 40-second video employs sound produced by resampling a note
+% from a xylophone.
+%
+% *+ + + + + + + + + + + + + + + + + + + + + + + + + + +* 
+%
+% <https://blogs.mathworks.com/cleve/files/lissajous.mp4>
+%
+% *+ + + + + + + + + + + + + + + + + + + + + + + + + + +* 
+%
+% Here is the last frame.
+%
+% <<lissajous.png>>
+%
+
+%% tansin
+% I have used variations of
+% <https://blogs.mathworks.com/cleve/2012/09/24/supremum this function>
+% many times.
+%
+%  F = @(x) tan(sin(x))+sin(tan(x));
+%
+% When |x| approaches an integer multiple of |pi|, both |sin(x)| and |tan(x)|
+% approach zero, so |F(x)| also approaches zero.  But when |x| approaches
+% an odd multiple of |pi/2|, |tan(x)| becomes infinite, so both |sin(tan(x))| 
+% and |F(x)| oscillate infinitely often.
+% 
+% Here is a link to a 45-second video
+% of |F(x)| for |n = 200| evenly spaced values of |x| between |-2pi| and
+% |2pi|.
+% If we increase |n|, we would see more of the oscillations at the 
+% singularities.  The sound comes from resampling a single note
+% played by a trumpet.
+%
+% *+ + + + + + + + + + + + + + + + + + + + + + + + + + +* 
+%
+% <https://blogs.mathworks.com/cleve/files/tansin.mp4>
+%
+% *+ + + + + + + + + + + + + + + + + + + + + + + + + + +* 
+%
+% <<tansin.png>>
+%
+
+%% Van der Pol
+% Quoting 
+% <https://en.wikipedia.org/wiki/Van_der_Pol_oscillator Wikipedia>.
+%
+%    In the study of dynamical systems, the van der Pol oscillator
+%    (named for Dutch physicist Balthasar van der Pol) is a 
+%    non-conservative, oscillating system with non-linear damping.
+% 
+% In this video, we see REPLACE_WITH_DASH_DASH and hear REPLACE_WITH_DASH_DASH the numerical solution, computed
+% by |ode45|, of the Van der Pol equation at |n| points between
+% |t = 0| and |t = 20|.  The damping parameter is |mu = 2|.
+%
+% The sound comes from a recording of a student practicing a piano.
+% In this case we have scales spanning four octaves, so no resampling
+% is required.
+%    
+% *+ + + + + + + + + + + + + + + + + + + + + + + + + + +* 
+%
+% <https://blogs.mathworks.com/cleve/files/vanderpol.mp4>
+%
+% *+ + + + + + + + + + + + + + + + + + + + + + + + + + +* 
+%
+% <<vanderpol.png>>
+%
+
+%% Blackjack
+% The card game Blackjack is another example that I use frequently; see 
+% <https://www.mathworks.com/company/technical-articles/simulating-blackjack-with-matlab.html
+% "Simulating Blackjack"> and
+% <https://www.mathworks.com/matlabcentral/fileexchange/4404-blackjack
+% MATLAB file exchange>.
+% The video shows a simulation of a few hundred hands,
+% starting each hand with a $10 bet.
+% The sound comes from a piano playing a C-major scale.
+% Again, resampling is not necessary.
+%
+% The emerging histograms in the video, and the static outcome in
+% the final frame, show the percentages observed for each
+% of ten possible outcomes.
+% The histograms can be compared with those in the
+% <https://www.mathworks.com/company/technical-articles/simulating-blackjack-with-matlab.html
+% "Simulating Blackjack">
+% article that describes the use of the  Parallel Computing Toolbox
+% to play 10,000 hands with these results.
+
+   bjpercent
+%%
+% (Homework.  This simulation happens to have three hands  with
+% the very rare swings of more than $20.  Find the hand numbers
+% where such rare events occur.  Post your answers in the comments.
+% Hint: watch the emerging histograms.)
+
+%%
+% *+ + + + + + + + + + + + + + + + + + + + + + + + + + + +* 
+%
+% <https://blogs.mathworks.com/cleve/files/blackjack.mp4>
+%
+% *+ + + + + + + + + + + + + + + + + + + + + + + + + + + +* 
+%
+% <<blackjack.png>>
+%
+% <<bj100K.png>>
+%
+##### SOURCE END ##### ef605386b1c14b589860f69f1d2032a2
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[I am very excited to incorporate sound in animations. This blog post has five examples with links to videos enclosed in '+ + + +'.]]></summary></entry><entry><title type="html">Möbius, Mertens and Redheffer</title><link href="https://hpc.social/commercial-blog/2024/m%C3%B6bius-mertens-and-redheffer/" rel="alternate" type="text/html" title="Möbius, Mertens and Redheffer" /><published>2024-10-23T00:53:53-06:00</published><updated>2024-10-23T00:53:53-06:00</updated><id>https://hpc.social/commercial-blog/2024/m%C3%B6bius-mertens-and-redheffer</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/m%C3%B6bius-mertens-and-redheffer/"><![CDATA[<div class="content"><!--introduction-->
+<p>Recently, I have made <a href="https://blogs.mathworks.com/cleve/">a series of blog posts</a> about Redheffer matrices and the Mertens conjecture. After each of the posts, readers and colleagues offered suggestions to speed up the calculations. Here is a summary of what I have learned.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#32215cb4-c6e7-4c82-a09c-be2a0e403218">M&ouml;bius Function</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#2421ff74-677d-4dda-9728-8ad0f481f610">Mertens Function</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#fbbf8ec1-839c-4bd7-9416-f48ae24df402">Redheffer Matrices</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#2c3c2db6-e1d2-41c4-8a2b-d1efbabe86e7">OEIS</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#a6e6f284-1b69-42f0-a04f-f9e20891cdbc">Ten Million</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#888c9931-3060-4b47-8405-ed484be2f796">Mertens Conjecture</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#21f44074-f0af-4aa2-b6a3-adb1a2756ea2">Conjecture is False</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#e485344f-bda2-4d4d-9fd0-e7102df79117">Matrices</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#5ffa1b4e-3fe8-4908-a32c-b41a2d162cd6">Sparsity</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#39aa4540-d55c-47d1-882b-33b04368d495">Computing Mertens</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#25c55aa9-7b26-4eb8-ae66-fbfbefea38b1">#1</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#4c32719f-3698-4320-a518-3b9d554916f9">#2</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#1d535f36-08d5-4044-87d1-b3aa7094574a">#3</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#4b32160d-f00c-46f0-861a-4fe8cf231394">#4</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#e624ea53-1063-4c25-a75f-c186f877d82c">#5</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#75297d30-41f2-45ca-ad62-8e710261ee95">Performance</a>
+</li>
+</ul>
+</div>
+
+<h4>M&ouml;bius Function<a name="32215cb4-c6e7-4c82-a09c-be2a0e403218"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/Mobius.jpg" vspace="5" /> </p>
+
+<p>The function named after the mid-nineteenth century German mathematician <a href="https://en.wikipedia.org/wiki/August_Ferdinand_M%C3%B6bius">August M&ouml;bius</a> is fundamental to the study of prime numbers. The M&ouml;bius function maps the positive integers onto -1,0 and +1.</p>
+
+<pre>  mu(n) = 0 if n has a repeated prime factor,
+        = (-1)^(number prime factors) if the factors of n are not repeated</pre>
+<p>Here is my code for the M&ouml;bius function. It relies on <tt>factor(n)</tt> which uses a sieve to find the prime factors of <tt>n</tt>.</p>
+
+<pre>  function mu = mobius(n)
+     % mu = mobius(n) returns mu(1:n).
+     mu = -eye(1,n);
+     for k = 2:n
+         f = factor(k);
+         d = diff([1 f]);
+         if any(d == 0)
+             mu(k) = 0;
+         else
+             mu(k) = (-1)^length(f);
+         end
+     end
+  end</pre>
+<p>Here is a graph of <tt>mu(n)</tt> for <tt>n</tt> = 1:40. For example, <tt>mu(29:31)</tt> are all -1 because 29 and 31 are both prime and 30 has an odd number of prime factors, 2, 3 and 5.</p>
+
+<pre class="language-matlab">
+    mu = moebius(40);
+    plot(1:40,mu,<span class="string">'.-'</span>,<span class="string">'linewidth'</span>,1.5,<span class="string">'markersize'</span>,16)
+    axis([-242-1.51.5])
+    title(<span class="string">'M&ouml;bius function'</span>)
+</pre>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/Mertens_finale_blog_01.png" vspace="5" /> <h4>Mertens Function<a name="2421ff74-677d-4dda-9728-8ad0f481f610"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/Mertens.jpg" vspace="5" /> </p>
+
+<p>The Mertens function is named after the late-nineteenth century Polish mathematician <a href="https://en.wikipedia.org/wiki/Franz_Mertens">Franz Mertens</a>. The function, which we denote by <tt>M(n)</tt>, is simply the partial sums of the M&ouml;bius function. The MATLAB code is very short.</p>
+
+<pre>  function M = mertens(n)
+     % M = mertens(n) returns Mertens(1:n).
+     mu = moebius(n);
+     M = cumsum([1 mu(2:n)]);
+  end</pre>
+<p>Here is a graph of <tt>M(n)</tt> for <tt>n</tt> = 1:40.</p>
+
+<pre class="language-matlab">
+    M = mertens(40);
+    plot(1:40,M,<span class="string">'.-'</span>,<span class="string">'linewidth'</span>,1.5,<span class="string">'markersize'</span>,16)
+    axis([-242-4.51.5])
+    title(<span class="string">'Mertens function'</span>)
+</pre>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/Mertens_finale_blog_02.png" vspace="5" /> <h4>Redheffer Matrices<a name="fbbf8ec1-839c-4bd7-9416-f48ae24df402"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/Redheffer.jpg" vspace="5" /> </p>
+
+<p>The twentieth-century American mathematician <a href="https://en.wikipedia.org/wiki/Raymond_Redheffer">Ray Redheffer</a>, who was a professor at UCLA for 55 years, had a wide range of interests. He was the author of several popular textbooks, the inventor of the electronic game <a href="https://en.wikipedia.org/wiki/Nim">Nim</a> and, with Ray and Charles Eames, the creator of a four-meter long poster <a href="https://www.worthpoint.com/worthopedia/1966-ray-charles-eames-office-men-1724813663">Men of Modern Mathematics</a>.</p>
+
+<p>The n-by-n Redheffer's matrix <tt>R(n)</tt> is a matrix of zeros and ones. For <tt>j &gt; 1</tt>, the element <tt>R(k,j)</tt> equals one if <tt>j</tt> is a divisor of <tt>k</tt>. And importantly, for <tt>j = 1</tt>, the first column <tt>R(:,1)</tt> is all ones.</p>
+
+<pre>  function R = redheffer(n)
+     k = 1:n;
+     j = k';
+     R = (mod(k,j) == 0);
+     R(:,1) = 1;
+  end</pre>
+<p>Nick Higham put Redheffer's matrix in the <a href="https://blogs.mathworks.com/cleve/2019/06/24/bohemian-matrices-in-the-matlab-gallery/">MATLAB Gallery</a> several years ago. Here is a spy plot of the 200-by-200.</p>
+
+<pre class="language-matlab">
+    R = gallery(<span class="string">'redheff'</span>,200);
+    spy(R)
+    title(<span class="string">'Redheffer'</span>)
+</pre>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/Mertens_finale_blog_03.png" vspace="5" /> <h4>OEIS<a name="2c3c2db6-e1d2-41c4-8a2b-d1efbabe86e7"></a>
+</h4>
+<p>In the Online Encyclopedia of Integer Sequences, the Mertens function is <a href="http://oeis.org/A002321">OEIS/A002321</a>. One of the many cool features of the OEIS is "listen", which generates music driven by the sequences. Take a look -- and a listen -- to my 63 second movie about A002321.</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/mertens_plot.mp4">https://blogs.mathworks.com/cleve/files/mertens_plot.mp4</a>
+</p>
+
+<h4>Ten Million<a name="a6e6f284-1b69-42f0-a04f-f9e20891cdbc"></a>
+</h4>
+<p>Here are plots of <tt>M(1:n)</tt> with <tt>n</tt> ranging from 100 to 10 million. Each plot after the first also shows the range of the previous plot. I will discuss the red lines in the next section</p>
+
+<pre class="language-matlab">
+    load<span class="string"> mertens</span><span class="string"> M</span>
+    tiledlayout(2,3)
+    <span class="keyword">for</span> n = 10.^(2:7)
+        nexttile
+        mertens_plot(M(1:n))
+    <span class="keyword">end</span>
+</pre>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/Mertens_finale_blog_04.png" vspace="5" /> <h4>Mertens Conjecture<a name="888c9931-3060-4b47-8405-ed484be2f796"></a>
+</h4>
+<p>The red lines above are plots of <tt>&plusmn;sqrt(n)</tt>. They clearly bound <tt>M(n)</tt> for <tt>n</tt> up to 10 million. The Mertens Conjecture is that this holds for all <tt>n</tt>.</p>
+
+<pre>  |M(n)| &lt; sqrt(n) for all n &gt; 0</pre>
+<p>The conjecture appears in a 1885 letter from Thomas Stieltjes to Charles Hermite and in a 1897 paper by Mertens.</p>
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Mertens_conjecture">Wikipedia</a> says</p>
+
+<pre>  It is a striking example of a mathematical conjecture proven false
+  despite a large amount of computational evidence in its favor.</pre>
+<h4>Conjecture is False<a name="21f44074-f0af-4aa2-b6a3-adb1a2756ea2"></a>
+</h4>
+<p>In 1985, 100 years after the Stieltjes letter, Andrew Odlyzko and Herman te Riele proved that the conjecture is false. Their proof is indirect. They prove the existence of infinitely many <tt>n</tt> for which</p>
+
+<pre>  |M(n)|/sqrt(n) &gt; 1.06</pre>
+<p>But they do not know the value of any particular <tt>n</tt>. They informally estimate that such an <tt>n</tt> would be greater than 10^30 and probably much larger.</p>
+
+<h4>Matrices<a name="e485344f-bda2-4d4d-9fd0-e7102df79117"></a>
+</h4>
+<p>Let's get back to the world of matrices. It is not obvious, but is true, that the determinants of Redheffer matrices are equal to the Mertens function.</p>
+
+<pre>  det(R(n)) = M(n)</pre>
+<p>So, if I could have proved that</p>
+
+<pre>  |det(R(n))| &lt; sqrt(n) for all n &gt; 0</pre>
+<p>I would have had a proof of the Riemann Hypothesis.</p>
+
+<p>It might appear that I am out of the clutches of number theory and safely back to matrix computation. But that illusion does not last for long.</p>
+
+<h4>Sparsity<a name="5ffa1b4e-3fe8-4908-a32c-b41a2d162cd6"></a>
+</h4>
+<p>The <tt>0(n^3)</tt> memory required by the Redheffer matrix from the gallery runs out of steam quickly. We need to take advantage of sparsity. This function generates the sparse representation of a Redheffer matrix directly.</p>
+
+<pre>  function R = spredheffer(n)
+      j = (1:n)';
+      k = ones(n,1);
+      m = n;
+      for i = 2:n
+          t = [1 i:i:n];
+          p = length(t);
+          j(m+(1:p)) = t;
+          k(m+(1:p)) = i;
+          m = m+p;
+      end
+      R = sparse(k,j,1,n,n);
+  end</pre>
+<h4>Computing Mertens<a name="39aa4540-d55c-47d1-882b-33b04368d495"></a>
+</h4>
+<p>Here are five methods for computing the Mertens function.</p>
+
+<h4>#1<a name="25c55aa9-7b26-4eb8-ae66-fbfbefea38b1"></a>
+</h4>
+<p>The first simply takes the determinant of the Redheffer matrix in the <tt>gallery</tt>.</p>
+
+<pre>  M = det(gallery('redheff',n))</pre>
+<h4>#2<a name="4c32719f-3698-4320-a518-3b9d554916f9"></a>
+</h4>
+<p>The sparse Gaussian elimination function <tt>lu</tt> with one input and four sparse outputs is designed for solving sparse linear systems. Written primarily by Tim Davis and included in his UMFPACK package, the function uses an unsymmetric pattern multifrontal pivoting strategy to reduce fill-in while maintaining numerical stability. The determinant of the input matrix is the product of the four determinants of the output matrices. Two them are triangular and two are permutations, so it is easy, and quick, to compute their determinants.</p>
+
+<pre>  R = spredheffer(n);
+  [L,U,P,Q] = lu(R)
+  M = det(L)*det(U)*det(P)*det(Q);</pre>
+<h4>#3<a name="1d535f36-08d5-4044-87d1-b3aa7094574a"></a>
+</h4>
+<p>Pat Quillen realized that by interchanging the first and last columns, there would be little fill-in. We need only one determinant.</p>
+
+<pre>  R = spredheffer(n);
+  R(:,[1 n]) = R(:,[n 1]);
+  M = -det(R);</pre>
+<h4>#4<a name="4b32160d-f00c-46f0-861a-4fe8cf231394"></a>
+</h4>
+<p>A thoughtful reader of the blog submitted a suggestion based on the Schur complement. Suppose <tt>E</tt> is a block matrix,</p>
+
+<pre>  E = [A B
+       C D]</pre>
+<p>Schur's formula for the determinant of <tt>E</tt> is</p>
+
+<pre>  det(E) = det(D)*det(A - B*(D\C))</pre>
+<p>Apply this to <tt>R(n)</tt> with <tt>A</tt> the (1,1) entry, which is 1, and <tt>D</tt> the lower (n-1)-by-(n-1) submatrix, which is upper triangular with ones on the diagonal and determinant equal 1. This leads to method #4 which uses backslash with a sparse, unit, upper triangular matrix. There is a Redheffer matrix, but no determinant.</p>
+
+<pre>  S = spredheffer(n);
+  e = ones(n-1,1);
+  M = 1 - e'*(S(2:n,2:n)\e);</pre>
+<h4>#5<a name="e624ea53-1063-4c25-a75f-c186f877d82c"></a>
+</h4>
+<p>Once we have generated <tt>R(n)</tt> and computed <tt>M(n)</tt>, how do we get <tt>R(n+1)</tt> and <tt>M(n+1)</tt>? After several iterations of this approach, I found myself without any matrices and only the original definitions of M&ouml;bius and Mertens.</p>
+
+<pre>  mu = mobius(n);
+  M = cumsum([1 mu(2:n)]);</pre>
+<h4>Performance<a name="75297d30-41f2-45ca-ad62-8e710261ee95"></a>
+</h4>
+<p>Let's summarize the five methods. The first four generate a single, isolated value of <tt>M(n)</tt>. Method #5 generates <tt>M(n)</tt> for all <tt>n</tt> from 1 to any specified maximum.</p>
+
+<pre>        matrix     function    dets    M</pre>
+<pre>  #1    full       gallery       1     1
+  #2    sparse     lu            4     1
+  #3    sparse     swap          1     1
+  #4    sparse     \             0     1
+  #5    none       factor        0    many</pre>
+<p>Time in seconds to compute <tt>M(n)</tt> on my Lenovo T14 laptop running Windows.</p>
+
+<pre>    n    2e4      2e5      2e6     2e7</pre>
+<pre>  #1    28.652     -        -       -
+  #2     0.344   21.77      -       -
+  #3     0.086    1.29    16.4
+  #4     0.055    0.65     6.7    70.1
+  #5     0.075    0.80    10.7   204.5</pre>
+<!-- 
+    function grabCode_a7956cd39e4e4b2da601dae253a9ad13() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='a7956cd39e4e4b2da601dae253a9ad13 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' a7956cd39e4e4b2da601dae253a9ad13';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+a7956cd39e4e4b2da601dae253a9ad13 ##### SOURCE BEGIN #####
+%% Möbius, Mertens and Redheffer
+% Recently, I have made
+% <https://blogs.mathworks.com/cleve/ a series of blog posts>
+% about Redheffer matrices and the Mertens conjecture.
+% After each of the posts, readers and colleagues
+% offered suggestions to speed up the calculations. 
+% Here is a summary of what I have learned.
+
+%% Möbius Function
+%
+% <<Mobius.jpg>>
+%
+% The function named after the mid-nineteenth century German
+% mathematician
+% <https://en.wikipedia.org/wiki/August_Ferdinand_M%C3%B6bius
+% August Möbius>
+% is fundamental to the study of prime numbers.
+% The Möbius function maps the positive integers onto -1,0 and +1.
+%
+%    mu(n) = 0 if n has a repeated prime factor,
+%          = (-1)^(number prime factors) if the factors of n are not repeated
+%
+% Here is my code for the Möbius function.  It relies on |factor(n)|
+% which uses a sieve to find the prime factors of |n|.
+%
+%    function mu = mobius(n)
+%       % mu = mobius(n) returns mu(1:n). 
+%       mu = -eye(1,n);
+%       for k = 2:n
+%           f = factor(k);
+%           d = diff([1 f]);
+%           if any(d == 0)
+%               mu(k) = 0;
+%           else
+%               mu(k) = (-1)^length(f);
+%           end
+%       end
+%    end
+%
+% Here is a graph of |mu(n)| for |n| = 1:40.  For example,
+% |mu(29:31)| are all -1 because 29 and 31 are both prime
+% and 30 has an odd number of prime factors, 2, 3 and 5.
+%
+     mu = moebius(40);
+     plot(1:40,mu,'.-','linewidth',1.5,'markersize',16)
+     axis([-2 42 -1.5 1.5])
+     title('Möbius function')
+
+%% Mertens Function
+%
+% <<Mertens.jpg>>
+%
+% The Mertens function is named after the late-nineteenth century Polish
+% mathematician
+% <https://en.wikipedia.org/wiki/Franz_Mertens Franz Mertens>.
+% The function, which we denote by |M(n)|, is simply the partial sums
+% of the Möbius function.  The MATLAB code is very short.
+%
+%    function M = mertens(n)
+%       % M = mertens(n) returns Mertens(1:n).
+%       mu = moebius(n);
+%       M = cumsum([1 mu(2:n)]);
+%    end
+%
+% Here is a graph of |M(n)| for |n| = 1:40.  
+%
+    M = mertens(40);
+    plot(1:40,M,'.-','linewidth',1.5,'markersize',16)
+    axis([-2 42 -4.5 1.5])
+    title('Mertens function')
+
+%% Redheffer Matrices
+%
+% <<Redheffer.jpg>>
+%
+% The twentieth-century American mathematician
+% <https://en.wikipedia.org/wiki/Raymond_Redheffer Ray Redheffer>,
+% who was a professor at UCLA for 55 years,
+% had a wide range of interests.
+% He was the author of several popular textbooks, the inventor
+% of the electronic game <https://en.wikipedia.org/wiki/Nim Nim>   
+% and, with Ray and Charles Eames, the creator of a four-meter long poster
+% <https://www.worthpoint.com/worthopedia/1966-ray-charles-eames-office-men-1724813663
+% Men of Modern Mathematics>.
+%
+% The n-by-n Redheffer's matrix |R(n)| is a matrix of zeros and ones.
+% For |j > 1|, the element |R(k,j)| equals one if |j| is a divisor of |k|.
+% And importantly, for |j = 1|, the first column |R(:,1)| is all ones.
+% 
+%    function R = redheffer(n)
+%       k = 1:n;
+%       j = k';
+%       R = (mod(k,j) == 0);
+%       R(:,1) = 1;
+%    end
+%
+% Nick Higham put Redheffer's matrix in the 
+% <https://blogs.mathworks.com/cleve/2019/06/24/bohemian-matrices-in-the-matlab-gallery/
+% MATLAB Gallery> several years ago.  
+% Here is a spy plot of the 200-by-200.
+%  
+     R = gallery('redheff',200);
+     spy(R)
+     title('Redheffer')
+    
+%% OEIS
+% In the Online Encyclopedia of Integer Sequences, the Mertens function
+% is <http://oeis.org/A002321 OEIS/A002321>.  One of the many cool
+% features of the OEIS is "listen", which generates music driven by 
+% the sequences.
+% Take a look REPLACE_WITH_DASH_DASH and a listen REPLACE_WITH_DASH_DASH to my 63 second movie about A002321.
+%
+% <https://blogs.mathworks.com/cleve/files/mertens_plot.mp4>
+
+%% Ten Million
+% Here are plots of |M(1:n)| with |n| ranging from 100 to 10 million.
+% Each plot after the first also shows the range of the previous plot.
+% I will discuss the red lines in the next section
+%
+    load mertens M
+    tiledlayout(2,3)
+    for n = 10.^(2:7)
+        nexttile
+        mertens_plot(M(1:n))
+    end
+
+%% Mertens Conjecture
+% The red lines above are plots of |±sqrt(n)|.
+% They clearly bound |M(n)| for |n| up to 10 million.
+% The Mertens Conjecture is that this holds for all |n|.
+%
+%    |M(n)| < sqrt(n) for all n > 0
+%
+% The conjecture appears in a 1885 letter from Thomas Stieltjes to
+% Charles Hermite and in a 1897 paper by Mertens.
+%
+% <https://en.wikipedia.org/wiki/Mertens_conjecture Wikipedia> says
+% 
+%    It is a striking example of a mathematical conjecture proven false
+%    despite a large amount of computational evidence in its favor.
+
+%% Conjecture is False
+% In 1985, 100 years after the Stieltjes letter, Andrew Odlyzko
+% and Herman te Riele proved that the conjecture is false.
+% Their proof is indirect.  They prove the existence of
+% infinitely many |n| for which
+%
+%    |M(n)|/sqrt(n) > 1.06
+%
+% But they do not know the value of any particular |n|.  They informally
+% estimate that such an |n| would be greater than 10^30 and probably
+% much larger.
+
+%% Matrices
+% Let's get back to the world of matrices.  It is not obvious,
+% but is true, that the determinants of Redheffer matrices
+% are equal to the Mertens function.
+% 
+%    det(R(n)) = M(n)
+%
+% So, if I could have proved that 
+%
+%    |det(R(n))| < sqrt(n) for all n > 0
+%
+% I would have had a proof of the Riemann Hypothesis.
+%
+% It might appear that I am out of the clutches of number theory
+% and safely back to matrix computation.  But that illusion does
+% not last for long.
+
+%% Sparsity
+% The |0(n^3)| memory required by the Redheffer matrix 
+% from the gallery runs out of steam quickly.
+% We need to take advantage of sparsity.
+% This function generates the sparse representation of 
+% a Redheffer matrix directly.
+%
+%    function R = spredheffer(n)
+%        j = (1:n)';
+%        k = ones(n,1);
+%        m = n;
+%        for i = 2:n
+%            t = [1 i:i:n];
+%            p = length(t);
+%            j(m+(1:p)) = t;
+%            k(m+(1:p)) = i;
+%            m = m+p;
+%        end
+%        R = sparse(k,j,1,n,n);
+%    end
+%
+%% Computing Mertens
+% Here are five methods for computing the Mertens function.
+%
+
+%% #1
+% The first simply takes the determinant of the Redheffer matrix
+% in the |gallery|.
+%
+%    M = det(gallery('redheff',n))
+%
+
+%% #2
+% The sparse Gaussian elimination function |lu| with one
+% input and four sparse outputs is designed for solving sparse linear
+% systems.  Written primarily
+% by Tim Davis and included in his UMFPACK package, the function
+% uses an unsymmetric pattern multifrontal pivoting strategy 
+% to reduce fill-in while maintaining numerical stability.
+% The determinant of the input matrix is the product of the four
+% determinants of the output matrices. Two them are triangular and two
+% are permutations, so it is easy, and quick, to compute their determinants.
+%
+%    R = spredheffer(n);
+%    [L,U,P,Q] = lu(R)
+%    M = det(L)*det(U)*det(P)*det(Q);
+%
+
+%% #3
+% Pat Quillen realized that by interchanging the first and last
+% columns, there would be little fill-in.  We need only one determinant.
+%
+%    R = spredheffer(n);
+%    R(:,[1 n]) = R(:,[n 1]);
+%    M = -det(R);
+%
+
+%% #4
+%
+% A thoughtful reader of the blog submitted a suggestion based on the
+% Schur complement.  Suppose |E| is a block matrix, 
+%
+%    E = [A B
+%         C D]
+% 
+% Schur's formula for the determinant of |E| is
+%
+%    det(E) = det(D)*det(A - B*(D\C))
+%
+% Apply  this to |R(n)| with |A| the (1,1) entry, which is 1,
+% and |D| the lower (n-1)-by-(n-1) submatrix, which is upper triangular
+% with ones on the diagonal and determinant equal 1.  This leads to method
+% #4 which uses backslash with a sparse, unit, upper triangular matrix.
+% There is a Redheffer matrix, but no determinant.
+%
+%    S = spredheffer(n);
+%    e = ones(n-1,1);
+%    M = 1 - e'*(S(2:n,2:n)\e);
+%
+ 
+%% #5
+% Once we have generated |R(n)| and computed |M(n)|, how do we get
+% |R(n+1)| and |M(n+1)|?  After several iterations of this approach,
+% I found myself without any matrices and only the original definitions
+% of Möbius and Mertens.
+%
+%    mu = mobius(n);
+%    M = cumsum([1 mu(2:n)]);
+%
+
+%% Performance
+% Let's summarize the five methods.  The first four generate
+% a single, isolated value of |M(n)|.  Method #5 generates
+% |M(n)| for all |n| from 1 to any specified maximum.
+%
+%          matrix     function    dets    M
+%
+%    #1    full       gallery       1     1
+%    #2    sparse     lu            4     1
+%    #3    sparse     swap          1     1
+%    #4    sparse     \             0     1
+%    #5    none       factor        0    many
+%
+% Time in seconds to compute |M(n)| on my Lenovo T14 laptop
+% running Windows.
+%
+%      n    2e4      2e5      2e6     2e7
+%
+%    #1    28.652     -        -       - 
+%    #2     0.344   21.77      -       - 
+%    #3     0.086    1.29    16.4       
+%    #4     0.055    0.65     6.7    70.1
+%    #5     0.075    0.80    10.7   204.5
+
+
+##### SOURCE END ##### a7956cd39e4e4b2da601dae253a9ad13
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[Recently, I have made a series of blog posts about Redheffer matrices and the Mertens conjecture. After each of the posts, readers and colleagues offered suggestions to speed up the calculations. Here is a summary of what I have learned.]]></summary></entry><entry><title type="html">Experience With Chatbots Generating MATLAB</title><link href="https://hpc.social/commercial-blog/2024/experience-with-chatbots-generating-matlab/" rel="alternate" type="text/html" title="Experience With Chatbots Generating MATLAB" /><published>2024-10-07T14:31:38-06:00</published><updated>2024-10-07T14:31:38-06:00</updated><id>https://hpc.social/commercial-blog/2024/experience-with-chatbots-generating-matlab</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/experience-with-chatbots-generating-matlab/"><![CDATA[<div class="content"><!--introduction-->
+<p>A friend is investigating the use of generative AI in his classes. I asked two different popular chatbots to write MATLAB programs for a mathematically nontrivial problem. Both chatbots understood my query and both wrote plausible MATLAB programs, but one of the programs was not correct. My recommendation for coursework: carefully read and test programs produced by generative AI and repair any incorrect ones.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#0c48695a-3a4f-46a2-9d9c-23506fc3aae1">Redheffer, Mertens and Ahalt</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#40ba61bb-33a4-43e5-9193-7a3889fb91f5">Program number one</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#8d0098c5-f272-4317-8eef-f58166e680af">Program number two</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#a1a49807-f649-4010-af50-85a315d67540">Program number three</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#c38da925-a549-4542-bb35-198572a00c66">Happy Ending</a>
+</li>
+</ul>
+</div>
+
+<h4>Redheffer, Mertens and Ahalt<a name="0c48695a-3a4f-46a2-9d9c-23506fc3aae1"></a>
+</h4>
+<p>Frequent readers of this blog know about my recent obsession with Redheffer matrices and the Mertens conjecture. So, when my friend Stan Ahalt visited from North Carolina State a few days ago, and wanted to discuss the use of generative AI in the new Data Science curriculum, I suggested asking chatbots to write MATLAB programs that check the Mertens conjecture.</p>
+
+<p>We logged onto the web sites for two different AI companies. Our query was the same at both sites.</p>
+
+<pre>Please write a MATLAB program to test the Mertens conjecture.</pre>
+<p>I was pleasantly surprised when both systems knew about MATLAB and understood the query. One of the systems replied:</p>
+
+<pre>Certainly! I'll create a MATLAB program to test the Mertens
+conjecture. First, let me briefly explain what the Mertens
+conjecture is, and then I'll provide the code.
+The Mertens conjecture states that the Mertens function M(n)
+is bounded by &radic;n for all positive integers n. Mathematically,
+it can be expressed as:</pre>
+<pre>|M(n)| &le; &radic;n for all n &gt; 1</pre>
+<pre>Where M(n) is the Mertens function, defined as the sum of
+the M&ouml;bius function μ(k) for all positive integers k up to n:</pre>
+<pre>M(n) = Σ μ(k) for k = 1 to n</pre>
+<pre>Here's a MATLAB program to test this conjecture.</pre>
+<h4>Program number one<a name="40ba61bb-33a4-43e5-9193-7a3889fb91f5"></a>
+</h4>
+<p>The program from one of the web sites begins:</p>
+
+<pre>function M = test_Mertens(n)
+   % Function to test the Mertens conjecture for a given n
+   % Returns true if the conjecture holds for all values up to n, false otherwise</pre>
+<p>This is followed by code to sum the M&ouml;bius function and verify that <tt>abs(M) &lt; sqrt(n)</tt>. The crucial <tt>mobius</tt> is a straight-forward implementation of the definition. The code relies on MATLAB intrinsics, <tt>factor</tt> and <tt>unique</tt>.</p>
+
+<pre>function mu = mobius(k)
+   % Function to calculate the M&ouml;bius function of k
+   % Factorize k
+   p = factor(k);
+   % Check for square factors
+   if length(p) ~= length(unique(p))
+      mu = 0;
+   else
+      mu = (-1)^length(p);
+   end
+end</pre>
+<p>I was very pleased. The entire program is only 40 lines long, eminently readable, and correct.</p>
+
+<h4>Program number two<a name="8d0098c5-f272-4317-8eef-f58166e680af"></a>
+</h4>
+<p>The program from the other web site is more sophisticated. It knows enough about MATLAB to use its cumulative summation.</p>
+
+<pre>M = cumsum(mu);</pre>
+<p>Here is the crucial <tt>mobius</tt> function. At first glance, it looks OK. Is it?</p>
+
+<pre>function mu = mobius(n)
+   % Calculate M&ouml;bius function values up to n
+   mu = ones(1, n);
+   for i = 2:sqrt(n)
+      if mu(i) == 1
+         for j = i^2:i:n
+            if mod(j, i^2) == 0
+               mu(j) = 0;
+            else
+               mu(j) = -mu(j);
+            end
+         end
+      end
+   end
+end</pre>
+<p>As you have guessed, program number two is not correct. Even its own plot reveals that something is amiss.</p>
+
+<h4>Program number three<a name="a1a49807-f649-4010-af50-85a315d67540"></a>
+</h4>
+<p>Let's return to the second Web site and make a more specific query.</p>
+
+<pre>Please write a MATLAB program that uses Redheffer
+matrices to test the Mertens conjecture.</pre>
+<p>The resulting program generates a Redheffer matrix with</p>
+
+<pre>R = zeros(n,n);
+for i = 1:n
+   for j = 1:n
+      if mod(i, j) == 0
+         R(i, j) = 1;
+      end
+   end
+end</pre>
+<p>It computes the determinant to obtain the Mertens value, <tt>M(n)</tt>. It is able to confirm the conjecture for all the <tt>n</tt> in the given range.</p>
+
+<p>What's wrong now? Look at the plot. The computed <tt>M(n)</tt> is always equal to one. Why?</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/program3.png" vspace="5" /> </p>
+
+<h4>Happy Ending<a name="c38da925-a549-4542-bb35-198572a00c66"></a>
+</h4>
+<p>Program number three can be repaired by adding one line to the code that generates <tt>R</tt>. What is that line? Respond in the comments.</p>
+
+<p>Look at the good side. Instead of just using AI to do homework, we can challenge students to check the results carefully and repair any incorrect programs.</p>
+
+<!-- 
+    function grabCode_b5785d3ceb4b4ff38b92ec4f957e13e3() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='b5785d3ceb4b4ff38b92ec4f957e13e3 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' b5785d3ceb4b4ff38b92ec4f957e13e3';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+b5785d3ceb4b4ff38b92ec4f957e13e3 ##### SOURCE BEGIN #####
+%% Experience With Chatbots Generating MATLAB
+% A friend is investigating the use of generative AI in his classes.
+% I asked two different popular chatbots to write
+% MATLAB programs for a mathematically nontrivial problem.
+% Both chatbots understood my query and both wrote plausible
+% MATLAB programs, but one of the programs was not correct.
+% My recommendation for coursework: carefully read and test 
+% programs produced by generative AI and repair any incorrect ones.
+
+%% Redheffer, Mertens and Ahalt
+% Frequent readers of this blog know about my recent obsession
+% with Redheffer matrices and the Mertens conjecture.
+% So, when my friend Stan Ahalt visited from North Carolina State
+% a few days ago, and wanted to discuss the use of generative AI in
+% the new Data Science curriculum, I suggested asking chatbots
+% to write MATLAB programs that check the Mertens conjecture.
+
+%%
+% We logged onto the web sites for two different AI companies.
+% Our query was the same at both sites.
+% 
+%  Please write a MATLAB program to test the Mertens conjecture.
+%
+% I was pleasantly surprised when both systems knew about MATLAB
+% and understood the query.
+% One of the systems replied:
+%
+%  Certainly! I'll create a MATLAB program to test the Mertens
+%  conjecture. First, let me briefly explain what the Mertens
+%  conjecture is, and then I'll provide the code.
+%  The Mertens conjecture states that the Mertens function M(n) 
+%  is bounded by √n for all positive integers n. Mathematically, 
+%  it can be expressed as:
+%
+%  |M(n)| ≤ √n for all n > 1
+%
+%  Where M(n) is the Mertens function, defined as the sum of 
+%  the Möbius function μ(k) for all positive integers k up to n:
+%
+%  M(n) = Σ μ(k) for k = 1 to n
+%
+%  Here's a MATLAB program to test this conjecture.
+%
+
+%% Program number one
+% The program from one of the web sites begins:
+%
+%  function M = test_Mertens(n)
+%     % Function to test the Mertens conjecture for a given n
+%     % Returns true if the conjecture holds for all values up to n, false otherwise
+%
+% This is followed by code to sum the Möbius function and verify that  
+% |abs(M) < sqrt(n)|.
+% The crucial |mobius| is a straight-forward implementation
+% of the definition.   The code relies on MATLAB intrinsics, |factor|
+% and |unique|.
+%
+%  function mu = mobius(k)
+%     % Function to calculate the Möbius function of k
+%     % Factorize k
+%     p = factor(k);     
+%     % Check for square factors
+%     if length(p) ~= length(unique(p))
+%        mu = 0;
+%     else
+%        mu = (-1)^length(p);
+%     end
+%  end
+
+%%
+% I was very pleased.  The entire program is only 40 lines long,
+% eminently readable, and correct.
+
+%% Program number two
+% The program from the other web site is more sophisticated.
+% It knows enough about MATLAB to use its cumulative summation.
+%
+%  M = cumsum(mu);
+%
+% Here is the crucial |mobius| function.  At first glance, it looks OK.
+% Is it?
+%
+%  function mu = mobius(n)
+%     % Calculate Möbius function values up to n
+%     mu = ones(1, n);  
+%     for i = 2:sqrt(n)
+%        if mu(i) == 1
+%           for j = i^2:i:n
+%              if mod(j, i^2) == 0
+%                 mu(j) = 0;
+%              else
+%                 mu(j) = -mu(j);
+%              end
+%           end
+%        end
+%     end
+%  end
+%
+% As you have guessed, program number two is not correct.
+% Even its own plot reveals that something is amiss.
+
+%% Program number three
+% Let's return to the second Web site and make a more specific query.
+%
+%  Please write a MATLAB program that uses Redheffer
+%  matrices to test the Mertens conjecture.
+%
+% The resulting program generates a Redheffer matrix with
+%
+%  R = zeros(n,n);
+%  for i = 1:n
+%     for j = 1:n
+%        if mod(i, j) == 0
+%           R(i, j) = 1;
+%        end
+%     end
+%  end
+%
+% It computes the determinant to obtain the Mertens value, |M(n)|.
+% It is able to confirm the conjecture for all the |n|
+% in the given range.
+%
+% What's wrong now?  Look at the plot.  The computed |M(n)| is always
+% equal to one.  Why?
+%
+% <<program3.png>>
+%
+
+%% Happy Ending
+% Program number three can be repaired by adding one line to the code that
+% generates |R|.  What is that line?  Respond in the comments.
+%
+% Look at the good side.  Instead of just using AI
+% to do homework, we can
+% challenge students to check the results carefully
+% and repair any incorrect programs.
+##### SOURCE END ##### b5785d3ceb4b4ff38b92ec4f957e13e3
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[A friend is investigating the use of generative AI in his classes. I asked two different popular chatbots to write MATLAB programs for a mathematically nontrivial problem. Both chatbots understood my query and both wrote plausible MATLAB programs, but one of the programs was not correct. My recommendation for coursework: carefully read and test programs produced by generative AI and repair any incorrect ones.]]></summary></entry><entry><title type="html">Redheffer and Mertens, Accelerated</title><link href="https://hpc.social/commercial-blog/2024/redheffer-and-mertens-accelerated/" rel="alternate" type="text/html" title="Redheffer and Mertens, Accelerated" /><published>2024-09-30T14:28:40-06:00</published><updated>2024-09-30T14:28:40-06:00</updated><id>https://hpc.social/commercial-blog/2024/redheffer-and-mertens-accelerated</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/redheffer-and-mertens-accelerated/"><![CDATA[<div class="content"><!--introduction-->
+<p>Shortly after I published the second post about the <a href="https://blogs.mathworks.com/cleve/2024/09/27/redheffer-and-mertens-continued/">Mertens conjecture</a>, a reader's comment suggested a new approach to computing Redheffer determinants and the Mertens function. It is now possible to compute a half-million values of the Mertens function in about five hours.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#7d362761-695e-4474-88df-0a49bd91d0a1">Block matrices</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#3237700b-50f8-4cce-a2a4-ce2a67875d0f"><tt>redmert</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#c59e3dbe-0a74-4f7c-839b-a92e38cb63c3">Inside <tt>redmert</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#6c005e64-ccd7-4f61-bab0-eec89c74cdd4">mertens_plot</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#dc3123c4-88e4-4acc-87ef-5dce4750f795">Postscript</a>
+</li>
+</ul>
+</div>
+
+<h4>Block matrices<a name="7d362761-695e-4474-88df-0a49bd91d0a1"></a>
+</h4>
+<p>The comment references the <a href="https://en.wikipedia.org/wiki/Determinant#Block_matrices">Wikipedia article</a> on block matrices.</p>
+
+<pre>  You could also consider the matrix as a 2x2 block matrix and
+  use the formula for the determinant of a block matrix [1].
+      A = redheffer(n);
+      M = full(A(1,1) - A(1, 2:end) * (A(2:end,2:end) \ A(2:end, 1)));
+  Since the (n-1)x(n-1) block is upper triangular, the solve becomes
+  a back-substitution.</pre>
+<h4>
+<tt>redmert</tt><a name="3237700b-50f8-4cce-a2a4-ce2a67875d0f"></a>
+</h4>
+<p>My new program is named <tt>redmert</tt>, an abbreviation of Redheffer-Mertens. It uses the fact that <tt>redheffer(n)</tt> is obtained from <tt>redheffer(n-1)</tt> by appending the last column.</p>
+
+<p>Let <tt>R(n)</tt> denote the upper or right-triangular part of <tt>redheffer(n)</tt>.</p>
+
+<pre>  R(n) = triu(redheffer(n))</pre>
+<p>
+<tt>R(n)</tt> is sparse, upper triangular and has ones on the diagonal. The indices of the nonzeros in the last column of <tt>R(n)</tt> are the factors of <tt>n</tt>. For example, here is <tt>R(8)</tt>.</p>
+
+<pre class="codeinput">
+R8 = full(triu(redheffer(8)))
+</pre>
+<pre class="codeoutput">R8 =
+     1     1     1     1     1     1     1     1
+     0     1     0     1     0     1     0     1
+     0     0     1     0     0     1     0     0
+     0     0     0     1     0     0     0     1
+     0     0     0     0     1     0     0     0
+     0     0     0     0     0     1     0     0
+     0     0     0     0     0     0     1     0
+     0     0     0     0     0     0     0     1
+</pre>
+<p>The idea behind <tt>redmert</tt> is to compute a sequence of Redheffer matrices, <tt>R</tt>, and associated values of the Mertens function, <tt>M</tt>.</p>
+
+<pre>  [M,R] = redmert(p,R)</pre>
+<p>The input is a scalar integer <tt>p</tt>, the desired sequence length, and a sparse matrix <tt>R</tt>, the upper triangle of a Redheffer matrix of some order, <tt>n</tt>. The output is an integer vector of values <tt>M(n+1:n+p)</tt> and the upper triangle of the Redheffer matrix of order <tt>n+p</tt>. This output <tt>R</tt> can then be used as the input <tt>R</tt> in another call to <tt>redmert</tt>.</p>
+
+<p>The sequence is started with an empty <tt>R</tt>.</p>
+
+<p>For example,</p>
+
+<pre class="codeinput">
+[M,R] = redmert(8,[]);
+</pre>
+<p>The output is <tt>mertens(n), n = 1:8</tt>, and <tt>R8</tt> from the example above.</p>
+
+<pre class="codeinput">
+MR8 = full(R)
+</pre>
+<pre class="codeoutput">
+M =
+     1
+     0
+    -1
+    -1
+    -2
+    -1
+    -2
+    -2
+R8 =
+     1     1     1     1     1     1     1     1
+     0     1     0     1     0     1     0     1
+     0     0     1     0     0     1     0     0
+     0     0     0     1     0     0     0     1
+     0     0     0     0     1     0     0     0
+     0     0     0     0     0     1     0     0
+     0     0     0     0     0     0     1     0
+     0     0     0     0     0     0     0     1
+</pre>
+<h4>Inside <tt>redmert</tt><a name="c59e3dbe-0a74-4f7c-839b-a92e38cb63c3"></a>
+</h4>
+<p>The entire code for <tt>redmert</tt> is twelve lines long. It manipulates sparse matrices and uses sparse backslash to solve a triangular system. Nothing else is required.</p>
+
+<p>Lines 7 and 8 generate the last column of <tt>R</tt> and lines 9 and 10 implement the new idea about block matrices.</p>
+
+<pre class="codeinput">
+dbtype <span class="string">redmert</span>
+</pre>
+<pre class="codeoutput">
+1     function [M,R] = redmert(p,Rin)
+2         M = zeros(p,1);
+3         R = sparse(triu(Rin));
+4         n = size(R,1);
+5         for q = 1:p
+6             n = n+1;
+7             k = (mod(n,1:n) == 0);
+8             R(k,n) = 1;
+9             e = ones(n-1,1);
+10            M(q) = R(1,1) - e'*(R(2:n,2:n)\e);
+11        end
+12    end
+</pre>
+<h4>mertens_plot<a name="6c005e64-ccd7-4f61-bab0-eec89c74cdd4"></a>
+</h4>
+<p>It takes about five hours for <tt>redmert</tt> to compute half a million values on my laptop.</p>
+
+<pre>   n = 0.5e6;
+   p = 0.5e4;
+   R = sparse([]);
+   M = [];
+   for k = p:p:n
+       disp(k)
+       [Mout,R] = redmert(p,R);
+       M = [M; Mout];
+       mertens_plot(M)
+   end</pre>
+<pre class="codeinput">
+mertens_plot
+</pre>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/redmert_blog_01.png" vspace="5" /> <h4>Postscript<a name="dc3123c4-88e4-4acc-87ef-5dce4750f795"></a>
+</h4>
+<p>I started this project by being surprised to find myself computing determinants. Now I am back to my long-time position disparaging determinants. They have been replaced by a good friend, backslash.</p>
+
+<!-- 
+    function grabCode_3267a823a3ca4544ace75a24a1cc6636() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='3267a823a3ca4544ace75a24a1cc6636 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 3267a823a3ca4544ace75a24a1cc6636';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+3267a823a3ca4544ace75a24a1cc6636 ##### SOURCE BEGIN #####
+%% Redheffer and Mertens, Accelerated
+% Shortly after I published the second post about the
+% <https://blogs.mathworks.com/cleve/2024/09/27/redheffer-and-mertens-continued/
+% Mertens conjecture>,
+% a reader's comment suggested a new approach to
+% computing Redheffer determinants and the Mertens function.
+% It is now possible to compute a half-million values of the
+% Mertens function in about five hours.
+
+%% Block matrices
+% The comment references the
+% <https://en.wikipedia.org/wiki/Determinant#Block_matrices
+% Wikipedia article> on block matrices.
+%
+%    You could also consider the matrix as a 2x2 block matrix and
+%    use the formula for the determinant of a block matrix [1].
+%        A = redheffer(n);
+%        M = full(A(1,1) - A(1, 2:end) * (A(2:end,2:end) \ A(2:end, 1)));
+%    Since the (n-1)x(n-1) block is upper triangular, the solve becomes
+%    a back-substitution.
+
+%% |redmert|
+% My new program is named |redmert|, an abbreviation of 
+% Redheffer-Mertens.  It uses the fact that
+% |redheffer(n)| is obtained from |redheffer(n-1)| by appending
+% the last column.
+%
+% Let |R(n)| denote the upper or right-triangular
+% part of |redheffer(n)|.
+%
+%    R(n) = triu(redheffer(n))
+%   
+% |R(n)| is sparse, upper triangular and has ones on the
+% diagonal.  
+% The indices of the nonzeros in the last column of |R(n)|
+% are the factors of |n|.
+% For example, here is |R(8)|.
+
+    R8 = full(triu(redheffer(8)))
+
+%%
+% The idea behind |redmert| is to compute a sequence
+% of Redheffer matrices, |R|, and associated values of the
+% Mertens function, |M|.
+%
+%    [M,R] = redmert(p,R)
+%
+% The input is a scalar integer |p|, the desired sequence length,
+% and a sparse matrix |R|, the upper triangle of a Redheffer
+% matrix of some order, |n|.
+% The output is an integer vector of values |M(n+1:n+p)| and
+% the upper triangle of the Redheffer matrix of order |n+p|. 
+% This output |R| can then be used as the input |R| in another
+% call to |redmert|.
+%
+% The sequence is started with an empty |R|.
+%
+% For example,
+%
+   [M,R] = redmert(8,[]);
+
+%%
+% The output is |mertens(n), n = 1:8|, and |R8| from the example
+% above.
+
+    M
+    R8 = full(R)
+
+%% Inside |redmert|
+% The entire code for |redmert| is twelve lines long.
+% It manipulates sparse matrices and uses sparse backslash
+% to solve a triangular system.  Nothing else is required.
+%
+% Lines 7 and 8 generate the last column of |R| and lines 9 and 10
+% implement the new idea about block matrices.
+
+      dbtype redmert
+
+%% mertens_plot
+% It takes about five hours for |redmert|
+% to compute half a million values on my laptop.
+% 
+%     n = 0.5e6;
+%     p = 0.5e4;
+%     R = sparse([]);
+%     M = [];
+%     for k = p:p:n
+%         disp(k)
+%         [Mout,R] = redmert(p,R);
+%         M = [M; Mout];
+%         mertens_plot(M)
+%     end
+
+      mertens_plot
+
+%% Postscript
+% I started this project by being surprised to find
+% myself computing determinants.
+% Now I am back to my long-time position disparaging
+% determinants. They have been replaced by a good friend, backslash.
+
+##### SOURCE END ##### 3267a823a3ca4544ace75a24a1cc6636
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[Shortly after I published the second post about the Mertens conjecture, a reader's comment suggested a new approach to computing Redheffer determinants and the Mertens function. It is now possible to compute a half-million values of the Mertens function in about five hours.]]></summary></entry><entry><title type="html">Redheffer and Mertens, Continued</title><link href="https://hpc.social/commercial-blog/2024/redheffer-and-mertens-continued/" rel="alternate" type="text/html" title="Redheffer and Mertens, Continued" /><published>2024-09-27T12:28:39-06:00</published><updated>2024-09-27T12:28:39-06:00</updated><id>https://hpc.social/commercial-blog/2024/redheffer-and-mertens-continued</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/redheffer-and-mertens-continued/"><![CDATA[<div class="content"><!--introduction-->
+<p>Shortly after I posted <a href="https://blogs.mathworks.com/cleve/2024/09/23/redheffer-mertens-and-one-million-dollars/">Redheffer, Mertens and One-Million Dollars</a> a few days ago, Mathworks' Pat Quillen made an important observation about computing the Mertens function.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#f3fcd244-9ad3-4849-93ca-a831a5999c61"><tt>mertens</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#22db8fd3-aa25-4f76-9360-af77b6b20726">Mertens function</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#9ebbd5e7-4600-435d-8b80-56634f314af3">Mertens computation</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#d25d727c-f7fb-41b5-a32e-eab8c9e0caae">Mertens conjecture</a>
+</li>
+</ul>
+</div>
+
+<h4>
+<tt>mertens</tt><a name="f3fcd244-9ad3-4849-93ca-a831a5999c61"></a>
+</h4>
+<p>The elements in the first column of the Redheffer matrix, <tt>A = redheffer(n)</tt>, are all equal to one. That dense column does not make MATLAB happy about computing <tt>det(A)</tt> . However, the last column of <tt>A</tt> has only a few nonzero elements and so Pat suggested interchanging the first and last columns before computing the determinant. This makes a world of difference. (Thanks, Pat.)</p>
+
+<pre class="codeinput">type<span class="string">mertens</span>
+</pre>
+<pre class="codeoutput">
+function M = mertens(n)
+    if n &gt; 1
+        A = redheffer(n);
+        A(:,[1 n]) = A(:,[n 1]);
+        M = -round(det(A));
+    else
+        M = 1;
+    end
+end
+</pre>
+<p>The time required to compute <tt>det(A)</tt> varies with the sparsity of the last column, but it is only a little more than the time to compute <tt>redheffer(n)</tt> in the first place.</p>
+
+<pre class="codeinput">mertens2_time
+</pre>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/mertens2_blog_01.png" vspace="5" /> <h4>Mertens function<a name="22db8fd3-aa25-4f76-9360-af77b6b20726"></a>
+</h4>
+<p>Pat's change makes it possible to take <tt>n</tt> up to a quarter of a million, and beyond. Here is a new plot of the Mertens function <tt>M(n)</tt> and the <tt>sqrt(n)</tt> bounds of the Mertens conjecture.</p>
+
+<pre class="codeinput">mertens_plot
+</pre>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/mertens2_blog_02.png" vspace="5" /> <p>There are a quarter of a million points in the data for this plot. Fortunately, the .PNG file used for the blog only needs to sample the data.</p>
+
+<h4>Mertens computation<a name="9ebbd5e7-4600-435d-8b80-56634f314af3"></a>
+</h4>
+<p>The job that I ran on my laptop to compute one-quarter of a million values of <tt>M(n)</tt> is still running. It currently is past 0.35 million and takes less than two seconds for each value. I may keep the job running over the weekend, just to see how far it gets.</p>
+
+<p>The task is embarrassingly parallel. If I had a pool with a million processors, I could have each processor compute one value. I would then just have to collect the results, but that doesn't involve any arithmetic.</p>
+
+<h4>Mertens conjecture<a name="d25d727c-f7fb-41b5-a32e-eab8c9e0caae"></a>
+</h4>
+<p>You can see from the plot why late 19th- and early 20th-century mathematicians believed that the Mertens conjecture,</p>
+
+<pre>   |M(n)| &lt; sqrt(n) for all n,</pre>
+<p>might be true. It is hard to imagine that the plot of <tt>M(n)</tt> ever escapes <tt>sqrt(n)</tt>.</p>
+
+<p>We now know that <tt>M(n)</tt> eventually does escape, but only barely and only briefly. We also know that all the computation we can do with determinants of Redheffer's matrix will never prove or disprove the conjecture or win that million-dollar prize.</p>
+
+<!-- 
+    function grabCode_1007044f00b340cd8467bc0b1324ad0e() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='1007044f00b340cd8467bc0b1324ad0e ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 1007044f00b340cd8467bc0b1324ad0e';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+1007044f00b340cd8467bc0b1324ad0e ##### SOURCE BEGIN #####
+%% Redheffer and Mertens, Continued
+% Shortly after I posted
+% <https://blogs.mathworks.com/cleve/2024/09/23/redheffer-mertens-and-one-million-dollars/
+% Redheffer, Mertens and One-Million Dollars>
+% a few days ago, Mathworks' Pat Quillen made an important observation
+% about computing the Mertens function.
+
+%% |mertens|
+% The elements in the first column of the Redheffer matrix,
+% |A = redheffer(n)|, are all equal to one.  That dense column 
+% does not make MATLAB happy about computing |det(A)| .
+% However, the last column of |A| has only a few nonzero elements and so
+% Pat suggested interchanging the first and last columns
+% before computing the determinant.  This makes a world of difference.
+% (Thanks, Pat.)
+
+       type mertens
+
+%% 
+% The time required to compute |det(A)| varies with the sparsity of
+% the last column, but it is only a little more than the time
+% to compute |redheffer(n)| in the first place. 
+
+   mertens2_time
+
+%% Mertens function
+% Pat's change makes it possible to take |n| up to a quarter of a million,
+% and beyond.  Here is a new plot of the Mertens function |M(n)| and the
+% |sqrt(n)| bounds of the Mertens conjecture.
+
+   mertens_plot
+
+%% 
+% There are a quarter of a million points in the data for this plot.
+% Fortunately, the .PNG file used for the blog only needs to sample
+% the data.
+
+%% Mertens computation
+% The job that I ran on my laptop to compute one-quarter of
+% a million values of |M(n)| is still running.  It currently
+% is past 0.35 million and takes less than two seconds for each value.
+% I may keep the job running over the weekend, just to see how
+% far it gets.
+%
+% The task is embarrassingly parallel.  If I had a pool with 
+% a million processors, I could have each processor compute one
+% value.  I would then just have to collect the results, but that
+% doesn't involve any arithmetic.
+
+%% Mertens conjecture
+% You can see from the plot why late 19th- and early 20th-century
+% mathematicians believed that the Mertens conjecture,
+%
+%     |M(n)| < sqrt(n) for all n,
+%
+% might be true.
+% It is hard to imagine that the plot of |M(n)| ever escapes
+% |sqrt(n)|.  
+%
+% We now know that |M(n)| eventually does escape,
+% but only barely and only briefly.  We also know that all the
+% computation we can do with determinants of Redheffer's matrix
+% will never prove or disprove the conjecture or win that
+% million-dollar prize.
+
+##### SOURCE END ##### 1007044f00b340cd8467bc0b1324ad0e
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[Shortly after I posted Redheffer, Mertens and One-Million Dollars a few days ago, Mathworks' Pat Quillen made an important observation about computing the Mertens function.]]></summary></entry><entry><title type="html">Redheffer, Mertens and One-Million Dollars</title><link href="https://hpc.social/commercial-blog/2024/redheffer-mertens-and-one-million-dollars/" rel="alternate" type="text/html" title="Redheffer, Mertens and One-Million Dollars" /><published>2024-09-23T17:12:35-06:00</published><updated>2024-09-23T17:12:35-06:00</updated><id>https://hpc.social/commercial-blog/2024/redheffer-mertens-and-one-million-dollars</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/redheffer-mertens-and-one-million-dollars/"><![CDATA[<div class="content"><!--introduction-->
+<p>I didn't know anything about these topics until a couple of weeks ago. Now I can't stop thinking about them.</p>
+
+<div>
+<ul>
+<li>Redheffer's matrix has been in the <a href="https://blogs.mathworks.com/cleve/2019/06/24/bohemian-matrices-in-the-matlab-gallery/">MATLAB Gallery</a> for a long time, but I have ignored it .</li>
+<li>Redheffer's matrix can be used to compute Mertens function and investigate the <a href="https://en.wikipedia.org/wiki/Mertens_conjecture">Mertens conjecture</a>.</li>
+<li>A proof of the Mertens conjecture would also provide a proof of the <a href="https://en.wikipedia.org/wiki/Riemann_hypothesis">Riemann hypothesis</a>.</li>
+<li>For nearly a century, all the available computational evidence indicated that the Mertens conjecture was likely to be true.</li>
+<li>The Riemann hypothesis is the most important unsolved problem in mathematics and wins a Clay prize worth <a href="https://www.claymath.org/millennium/riemann-hypothesis">one-million dollars</a>.</li>
+<li>MATLAB's sparse matrix functions turn out to be useful in an investigation of Redheffer's matrix and the Mertens conjecture.</li>
+<li>However, it has been known since 1985 that the Mertens conjecture is false.</li>
+</ul>
+</div>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#82c24739-64fc-4329-b610-b923ff740e51">Redheffer's Matrix</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#fdc9a386-44e5-43bb-a9c1-8580cdb11520">M&ouml;bius Function</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#ebef8c86-e7dd-4ca8-9f35-7da51c2313c4">Mertens Function</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#36e351c3-4c49-43ab-8776-9f5f5e7011f6">Mertens Conjecture</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#4b56c506-95ad-4d6b-8f23-569f167616b7">Mertens Meets Redheffer</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#f8ff3cc0-f3e0-4d4d-84f5-b3049b3af76f">Redheffer Sparsity</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#3cf9c9a2-aba7-4a78-b8f2-96522c7fc05d"><tt>redheffer</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#221d2a42-3916-44d9-b314-debfbcfbaced">Sparse LU</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#c293a71a-bd97-4107-8fc8-3063376e0ea7"><tt>mertens</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#5dc1b513-cf9c-43c7-a3b7-06e75d99e97e">Mertens Conjecture Is False</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#4247c5bb-c39a-4a0a-88a9-4859dcc0e793">Postscripts</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#8b8af9b2-9248-420a-9072-b53f5d344050">References</a>
+</li>
+</ul>
+</div>
+
+<h4>Redheffer's Matrix<a name="82c24739-64fc-4329-b610-b923ff740e51"></a>
+</h4>
+<p>
+<a href="https://en.wikipedia.org/wiki/Raymond_Redheffer">Raymond Redheffer</a> (1921-2005) was an American mathematician, a professor at UCLA for 55 years, the author of several popular textbooks, the inventor of the electronic game <a href="https://en.wikipedia.org/wiki/Nim">Nim</a> and, with Ray and Charles Eames, the creator of a four-meter long poster <a href="https://www.worthpoint.com/worthopedia/1966-ray-charles-eames-office-men-1724813663">Men of Modern Mathematics</a>.</p>
+
+<p>Redheffer's matrix is a matrix of zeros and ones. <tt>A(k,j)</tt> equals one if <tt>j</tt> is a divisor of <tt>k</tt>. In addition, the first column is all ones.</p>
+
+<pre>  function A = redheffer(n)
+      k = 1:n;
+      j = k';
+      A = (mod(k,j) == 0);
+      A(:,1) = 1;
+  end</pre>
+<p>Or</p>
+
+<pre>  A = gallery('redheff',n)</pre>
+<p>Here is the 10-by-10.</p>
+
+<pre class="codeinput">
+    A = redheffer(10);
+    disp(full(A))
+</pre>
+<pre class="codeoutput">
+     1     1     1     1     1     1     1     1     1     1
+     1     1     0     1     0     1     0     1     0     1
+     1     0     1     0     0     1     0     0     1     0
+     1     0     0     1     0     0     0     1     0     0
+     1     0     0     0     1     0     0     0     0     1
+     1     0     0     0     0     1     0     0     0     0
+     1     0     0     0     0     0     1     0     0     0
+     1     0     0     0     0     0     0     1     0     0
+     1     0     0     0     0     0     0     0     1     0
+     1     0     0     0     0     0     0     0     0     1
+</pre>
+<p>And here is a spy plot of the 200-by-200.</p>
+
+<pre class="codeinput">
+    A = redheffer(200);
+    spy(A)
+    title(<span class="string">'redheffer(200)'</span>)
+</pre>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/mertens_blog2_01.png" vspace="5" /> <h4>M&ouml;bius Function<a name="fdc9a386-44e5-43bb-a9c1-8580cdb11520"></a>
+</h4>
+<p>The M&ouml;bius function was introduced in 1832 by German mathematician August M&ouml;bius and is ubiquitous in the study of prime numbers. For positive integers <tt>n</tt>, <tt>μ(n)</tt> is</p>
+
+<div>
+<ul>
+<li>
+<tt>0</tt> if <tt>n</tt> has a squared prime factor,</li>
+<li>
+<tt>+1</tt> if <tt>n</tt> is square-free and has an even number of prime factors,</li>
+<li>
+<tt>-1</tt> if <tt>n</tt> is square-free and has an odd number of prime factors.</li>
+</ul>
+</div>
+
+<h4>Mertens Function<a name="ebef8c86-e7dd-4ca8-9f35-7da51c2313c4"></a>
+</h4>
+<p>
+<a href="https://en.wikipedia.org/wiki/Franz_Mertens">Franz Mertens</a> (1840-1927) was a Polish mathematician who spent most of his career in Austria at the University of Vienna. Here is a <a href="https://mathshistory.st-andrews.ac.uk/Biographies/Mertens/">link</a> to a biography of Mertens at the University of St. Andrews MacTutor project.</p>
+
+<p>The Mertens function is sum of values of the M&ouml;bius function. For a positive integer <tt>n</tt>, the Mertens function is</p>
+
+<pre>   M(n) = sum(μ(1:n))</pre>
+<p>So <tt>M(n)</tt> is the difference between the number of square-free integers with an even number of prime factors and those with an odd number.</p>
+
+<p>This graphic shows <tt>M(n)</tt> for <tt>n = 1:100000</tt>.</p>
+
+<pre class="codeinput">
+    mertens_plot_2
+</pre>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/mertens_blog2_02.png" vspace="5" /> <h4>Mertens Conjecture<a name="36e351c3-4c49-43ab-8776-9f5f5e7011f6"></a>
+</h4>
+<p>The Mertens function <tt>M(n)</tt> fluctuates wildly and grows slowly with increasing <tt>n</tt>. The graphic shows that M(n) is easily bounded by of <tt>sqrt(n)</tt> and <tt>-sqrt(n)</tt>, at least for <tt>n</tt> less than <tt>100k</tt>. The Mertens conjecture is that this continues for larger <tt>n</tt>.</p>
+
+<pre>  -sqrt(n) &lt; M(n) &lt; sqrt(n) for all n</pre>
+<p>The conjecture was included in a letter from Stieltjes to Hermite in 1895 and in a paper by Mertens in 1897. The result is important since a proof of the Mertens conjecture would imply the truth of the Riemann hypothesis.</p>
+
+<h4>Mertens Meets Redheffer<a name="4b56c506-95ad-4d6b-8f23-569f167616b7"></a>
+</h4>
+<p>I became interested in all this when I learned that the determinant of the MATLAB Gallery matrix which I have ignored for years is related to the Riemann hypothesis and the million-dollar prize.</p>
+
+<pre>  M(n) = det(gallery('redheff',n))</pre>
+<p>I know very little about the distribution of prime numbers and computing values of the M&ouml;bius function. On the other hand, I know a lot about numerical linear algebra and computing determinants.</p>
+
+<p>In general, I am dead set against computing determinants. They are often used to check for singularity or to somehow compute eigenvalues. But here the determinant is an integer counter of modest size.</p>
+
+<h4>Redheffer Sparsity<a name="f8ff3cc0-f3e0-4d4d-84f5-b3049b3af76f"></a>
+</h4>
+<p>Computing <tt>M(n)</tt> directly with <tt>det(redheffer(n))</tt> requires <tt>O(n^2)</tt> space and <tt>O(n^3)</tt> time and is not practical for large <tt>n</tt>.</p>
+
+<p>However, <tt>A = redheffer(n)</tt> is modestly sparse. Here is the fraction of nonzeros.</p>
+
+<pre>  s = nnz(A)/n^2</pre>
+<pre class="codeinput">
+    disp(sparsity)
+</pre>
+<pre class="codeoutput">
+       n         s    
+    _____    ________
+    10000    0.001037
+    20000    0.000553
+    30000    0.000382
+    40000    0.000294
+    50000    0.000239
+    60000    0.000203
+    70000    0.000176
+    80000    0.000156
+    90000    0.000139
+    1e+05    0.000127
+</pre>
+<p>Taking advantage of this sparsity and the MATLAB tools for sparse matrix computation provide linear space complexity and perhaps <tt>O(n^2)</tt> time complexity.</p>
+
+<h4>
+<tt>redheffer</tt><a name="3cf9c9a2-aba7-4a78-b8f2-96522c7fc05d"></a>
+</h4>
+<p>Here is MATLAB code to generate a sparse <tt>redheffer(n)</tt> without creating any full intermediate matrices.</p>
+
+<pre class="codeinput">type<span class="string">    redheffer</span>
+</pre>
+<pre class="codeoutput">
+    function A = redheffer(n)
+        j(1:n) = (1:n)';
+        k(1:n) = 1;
+        m = n;
+        for i = 2:n
+            t = [1 i:i:n]';
+            p = length(t);
+            j(m+(1:p)) = t;
+            k(m+(1:p)) = i;
+            m = m+p;
+        end
+        A = sparse(k,j,1,n,n);
+    end
+</pre>
+<p>As expected, we see that the execution time for <tt>redheffer(n)</tt> is a linear function of <tt>n</tt>. (The space required also grows linearly.)</p>
+
+<pre class="codeinput">
+    redheffer_time
+</pre>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/mertens_blog2_03.png" vspace="5" /> <h4>Sparse LU<a name="221d2a42-3916-44d9-b314-debfbcfbaced"></a>
+</h4>
+<p>The MATLAB Gaussian elimination function <tt>lu</tt> with one sparse input and four sparse outputs is designed for solving sparse linear systems.</p>
+
+<pre>  [L,U,P,Q] = lu(A)</pre>
+<p>Written primarily by Tim Davis and included in his UMFPACK package, the function uses an unsymmetric pattern multifrontal pivoting strategy to find permutations <tt>P</tt> and <tt>Q</tt> so that <tt>L</tt> is lower triangular, <tt>U</tt> is upper triangular and</p>
+
+<pre>  P*A*Q = L*U</pre>
+<p>Consequently, the determinant of <tt>A</tt> is the product of four easily computed determinants.</p>
+
+<pre>  det(A) = det(L)*det(U)*det(P)*det(Q)</pre>
+<p>The pivoting strategy aims to reduce fill-in while maintaining numerical stability.</p>
+
+<p>For example, here are <tt>L</tt> and <tt>U</tt> for the Redheffer matrix in the spy plot near the top of this blog post.</p>
+
+<pre class="codeinput">
+    close
+    A = redheffer(200);
+    [L,U,P,Q] = lu(A);
+    spy(L|U)
+    title(<span class="string">'L|U'</span>)
+</pre>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/mertens_blog2_04.png" vspace="5" /> <p>And here are the four determinants.</p>
+
+<pre class="codeinput">
+    dets = [det(L),det(U),det(P),det(Q)];
+    disp(dets)
+</pre>
+<pre class="codeoutput">
+    1    -8    -1    -1
+</pre>
+<p>Finally, <tt>M(200)</tt> is</p>
+
+<pre class="codeinput">
+    M_200 = det(L)*det(U)*det(P)*det(Q)
+</pre>
+<pre class="codeoutput">
+    M_200 =
+        -8
+</pre>
+<h4>
+<tt>mertens</tt><a name="c293a71a-bd97-4107-8fc8-3063376e0ea7"></a>
+</h4>
+<p>Mertens function can be computed with four lines of code.</p>
+
+<pre class="codeinput">
+    type<span class="string">    mertens</span>
+</pre>
+<pre class="codeoutput">
+    function M = mertens(n)
+        der = @(x) full(round(prod(diag(x))));
+        A = redheffer(n);
+        [L,U,P,Q] = lu(A);
+        M = der(L)*der(U)*det(P)*det(Q);
+    end
+</pre>
+<p>Execution time for <tt>mertens</tt> is dominated by the time in sparse <tt>lu</tt>. The time required to compute the four determinants is an order of magnitude smaller than the other two.</p>
+
+<p>Experimentally, we see that the time complexity of sparse <tt>lu</tt> is <tt>O(n^2)</tt>, but we have no proof.</p>
+
+<pre class="codeinput">
+    mertens_time
+</pre>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/mertens_blog2_05.png" vspace="5" /> <h4>Mertens Conjecture Is False<a name="5dc1b513-cf9c-43c7-a3b7-06e75d99e97e"></a>
+</h4>
+<p>The Mertens conjecture stood for nearly 100 years before it was proved false in 1985 by Andrew Odlyzko and Herman te Riele. The authors present indirect proofs that</p>
+
+<pre>  lim sup (n -&gt; inf) M(n)/sqrt(n) &gt; 1.06</pre>
+<pre>  lim inf (n -&gt; inf) M(n)/sqrt(n) &lt; -1.009</pre>
+<p>Odlyzko and te Riele do not actually produce any value of <tt>n</tt> for which <tt>M(n) &gt; sqrt(x)</tt>. They suspect that any Mertens conjecture counterexample requires <tt>n</tt> &gt; $10^{30}$, which is far beyond any computation possible today.</p>
+
+<p>Odlyzko and te Riele also describe several complete tabulations of <tt>M(n)</tt> for <tt>n</tt> as large as $7.8 \cdot 10^{9}$ . These computations do not use Redheffer determinants.</p>
+
+<h4>Postscripts<a name="4247c5bb-c39a-4a0a-88a9-4859dcc0e793"></a>
+</h4>
+<p>To tell the truth, I did not really expect to find any Mertens or Riemann counterexamples. I did, however, enjoy computing determinants for the first time and discovering an unexpected use for sparse LU.</p>
+
+<p>Thanks a lot to Tim Davis for his help with this post.</p>
+
+<h4>References<a name="8b8af9b2-9248-420a-9072-b53f5d344050"></a>
+</h4>
+<p>A. M. Odlyzko and H. J. J. te Riele, "Disproof of the Mertens conjecture", <i>Journal f&uuml;r die reine und angewandte Mathematik</i>, Vol. 357 (1985), Pages138-160. <a href="https://eudml.org/doc/152712">https://eudml.org/doc/152712</a>.</p>
+
+<p>Timothy A. Davis, "A Column Pre-Ordering Strategy for the Unsymmetric-Pattern Multifrontal Method", <i>ACM Transactions on Mathematical Software</i>, Vol. 30, No. 2, June 2004, Pages 165&ndash;195. <a href="https://dl.acm.org/doi/abs/10.1145/992200.992205">https://dl.acm.org/doi/abs/10.1145/992200.992205</a>.</p>
+
+<!-- 
+    function grabCode_500e91acec4e4151a58ba494fb74b941() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='500e91acec4e4151a58ba494fb74b941 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 500e91acec4e4151a58ba494fb74b941';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+500e91acec4e4151a58ba494fb74b941 ##### SOURCE BEGIN #####
+%% Redheffer, Mertens, Riemann and $1M
+% I didn't know anything about these topics until a couple of
+% weeks ago. Now I can't stop thinking about them.
+%
+% * Redheffer's matrix has been in the 
+% <https://blogs.mathworks.com/cleve/2019/06/24/bohemian-matrices-in-the-matlab-gallery/
+% MATLAB Gallery> for a long time, but I have ignored it        .
+% * Redheffer's matrix can be used to compute Mertens function and
+% investigate the
+% <https://en.wikipedia.org/wiki/Mertens_conjecture
+% Mertens conjecture>.
+% * A proof of the Mertens conjecture would also provide a proof of the
+% <https://en.wikipedia.org/wiki/Riemann_hypothesis Riemann hypothesis>.
+% * For nearly a century, all the available computational evidence
+% indicated that the Mertens conjecture was likely to be true.
+% * The Riemann hypothesis is the most important unsolved problem in
+% mathematics and wins a Clay prize worth 
+% <https://www.claymath.org/millennium/riemann-hypothesis
+% one-million dollars>.
+% * MATLAB's sparse matrix functions turn out to be useful
+% in an investigation of Redheffer's matrix and the Mertens conjecture.
+% * However, it has been known since 1985 that the Mertens
+% conjecture is false.
+
+%% Redheffer's Matrix
+% <https://en.wikipedia.org/wiki/Raymond_Redheffer Raymond Redheffer>
+% (1921-2005) was an American mathematician, a professor at UCLA for
+% 55 years, the author of several popular textbooks, the inventor
+% of the electronic game <https://en.wikipedia.org/wiki/Nim Nim>   
+% and, with Ray and Charles Eames, the creator of a four-meter long poster
+% <https://www.worthpoint.com/worthopedia/1966-ray-charles-eames-office-men-1724813663
+% Men of Modern Mathematics>.
+%
+% Redheffer's matrix is a matrix of zeros and ones.
+% |A(k,j)| equals one if |j| is a divisor of |k|.
+% In addition, the first column is all ones.
+%
+%    function A = redheffer(n)
+%        k = 1:n;
+%        j = k';
+%        A = (mod(k,j) == 0);
+%        A(:,1) = 1;
+%    end
+%
+% Or
+%
+%    A = gallery('redheff',n)
+%
+% Here  is the 10-by-10.
+
+    A = redheffer(10);
+    disp(full(A))
+
+%%
+% And here is a spy plot of the 200-by-200.
+
+    A = redheffer(200);
+    spy(A)
+    title('redheffer(200)')
+
+%% Möbius Function
+% The Möbius function was introduced in 1832 by German mathematician
+% August Möbius and is ubiquitous in the study of prime numbers.
+% For positive integers |n|, |μ(n)| is
+%
+% * |0| if |n| has a squared prime factor,
+% * |+1| if |n| is square-free and has an even number of prime factors,
+% * |-1| if |n| is square-free and has an odd number of prime factors.
+%
+%% Mertens Function
+% <https://en.wikipedia.org/wiki/Franz_Mertens Franz Mertens>
+% (1840-1927) was a Polish mathematician who spent most of his
+% career in Austria at the University of Vienna.
+% Here is a
+% <https://mathshistory.st-andrews.ac.uk/Biographies/Mertens/
+% link> to a biography of Mertens at the University of St. Andrews
+% MacTutor project.
+%
+% The Mertens function is sum of values of the Möbius function.
+% For a positive integer |n|, the Mertens function is
+%
+%     M(n) = sum(μ(1:n))
+%
+% So |M(n)| is the difference between the number of square-free
+% integers with an even number of prime factors and those with an
+% odd number.
+%
+% This graphic shows |M(n)| for |n = 1:100000|.
+
+    mertens_plot_2
+
+%% Mertens Conjecture
+% The Mertens function |M(n)| fluctuates wildly and grows slowly with
+% increasing |n|.  The graphic shows that M(n) is easily bounded
+% by of |sqrt(n)| and |-sqrt(n)|, at least for |n| less than |100k|.
+% The Mertens conjecture is that this continues for larger |n|.
+% 
+%    -sqrt(n) < M(n) < sqrt(n) for all n
+%
+% The conjecture was included in a letter from Stieltjes to
+% Hermite in 1895 and in a paper by Mertens in 1897.
+% The result is important since a proof of the Mertens conjecture
+% would imply the truth of the Riemann hypothesis.
+
+%% Mertens Meets Redheffer
+% I became interested in all this when I learned that
+% the determinant of the MATLAB Gallery matrix which I have
+% ignored for years is related to the Riemann hypothesis and
+% the million-dollar prize.
+%
+%    M(n) = det(gallery('redheff',n))
+%
+% I know very little about the distribution of prime numbers and
+% computing values of the Möbius function.  On the other hand,
+% I know a lot about numerical linear algebra and computing determinants.
+%
+% In general, I am dead set against computing determinants.
+% They are often used to check for singularity or to somehow
+% compute eigenvalues.  But here the determinant is an
+% integer counter of modest size.
+
+%% Redheffer Sparsity
+% Computing |M(n)| directly with |det(redheffer(n))| requires
+% |O(n^2)| space and |O(n^3)| time and is not practical for
+% large |n|.
+%
+% However, |A = redheffer(n)| is modestly sparse.
+% Here is the fraction of nonzeros.
+% 
+%    s = nnz(A)/n^2
+     
+     disp(sparsity)
+
+%% 
+% Taking advantage of this sparsity and the MATLAB tools for
+% sparse matrix computation provide
+% linear space complexity and perhaps |O(n^2)| time complexity.
+
+%% |redheffer|
+% Here is MATLAB code to generate a sparse |redheffer(n)| without
+% creating any full intermediate matrices.
+
+
+    type redheffer
+
+%%
+% As expected, we see that the execution time for |redheffer(n)|
+% is a linear function of |n|.  (The space required also grows linearly.)
+
+    redheffer_time
+
+%% Sparse LU
+% The MATLAB Gaussian elimination function |lu| with one sparse
+% input and four sparse outputs
+% is designed for solving sparse linear systems.
+% 
+%    [L,U,P,Q] = lu(A)
+%
+% Written primarily
+% by Tim Davis and included in his UMFPACK package, the function
+% uses an unsymmetric pattern multifrontal pivoting strategy to
+% find permutations |P| and |Q| so that |L| is lower triangular,
+% |U| is upper triangular and
+%
+%    P*A*Q = L*U
+%
+% Consequently, the determinant of |A| is the product of four easily
+% computed determinants.
+%
+%    det(A) = det(L)*det(U)*det(P)*det(Q)
+%
+% The pivoting strategy aims to reduce fill-in while maintaining
+% numerical stability.
+
+%%
+% For example, here are |L| and |U| for the Redheffer matrix
+% in the spy plot near the top of this blog post.
+
+    close
+    A = redheffer(200);
+    [L,U,P,Q] = lu(A);
+    spy(L|U)
+    title('L|U')
+    
+%%
+% And here are the four determinants.
+
+    dets = [det(L), det(U), det(P), det(Q)];
+    disp(dets)
+
+%%
+% Finally, |M(200)| is
+
+    M_200 = det(L)*det(U)*det(P)*det(Q)
+
+%% |mertens|
+% Mertens function can be computed with four lines of code.
+
+    type mertens
+
+%%
+% Execution time for |mertens| is dominated by the time in sparse |lu|.
+% The time required to compute the four determinants is an order of
+% magnitude smaller than the other two.  
+%
+% Experimentally, we see that the time complexity of sparse |lu| is
+% |O(n^2)|, but we have no proof.   
+
+    mertens_time
+
+%% Mertens Conjecture Is False
+% The Mertens conjecture stood for nearly 100 years before it was 
+% proved false in 1985 by Andrew Odlyzko and Herman te Riele.
+% The authors present indirect proofs that
+%
+%    lim sup (n -> inf) M(n)/sqrt(n) > 1.06
+%
+%    lim inf (n -> inf) M(n)/sqrt(n) < -1.009
+%
+% Odlyzko and te Riele do not actually produce any value of |n| for 
+% which |M(n) > sqrt(x)|. They suspect that any Mertens conjecture
+% counterexample requires |n| > $10^{30}$, which is far beyond any
+% computation possible today.
+%
+% Odlyzko and te Riele also describe several complete tabulations of 
+% |M(n)| for |n| as large as $7.8 \cdot 10^{9}$ .  These computations
+% do not use Redheffer determinants.
+
+%% Postscripts
+% To tell the truth, I did not really expect to find any Mertens or
+% Riemann counterexamples.  I did, however, enjoy computing determinants
+% for the first time and discovering an unexpected use for sparse LU. 
+%
+% Thanks a lot to Tim Davis for his help with this post.
+
+%% References
+% A. M. Odlyzko and H. J. J. te Riele,
+% "Disproof of the Mertens conjecture",
+% _Journal für die reine und angewandte Mathematik_,
+% Vol. 357 (1985), Pages138-160. <https://eudml.org/doc/152712>.
+%
+% Timothy A. Davis,
+% "A Column Pre-Ordering Strategy for the Unsymmetric-Pattern Multifrontal
+% Method",
+% _ACM Transactions on Mathematical Software_,
+% Vol. 30, No. 2, June 2004, Pages 165–195.
+% <https://dl.acm.org/doi/abs/10.1145/992200.992205>.
+% 
+
+
+##### SOURCE END ##### 500e91acec4e4151a58ba494fb74b941
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[I didn't know anything about these topics until a couple of weeks ago. Now I can't stop thinking about them.]]></summary></entry><entry><title type="html">NA_Digest and NA_Net</title><link href="https://hpc.social/commercial-blog/2024/na-digest-and-na-net/" rel="alternate" type="text/html" title="NA_Digest and NA_Net" /><published>2024-08-31T21:44:36-06:00</published><updated>2024-08-31T21:44:36-06:00</updated><id>https://hpc.social/commercial-blog/2024/na-digest-and-na-net</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/na-digest-and-na-net/"><![CDATA[<div class="content"><!--introduction-->
+<p>The <a href="https://www.netlib.org/na-digest-html/">NA-Digest</a> is an electronic newsletter for the numerical analysis and scientific software community. The NA-Digest is one of world's first examples of social networking. The Digest is one of the forces that makes our community a living, viable community.</p>
+
+<p>The Digest is part of NA-Net, which also includes <a href="https://www.netlib.org/">Netlib</a>, a collection of mathematical software, papers, and databases.</p>
+
+<p>For its first forty years, the NA-Digest has had only four editors. Now, we are <a href="https://www.netlib.org/na-digest-html/24/v24n11.html">adding two more</a>. As we do that, I would like to take a personal look back at the history of the NA-Digest.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#42644b1c-8ee9-4edf-8399-1ffb5ba7f590">Gene and Mark</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#22096a5c-5e18-461e-9393-60f6a3bbb50c">Jack and Eric</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#1fd1e215-f726-417a-aa69-971302131b6f">Tammy and Danny</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#7c1ce1c2-47b9-4c04-a89b-6f5b35367817">David and Alex</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#a8dab39f-1171-4d72-8485-cc39142450cd">Archive</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#319b8bc4-61b1-47d7-a372-6ea6ffd20197">Members</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#82cfa35d-28ab-4312-984e-623267f106d4">Important Postings</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#2e3065dc-2d44-4a9f-96fc-d8376c9b2490">Thanks</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#8f0306a7-58c2-424a-bae9-f87fb1ae7dc5">References</a>
+</li>
+</ul>
+</div>
+
+<h4>Gene and Mark<a name="42644b1c-8ee9-4edf-8399-1ffb5ba7f590"></a>
+</h4>
+<p>Like many other developments in the numerical analysis world, the Digest began with <a href="https://en.wikipedia.org/wiki/Gene_H._Golub">Gene Golub</a>. In the early 1980's, Golub was chair of Stanford's Computer Science Department. Email was a new thing and Gene maintained a list of email addresses for his many friends around the world. Email addresses came in many different formats; today's system of domain names was not yet in wide spread use.</p>
+
+<p>In 1984, Mark Kent, one of Gene's grad students, with help from Ray Tuminaro, Mark Crispin and Dan Kolkowitz, wrote software that used Gene's list in an email forwarding service. Mail sent to</p>
+
+<p>
+<tt>na.</tt><i>name</i><tt>@su-score</tt>
+</p>
+
+<p>would be forwarded to the person with that last name. And email sent to</p>
+
+<p>
+<tt>na@su-score</tt>
+</p>
+
+<p>would be forwarded to everyone on the list.</p>
+
+<p>Gene and Mark Kent began to gather contributions together and send the collection out periodically. By February 1987, this had evolved into a moderated weekly newsletter. Gene dubbed these email services the <i>NA-Net</i>.</p>
+
+<p>Nick Trefethen has this memory.</p>
+
+<pre>  Early in the days of email, domain names were all over the place.
+  I think there was a period when Gene was using xxx.na for the
+  names of numerical analysts.  Then somebody decided addresses should
+  end with the country, giving us .uk and .fr and .ch and all
+  that.  For a period, we found that a lot of our numerical
+  analysis emails were being directed to Namibia!</pre>
+<p>In 1987, Gene asked me to moderate NA-Digest temporarily while he went on a sabbatical. That temporary position ultimately lasted 18 years, until 2005.</p>
+
+<h4>Jack and Eric<a name="22096a5c-5e18-461e-9393-60f6a3bbb50c"></a>
+</h4>
+<p>
+<a href="https://history.siam.org/oralhistories/dongarra.htm">Jack Dongarra</a> began his career at Argonne National Laboratory. Jack's colleague, Eric Grosse, began his career at Bell Labs. In 1984, Jack and Eric created Netlib, a software repository and distribution service, and merged it with NA-Net. In 1989, Jack and the NA-Net system moved from Argonne to Oak Ridge National Lab and the University of Tennessee.</p>
+
+<p>Keith Moore, at the University of Tennessee, rewrote the NA-Net software and maintained the servers for many years.</p>
+
+<p>Gerald Ragghianti, the Technical Services Leader at Tennessee's Innovative Computer Lab, currently maintains the NA-Net software and servers.</p>
+
+<h4>Tammy and Danny<a name="1fd1e215-f726-417a-aa69-971302131b6f"></a>
+</h4>
+<p>In 2005, I asked Tammy Kolda, who was then at Sandia Labs in Livermore, to be the NA-Digest editor. Tammy's <a href="https://www.google.com/search?q=tamara+kolda">Wikipedia page</a> reveals that her given name is "Tamara", but everybody calls her "Tammy". She left Sandia is 2021 and now has her own consulting company, <a href="https://www.mathsci.ai/">MathSci.ai</a>.</p>
+
+<p>In 2010, Tammy recommended that Danny Dunlavy, from Sandia Labs in Albuquerque, take over as editor. He has been the editor for 14 years. Danny's day job at Sandia's <a href="https://www.sandia.gov/ccr">Center for Computing Research</a> involves a wide range of fields including computer architecture, cognitive modeling and discrete mathematics.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/OldEditors.png" vspace="5" /> </p>
+
+<h4>David and Alex<a name="7c1ce1c2-47b9-4c04-a89b-6f5b35367817"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/NewEditors.png" vspace="5" /> </p>
+
+<p>
+<a href="https://www.netlib.org/na-digest-html/24/v24n11.html">Starting next week</a>, NA-Digest and NA-Net will move <a href="https://en.wikipedia.org/wiki/Lock,_stock,_and_barrel">lock, stock, and barrel</a> to Cornell University. The new editors are <a href="https://www.cs.cornell.edu/~bindel/bio">David Bindell</a> and <a href="https://pi.math.cornell.edu/~ajt/">Alex Townsend</a>. Cornell's IT organization will be taking over the logistics.</p>
+
+<p>David, Alex and <a href="https://www.cs.cornell.edu/~damle/#About">Anil Damle</a> are also the hosts for <a href="https://householder-symposium.github.io">Householder XXII</a>, June 8-13, 2025.</p>
+
+<h4>Archive<a name="a8dab39f-1171-4d72-8485-cc39142450cd"></a>
+</h4>
+<p>Every issue of NA-Digest since February 1987 is available at <a href="https://www.netlib.org/na-digest-html">https://www.netlib.org/na-digest-html</a>.</p>
+
+<h4>Members<a name="319b8bc4-61b1-47d7-a372-6ea6ffd20197"></a>
+</h4>
+<p>When I succeeded Gene as editor in 1987, there were about 800 names on the NA-Net mailing list. Today, in 2024, there are a little over 10,000. Discontinuities in the size of the list result when unused and illegitimate names are removed.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/NA_Digs.png" vspace="5" /> </p>
+
+<h4>Important Postings<a name="82cfa35d-28ab-4312-984e-623267f106d4"></a>
+</h4>
+<p>I have made three personally important announcements in the Digest over the years.</p>
+
+<p>
+<b>October 29, 1989</b>
+</p>
+
+<p>In 1989 I was working at <a href="https://blogs.mathworks.com/cleve/2013/11/25/the-ardent-titan-part-1/">Ardent Computer</a>, a startup in Silicon Valley. I announced in NA-Digest that MathWorks was looking for a numerical analyst. (Note the MathWorks telephone number near the end of this announcement.)</p>
+
+<pre>  From: Cleve Moler &lt;na.moler@na-net.stanford.edu&gt;
+  Date: Sun Oct 29 10:39:38 PST 1989
+  Subject: Positions at The MathWorks</pre>
+<pre>  The MathWorks is the company which develops and markets MATLAB.
+  The company currently employs about 30 people and expects to
+  add three or four more soon. The company headquarters is in
+  East Natick, Massachusetts, which is about a half hour drive
+  west of Boston.</pre>
+<pre>  The background and interests expected for the various positions
+  available range from numerical linear algebra and matrix computation
+  to systems programming and graphics. Educational level and
+  experience expected range from inexperienced beginner willing
+  to learn to seasoned Ph.D. with a personal library of M-files.</pre>
+<pre>  For more information, send email to na.moler@na-net.stanford.edu
+  or phone me at 408-732-0400. Or, contact the MathWorks' president,
+  John Little, with email to jnl@mathworks.com, phone 508-653-1415,
+  or write to:</pre>
+<pre>  The MathWorks
+  21 Eliot Street
+  South Natick, MA 01760</pre>
+<p>
+<b>November 26, 1989</b>
+</p>
+
+<p>Shortly after that announcement, <a href="https://en.wikipedia.org/wiki/Stardent_Inc.">Ardent imploded</a> and I said that I was taking the job myself.</p>
+
+<pre>  From: Cleve Moler &lt;moler@mathworks.com&gt;
+  Date: Sun Nov 26 09:16:32 PST 1989
+  Subject: Change of Address for Moler</pre>
+<pre>  A couple of weeks ago, I made an announcement here that
+  The MathWorks, the MATLAB company, was looking to fill several
+  positions, including one for a numerical analyst. Now, I've
+  decided to take that slot myself. I'm one of the founders of
+  MathWorks, and have always been a consultant to the company, but
+  now I'll be a full time employee. For a while at least, I'll
+  be working out of my home in California, even though MathWorks
+  headquarters is in Massachusetts. (There are already a couple
+  of other MathWorks developers in the Bay Area.)
+  . . .
+  My electronic address is "moler@mathworks.com". If your mailer
+  can't find the route via uunet to mathworks.com, you can still
+  use "na.moler@na-net.stanford.edu".</pre>
+<p>
+<b>November 16, 2007</b>
+</p>
+
+<p>In November 2007 I was attending the Super Computing conference in Reno. I had rented a car and intended to drive to the Bay Area after the conference. But my wife called me and said, "Hey Cleve, have you heard that Gene is in the hospital?" I left SC immediately and drove to Palo Alto. Two days later we sent out a special issue of the Digest:</p>
+
+<pre>  From: Cleve Moler &lt;Cleve.Moler@mathworks.com&gt;
+  Date: Fri, 16 Nov 2007 17:55:42 -0500
+  Subject: Gene Golub, 1932 - 2007</pre>
+<pre>  Gene Golub, founder of the NA Digest, passed away today, Friday, November 16,
+  at the Stanford University Hospital. He was 75 years old.</pre>
+<pre>  Gene returned home to Stanford recently from a trip to Hong Kong. He was
+  planning to leave again Tuesday on another trip, this one to Zurich where the
+  ETH was to honor him with a special degree. Instead, Sunday night he went to
+  the emergency room because he was "feeling lousy". On Tuesday, he was found
+  to have AML, acute myelogenous leukemia, a form of cancer that affects the
+  white blood cells. This is a potentially curable disease and he was expecting
+  to begin chemotherapy today. But serious complications developed suddenly
+  over night.</pre>
+<pre>  I was able to see Gene for an hour last night and he was in reasonably good
+  spirits. Mike Saunders was trying to get Gene's laptop to use dial-up over
+  the hospital's phone system because Gene said he was a couple of days behind
+  on his email. I was planning to get a wireless card for his machine today.
+  None of us had any idea how suddenly the situation would worsen.</pre>
+<pre>  The Stanford ICME students have created a memorial blog at
+  http://genehgolub.blogspot.com .</pre>
+<pre>  Our community has lost its foremost member. He was a valued colleague and
+  friend. Goodbye, Gene.</pre>
+<pre>  -- Cleve Moler</pre>
+<h4>Thanks<a name="2e3065dc-2d44-4a9f-96fc-d8376c9b2490"></a>
+</h4>
+<div>
+<ul>
+<li>Gene Golub and Mark Kent for creating NA-Digest and NA-Net.</li>
+<li>Tammy Kolda and Danny Dunlavy for editing the Digest for two decades.</li>
+<li>Jack Dongarra, Eric Grosse, Keith Moore and Geri Ragghianti for creating Netlib and for hosting the system for four decades.</li>
+<li>David Bindel and Alex Townsend for joining this team.</li>
+</ul>
+</div>
+
+<h4>References<a name="8f0306a7-58c2-424a-bae9-f87fb1ae7dc5"></a>
+</h4>
+<p>Jack Dongarra, Gene Golub, Eric Grosse, Cleve Moler and Keith Moore. "Netlib and NA-Net: Building a Scientific Computing Community", <a href="https://ieeexplore.ieee.org/document/4544554"><i>IEEE Annals of the History of Computing</i></a>, (Volume: 30, Issue: 2, April-June 2008). <a href="https://blogs.mathworks.com/cleve/files/icl-utk-351-2008.pdf">A PDF is available here</a>.</p>
+
+<p>Mark Kent, <a href="https://www.research-collection.ethz.ch/handle/20.500.11850/68968">The Numerical Analysis Net (NA-NET)</a>, Technical Report 85, ETH Zurich, Institut fuer Informatik, 1988.</p>
+
+<!-- 
+    function grabCode_ad3526f9a6bc4fedb6f2b87f8bc0de10() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='ad3526f9a6bc4fedb6f2b87f8bc0de10 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' ad3526f9a6bc4fedb6f2b87f8bc0de10';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+ad3526f9a6bc4fedb6f2b87f8bc0de10 ##### SOURCE BEGIN #####
+%% NA_Digest and NA_Net
+% The <https://www.netlib.org/na-digest-html/  NA-Digest>
+% is an electronic newsletter for the numerical analysis and
+% scientific software community.
+% The NA-Digest is one of world's first examples of social networking.
+% The Digest is one of the forces that makes our community
+% a living, viable community.
+%
+% The Digest is part of NA-Net, which also includes 
+% <https://www.netlib.org/ Netlib>, a collection of mathematical software,
+% papers, and databases.
+%
+% For its first forty years, the NA-Digest has had only four editors.
+% Now, we are
+% <https://www.netlib.org/na-digest-html/24/v24n11.html
+% adding two more>.
+% As we do that, I would like to take a personal look back at the
+% history of the NA-Digest.
+
+%% Gene and Mark
+% Like many other developments in the numerical analysis world,
+% the Digest began with <https://en.wikipedia.org/wiki/Gene_H._Golub
+% Gene Golub>. In the early 1980's, Golub was chair of Stanford's
+% Computer Science Department. Email was a new thing and Gene
+% maintained a list of email addresses for his many friends
+% around the world.  Email addresses came in many different formats;
+% today's system of domain names was not yet in wide spread use.
+%
+% In 1984, Mark Kent, one of Gene's grad students,
+% with help from Ray Tuminaro, Mark Crispin and Dan Kolkowitz,
+% wrote software that used Gene's list in an email
+% forwarding service.  Mail sent to
+%
+% |na.|_name_|@su-score|
+%
+% would be forwarded to the person with that last name. And email sent to
+%
+% |na@su-score| 
+%
+% would be forwarded to everyone on the list.
+%
+% Gene and Mark Kent
+% began to gather contributions together
+% and send the collection out periodically.  By February 1987, this
+% had evolved into a moderated weekly newsletter.
+% Gene dubbed these email services the _NA-Net_.
+%
+% Nick Trefethen has this memory.
+%
+%    Early in the days of email, domain names were all over the place.
+%    I think there was a period when Gene was using xxx.na for the
+%    names of numerical analysts.  Then somebody decided addresses should
+%    end with the country, giving us .uk and .fr and .ch and all
+%    that.  For a period, we found that a lot of our numerical 
+%    analysis emails were being directed to Namibia!
+%
+% In 1987, Gene asked me to moderate NA-Digest temporarily while he
+% went on a sabbatical.  That temporary position ultimately
+% lasted 18 years, until 2005.
+%
+
+%% Jack and Eric
+% <https://history.siam.org/oralhistories/dongarra.htm Jack Dongarra>
+% began his career at Argonne National Laboratory. Jack's colleague,
+% Eric Grosse, began his career at Bell Labs.
+% In 1984, Jack and Eric created Netlib, a software repository and
+% distribution service, and merged it with NA-Net.
+% In 1989, Jack and the NA-Net system moved from Argonne to 
+% Oak Ridge National Lab and the University of Tennessee.
+%
+% Keith Moore, at the University of Tennessee,
+% rewrote the NA-Net software and maintained the servers for many years.
+%
+% Gerald Ragghianti, the Technical Services Leader at
+% Tennessee's Innovative Computer Lab, currently maintains the NA-Net
+% software and servers.
+
+%% Tammy and Danny
+% In 2005, I asked Tammy Kolda, who was then at Sandia Labs
+% in Livermore, to be the NA-Digest editor.
+% Tammy's <https://www.google.com/search?q=tamara+kolda Wikipedia page>
+% reveals that her given name is "Tamara", but everybody calls her "Tammy".  
+% She left Sandia is 2021 and now has her own consulting company,
+% <https://www.mathsci.ai/ MathSci.ai>. 
+% 
+% In 2010, Tammy recommended that Danny Dunlavy, from Sandia Labs in 
+% Albuquerque, take over as editor.  He has been the editor for 14 years.
+% Danny's day job at Sandia's
+% <https://www.sandia.gov/ccr Center for Computing Research>
+% involves a wide range of fields including computer architecture,
+% cognitive modeling and discrete mathematics.
+%
+% <<OldEditors.png>>
+%
+
+%% David and Alex
+%
+% <<NewEditors.png>>
+%
+% <https://www.netlib.org/na-digest-html/24/v24n11.html
+% Starting next week>, NA-Digest and NA-Net will move
+% <https://en.wikipedia.org/wiki/Lock,_stock,_and_barrel
+% lock, stock, and barrel> to Cornell University.
+% The new editors are
+% <https://www.cs.cornell.edu/~bindel/bio David Bindell>
+% and
+% <https://pi.math.cornell.edu/~ajt/ Alex Townsend>.
+% Cornell's IT organization will be taking over the logistics.
+%
+% David, Alex and <https://www.cs.cornell.edu/~damle/#About Anil Damle>
+% are also the hosts for 
+% <https://householder-symposium.github.io Householder XXII>,
+% June 8-13, 2025.
+
+%% Archive
+% Every issue of NA-Digest since February 1987
+% is available at
+% <https://www.netlib.org/na-digest-html>.
+
+%% Members
+% When I succeeded Gene as editor in 1987, there were about 800 names
+% on the NA-Net mailing list.  Today, in 2024, there are a little
+% over 10,000.
+% Discontinuities in the size of the list result when
+% unused and illegitimate names are removed.
+%
+% <<NA_Digs.png>>
+
+%% Important Postings
+% I have made three personally important announcements in the Digest over
+% the years. 
+%
+% *October 29, 1989*
+%
+% In 1989 I was working at
+% <https://blogs.mathworks.com/cleve/2013/11/25/the-ardent-titan-part-1/
+% Ardent Computer>, a startup in Silicon Valley.
+% I announced in NA-Digest that MathWorks was looking for a numerical
+% analyst. (Note the MathWorks telephone number near the end of this
+% announcement.)
+%
+%    From: Cleve Moler <na.moler@na-net.stanford.edu>
+%    Date: Sun Oct 29 10:39:38 PST 1989
+%    Subject: Positions at The MathWorks
+%   
+%    The MathWorks is the company which develops and markets MATLAB.
+%    The company currently employs about 30 people and expects to
+%    add three or four more soon. The company headquarters is in
+%    East Natick, Massachusetts, which is about a half hour drive
+%    west of Boston.
+%   
+%    The background and interests expected for the various positions
+%    available range from numerical linear algebra and matrix computation
+%    to systems programming and graphics. Educational level and
+%    experience expected range from inexperienced beginner willing
+%    to learn to seasoned Ph.D. with a personal library of M-files.
+%
+%    For more information, send email to na.moler@na-net.stanford.edu
+%    or phone me at 408-732-0400. Or, contact the MathWorks' president,
+%    John Little, with email to jnl@mathworks.com, phone 508-653-1415,
+%    or write to:
+%
+%    The MathWorks
+%    21 Eliot Street
+%    South Natick, MA 01760
+%
+% *November 26, 1989*
+%
+% Shortly after that announcement, 
+% <https://en.wikipedia.org/wiki/Stardent_Inc. Ardent imploded>
+% and I said that I was taking the job myself.
+%
+%    From: Cleve Moler <moler@mathworks.com>
+%    Date: Sun Nov 26 09:16:32 PST 1989
+%    Subject: Change of Address for Moler
+%    
+%    A couple of weeks ago, I made an announcement here that
+%    The MathWorks, the MATLAB company, was looking to fill several
+%    positions, including one for a numerical analyst. Now, I've
+%    decided to take that slot myself. I'm one of the founders of
+%    MathWorks, and have always been a consultant to the company, but
+%    now I'll be a full time employee. For a while at least, I'll    
+%    be working out of my home in California, even though MathWorks
+%    headquarters is in Massachusetts. (There are already a couple
+%    of other MathWorks developers in the Bay Area.)
+%    . . .
+%    My electronic address is "moler@mathworks.com". If your mailer
+%    can't find the route via uunet to mathworks.com, you can still
+%    use "na.moler@na-net.stanford.edu".
+%
+% *November 16, 2007*
+%
+% In November 2007 I was attending the Super Computing conference in
+% Reno.  I had rented a car and intended to drive to the Bay Area
+% after the conference.  But my wife called me and said,
+% "Hey Cleve, have you heard that Gene is in the hospital?"
+% I left SC immediately and drove to Palo Alto.  Two days later
+% we sent out a special issue of the Digest:
+%
+%    From: Cleve Moler <Cleve.Moler@mathworks.com>
+%    Date: Fri, 16 Nov 2007 17:55:42 -0500
+%    Subject: Gene Golub, 1932 - 2007
+%    
+%    Gene Golub, founder of the NA Digest, passed away today, Friday, November 16,
+%    at the Stanford University Hospital. He was 75 years old.
+%    
+%    Gene returned home to Stanford recently from a trip to Hong Kong. He was
+%    planning to leave again Tuesday on another trip, this one to Zurich where the
+%    ETH was to honor him with a special degree. Instead, Sunday night he went to
+%    the emergency room because he was "feeling lousy". On Tuesday, he was found
+%    to have AML, acute myelogenous leukemia, a form of cancer that affects the
+%    white blood cells. This is a potentially curable disease and he was expecting
+%    to begin chemotherapy today. But serious complications developed suddenly
+%    over night.
+%    
+%    I was able to see Gene for an hour last night and he was in reasonably good
+%    spirits. Mike Saunders was trying to get Gene's laptop to use dial-up over
+%    the hospital's phone system because Gene said he was a couple of days behind
+%    on his email. I was planning to get a wireless card for his machine today.
+%    None of us had any idea how suddenly the situation would worsen.
+%    
+%    The Stanford ICME students have created a memorial blog at
+%    http://genehgolub.blogspot.com .
+%    
+%    Our community has lost its foremost member. He was a valued colleague and
+%    friend. Goodbye, Gene.
+%    
+%    REPLACE_WITH_DASH_DASH Cleve Moler
+
+%% Thanks
+%
+% * Gene Golub and Mark Kent for creating NA-Digest and NA-Net.
+% * Tammy Kolda and Danny Dunlavy for editing the Digest for two decades.
+% * Jack Dongarra, Eric Grosse, Keith Moore and Geri Ragghianti for
+% creating Netlib and for hosting the system for four decades.
+% * David Bindel and Alex Townsend for joining this team.
+
+%% References
+%
+% Jack Dongarra, Gene Golub, Eric Grosse, Cleve Moler and Keith Moore.
+% "Netlib and NA-Net: Building a Scientific Computing Community",
+% <https://ieeexplore.ieee.org/document/4544554
+% _IEEE Annals of the History of Computing_>,
+% (Volume: 30, Issue: 2, April-June 2008).
+% <https://blogs.mathworks.com/cleve/files/icl-utk-351-2008.pdf
+% A PDF is available here>.
+%
+% Mark Kent,
+% <https://www.research-collection.ethz.ch/handle/20.500.11850/68968
+% The Numerical Analysis Net (NA-NET)>, Technical Report 85, ETH
+% Zurich, Institut fuer Informatik, 1988.
+
+##### SOURCE END ##### ad3526f9a6bc4fedb6f2b87f8bc0de10
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[The NA-Digest is an electronic newsletter for the numerical analysis and scientific software community. The NA-Digest is one of world's first examples of social networking. The Digest is one of the forces that makes our community a living, viable community.]]></summary></entry><entry><title type="html">A Treacherous SVD</title><link href="https://hpc.social/commercial-blog/2024/a-treacherous-svd/" rel="alternate" type="text/html" title="A Treacherous SVD" /><published>2024-07-15T15:39:04-06:00</published><updated>2024-07-15T15:39:04-06:00</updated><id>https://hpc.social/commercial-blog/2024/a-treacherous-svd</id><content type="html" xml:base="https://hpc.social/commercial-blog/2024/a-treacherous-svd/"><![CDATA[<div class="content"><!--introduction-->
+<p>A few days ago, a bug report from our office in Cambridge caught my attention. Computing the singular values and singular vectors of a particular matrix would sometimes cause MATLAB to crash.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#687983f8-4f5c-4ab6-8c9a-670d933db516">Two Computers</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#bb7d2817-a6f9-4636-b9a4-ec93834d3c2f">Math Libraries</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#b76d6ed5-ea1c-4dc5-876b-9e32dd95c51e">G3366394</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#66e487ba-0c85-4c88-a56d-87408f340dd4">Rank</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#0848e46c-23e0-40b5-9f63-5d781d53d2d0">Zero rows</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#b08e8c96-055a-4909-8778-d590028d1cb3">Fuzz</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#f72bffb3-25d4-4136-a01c-35ce3294dcc5">Flip</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#0a7fccdf-a476-4cd7-b66e-e52d0349aa3b">Now what?</a>
+</li>
+</ul>
+</div>
+
+<h4>Two Computers<a name="687983f8-4f5c-4ab6-8c9a-670d933db516"></a>
+</h4>
+<p>I use two different two computers regularly. The machine in my home office is a Lenovo ThinkPad&reg; model T14, loaded with two external monitors, several external disc drives, a sound bar and a dedicated internet connection. My traveling machine is a Lenovo ThinkPad X1 Nano with no external hardware.</p>
+
+<p>The report of a crash in the SVD became even more interesting when I found that it happens on my office computer, but not on the portable. A quick check revealed that the CPUs on the two machines come from different manufacturers. The office computer uses an AMD&reg; Ryzen Pro 5 while the traveling machine uses an Intel&reg; Core i7.</p>
+
+<h4>Math Libraries<a name="bb7d2817-a6f9-4636-b9a4-ec93834d3c2f"></a>
+</h4>
+<p>The crash occurs several software layers deep in <a href="https://netlib.org/lapack/explore-3.3.0-html/d5/d1f/cgesvd_8f_source.html">CGESVD</a>, the LAPACK driver for single precision complex SVD. Various chip manufacturers provide math libraries that have been optimized for their CPUs. However, by default, MATLAB uses the reportedly faster Intel Math Kernel Library, MKL. It is possible to switch to other math libraries.</p>
+
+<p>We have experts at MathWorks who know far more about the details of these libraries than I do. They will soon sort this all out. In the meantime, here is what I have learned about the offending matrix.</p>
+
+<h4>G3366394<a name="b76d6ed5-ea1c-4dc5-876b-9e32dd95c51e"></a>
+</h4>
+<p>We refer to the matrix in the crash report by its case number in our bug tracking system. The matrix is of modest size but is otherwise unusual for several reasons. It is rectangular with fewer rows than columns, it is in single precision, and it is complex.</p>
+
+<pre>  clear
+  load g3366394 X
+  whos</pre>
+<pre>  Name        Size              Bytes  Class     Attributes
+  X         219x384            672768  single    complex</pre>
+<p>The following code calling SVD with three outputs will crash MATLAB on my T14, but not on my X1.</p>
+
+<pre>  trysvd = false
+  if trysvd
+      [U,S,V] = svd(X);
+      R = U*S*V' - X;
+      relres = norm(R)/norm(X)
+  end</pre>
+<pre>  trysvd =
+    logical
+      0</pre>
+<h4>Rank<a name="66e487ba-0c85-4c88-a56d-87408f340dd4"></a>
+</h4>
+<p>Computing the singular values without the vectors can be done on either machine. The following code uses double precision and then plots the singular values on a logarithmic scale with a line at single precision roundoff level.</p>
+
+<pre>  S = svd(X);
+  semilogy(S,'.-')
+  ep = eps('single');
+  line([0 230],[ep ep])
+  axis([0 230 1e-15 10])
+  legend({'singular values','eps(''single'')'})</pre>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/semilogy.png" vspace="5" /> </p>
+
+<p>We see that the matrix is far from full rank. About half of its singular values are negligible. This is confirmed by</p>
+
+<pre>   xrank = rank(X)</pre>
+<pre>   xrank =
+      110</pre>
+<h4>Zero rows<a name="0848e46c-23e0-40b5-9f63-5d781d53d2d0"></a>
+</h4>
+<p>The cause of the low rank is easy to find. This surf plot reveals that almost half of the rows are flat zero.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/full.png" vspace="5" /> </p>
+
+<p>Let's remove the zero rows.</p>
+
+<pre>  c = sum(abs(X),2)==0;
+  nnzc = nnz(c)
+  X(c&gt;0,:) = [];</pre>
+<pre>  nnzc =
+     109</pre>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/reduced.png" vspace="5" /> </p>
+
+<p>The remaining matrix is full rank and it is safe to compute its singular vectors.</p>
+
+<pre>  [U,S,V] = svd(X);
+  R = U*S*V' - X;
+  resnorm = norm(R)</pre>
+<pre>  resnorm =
+     2.8191e-06</pre>
+<h4>Fuzz<a name="b08e8c96-055a-4909-8778-d590028d1cb3"></a>
+</h4>
+<p>Removing the zero rows was the first work-around that I tried. There are many others. You can replace the zeros with any nonzero "fuzz".</p>
+
+<pre>  fuzz = 1.e-20;
+  [U,S,V] = svd(X + fuzz*randn(size(X)));</pre>
+<pre>  resnorm = norm(U*S*V'-X)</pre>
+<pre>  resnorm =
+     2.8222e-06</pre>
+<h4>Flip<a name="f72bffb3-25d4-4136-a01c-35ce3294dcc5"></a>
+</h4>
+<p>You can reorder the matrix so that the zero rows are not at the beginning.</p>
+
+<pre>  [U,S,V] = svd(flipud(X));
+  U = flipud(U);</pre>
+<pre>  resnorm = norm(U*S*V'-X)</pre>
+<pre>  resnorm =
+     2.3809e-06</pre>
+<h4>Now what?<a name="0a7fccdf-a476-4cd7-b66e-e52d0349aa3b"></a>
+</h4>
+<p>How to avoid the crash is not the most important question. What causes the crash with the original matrix? We will find out and get it fixed.</p>
+
+<!-- 
+    function grabCode_e32dbb50b2604a45be30742645bd3bea() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='e32dbb50b2604a45be30742645bd3bea ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' e32dbb50b2604a45be30742645bd3bea';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+e32dbb50b2604a45be30742645bd3bea ##### SOURCE BEGIN #####
+%% A Treacherous SVD 
+% A few days ago, a bug report from our office in Cambridge
+% caught my attention.  Computing the singular values and singular
+% vectors of a particular matrix would sometimes cause MATLAB to crash. 
+
+%% Two Computers
+% I use two different two computers regularly.
+% The machine in my home office is a Lenovo ThinkPad(R)
+% model T14, loaded with two external monitors, several external
+% disc drives, a sound bar and a dedicated internet connection.
+% My traveling machine is a Lenovo ThinkPad X1 Nano with no external
+% hardware.
+%
+% The report of a crash in the SVD became even more interesting when
+% I found that it happens on my office computer, but not on the portable.
+% A quick check revealed that the CPUs on the two machines come from 
+% different manufacturers.
+% The office computer uses an AMD(R) Ryzen Pro 5
+% while the traveling machine uses an Intel(R) Core i7.
+%
+
+%% Math Libraries
+% The crash occurs several software layers deep in
+% <https://netlib.org/lapack/explore-3.3.0-html/d5/d1f/cgesvd_8f_source.html
+% CGESVD>, the LAPACK driver for single precision complex SVD.
+% Various chip manufacturers provide math libraries that have been
+% optimized for their CPUs. However, by default, MATLAB uses 
+% the reportedly faster Intel Math Kernel Library, MKL.
+% It is possible to switch to other  math libraries.
+%
+% We have experts at MathWorks who know far more about the details
+% of these libraries than I do.  They will soon sort this all out.
+% In the meantime, here is what I have learned about the offending
+% matrix.
+
+%% G3366394
+% We refer to the matrix in the crash report by its case
+% number in our bug tracking system.
+% The matrix is of modest size but
+% is otherwise unusual for several reasons.
+% It is rectangular with fewer rows than columns,
+% it is in single precision, and it is complex.
+%
+%    clear
+%    load g3366394 X
+%    whos
+%
+%    Name        Size              Bytes  Class     Attributes
+%    X         219x384            672768  single    complex   
+
+
+%%
+% The following code calling SVD with three outputs
+% will crash MATLAB on  my T14, but not on my X1.
+%
+%    trysvd = false
+%    if trysvd
+%        [U,S,V] = svd(X);
+%        R = U*S*V' - X;
+%        relres = norm(R)/norm(X)
+%    end
+%
+%    trysvd =
+%      logical
+%        0
+
+%% Rank
+% Computing the singular values without the vectors can be done
+% on either machine.  The following code uses double precision and
+% then plots the singular values on a logarithmic scale with a
+% line at single precision roundoff level.
+%
+%    S = svd(X);
+%    semilogy(S,'.-')
+%    ep = eps('single');
+%    line([0 230],[ep ep])
+%    axis([0 230 1e-15 10])
+%    legend({'singular values','eps(''single'')'})
+%
+% <<semilogy.png>>
+ 
+%%
+% We see that the matrix is far from full rank.
+% About half of its singular values are negligible.
+% This is confirmed by
+%
+%     xrank = rank(X)
+%
+%     xrank =
+%        110
+
+%%  Zero rows
+% The cause of the low rank is easy to find.  
+% This surf plot reveals that almost half of the rows are flat zero.
+%
+% <<full.png>>
+%
+
+%% 
+% Let's remove the zero rows.
+%
+%    c = sum(abs(X),2)==0;
+%    nnzc = nnz(c)
+%    X(c>0,:) = [];
+%
+%    nnzc =
+%       109
+
+%%
+% <<reduced.png>>
+%
+
+%%
+% The remaining matrix is full rank and it is safe to compute its
+% singular vectors.
+%
+%    [U,S,V] = svd(X);
+%    R = U*S*V' - X;
+%    resnorm = norm(R)
+%
+%    resnorm =
+%       2.8191e-06
+
+%% Fuzz
+% Removing the zero rows was the first work-around that I tried.
+% There are many others.  You can replace the zeros with any
+% nonzero "fuzz".
+%
+%    fuzz = 1.e-20;
+%    [U,S,V] = svd(X + fuzz*randn(size(X)));
+%
+%    resnorm = norm(U*S*V'-X)
+%
+%    resnorm =
+%       2.8222e-06
+
+%% Flip
+% You can reorder the matrix so that the zero rows are not at the
+% beginning.
+%
+%    [U,S,V] = svd(flipud(X));
+%    U = flipud(U);
+%
+%    resnorm = norm(U*S*V'-X)
+%
+%    resnorm =
+%       2.3809e-06
+
+%% Now what?
+% How to avoid the crash is not the most important question.
+% What causes the crash with the original matrix?
+% We will find out and get it fixed.
+
+
+##### SOURCE END ##### e32dbb50b2604a45be30742645bd3bea
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[A few days ago, a bug report from our office in Cambridge caught my attention. Computing the singular values and singular vectors of a particular matrix would sometimes cause MATLAB to crash.]]></summary></entry></feed>
