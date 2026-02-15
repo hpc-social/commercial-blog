@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Wordler and I Fail on Puzzle 1497 - hpc.social - Aggregated Commercial Blog</title>
+        <meta name="description" content="Vendor and commercial posts in the hpc.social community">
+        <meta name="keywords" content="">
+        <base href="https://hpc.social/commercial-blog" />
+        
+        <meta content="2025-07-29T19:44:54-06:00" property="article:published_time">
+        <meta content="https://hpc.social/about/" property="article:author">
+          
+        <meta property="og:site_name" content="hpc.social - Aggregated Commercial Blog">
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://hpc.social/commercial-blog/2025/wordler-and-i-fail-on-puzzle-1497/"/>
+        <meta property="og:title" content="Wordler and I Fail on Puzzle 1497 - hpc.social - Aggregated Commercial Blog" />
+        <meta property="og:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="og:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"/>
+        <meta name="twitter:site" content="@hpc_social" />
+        <meta name="twitter:creator" content="@hpc_social" /> 
+        <meta name="twitter:card" content="summary"/>
+        <meta property="twitter:title" content="Wordler and I Fail on Puzzle 1497 - hpc.social - Aggregated Commercial Blog" />
+        <meta property="twitter:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="twitter:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="stylesheet" href="/commercial-blog/assets/css/highlight.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300&display=swap" rel="stylesheet"> 
+
+        <link rel="stylesheet" href="/commercial-blog/assets/css/style.css">
+        <link rel="shortcut icon" href="/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="alternate" type="application/atom+xml" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/atom.xml">
+        <link rel="alternate" type="application/json" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/feed.json" />
+        <link rel="sitemap" type="application/xml" title="sitemap" href="https://hpc.social/commercial-blog/sitemap.xml" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"hpc.social"},"description":"Vendor and commercial posts in the hpc.social community","headline":"hpc.social - Aggregated Commercial Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"},"name":"hpc.social"},"sameAs":["https://twitter.com/","https://github.com/"],"url":"https://hpc.social/commercial-blog"}</script>
+    </head>
+<body>
+
+<div class="container">
+	<div class="profile">
+		<a href="https://hpc.social/commercial-blog/"><img src="/commercial-blog/assets/images/hpc-social-blue.png" class="profile-image"></a>
+		<div class="profile-about">
+			<h2 style="margin-bottom: 0; font-weight: 700;">hpc.social</h2>
+			
+			
+				<a href="https://twitter.com/hpc_social" target="_blank"><img src="/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+			
+			
+			
+			
+				<a href="https://github.com/hpc-social" target="_blank"><img src="/commercial-blog/assets/images/icon/github.svg" class="social-icon"></a>
+			
+			
+			<a href="/commercial-blog/about/"><img src="/commercial-blog/assets/images/icon/me.svg" class="social-icon"></a>
+			<br>
+			High Performance Computing <br> Practitioners <br> and friends /#hpc
+			<br>
+			<div class="mode" id="mode-switcher" onclick="toggleNightMode();">
+				<span></span>
+			</div>
+		</div>
+	</div>
+	
+<div class="post-header">
+	<div class="post-date">29.07.2025  &middot; <span class="reading-time" title="Estimated read time">
+  
+   14 mins  read </span>
+</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://hpc.social/wordler-and-i-fail-on-puzzle-1497&amp;text=Wordler and I Fail on Puzzle 1497 - https://hpc.social/wordler-and-i-fail-on-puzzle-1497" target="_blank"><img src="https://hpc.social/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+<div class="tags-container" style="padding:10px; font-size:18px; font-style:italic">
+        This is a crosspost from &nbsp; <a target="_blank" href="https://blogs.mathworks.com/cleve">Cleve’s Corner: Cleve Moler on Mathematics and Computing</a>&nbsp;Cleve Moler is the author of the first MATLAB, one of the founders of MathWorks, and is currently Chief Mathematician at the company. He writes here about MATLAB, scientific computing and interesting mathematics..&nbsp;See the original post&nbsp;<a target="_blank" href="https://blogs.mathworks.com/cleve/2025/07/29/wordler-and-i-fail-on-puzzle-1497/?s_tid=feedtopost">here</a>.</div>
+
+<div class="blog-post-content">
+	<h1>Wordler and I Fail on Puzzle 1497</h1>
+	<div class="content"><!--introduction-->
+<p>Like millions of other folks, I play <a href="https://www.nytimes.com/games/wordle"><i>Wordle</i></a> from the <i>New York Times</i> almost every day. The <i>Times</i> reports that <i>Wordle</i> puzzle number 1497 on Friday, July 25, was especially difficult. The average puzzler required 5.7 attempts and many failed to get the answer in the six moves allowed. I have a MATLAB assistant that I call Wordler and, even with her help, I failed on number 1497. Here's why.</p>
+
+<p>(In 2022, <i>Wordle</i> was the most-searched term on Google worldwide. For more interesting facts about <i>Wordle</i>, see the <a href="https://en.wikipedia.org/wiki/Wordle">Wikipedia article</a>.)</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#6821f7b2-f8a0-477b-af1a-90e617842627">Wordler</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#b9e94f76-063d-490c-baa5-ac3dbd89860f">Wordler's Vocabulary</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#d3faa9b1-8bcf-48d5-b799-d734e407e76c">Word One</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#e7c96b4b-26c7-4362-991f-f89625e418e4">Word Two</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#ecbedb8e-b368-424c-845c-13a8ffa38ca6">Word Three</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#4ae0c571-eeb1-4f98-a47c-b695cf181456">Word Four</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#bb6699b4-4722-41fc-a429-cec8fa1ce44e">Word Five</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#f48e61e4-4b42-48a7-865f-a8de79008a6a">Word Six</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#ec08f35c-412c-40b0-aa08-ef088e160836">Final Word</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#d2350965-9e73-48bc-a9a9-5745e964f356">Software</a>
+</li>
+</ul>
+</div>
+
+<h4>Wordler<a name="6821f7b2-f8a0-477b-af1a-90e617842627"></a>
+</h4>
+<p>Making a move in <i>Wordle</i> involves two tasks. First, thinking of the words that can be played, and second, deciding which of them to play. I like to make all the key decisions myself, so my assistant does not actually play <i>Wordle</i>. When I ask Wordler for help, she just lists all the words that could be played. It is up to me to choose one.</p>
+
+<h4>Wordler's Vocabulary<a name="b9e94f76-063d-490c-baa5-ac3dbd89860f"></a>
+</h4>
+<p>Wordler's vocabulary is a hidden list of 2315 five-letter English words that are the possible solutions. The letter frequencies in this list are not the same as in English itself. For example, English has many five-letter words ending in S, but most of them are plural nouns and third-person singular verbs. The vocabulary does not have any of these. <i>Wordle</i> words end in S less than 2% of the time, compared to 31% of the time with the full set of five-letter words.</p>
+
+<p>Here is a portion of the vocabulary.</p>
+
+<pre class="codeinput">dbtype<span class="string">vocabulary</span><span class="string">1:9</span>dbtype<span class="string">vocabulary</span><span class="string">291:295</span>
+</pre>
+<pre class="codeoutput">
+1     function vocab = vocabulary(~)
+2         % vocabulary is 2315 words that are targets.
+3            
+4        vocab = [ ... 
+5         "ABACK" "ABASE" "ABATE" "ABBEY" "ABBOT" "ABHOR" "ABIDE" "ABLED" ...
+6         "ABODE" "ABORT" "ABOUT" "ABOVE" "ABUSE" "ABYSS" "ACORN" "ACRID" ...
+7         "ACTOR" "ACUTE" "ADAGE" "ADAPT" "ADEPT" "ADMIN" "ADMIT" "ADOBE" ...
+8         "ADOPT" "ADORE" "ADORN" "ADULT" "AFFIX" "AFIRE" "AFOOT" "AFOUL" ...
+9         "AFTER" "AGAIN" "AGAPE" "AGATE" "AGENT" "AGILE" "AGING" "AGLOW" ...
+
+291       "WORSE" "WORST" "WORTH" "WOULD" "WOUND" "WOVEN" "WRACK" "WRATH" ...
+292       "WREAK" "WRECK" "WREST" "WRING" "WRIST" "WRITE" "WRONG" "WROTE" ...
+293       "WRUNG" "WRYLY" "YACHT" "YEARN" "YEAST" "YIELD" "YOUNG" "YOUTH" ...
+294       "ZEBRA" "ZESTY" "ZONAL" ];
+295   end
+</pre>
+<h4>Word One<a name="d3faa9b1-8bcf-48d5-b799-d734e407e76c"></a>
+</h4>
+<p>I always start with the word LEAST. It contains two popular vowels, and I like to use mathematical and other technical words. On July 25, a gold E from the <i>Times</i> tells me that the answer has an E somewhere, but not in slot number 2. The remaining letters are black, so today's answer does not have any L, A, S or T.</p>
+
+<p>(If I were to ask Wordler for assistance with the first word, she would just reply with all 2315 words she knows.)</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Wordler01.png" vspace="5" /> </p>
+
+<h4>Word Two<a name="e7c96b4b-26c7-4362-991f-f89625e418e4"></a>
+</h4>
+<p>For the second word, I chose PHONE. It has the required E, as well as another popular vowel. It gets a gold O to go with the gold E.</p>
+
+<p>(Wordler's suggestion in this situation would have been the 268 words containing an E in any slot except the second. That's not much help.)</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Wordler02.png" vspace="5" /> </p>
+
+<h4>Word Three<a name="ecbedb8e-b368-424c-845c-13a8ffa38ca6"></a>
+</h4>
+<p>I know now that I am seeking a word with an E in any slot except 2 or 5, an O in any slot except 3, and no L, A, S, T, P, H or N. I decided to try COVER and am rewarded with three green letters.</p>
+
+<p>(Wordler knows 23 words meeting the requirements.)</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Wordler03.png" vspace="5" /> </p>
+
+<h4>Word Four<a name="4ae0c571-eeb1-4f98-a47c-b695cf181456"></a>
+</h4>
+<p>Here, for the first time, I decided to ask Wordler. I press the <tt>Words</tt> button and get some bad news. She tells me she knows seven possible words.</p>
+
+<div>
+<ul>
+<li>BOXER</li>
+<li>FOYER</li>
+<li>JOKER</li>
+<li>MOWER</li>
+<li>ROGER</li>
+<li>ROWER</li>
+<li>WOOER</li>
+</ul>
+</div>
+
+<p>I have only three guesses remaining. My odds of winning are less than 50-50. I chose MOWER because, if it is not correct, the three words containing W would be eliminated.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Wordler04.png" vspace="5" /> </p>
+
+<h4>Word Five<a name="bb6699b4-4722-41fc-a429-cec8fa1ce44e"></a>
+</h4>
+<p>Getting worried, I chose ROGER because it has two Rs. Again, not much luck.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Wordler05.png" vspace="5" /> </p>
+
+<h4>Word Six<a name="f48e61e4-4b42-48a7-865f-a8de79008a6a"></a>
+</h4>
+<p>This is my last chance and there are still three words remaining.</p>
+
+<div>
+<ul>
+<li>BOXER</li>
+<li>FOYER</li>
+<li>JOKER</li>
+</ul>
+</div>
+
+<p>Which would <i>you</i> choose?</p>
+
+<p>I chose JOKER and strike out.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Wordler06.png" vspace="5" /> </p>
+
+<h4>Final Word<a name="ec08f35c-412c-40b0-aa08-ef088e160836"></a>
+</h4>
+<p>If you happen to have played puzzle number 1497, you realize that Wordler is missing at least one word from her vocabulary. The word that tripped up so many last week is GOFER, which neither I nor my assistant thought of.</p>
+
+<p>(Ever-helpful Google informs us that a <a href="https://www.google.com/search?q=gofer">GOFER</a> is "a person who runs errands, especially on a movie set or in an office.")</p>
+
+<h4>Software<a name="d2350965-9e73-48bc-a9a9-5745e964f356"></a>
+</h4>
+<p>The current version of Wordler isn't ready for public consumption. As we have just seen, her vocabulary is incomplete. I also know of bugs when there are repeated letters. If you would like a copy anyway, send me an email.</p>
+
+<!-- 
+    function grabCode_cdfc5f3a37174fc19477d4e577edc688() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='cdfc5f3a37174fc19477d4e577edc688 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' cdfc5f3a37174fc19477d4e577edc688';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2025 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024b<br />
+</p>
+
+</div>
+
+<!--
+cdfc5f3a37174fc19477d4e577edc688 ##### SOURCE BEGIN #####
+%% Wordler and I Fail on Puzzle 1497
+% Like millions of other folks, I play
+% <https://www.nytimes.com/games/wordle
+% _Wordle_> from the _New York Times_ almost every day.  
+% The _Times_ reports that _Wordle_ puzzle number 1497
+% on Friday, July 25,
+% was especially difficult.  The average puzzler required 5.7 attempts
+% and many failed to get the answer in the six moves allowed.
+% I have a MATLAB assistant that I call Wordler and, even with her
+% help, I failed on number 1497.
+% Here's why.
+%
+% (In 2022, _Wordle_ was the most-searched term on Google worldwide.
+% For more interesting facts about _Wordle_, see the
+% <https://en.wikipedia.org/wiki/Wordle
+% Wikipedia article>.)
+
+%% Wordler
+% Making a move in _Wordle_ involves two tasks.  First, thinking
+% of the words that can be played, and second,
+% deciding which of them to play.
+% I like to make all the key decisions myself, so my assistant does not
+% actually play _Wordle_.
+% When I ask Wordler for help, she just lists all 
+% the words that could be played.  It is up to me to choose one.
+
+%% Wordler's Vocabulary
+%
+% Wordler's vocabulary is a hidden list of 2315 five-letter English words
+% that are the possible solutions.  The letter frequencies in this list
+% are not the same as in English itself.  For example, English has many 
+% five-letter words ending in S, but most of them are plural nouns
+% and third-person singular verbs.  The vocabulary does not
+% have any of these. _Wordle_ words end in S less than 2% of the time, 
+% compared to 31% of the time with the full set of five-letter words.
+%
+% Here is a portion of the vocabulary.
+
+dbtype vocabulary 1:9
+dbtype vocabulary 291:295
+
+%% Word One
+% I always start with the word LEAST.  It contains two popular
+% vowels, and I like to use mathematical and  other technical words.
+% On July 25, a gold E from the _Times_ tells me that the answer
+% has an E somewhere, but not in slot number 2.  The remaining letters
+% are black, so today's answer does not have any L, A, S or T.
+%
+% (If I were to ask Wordler for assistance with the first word, she
+% would just reply with all 2315 words she knows.)
+%
+% <<Wordler01.png>>
+%
+
+%% Word Two
+% For the second word, I chose PHONE.  It has the required E, as 
+% well as another popular vowel.  It gets a gold O to go with 
+% the gold E.
+%
+% (Wordler's suggestion in this situation would have been the 268 words
+% containing an E in any slot except the second.  That's not much help.)
+%
+% <<Wordler02.png>>
+%
+
+%% Word Three
+% I know now that I am seeking a word with an E in any slot except
+% 2 or 5, an O in any slot except 3, and no L, A, S, T, P,
+% H or N.  I decided to try COVER and am rewarded with three green
+% letters.
+%
+% (Wordler knows 23 words meeting the requirements.)
+%
+% <<Wordler03.png>>
+%
+
+%%  Word Four
+% Here, for the first time, I decided to ask Wordler.  I press the |Words|
+% button and get some bad news.
+% She tells me she knows seven possible words.
+%
+% * BOXER
+% * FOYER
+% * JOKER
+% * MOWER
+% * ROGER
+% * ROWER
+% * WOOER
+%
+% I have only three guesses remaining. 
+% My odds of winning are less than 50-50.
+% I chose MOWER because, if it is not correct, the three words
+% containing W would be eliminated.
+%
+% <<Wordler04.png>>
+%
+
+%% Word Five
+% Getting worried, I chose ROGER because it has two Rs.
+% Again, not much luck.
+%
+% <<Wordler05.png>>
+%
+
+%% Word Six
+% This is my last chance and there are still three words remaining.
+%
+% * BOXER
+% * FOYER
+% * JOKER
+% 
+% Which would _you_ choose?
+%
+% I chose JOKER and strike out.
+%
+% <<Wordler06.png>>
+%
+
+%% Final Word
+% If you happen to have played puzzle number 1497, you realize that
+% Wordler is missing at least one word from her vocabulary.  The word
+% that tripped up so many last week is GOFER, which neither I nor 
+% my assistant thought of.
+% 
+% (Ever-helpful Google informs us that a
+% <https://www.google.com/search?q=gofer GOFER> is "a person who runs 
+% errands, especially on a movie set or in an office.")
+
+%% Software
+% The current version of Wordler isn't ready for public consumption.
+% As we have just seen, her vocabulary is incomplete. I also know
+% of bugs when there are repeated letters.  If you would like
+% a copy anyway, send me an email.
+##### SOURCE END ##### cdfc5f3a37174fc19477d4e577edc688
+-->
+
+</div>
+<div class="tags-container">
+	
+</div>
+<style>
+#uppy {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: darkturquoise;
+  color: black;
+  cursor: pointer;
+  margin:15px;
+  border-radius: 10px;
+  width: 100px;
+  height: 20px;
+}
+
+#returnTop:hover {
+  background-color: #555;
+}
+</style>
+
+<button id="uppy" title="Return to Top" class="btn btn-lg">Back to top</button>
+
+<script>
+(function() {
+
+var scrollTop = function() {
+    window.scrollTo(0, 0);
+};
+
+document.getElementById('uppy').onclick = scrollTop;
+
+})();
+</script>
+
+
+<div class="navigation">
+	
+		<a class="prev" href="/commercial-blog/2025/my-favorite-matlab-demos/">< My Favorite MATLAB Demos</a>
+	 
+	<a class="next" href="/commercial-blog/2025/travel-report-juit-india/">Travel Report, JUIT, India ></a>
+
+</div>
+
+	<div class="footer">
+		<span style="padding-right:10px"><font color="red">©️ </font><a href="https://hpc.social"><b>hpc.social</b> community</a></span> 
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/archive/">Archive</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/">Posts</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/about/">About</a>
+		| <a style="padding-left:10px; padding-right:10px" href="https://hpc.social/blog">hpc.social blogs</a>
+		| <a style="padding-left:37%;" target="_blank" href="https://github.com/hpc-social/commercial-blog">Add Your Blog</a>
+	</div>
+</div>
+    <script src="/commercial-blog/assets/scripts.js"></script>
+    <script type="text/javascript">
+        if (localStorage.theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('mode-switcher').classList.add('active');
+        } else if (localStorage.theme === 'dark' || localStorage.theme === '' || (!('theme' in localStorage))) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('mode-switcher').classList.add('active');
+        }
+    </script>
+</body>
+</html>
+

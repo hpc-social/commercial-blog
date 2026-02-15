@@ -1,6 +1,0 @@
-- name: "MathWorks Blogs"
-  tag: "mathworks"
-  feeds: 
-    - https://feeds.feedburner.com/mathworks/moler
-  url: https://blogs.mathworks.com/matlab/
-  image: https://www.mathworks.com/images/responsive/global/pic-header-mathworks-logo.svg

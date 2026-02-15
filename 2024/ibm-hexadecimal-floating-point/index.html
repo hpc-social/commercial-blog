@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>IBM Hexadecimal Floating Point - hpc.social - Aggregated Commercial Blog</title>
+        <meta name="description" content="Vendor and commercial posts in the hpc.social community">
+        <meta name="keywords" content="">
+        <base href="https://hpc.social/commercial-blog" />
+        
+        <meta content="2024-05-25T15:51:21-06:00" property="article:published_time">
+        <meta content="https://hpc.social/about/" property="article:author">
+          
+        <meta property="og:site_name" content="hpc.social - Aggregated Commercial Blog">
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://hpc.social/commercial-blog/2024/ibm-hexadecimal-floating-point/"/>
+        <meta property="og:title" content="IBM Hexadecimal Floating Point - hpc.social - Aggregated Commercial Blog" />
+        <meta property="og:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="og:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"/>
+        <meta name="twitter:site" content="@hpc_social" />
+        <meta name="twitter:creator" content="@hpc_social" /> 
+        <meta name="twitter:card" content="summary"/>
+        <meta property="twitter:title" content="IBM Hexadecimal Floating Point - hpc.social - Aggregated Commercial Blog" />
+        <meta property="twitter:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="twitter:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="stylesheet" href="/commercial-blog/assets/css/highlight.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300&display=swap" rel="stylesheet"> 
+
+        <link rel="stylesheet" href="/commercial-blog/assets/css/style.css">
+        <link rel="shortcut icon" href="/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="alternate" type="application/atom+xml" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/atom.xml">
+        <link rel="alternate" type="application/json" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/feed.json" />
+        <link rel="sitemap" type="application/xml" title="sitemap" href="https://hpc.social/commercial-blog/sitemap.xml" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"hpc.social"},"description":"Vendor and commercial posts in the hpc.social community","headline":"hpc.social - Aggregated Commercial Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"},"name":"hpc.social"},"sameAs":["https://twitter.com/","https://github.com/"],"url":"https://hpc.social/commercial-blog"}</script>
+    </head>
+<body>
+
+<div class="container">
+	<div class="profile">
+		<a href="https://hpc.social/commercial-blog/"><img src="/commercial-blog/assets/images/hpc-social-blue.png" class="profile-image"></a>
+		<div class="profile-about">
+			<h2 style="margin-bottom: 0; font-weight: 700;">hpc.social</h2>
+			
+			
+				<a href="https://twitter.com/hpc_social" target="_blank"><img src="/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+			
+			
+			
+			
+				<a href="https://github.com/hpc-social" target="_blank"><img src="/commercial-blog/assets/images/icon/github.svg" class="social-icon"></a>
+			
+			
+			<a href="/commercial-blog/about/"><img src="/commercial-blog/assets/images/icon/me.svg" class="social-icon"></a>
+			<br>
+			High Performance Computing <br> Practitioners <br> and friends /#hpc
+			<br>
+			<div class="mode" id="mode-switcher" onclick="toggleNightMode();">
+				<span></span>
+			</div>
+		</div>
+	</div>
+	
+<div class="post-header">
+	<div class="post-date">25.05.2024  &middot; <span class="reading-time" title="Estimated read time">
+  
+   13 mins  read </span>
+</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://hpc.social/ibm-hexadecimal-floating-point&amp;text=IBM Hexadecimal Floating Point - https://hpc.social/ibm-hexadecimal-floating-point" target="_blank"><img src="https://hpc.social/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+<div class="tags-container" style="padding:10px; font-size:18px; font-style:italic">
+        This is a crosspost from &nbsp; <a target="_blank" href="https://blogs.mathworks.com/cleve">Cleve’s Corner: Cleve Moler on Mathematics and Computing</a>&nbsp;Cleve Moler is the author of the first MATLAB, one of the founders of MathWorks, and is currently Chief Mathematician at the company. He writes here about MATLAB, scientific computing and interesting mathematics..&nbsp;See the original post&nbsp;<a target="_blank" href="https://blogs.mathworks.com/cleve/2024/05/25/ibm-hexadecimal-floating-point/?s_tid=feedtopost">here</a>.</div>
+
+<div class="blog-post-content">
+	<h1>IBM Hexadecimal Floating Point</h1>
+	<div class="content"><!--introduction-->
+<p>Our technical support group recently received a request for a tool that would convert IBM System/360 hexadecimal floating point numbers to the IEEE-754 format. I am probably the only one left at MathWorks that actually used IBM mainframe computers. I thought we had seen the last of hexadecimal arithmetic years ago. But, it turns out that the hexadecimal floating point format is alive and well.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#927291b6-bb83-4c85-937c-8f20844b3c74">IBM System/360</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#43cbbb43-f2f5-4415-99df-f6a6c114c912">Formats</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#5d482994-2d0d-42fa-86e2-c98bc728ebbe">Data</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#099df223-ed1e-405e-917f-0cccd1d54a26"><tt>Hex_ieee</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#126c1d80-75f5-4879-841f-de925f083fc1"><tt>ieee2ibm</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#88d3bc9c-b626-4578-872e-b95f02057e43"><tt>ibm2ieee</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#64f8c2ec-011c-40a2-a2f3-a2926ee929ac">Examples</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#41ed0fce-64bf-4471-b2c3-e22645d184f5">Comparison</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#9e4ce83f-58b7-498d-b480-9f17c5c1f6e0">Software</a>
+</li>
+</ul>
+</div>
+
+<h4>IBM System/360<a name="927291b6-bb83-4c85-937c-8f20844b3c74"></a>
+</h4>
+<p>The System/360 is a family of mainframe computers that IBM introduced in 1965 and that dominated the computer industry until PCs came along twenty years later. They range in size from desk-sized to systems that fill a large room.</p>
+
+<p>Here is a photo of a mid-sized model.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/ibm-360-60.png" vspace="5" /> </p>
+
+<p>
+<i>System/360, Model 60.</i> <i>Photo from Ken Shirrif's blog, IBM 360/System Summary</i>.</p>
+
+<p>The System/360 architecture is byte-oriented, so it can handle business data processing as well as scientific and engineering computation. This leads to base-16, rather than base-2 or base-10, floating point arithmetic.</p>
+
+<pre>* Binary      f*2^e    1/2&lt;=f&lt;1
+* Decimal     f*10^e   1/10&lt;=f&lt;1
+* Hexadecimal f*16^e   1/16&lt;=f&lt;1</pre>
+<h4>Formats<a name="43cbbb43-f2f5-4415-99df-f6a6c114c912"></a>
+</h4>
+<p>Floating point formats played an important role in technical computing in the early days. This table from <a href="https://www.amazon.com/exec/obidos/ASIN/0131653326/acmorg-20">FMM</a> lists formats that were in use in the 1970s, before IEEE-754 was introduced in 1985.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/fmm2.png" vspace="5" /> </p>
+
+<h4>Data<a name="5d482994-2d0d-42fa-86e2-c98bc728ebbe"></a>
+</h4>
+<p>The System/360 hexadecimal format is used in many industries for the preservation of data files.</p>
+
+<p>
+<a href="https://www.crewes.org/ResearchLinks/FreeSoftware">CREWES</a>. Teaching exploration seismology. Comprehensive MATLAB toolbox for use with the textbook "Numerical Methods of Exploration Seismology with algorithms in Matlab" by Gary F. Margrave, a geoscience professor at the University of Calgary.</p>
+
+<p>
+<a href="https://www.loc.gov/preservation/digital/formats/fdd/fdd000464.shtml">Library of Congress</a>. Government.</p>
+
+<p>
+<a href="https://nssdc.gsfc.nasa.gov/nssdc/formats/IBM_32-Bit.html">NASA</a>. Astronautics.</p>
+
+<p>
+<a href="https://support.sas.com/content/dam/SAS/support/en/technical-papers/record-layout-of-a-sas-version-5-or-6-data-set-in-sas-transport-xport-format.pdf">SAS</a>. Statistics and business analytics. SAS wrapers for C.</p>
+
+<p>
+<a href="https://github.com/enthought/ibm2ieee">Enthought</a>. Python wrappers for C.</p>
+
+<h4>
+<tt>Hex_ieee</tt><a name="099df223-ed1e-405e-917f-0cccd1d54a26"></a>
+</h4>
+<p> <a href="https://blogs.mathworks.com/cleve/files/Hex_ieee.m"><tt>Hex_ieee</tt></a>. I have two twenty-line MATLAB functions, <tt>ieee2ibm</tt> and <tt>ibm2ieee</tt>, that convert IEEE-754 floating point to and from IBM hexadecimal format.</p>
+
+<p>Three statements in the middle of <tt>ieee2ibm</tt> are the key to the entire operation. The first statement is</p>
+
+<pre>    [~,e] = log2(x)</pre>
+<p>With two output arguments, <tt>log2</tt> returns the mantissa and exponent of an IEEE-754 floating point number. The mantissa is not needed here.</p>
+
+<p>The second key statement</p>
+
+<pre>    e = ceil(e/4)</pre>
+<p>makes <tt>e</tt> divisible by 4. This turns <tt>e</tt> into the appropriate hexadecimal exponent so that the third statement</p>
+
+<pre>    f = x.*16.^(-e)</pre>
+<p>can produce the hexadecimal mantissa.</p>
+
+<h4>
+<tt>ieee2ibm</tt><a name="126c1d80-75f5-4879-841f-de925f083fc1"></a>
+</h4>
+<pre>function z = ieee2ibm(x)
+   Convert IEEE-754 to IBM System 360 hexadecimal.
+   z = ieee2ibm(x)
+      Input x, real column vector.
+      Output z, length(x)-by-16 char.
+   Example: ieee2ibm(-118.625) = 'C276A00000000000'.</pre>
+<pre>      s = sign(x);                      % -1, 0, or 1
+      x = abs(x);
+      x(x &lt; 16^(-65)) = 0;              % Underflow
+      x(x &gt;= 16^63) = (1-eps/2)*16^63;  % Overflow</pre>
+<pre>      [~,e] = log2(x);                  % base 2 exponent
+      e = ceil(e/4)                     % base 16 exponent
+      f = x.*16.^(-e);                  % base 16 mantissa</pre>
+<pre>      E = uint64((e+64)*2^56);          % Assemb1e output
+      F = uint64(f*2^56);
+      S = uint64((1-s)*2^62);           % 1 or 0
+      z = dec2hex(S + E + F);           % z = 'ZZFFFFFFFFFFFFFF'
+end</pre>
+<h4>
+<tt>ibm2ieee</tt><a name="88d3bc9c-b626-4578-872e-b95f02057e43"></a>
+</h4>
+<pre>function x = ibm2ieee(z)
+   Convert IBM System 360 hexadecimal to IEEE-754.
+   x = ibm2ieee(z)
+      Input z, n-by-16 char.
+      Output x, n-by-1 double.
+   Example: ibm2ieee('C276A00000000000') = -118.625.</pre>
+<pre>      E = hex2dec(z(:,1:2));           % Disassemble input
+      F1 = hex2dec(z(:,3:8));          % &lt; 16^6
+      F2 = hex2dec(z(:,9:end));        % &lt; 16^8
+      s = sign(128-E);                 % -1 or 1</pre>
+<pre>      e = E-(s&gt;0)*64-(s&lt;0)*192;        % base 16 exponent
+      f = F1/16^6 + F2/16^14;          % base 16 mantissa
+      x = s.*f.*16.^e;
+end</pre>
+<h4>Examples<a name="64f8c2ec-011c-40a2-a2f3-a2926ee929ac"></a>
+</h4>
+<p>Underflow. Anything <tt>&lt; 16^(-65)</tt> is too small and is flushed to zero. There are no denormals.</p>
+
+<p>Overflow. Anything <tt>&gt;= 16^63</tt> is too large. There is no <tt>inf</tt> or <tt>NaN</tt>.</p>
+
+<pre>* 1.0           4110000000000000
+* 0.1           401999999999999A
+* -pi           C13243F6A8885A30
+* 5.3976e-79    0010000000000000
+* 7.2370e+75    7FFFFFFFFFFFFFF8</pre>
+<h4>Comparison<a name="41ed0fce-64bf-4471-b2c3-e22645d184f5"></a>
+</h4>
+<p>S/360 hexadecimal has 7 exponent bits, while IEEE-754 has 11. Consequently, hexadecimal has a much smaller range, 5.4e-79 to 7.2e+75 versus 2.2e-308 to 1.8e+308.</p>
+
+<p>The base-16 normalization implies that hexadecimal effectively has between 53 and 56 mantissa bits. Counting the hidden bit, IEEE-754 also has 53. So, the accuracy of the two is pretty much the same.</p>
+
+<h4>Software<a name="9e4ce83f-58b7-498d-b480-9f17c5c1f6e0"></a>
+</h4>
+<p>My functions <tt>ieee2ibm</tt> and <tt>ieee2ibm</tt> described above, modified to handle both single and double, plus <tt>hex_test</tt>, which does what its name implies, are available at <a href="https://blogs.mathworks.com/cleve/files/Hex_ieee.m"><tt>Hex_ieee</tt></a>.</p>
+
+<p>Homework: What happens?</p>
+
+<pre>ok = 0;
+for k = 1:10
+     x = single(k/10);
+     ok(k) = hex_test(x);
+end
+ok</pre>
+<!-- 
+    function grabCode_54dd3908d741477c9a1ad45b553487d5() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='54dd3908d741477c9a1ad45b553487d5 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 54dd3908d741477c9a1ad45b553487d5';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+54dd3908d741477c9a1ad45b553487d5 ##### SOURCE BEGIN #####
+%% IBM Hexadecimal Floating Point
+% Our technical support group recently received a request
+% for a tool that would convert IBM System/360 hexadecimal
+% floating point numbers to the IEEE-754 format.
+% I am probably the only one left at MathWorks that actually used
+% IBM mainframe computers.
+% I thought we had seen the last of hexadecimal arithmetic years ago.
+% But, it turns out that the hexadecimal floating point format
+% is alive and well.
+
+%% IBM System/360
+% The System/360 is a family of mainframe computers that IBM
+% introduced in 1965 and that dominated the computer industry
+% until PCs came along twenty years later.  They range in size
+% from desk-sized to systems that fill a large room.
+%
+% Here is a photo of a mid-sized model.
+%
+% <<ibm-360-60.png>>
+%
+% _System/360, Model 60._
+% _Photo from Ken Shirrif's blog, IBM 360/System Summary_.
+%
+% The System/360 architecture is byte-oriented, so it can
+% handle business
+% data processing as well as scientific and engineering computation.
+% This leads to base-16, rather than base-2 or base-10,
+% floating point arithmetic.
+%
+%  * Binary      f*2^e    1/2<=f<1
+%  * Decimal     f*10^e   1/10<=f<1
+%  * Hexadecimal f*16^e   1/16<=f<1
+
+%% Formats
+% Floating point formats played an important role in
+% technical computing in the early days.
+% This table from
+% <https://www.amazon.com/exec/obidos/ASIN/0131653326/acmorg-20
+% FMM> lists formats that
+% were in use in the 1970s, before IEEE-754 was introduced in 1985.
+%
+% <<fmm2.png>>
+%
+
+%% Data
+% The System/360 hexadecimal format is used in many industries for the
+% preservation of data files.
+%
+% <https://www.crewes.org/ResearchLinks/FreeSoftware CREWES>.
+% Teaching exploration seismology.
+% Comprehensive MATLAB toolbox for use with the textbook
+% "Numerical Methods of Exploration Seismology with algorithms in Matlab" 
+% by Gary F. Margrave, a geoscience professor at the University of Calgary.
+%
+% <https://www.loc.gov/preservation/digital/formats/fdd/fdd000464.shtml
+% Library of Congress>. Government.
+%
+% <https://nssdc.gsfc.nasa.gov/nssdc/formats/IBM_32-Bit.html NASA>.
+% Astronautics.
+%
+% <https://support.sas.com/content/dam/SAS/support/en/technical-papers/record-layout-of-a-sas-version-5-or-6-data-set-in-sas-transport-xport-format.pdf
+% SAS>.  
+% Statistics and business analytics.  SAS wrapers for C.
+%
+% <https://github.com/enthought/ibm2ieee Enthought>.  Python wrappers for C. 
+%
+
+%% |Hex_ieee|
+% <https://blogs.mathworks.com/cleve/files/Hex_ieee.m |Hex_ieee|>.
+% I have two twenty-line MATLAB functions, |ieee2ibm| and |ibm2ieee|,
+% that convert IEEE-754 floating point to and from IBM hexadecimal format.
+%
+% Three statements in the middle of |ieee2ibm| are the key to
+% the entire operation. The first statement is
+%
+%      [~,e] = log2(x)
+% 
+% With two output arguments, |log2| returns the mantissa
+% and exponent of an IEEE-754 floating point number.
+% The mantissa is not needed here.
+%
+% The second key statement
+%
+%      e = ceil(e/4) 
+%
+% makes |e| divisible by 4. This turns |e| into the appropriate 
+% hexadecimal exponent so that the third statement
+%
+%      f = x.*16.^(-e)
+% 
+% can produce the hexadecimal mantissa.
+%   
+
+%% |ieee2ibm|
+%  function z = ieee2ibm(x)
+%     Convert IEEE-754 to IBM System 360 hexadecimal.
+%     z = ieee2ibm(x)
+%        Input x, real column vector.
+%        Output z, length(x)-by-16 char.
+%     Example: ieee2ibm(-118.625) = 'C276A00000000000'.
+%
+%        s = sign(x);                      % -1, 0, or 1
+%        x = abs(x);
+%        x(x < 16^(-65)) = 0;              % Underflow
+%        x(x >= 16^63) = (1-eps/2)*16^63;  % Overflow
+%
+%        [~,e] = log2(x);                  % base 2 exponent
+%        e = ceil(e/4)                     % base 16 exponent
+%        f = x.*16.^(-e);                  % base 16 mantissa
+%
+%        E = uint64((e+64)*2^56);          % Assemb1e output
+%        F = uint64(f*2^56);
+%        S = uint64((1-s)*2^62);           % 1 or 0
+%        z = dec2hex(S + E + F);           % z = 'ZZFFFFFFFFFFFFFF'
+% end
+
+%% |ibm2ieee|
+%  function x = ibm2ieee(z)
+%     Convert IBM System 360 hexadecimal to IEEE-754.
+%     x = ibm2ieee(z)
+%        Input z, n-by-16 char.
+%        Output x, n-by-1 double.
+%     Example: ibm2ieee('C276A00000000000') = -118.625.
+%
+%        E = hex2dec(z(:,1:2));           % Disassemble input
+%        F1 = hex2dec(z(:,3:8));          % < 16^6
+%        F2 = hex2dec(z(:,9:end));        % < 16^8
+%        s = sign(128-E);                 % -1 or 1
+%
+%        e = E-(s>0)*64-(s<0)*192;        % base 16 exponent
+%        f = F1/16^6 + F2/16^14;          % base 16 mantissa
+%        x = s.*f.*16.^e;
+%  end
+
+%% Examples
+% Underflow.  Anything |< 16^(-65)| is too small and is flushed to zero.
+% There are no denormals.
+%
+% Overflow.  Anything |>= 16^63| is too large.
+% There is no |inf| or |NaN|.
+%
+%  * 1.0           4110000000000000
+%  * 0.1           401999999999999A
+%  * -pi           C13243F6A8885A30
+%  * 5.3976e-79    0010000000000000
+%  * 7.2370e+75    7FFFFFFFFFFFFFF8
+
+%% Comparison
+% S/360 hexadecimal has 7 exponent bits, while IEEE-754 has 11.
+% Consequently, hexadecimal has a much smaller range, 5.4e-79 to 7.2e+75
+% versus 2.2e-308 to 1.8e+308.
+%
+% The base-16 normalization implies that hexadecimal effectively has
+% between 53 and 56 mantissa bits.  Counting the hidden bit,
+% IEEE-754 also has 53.  So, the accuracy of the two is pretty much the
+% same.
+
+%% Software
+% My functions |ieee2ibm| and |ieee2ibm| described above,
+% modified to handle both single and double,
+% plus |hex_test|, which does what its name implies, are available at
+% <https://blogs.mathworks.com/cleve/files/Hex_ieee.m |Hex_ieee|>.
+%
+% Homework: What happens?
+%
+%  ok = 0;
+%  for k = 1:10
+%       x = single(k/10);
+%       ok(k) = hex_test(x);
+%  end
+%  ok
+
+
+##### SOURCE END ##### 54dd3908d741477c9a1ad45b553487d5
+-->
+
+</div>
+<div class="tags-container">
+	
+</div>
+<style>
+#uppy {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: darkturquoise;
+  color: black;
+  cursor: pointer;
+  margin:15px;
+  border-radius: 10px;
+  width: 100px;
+  height: 20px;
+}
+
+#returnTop:hover {
+  background-color: #555;
+}
+</style>
+
+<button id="uppy" title="Return to Top" class="btn btn-lg">Back to top</button>
+
+<script>
+(function() {
+
+var scrollTop = function() {
+    window.scrollTo(0, 0);
+};
+
+document.getElementById('uppy').onclick = scrollTop;
+
+})();
+</script>
+
+
+<div class="navigation">
+	
+		<a class="prev" href="/commercial-blog/2024/a-sixty-year-old-program-for-predicting-the-future/">< A Sixty-Year Old Program for Predicting the Future</a>
+	 
+	<a class="next" href="/commercial-blog/2024/supersum-in-defense-of-floating-point-arithmetic/">SuperSum, In Defense of Floating Point Arithmetic ></a>
+
+</div>
+
+	<div class="footer">
+		<span style="padding-right:10px"><font color="red">©️ </font><a href="https://hpc.social"><b>hpc.social</b> community</a></span> 
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/archive/">Archive</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/">Posts</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/about/">About</a>
+		| <a style="padding-left:10px; padding-right:10px" href="https://hpc.social/blog">hpc.social blogs</a>
+		| <a style="padding-left:37%;" target="_blank" href="https://github.com/hpc-social/commercial-blog">Add Your Blog</a>
+	</div>
+</div>
+    <script src="/commercial-blog/assets/scripts.js"></script>
+    <script type="text/javascript">
+        if (localStorage.theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('mode-switcher').classList.add('active');
+        } else if (localStorage.theme === 'dark' || localStorage.theme === '' || (!('theme' in localStorage))) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('mode-switcher').classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
