@@ -1,0 +1,3007 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US"><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://hpc.social/commercial-blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://hpc.social/commercial-blog/" rel="alternate" type="text/html" hreflang="en-US" /><updated>2026-05-06T23:43:08-06:00</updated><id>https://hpc.social/commercial-blog/feed.xml</id><title type="html">hpc.social - Aggregated Commercial Blog</title><subtitle>Vendor and commercial posts in the hpc.social community</subtitle><author><name>hpc.social</name><email>info@hpc.social</email></author><entry><title type="html">Kuramoto Oscillators</title><link href="https://hpc.social/commercial-blog/2026/kuramoto-oscillators/" rel="alternate" type="text/html" title="Kuramoto Oscillators" /><published>2026-04-24T17:16:23-06:00</published><updated>2026-04-24T17:16:23-06:00</updated><id>https://hpc.social/commercial-blog/2026/kuramoto-oscillators</id><content type="html" xml:base="https://hpc.social/commercial-blog/2026/kuramoto-oscillators/"><![CDATA[<div class="content">
+<h3>Kuramoto Oscillators</h3>
+<p>I have blogged before about the work Indika Rajapakse, Steve Smale and I are doing to investigate the stability of Kuramoto oscillators.</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/2020/07/08/a-mesmerizing-animation/">https://blogs.mathworks.com/cleve/2020/07/08/a-mesmerizing-animation/</a>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/2019/10/30/stability-of-kuramoto-oscillators/">https://blogs.mathworks.com/cleve/2019/10/30/stability-of-kuramoto-oscillators/</a>
+</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/2019/09/16/experiments-with-kuramoto-oscillators/">https://blogs.mathworks.com/cleve/2019/09/16/experiments-with-kuramoto-oscillators/</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/mesmerizer_5.gif" vspace="5" /> </p>
+
+<p>Here is a link to the latest version of our paper.</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/files/Kuramoto.pdf">https://blogs.mathworks.com/cleve/files/Kuramoto.pdf</a>
+</p>
+
+<!-- 
+    function grabCode_a3fc9843d7d748449b7723c6d2f18e48() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='a3fc9843d7d748449b7723c6d2f18e48 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' a3fc9843d7d748449b7723c6d2f18e48';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2026 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024b<br />
+</p>
+
+</div>
+
+<!--
+a3fc9843d7d748449b7723c6d2f18e48 ##### SOURCE BEGIN #####
+%% Kuramoto Oscillators
+% I have blogged before about the work
+% Indika Rajapakse, Steve Smale and I are doing to investigate
+% the stability of Kuramoto oscillators.
+%
+% <https://blogs.mathworks.com/cleve/2020/07/08/a-mesmerizing-animation></https://blogs.mathworks.com/cleve/2020/07/08/a-mesmerizing-animation>
+%
+% <https://blogs.mathworks.com/cleve/2019/10/30/stability-of-kuramoto-oscillators></https://blogs.mathworks.com/cleve/2019/10/30/stability-of-kuramoto-oscillators>
+%
+% <https://blogs.mathworks.com/cleve/2019/09/16/experiments-with-kuramoto-oscillators></https://blogs.mathworks.com/cleve/2019/09/16/experiments-with-kuramoto-oscillators>
+%
+% <<mesmerizer_5.gif>>
+%
+% Here is a link to the latest version of our paper.
+%
+% <https://blogs.mathworks.com/cleve/files/Kuramoto.pdf>
+##### SOURCE END ##### a3fc9843d7d748449b7723c6d2f18e48
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[Kuramoto Oscillators I have blogged before about the work Indika Rajapakse, Steve Smale and I are doing to investigate the stability of Kuramoto oscillators.]]></summary></entry><entry><title type="html">Matrix Condition and the QR Decomposition</title><link href="https://hpc.social/commercial-blog/2026/matrix-condition-and-the-qr-decomposition/" rel="alternate" type="text/html" title="Matrix Condition and the QR Decomposition" /><published>2026-04-13T14:19:32-06:00</published><updated>2026-04-13T14:19:32-06:00</updated><id>https://hpc.social/commercial-blog/2026/matrix-condition-and-the-qr-decomposition</id><content type="html" xml:base="https://hpc.social/commercial-blog/2026/matrix-condition-and-the-qr-decomposition/"><![CDATA[<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<p>Matrix Condition and the QR Decomposition</p>
+
+<div class="content">
+<!--introduction-->
+<p>The QR decomposition provides an estimate of the matrix condition number.</p>
+
+<!--/introduction-->
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#1">Query</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#2">Short answer</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#3">QR Decomposition</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#4">tricond</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#5"><tt>qr</tt> function</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#12">Gallery</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#20">Tests</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#21">Plot</a>
+</li>
+</ul>
+</div>
+
+<h2 id="1">Query</h2>
+<p>Professor Magdy Hanna of the Department of Engineering Mathematics and Physics at Fayoum University in Fayoum, Egypt, asked me:</p>
+
+<pre>  If we have the QR decomposition of a matrix, with or without
+  pivoting, is there an easy way to get the condition number of
+  the matrix without starting from scratch and using the SVD?</pre>
+<h2 id="2">Short answer</h2>
+<p>The short answer to Prof. Hanna's question is:</p>
+
+<pre>  Yes.  The ratio of the largest and smallest diagonal elements
+  of qr(A) is often a good estimate of cond(A).</pre>
+<p>Compare this estimate to the exact condition of a magic square. Produce a <tt>score</tt> measuring how well the estimate does.</p>
+
+<pre class="codeinput">     A = magic(11);
+     R = qr(A);
+     d = abs(diag(R));
+     est = max(d)/min(d);
+     kappa = cond(A);
+     disp(<span class="string">"       est     kappa     score"</span>)
+     disp([est kappa est/kappa])
+</pre>
+<pre class="codeoutput"> 
+
+       est     kappa     score
+    2.6964   11.1021    0.2429
+
+</pre>
+<h2 id="3">QR Decomposition</h2>
+<p>A more complete answer involves column pivoting.</p>
+
+<p>The QR decomposition <b>without</b> column pivoting is an orthogonal Q and an upper triangular R so that</p>
+
+<pre>  A = Q*R</pre>
+<p>The QR composition <b>with</b> column pivoting is an orthogonal Q, an upper triangular R and a permutation P that reorders the columns of A so that</p>
+
+<pre>  A*P = Q*R</pre>
+<p>In either case, Q and P are orthogonal, so</p>
+
+<pre>  cond(R) = cond(A)</pre>
+<p>Any estimate of the condition of R provides an estimate of the condition of A.</p>
+
+<h2 id="4">tricond</h2>
+<p>An estimate the condition of a triangular matrix is the ratio of the largest and smallest elements on the diagonal.</p>
+
+<pre class="codeinput">   type <span class="string">tricond</span>
+</pre>
+<pre class="codeoutput">
+
+     function cond = tricond(T)
+        % Estimate condition of lower or upper triangular matrix.
+        if istril(T) || istriu(T)
+            D = diag(abs(T));
+            cond = max(D)/min(D);
+        else
+            cond =  NaN;
+        end
+     end
+</pre>
+<h2 id="5">
+<tt>qr</tt> function</h2>
+<p>Here is the 4-by-4 <a href="https://blogs.mathworks.com/cleve/2018/02/19/fun-with-the-pascal-triangle/">Pascal matrix</a>
+</p>
+
+<pre class="codeinput">    A = pascal(4)
+</pre>
+<pre class="codeoutput">
+
+A =
+
+     1     1     1     1
+     1     2     3     4
+     1     3     6    10
+     1     4    10    20
+
+</pre>
+<p>This matrix is reasonably well conditioned.</p>
+
+<pre class="codeinput">    kappa = cond(A)
+</pre>
+<pre class="codeoutput">
+
+kappa =
+
+  691.9374
+
+</pre>
+<p>With one output, the <tt>qr</tt> function provides the "Q-less" QR decomposition with no pivoting.</p>
+
+<p>(With two outputs, the <tt>qr</tt> function produces the same R and also reveals the orthogonal Q.)</p>
+
+<pre class="codeinput">    R = qr(A)
+</pre>
+<pre class="codeoutput">
+
+R =
+
+   -2.0000   -5.0000  -10.0000  -17.5000
+         0   -2.2361   -6.7082  -14.0872
+         0         0    1.0000    3.5000
+         0         0         0   -0.2236
+
+</pre>
+<p>For this matrix <tt>tricond</tt> without pivoting produces a poor estimate of the exact condition.</p>
+
+<pre class="codeinput">    trico = tricond(R);
+    kappa = cond(A);
+    disp(<span class="string">"   tricond     kappa     score"</span>)
+    disp([trico kappa trico/kappa])
+</pre>
+<pre class="codeoutput">  
+
+   tricond     kappa     score
+   10.0000  691.9374    0.0145
+
+</pre>
+<p>With three outputs, <tt>qr</tt> does column pivoting and returns a different R.</p>
+
+<pre class="codeinput">    [Q,R,P] = qr(A);
+    R
+</pre>
+<pre class="codeoutput">
+
+R =
+
+  -22.7376   -5.2336   -1.5393  -12.0065
+         0   -1.6153   -1.2034   -1.3387
+         0         0    0.4270   -0.2170
+         0         0         0   -0.0638
+
+</pre>
+<p>Compare <tt>tricond</tt> and the exact condition.</p>
+
+<pre class="codeinput">    trico = tricond(R);
+    disp(<span class="string">"   tricond     kappa     score"</span>)
+    disp([trico kappa trico/kappa])
+</pre>
+<pre class="codeoutput"> 
+
+   tricond     kappa     score
+  356.6259  691.9374    0.5154
+
+</pre>
+<p>Column pivoting produces a much better <tt>tricond</tt> estimate for this matrix.</p>
+
+<h2 id="12">Gallery</h2>
+<p>Let's do more tests using these matrices from the <a href="https://blogs.mathworks.com/cleve/2019/06/24/bohemian-matrices-in-the-matlab-gallery">MATLAB Gallery</a>.</p>
+
+<pre class="codeinput">    funs = [<span class="string">"moler"</span>, <span class="string">"parter"</span>, <span class="string">"binomial"</span>,  <span class="string">"chebspec"</span>, <span class="string">"cauchy"</span>,<span class="keyword">...</span>
+           <span class="string">"chebspec"</span>, <span class="string">"chebvand"</span>,<span class="string">"circul"</span>, <span class="string">"frank"</span>, <span class="string">"ris"</span>];
+</pre>
+<p>One of these Gallery matrices is the "moler" matrix, even though I didn't invent it. A precursor to the "moler" matrix is a badly conditioned upper triangular matrix with ones on the diagonal, minus ones above the diagonal and zeros below.</p>
+
+<pre class="codeinput">    n = 5;
+    U = eye(n) - triu(ones(n),1)
+</pre>
+<pre class="codeoutput">
+
+U =
+
+     1    -1    -1    -1    -1
+     0     1    -1    -1    -1
+     0     0     1    -1    -1
+     0     0     0     1    -1
+     0     0     0     0     1
+
+</pre>
+<p>The "moler" matrix is</p>
+
+<pre class="codeinput">    M = U'*U
+</pre>
+<pre class="codeoutput">
+
+M =
+
+     1    -1    -1    -1    -1
+    -1     2     0     0     0
+    -1     0     3     1     1
+    -1     0     1     4     2
+    -1     0     1     2     5
+
+</pre>
+<p>The "moler" matrix squares the condition of U. The condition of M grows like 4^n.</p>
+
+<pre class="codeinput">    kappa = cond(M)
+</pre>
+<pre class="codeoutput">
+
+kappa =
+
+  865.9801
+
+</pre>
+<p>The <tt>tricond</tt> score without column pivoting is very poor.</p>
+
+<pre class="codeinput">    R = qr(M);
+    trico = tricond(R);
+    disp(<span class="string">"   tricond     kappa     score"</span>)
+    disp([trico kappa trico/kappa])
+</pre>
+<pre class="codeoutput"> 
+
+   tricond     kappa     score
+   20.7364  865.9801    0.0239
+
+</pre>
+<p>With pivoting the score is much better.</p>
+
+<pre class="codeinput">    [~,R,~] = qr(M);
+</pre>
+<pre class="codeinput">    trico = tricond(R);
+    disp(<span class="string">"   tricond     kappa     score"</span>)
+    disp([trico kappa trico/kappa])
+</pre>
+<pre class="codeoutput">  
+
+  tricond     kappa     score
+  555.0198  865.9801    0.6409
+
+</pre>
+<p>These scores are in the first line of the following output and in the upper left-hand corners of the 3-D bar graphs.</p>
+
+<h2 id="20">Tests</h2>
+<pre class="codeinput">   [Dnopiv,Dpiv,xt,yt] = tester(funs);
+</pre>
+<pre class="codeoutput">
+
+         fun     n    nopiv    piv
+
+
+       moler     5    0.024    0.641 
+                10    0.000    0.426 
+                15    0.000    0.337 
+                20    0.000    0.287 
+                25    0.000    0.372 
+
+      parter     5    0.610    0.804 
+                10    0.564    0.776 
+                15    0.536    0.757 
+                20    0.517    0.744 
+                25    0.502    0.735 
+
+    binomial     5    0.795    0.926 
+                10    0.387    0.817 
+                15    0.150    0.768 
+                20    0.056    0.696 
+                25    0.021    0.674 
+
+    chebspec     5    0.120    0.110 
+                10    0.236    0.095 
+                15    0.183    0.358 
+                20    0.132    0.165 
+                25    0.022    0.318 
+
+      cauchy     5    0.217    0.376 
+                10    0.034    0.242 
+                15    0.016    0.247 
+                20    0.058    0.116 
+                25    0.102    0.222 
+
+    chebspec     5    0.120    0.110 
+                10    0.236    0.095 
+                15    0.183    0.358 
+                20    0.132    0.165 
+                25    0.022    0.318 
+
+    chebvand     5    0.055    0.577 
+                10    0.002    0.326 
+                15    0.000    0.338 
+                20    0.000    0.492 
+                25    0.000    0.082 
+
+      circul     5    0.370    0.370 
+                10    0.252    0.252 
+                15    0.209    0.209 
+                20    0.180    0.180 
+                25    0.162    0.162 
+
+       frank     5    0.390    0.390 
+                10    0.257    0.296 
+                15    0.191    0.248 
+                20      Inf    0.013 
+                25    0.039    0.100 
+
+         ris     5    0.610    0.804 
+                10    0.564    0.776 
+                15    0.536    0.757 
+                20    0.517    0.744 
+                25    0.502    0.735 
+
+</pre>
+<h2 id="21">Plot</h2>
+<pre class="codeinput">   [c,ax1,ax2] = ploter(funs,Dnopiv,Dpiv,xt,yt);
+</pre>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/QR_blog_01.png" vspace="5" /> <p class="footer">
+<br />
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2026a</a>
+<br />
+</p>
+
+</div>
+
+<!--
+##### SOURCE BEGIN #####
+%% Matrix Condition and the QR Decomposition
+% The QR decomposition provides an estimate of
+% the matrix condition number.
+
+%% Query
+% Professor Magdy Hanna of the Department of Engineering Mathematics
+% and Physics at Fayoum University in Fayoum, Egypt, asked me:
+%
+%    If we have the QR decomposition of a matrix, with or without
+%    pivoting, is there an easy way to get the condition number of
+%    the matrix without starting from scratch and using the SVD?
+
+%% Short answer
+% The short answer to Prof. Hanna's question is:
+% 
+%    Yes.  The ratio of the largest and smallest diagonal elements
+%    of qr(A) is often a good estimate of cond(A).
+%
+% Compare this estimate to the exact condition of a magic
+% square.  Produce a |score| measuring how well the
+% estimate does.
+
+     A = magic(11);
+     R = qr(A);
+     d = abs(diag(R));
+     est = max(d)/min(d);
+     kappa = cond(A);
+     disp("       est     kappa     score")
+     disp([est kappa est/kappa])
+
+%% QR Decomposition
+% A more complete answer involves column pivoting.
+%
+% The QR decomposition *without* column pivoting is
+% an orthogonal Q and an upper triangular R so that
+%
+%    A = Q*R
+%
+% The QR composition *with* column pivoting is
+% an orthogonal Q, an upper triangular R and
+% a permutation P that reorders the columns of A so that
+%
+%    A*P = Q*R
+%
+% In either case, Q and P are orthogonal, so
+%
+%    cond(R) = cond(A)
+%
+% Any estimate of the condition of R provides an estimate of 
+% the condition of A.
+%
+
+%% tricond
+% An estimate the condition of a triangular matrix is the ratio of the
+% largest and smallest elements on the diagonal.
+
+   type tricond
+
+%% |qr| function
+% Here is the 4-by-4
+% <https://blogs.mathworks.com/cleve/2018/02/19/fun-with-the-pascal-triangle/
+% Pascal matrix>
+
+    A = pascal(4)
+
+%%
+% This matrix is reasonably well conditioned.
+
+    kappa = cond(A)
+
+%%
+% With one output, the |qr| function provides the "Q-less" QR
+% decomposition with no pivoting.
+%
+% (With two outputs, the |qr| function produces the same R and also
+% reveals the orthogonal Q.)
+
+    R = qr(A)
+
+%%
+% For this matrix |tricond| without pivoting produces a poor
+% estimate of the exact condition.
+
+    trico = tricond(R);
+    kappa = cond(A);
+    disp("   tricond     kappa     score")
+    disp([trico kappa trico/kappa])
+       
+%%
+% With three outputs, |qr| does column pivoting and returns
+% a different R.
+
+    [Q,R,P] = qr(A); 
+    R
+    
+%%
+% Compare |tricond| and the exact condition.
+
+    trico = tricond(R);
+    disp("   tricond     kappa     score")
+    disp([trico kappa trico/kappa])
+
+%%
+% Column pivoting produces a much better |tricond| estimate
+% for this matrix.
+% 
+
+%% Gallery
+% Let's do more tests using these matrices from the  
+% <https://blogs.mathworks.com/cleve/2019/06/24/bohemian-matrices-in-the-matlab-gallery 
+% MATLAB Gallery>.
+
+    funs = ["moler", "parter", "binomial",  "chebspec", "cauchy",...
+           "chebspec", "chebvand","circul", "frank", "ris"];
+
+%%
+% One of these Gallery matrices is the "moler" matrix, even though
+% I didn't invent it.  A precursor to the "moler" matrix is
+% a badly conditioned upper triangular matrix with ones on the diagonal, 
+% minus ones above the diagonal and zeros below.
+ 
+    n = 5;
+    U = eye(n) - triu(ones(n),1)
+
+%%
+% The "moler" matrix is
+
+    M = U'*U
+
+%%
+% The "moler" matrix squares the condition of U.
+% The condition of M grows like 4^n.
+
+    kappa = cond(M)
+
+%%
+% The |tricond| score without column pivoting is very poor.
+
+    R = qr(M);
+    trico = tricond(R);
+    disp("   tricond     kappa     score")
+    disp([trico kappa trico/kappa])
+    
+%%
+% With pivoting the score is much better.
+
+    [~,R,~] = qr(M);
+
+%%
+
+    trico = tricond(R);
+    disp("   tricond     kappa     score")
+    disp([trico kappa trico/kappa])
+
+%%
+% These scores are in the first line of the following output and
+% in the upper left-hand corners of the 3-D bar graphs.
+
+%% Tests
+ 
+
+   [Dnopiv,Dpiv,xt,yt] = tester(funs);
+
+%% Plot
+
+   [c,ax1,ax2] = ploter(funs,Dnopiv,Dpiv,xt,yt);
+
+
+
+
+##### SOURCE END #####
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[Matrix Condition and the QR Decomposition]]></summary></entry><entry><title type="html">Velvel Kahan</title><link href="https://hpc.social/commercial-blog/2026/velvel-kahan/" rel="alternate" type="text/html" title="Velvel Kahan" /><published>2026-02-28T15:07:18-07:00</published><updated>2026-02-28T15:07:18-07:00</updated><id>https://hpc.social/commercial-blog/2026/velvel-kahan</id><content type="html" xml:base="https://hpc.social/commercial-blog/2026/velvel-kahan/"><![CDATA[<div class="content"><!--introduction-->
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Vel.jpg" vspace="5" /> </p>
+
+<p>Velvel Kahan's informal name in Yiddish, װעלװעל, means "little wolf." If he needs a more formal name, Velvel uses William.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#411afe57-dac6-4c1b-9b04-07921a2fb1f8">First Meeting</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#5a74dac3-5f33-4015-9e52-450b3700d5f7">Anonymous Referee</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#9c81424b-5d31-4fc5-8df8-0b5409e68456">Close enough</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#c29e2d55-8d7f-4f46-ac56-fb12855eb008">Householder VII</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#f6bb71c2-693f-40ea-ae63-4cb544ef166d">Householder XVII</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#1e0166c7-2630-49c9-bbae-7c3635935feb">The Office</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#ce57469c-7617-43e2-9731-db82ea140852">Turing Award</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#15ccc101-8ee1-4445-b7a6-be98db3373d0">IEEE 754</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#9bb90555-c833-4c78-b8cb-aec970522fd4">Bibliography</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#3ab79567-a77d-4d30-9733-592f8ce09777">Oral History</a>
+</li>
+</ul>
+</div>
+
+<h4>First Meeting<a name="411afe57-dac6-4c1b-9b04-07921a2fb1f8"></a>
+</h4>
+<p>I first met Velvel in <a href="https://blogs.mathworks.com/cleve/2013/01/07/george-forsythe">George Forsythe's</a> office at Stanford in 1962. Velvel had come to California from Toronto for a meeting of the IBM computer users group, <a href="https://en.wikipedia.org/wiki/SHARE_(computing)">SHARE</a>, and visited Stanford on his way.</p>
+
+<p>When Forsythe introduced us, Velvel said, "Oh, Cleve Moler, I have wanted to see you. Do you have a minute?" We went to my office and Velvel asked "Do you have a copy of the report you wrote at JPL last summer?" I retrieved the report from my meager collection. Velvel opened it to page 12, pointed to an equation, and said</p>
+
+<pre>        "That's wrong."</pre>
+<p>He was right.</p>
+
+<h4>Anonymous Referee<a name="5a74dac3-5f33-4015-9e52-450b3700d5f7"></a>
+</h4>
+<p>I submitted the manuscript for my <a href="https://dl.acm.org/doi/abs/10.1145/321386.321394">first paper</a>, "Iterative Refinement in Floating Point", to the Journal of the ACM in 1966. Forsythe was the editor who handled the submission. He sent it to an anonymous referee</p>
+
+<p>The manuscript was 10 pages long. The referee's report was 12. Guess who refereed the paper.</p>
+
+<h4>Close enough<a name="9c81424b-5d31-4fc5-8df8-0b5409e68456"></a>
+</h4>
+<p>In 1968, Velvel was thinking of leaving the University of Toronto. Forsythe told me he considered offering Kahan a position at Stanford, but he was afraid Velvel would be too disruptive. "I hope he comes to Berkeley," George said. "That's close enough."</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Velvel_1968.jpg" vspace="5" /> </p>
+
+<p>Velvel Kahan, 1968. (Photo Credit: George M. Bergman, Archives of the Mathematisches Forschungsinstitut Oberwolfach.)</p>
+
+<h4>Householder VII<a name="c29e2d55-8d7f-4f46-ac56-fb12855eb008"></a>
+</h4>
+<p>I always met Velvel at <a href="https://blogs.mathworks.com/cleve/2017/07/01/householder-seminar-hhxx-on-numerical-linear-algebra">Householder seminars</a>. In 1977, the Householder seminar was at Asilomar, a California state park south of Monterey.</p>
+
+<p>Velvel would begin talks about the importance of reliable floating-point arithmetic with a story that went something like this.</p>
+
+<p>
+<p style="margin-left: 3ex;">
+A physician leaves Sacramento late one evening.  He flies his
+private plane home to Santa Barbara.  After setting the autopilot,
+he falls asleep.  When the plane is over the mountains north of the
+airport, the autopilot fails with a floating-point overflow and
+the plane crashes.  The doctor's estate sues you because your company
+wrote the autopilot software.
+</p>
+
+</p>
+
+<p>This photo shows Velvel telling that story with an overhead projector.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Asilomar_VII.png" vspace="5" /> </p>
+
+<h4>Householder XVII<a name="f6bb71c2-693f-40ea-ae63-4cb544ef166d"></a>
+</h4>
+<p>In 1993, the Householder seminar was in California again, this time at Lake Tahoe. Here is a rare moment when Velvel is actually <i>listening</i> to me.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Tahoe_XVII.png" vspace="5" /> </p>
+
+<h4>The Office<a name="1e0166c7-2630-49c9-bbae-7c3635935feb"></a>
+</h4>
+<p>Both Velvel and <a href="https://blogs.mathworks.com/cleve/2026/02/10/beresford-parlett/">Beresford Parlett</a> have been on the faculty at U. C. Berkeley since 1968. Velvel's student, Jerome Coonen, took this photo when he volunteered to help clear out Velvel's office.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Berkeley_2023_Coonen.png" vspace="5" /> </p>
+
+<h4>Turing Award<a name="ce57469c-7617-43e2-9731-db82ea140852"></a>
+</h4>
+<p>The citation for Velvel's Turing Award in 1989 reads:</p>
+
+<p>
+<p style="margin-left: 3ex;">
+For his fundamental contributions to numerical analysis.
+One of the foremost experts on floating-point computations.
+Kahan has dedicated himself to "making the world safe for numerical
+computations!"
+</p>
+
+</p>
+
+<p>
+<a href="https://amturing.acm.org/award_winners/kahan_1023746.cfm">https://amturing.acm.org/award_winners/kahan_1023746.cfm</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Turing.jpg" vspace="5" /> </p>
+
+<h4>IEEE 754<a name="15ccc101-8ee1-4445-b7a6-be98db3373d0"></a>
+</h4>
+<p>My friend Axel Ruhe was from Sweden. He once asked me where he should visit on his first trip to the western United States. I recommended</p>
+
+<div>
+<ul>
+<li>The Grand Canyon</li>
+<li>Las Vegas</li>
+<li>The IEEE floating-point arithmetic committee.</li>
+</ul>
+</div>
+
+<p>The meetings of the IEEE floating-point committee were legendary. They would go on for hours at various spots in Silicon Valey. Suffering from jetlag, Axel went to sleep on the floor of the conference room.</p>
+
+<p>Here is Velvel, remembering the committee. <a href="https://www.youtube.com/watch?v=ATCpecsyPE8">https://www.youtube.com/watch?v=ATCpecsyPE8</a>.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/VelOnBench.jpg" vspace="5" /> </p>
+
+<p>Photo Credit: Alaina G. Levine, Heidelberg Laureate Forum.</p>
+
+<h4>Bibliography<a name="9bb90555-c833-4c78-b8cb-aec970522fd4"></a>
+</h4>
+<p>Nelson Beebe has compiled this <a href="https://www.netlib.org/bibnet/authors/k/kahan-william-m.pdf">bibliography</a>.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/kahan_beebe.png" vspace="5" /> </p>
+
+<h4>Oral History<a name="3ab79567-a77d-4d30-9733-592f8ce09777"></a>
+</h4>
+<p>The manuscript of Thomas Haigh's interview of Velvel in 2005 for SIAM's oral history project is 229 pages long. Take a look. <a href="https://history.siam.org/oralhistories/kahan.htm">https://history.siam.org/oralhistories/kahan.htm</a>.</p>
+
+<!-- 
+    function grabCode_7d6449c7bf074a9293f7cdea85ea36c9() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='7d6449c7bf074a9293f7cdea85ea36c9 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 7d6449c7bf074a9293f7cdea85ea36c9';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2026 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024b<br />
+</p>
+
+</div>
+
+<!--
+7d6449c7bf074a9293f7cdea85ea36c9 ##### SOURCE BEGIN #####
+%% Velvel Kahan
+%
+% <<Vel.jpg>>
+% 
+% Velvel Kahan's informal name in Yiddish, װעלװעל, means "little wolf."
+% If he needs a more formal name, Velvel uses William.
+
+%% First Meeting
+% I first met Velvel in 
+% <https://blogs.mathworks.com/cleve/2013/01/07/george-forsythe
+% George Forsythe's> office at Stanford in 1962.
+% Velvel had come to California from Toronto for
+% a meeting of the IBM computer
+% users group, <https://en.wikipedia.org/wiki/SHARE_(computing) SHARE>,
+% and visited Stanford on his way.
+%
+% When Forsythe introduced us, Velvel said, "Oh, Cleve Moler,
+% I have wanted to see you. Do you have a minute?"
+% We went to my office and Velvel asked "Do you have a copy of the report
+% you wrote at JPL last summer?"
+% I retrieved the report from my meager collection.
+% Velvel opened it to page 12, pointed to an equation, and said
+%
+%          "That's wrong."
+%
+% 
+% He was right.
+
+%% Anonymous Referee
+% I submitted the manuscript for my
+% <https://dl.acm.org/doi/abs/10.1145/321386.321394
+% first paper>,
+% "Iterative Refinement in Floating Point", to the Journal of the ACM
+% in 1966.  Forsythe was the editor who handled the submission.
+% He sent it to an anonymous referee
+% 
+% The manuscript was 10 pages long. The referee's report was 12.
+% Guess who refereed the paper.
+%
+
+%% Close enough
+% In 1968, Velvel was thinking of leaving the University of Toronto.
+% Forsythe told me he considered offering Kahan a position at
+% Stanford, but he was afraid Velvel would be too disruptive.
+% "I hope he comes to Berkeley," George said. "That's close enough."
+%
+% <<Velvel_1968.jpg>>
+%
+% Velvel Kahan, 1968.
+% (Photo Credit: George M. Bergman, Archives of the Mathematisches
+% Forschungsinstitut Oberwolfach.)
+
+%% Householder VII
+% I always met Velvel at
+% <https://blogs.mathworks.com/cleve/2017/07/01/householder-seminar-hhxx-on-numerical-linear-algebra
+% Householder seminars>.
+% In 1977, the Householder seminar was at Asilomar, a California state
+% park south of Monterey.
+%
+% Velvel would begin talks about the importance of reliable
+% floating-point arithmetic with a story that went something like this.
+%
+% <html>
+% <p style="margin-left:3ex;">
+% A physician leaves Sacramento late one evening.  He flies his
+% private plane home to Santa Barbara.  After setting the autopilot,
+% he falls asleep.  When the plane is over the mountains north of the
+% airport, the autopilot fails with a floating-point overflow and
+% the plane crashes.  The doctor's estate sues you because your company
+% wrote the autopilot software.
+% </p>
+
+% </html>
+%
+% This photo shows Velvel telling that story with an overhead projector.
+%
+% <<Asilomar_VII.png>>
+%
+
+%% Householder XVII
+% In 1993, the Householder seminar was in California again,
+% this time at Lake Tahoe.  Here is a rare moment when
+% Velvel is actually _listening_ to me.
+%
+% <<Tahoe_XVII.png>>
+%
+
+%% The Office
+% Both Velvel and <https://blogs.mathworks.com/cleve/2026/02/10/beresford-parlett/
+% Beresford Parlett> have been on the faculty at U. C. Berkeley since 1968.
+% Velvel's student, Jerome Coonen, took this photo when he volunteered
+% to help clear out Velvel's office.
+%
+% <<Berkeley_2023_Coonen.png>>
+%
+
+%% Turing Award
+% The citation for Velvel's Turing Award in 1989 reads:
+%
+% <html>
+% <p style="margin-left:3ex;">
+% For his fundamental contributions to numerical analysis. 
+% One of the foremost experts on floating-point computations.
+% Kahan has dedicated himself to "making the world safe for numerical
+% computations!" 
+% </p>
+
+% </html>
+%
+% <https://amturing.acm.org/award_winners/kahan_1023746.cfm>
+%
+% <<Turing.jpg>>
+%
+
+%% IEEE 754
+% My friend Axel Ruhe was from Sweden.  He once asked me where he should
+% visit on his first trip to the western United States.  I recommended
+%  
+% * The Grand Canyon
+% * Las Vegas
+% * The IEEE floating-point arithmetic committee.
+%
+% The meetings of the IEEE floating-point committee were legendary.
+% They would go on for hours at various spots in Silicon Valey.
+% Suffering from jetlag, Axel went to sleep on the floor
+% of the conference room.
+%
+% Here is Velvel, remembering the committee.
+% <https://www.youtube.com/watch?v=ATCpecsyPE8>.
+%
+% <<VelOnBench.jpg>>
+%
+% Photo Credit: Alaina G. Levine, Heidelberg Laureate Forum.
+
+%% Bibliography
+% Nelson Beebe has compiled this
+% <https://www.netlib.org/bibnet/authors/k/kahan-william-m.pdf
+% bibliography>.
+%
+% <<kahan_beebe.png>>
+%
+
+%% Oral History
+% The manuscript of Thomas Haigh's interview of Velvel in 2005
+% for SIAM's oral history project is 229 pages long. Take a look.
+% <https://history.siam.org/oralhistories/kahan.htm>.
+%
+
+
+##### SOURCE END ##### 7d6449c7bf074a9293f7cdea85ea36c9
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Beresford Parlett</title><link href="https://hpc.social/commercial-blog/2026/beresford-parlett/" rel="alternate" type="text/html" title="Beresford Parlett" /><published>2026-02-10T16:04:08-07:00</published><updated>2026-02-10T16:04:08-07:00</updated><id>https://hpc.social/commercial-blog/2026/beresford-parlett</id><content type="html" xml:base="https://hpc.social/commercial-blog/2026/beresford-parlett/"><![CDATA[<div class="content"><!--introduction-->
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Beresford_Linocut.jpg" vspace="5" /> </p>
+
+<p>
+<a href="https://www.henkvandervorst.nl/computing.html">Linocuts</a> by Henk van der Vorst.</p>
+
+<p>Beresford Parlett passed away last Saturday, February 7. He was 93 years old. I have known him since graduate school at Stanford.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#3c3dcb0c-4455-49f1-ac38-98a43529f308">Stanford</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#89df87e4-fd84-4eab-a23f-1e6d7f14b917">Career</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#e8b82c26-30d6-481e-961e-5208e837cc5f">Holy Grail</a>
+</li>
+</ul>
+</div>
+
+<h4>Stanford<a name="3c3dcb0c-4455-49f1-ac38-98a43529f308"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/photoNormal.jpg" vspace="5" /> </p>
+
+<p>Source: George M. Bergman, Berkeley.</p>
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Beresford_Parlett">Beresford</a> was born in 1932 in London. He received his bachelor's degree in mathematics from Oxford in 1955.</p>
+
+<p>Beresford came to graduate school at Stanford in 1958. He had very little money and no place to live. At first, he slept in the math faculty women's lounge and showered in the gymnasium. Fortunately, after two quarters, the math made him a teaching assistant, and he was able to move out of the lounge.</p>
+
+<p>I came to Stanford in 1961, three years after Beresford. We were both students of <a href="https://blogs.mathworks.com/cleve/2013/01/07/george-forsythe/">George Forsythe</a>, and are both on the <a href="http://infolab.stanford.edu/pub/voy/museum/forsythetree.html">Forsythe tree</a>.</p>
+
+<h4>Career<a name="89df87e4-fd84-4eab-a23f-1e6d7f14b917"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/parlett.jpg" vspace="5" /> </p>
+
+<p>Source: EECS, Berkeley.</p>
+
+<p>Beresford received his Ph.D. in math from Stanford in 1962.</p>
+
+<p>He was a postdoc for two years at NYU's Courant Institute and for one year at the Stevens Institute of Technology</p>
+
+<p>Beresford joined the U. C Berkeley math faculty in 1965 and remained there until his retirement.</p>
+
+<h4>Holy Grail<a name="e8b82c26-30d6-481e-961e-5208e837cc5f"></a>
+</h4>
+<p>Many researchers, including Parlett, contributed to the search for the <a href="https://en.wikipedia.org/wiki/Holy_Grail">Holy Grail</a> of matrix eigenvalue computation, an algorithm with O(n) time complexity. The quest culminated in the MRRR algorithm, the subject of the <a href="https://www.cs.utexas.edu/~inderjit/Talks/holygrail.pdf">Ph.D. thesis</a> of one of Beresford's students, Inderjit Dhillon.</p>
+
+<p>Beresford's specialities include</p>
+
+<div>
+<ul>
+<li>Matrix eigenvalues</li>
+<li>QR algorithm</li>
+<li>Lanczos algorithm</li>
+<li>MRRR algorithm</li>
+<li>Sparse matrices</li>
+</ul>
+</div>
+
+<p>Nelson Beebe has compiled this <a href="https://www.tug.org/utah/bibnet/authors/p/parlett-beresford-n.pdf">bibliography</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/beebe.png" vspace="5" /> </p>
+
+<p>Beresford's book, <i>The Symmetric Eigenvalue Problem</i>, was published in 1980 by Prentice-Hall and reprinted in 1987 by SIAM.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/sep.png" vspace="5" /> </p>
+
+<!-- 
+    function grabCode_ba9a4ab4bdab4d61a9801819abaacad9() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='ba9a4ab4bdab4d61a9801819abaacad9 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' ba9a4ab4bdab4d61a9801819abaacad9';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2026 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2026a<br />
+</p>
+
+</div>
+
+<!--
+ba9a4ab4bdab4d61a9801819abaacad9 ##### SOURCE BEGIN #####
+%% Beresford Parlett
+%
+% <<Beresford_Linocut.jpg>>
+%
+% <https://www.henkvandervorst.nl/computing.html
+% Linocuts> by Henk van der Vorst.
+%
+% Beresford Parlett passed away last Saturday, February 7.
+% He was 93 years old.
+% I have known him since graduate school at Stanford.
+
+%% Stanford
+% <<photoNormal.jpg>>
+%
+% Source: George M. Bergman, Berkeley.
+%
+% <https://en.wikipedia.org/wiki/Beresford_Parlett
+% Beresford> was born in 1932 in London.
+% He received his bachelor's degree in mathematics from Oxford
+% in 1955.
+% 
+% Beresford came to graduate school at Stanford in 1958.
+% He had very little money and no place to live.
+% At first, he slept in the math faculty women's lounge
+% and showered in the gymnasium. Fortunately, after two quarters,
+% the math made him a teaching assistant, and he was able to move out
+% of the lounge.
+%
+% I came to Stanford in 1961, three years after Beresford.
+% We were both students of <https://blogs.mathworks.com/cleve/2013/01/07/george-forsythe/
+% George Forsythe>, and are both on the
+% <http://infolab.stanford.edu/pub/voy/museum/forsythetree.html
+% Forsythe tree>.
+
+%% Career
+% <<parlett.jpg>>
+%
+% Source: EECS, Berkeley.
+%
+% Beresford received his Ph.D. in math from Stanford in 1962.
+%% 
+% He was a postdoc for two years at NYU's Courant Institute
+% and for one year at the Stevens Institute of Technology
+%
+% Beresford joined the U. C Berkeley math faculty in 1965
+% and remained there until his retirement.
+
+%% Holy Grail
+% Many researchers, including Parlett, contributed to the search for
+% the <https://en.wikipedia.org/wiki/Holy_Grail Holy Grail>
+% of matrix eigenvalue computation, 
+% an algorithm with O(n) time complexity.
+% The quest culminated in the MRRR algorithm, the subject of the
+% <https://www.cs.utexas.edu/~inderjit/Talks/holygrail.pdf
+% Ph.D. thesis> of one of Beresford's students, Inderjit Dhillon. 
+%
+% Beresford's specialities include
+%
+% * Matrix eigenvalues
+% * QR algorithm
+% * Lanczos algorithm
+% * MRRR algorithm
+% * Sparse matrices
+%
+% Nelson Beebe has compiled this
+% <https://www.tug.org/utah/bibnet/authors/p/parlett-beresford-n.pdf
+% bibliography>
+%
+% <<beebe.png>>
+%
+% Beresford's book, _The Symmetric Eigenvalue Problem_, was
+% published in 1980 by Prentice-Hall and
+% reprinted in 1987 by SIAM.
+%
+% <<sep.png>>
+%
+
+##### SOURCE END ##### ba9a4ab4bdab4d61a9801819abaacad9
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Double Pendulum</title><link href="https://hpc.social/commercial-blog/2026/double-pendulum/" rel="alternate" type="text/html" title="Double Pendulum" /><published>2026-02-01T23:16:32-07:00</published><updated>2026-02-01T23:16:32-07:00</updated><id>https://hpc.social/commercial-blog/2026/double-pendulum</id><content type="html" xml:base="https://hpc.social/commercial-blog/2026/double-pendulum/"><![CDATA[<div class="content"><!--introduction-->
+<p>I was amazed by two recent YouTube videos about the double pendulum.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#f998dacd-0007-401d-863f-d12f12440170">Double Pendulum</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#c10a74d0-ab37-4c8c-a6d8-4f9afd2df083">Cleve's Lab</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#1a2c8c2d-ff64-46b5-a4a5-3dc0ba5f556a">Drew's Campfire</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#4230ae8d-ecc2-4f3d-b7b9-bcc9769df0b7">2Swap</a>
+</li>
+</ul>
+</div>
+
+<h4>Double Pendulum<a name="f998dacd-0007-401d-863f-d12f12440170"></a>
+</h4>
+<p>The classic double pendulum consists of one pendulum attached to a fixed pivot and a second pendulum attached to the end of the first. The system is governed by Newton's laws, and its motion is completely determined by the initial conditions. There is no randomness. However, its behavior is sometimes difficult to predict. It may be <i>chaotic</i>.</p>
+
+<h4>Cleve's Lab<a name="c10a74d0-ab37-4c8c-a6d8-4f9afd2df083"></a>
+</h4>
+<p>Ten years ago, I included the double pendulum in <a href="https://www.mathworks.com/company/technical-articles/introducing-cleves-laboratory.html">Cleve's Lab</a>.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/swinger.gif" vspace="5" /> </p>
+
+<h4>Drew's Campfire<a name="1a2c8c2d-ff64-46b5-a4a5-3dc0ba5f556a"></a>
+</h4>
+<p>Drew's Campfire is one recent video about the double pendulum. Here is a <a href="https://www.youtube.com/watch?v=8jVogdTJESw&amp;t=355s,">link to the video</a>.</p>
+
+<p>Here is a sample frame.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Drew.png" vspace="5" /> </p>
+
+<h4>2Swap<a name="4230ae8d-ecc2-4f3d-b7b9-bcc9769df0b7"></a>
+</h4>
+<p>The second video comes from 2Swap. Here is a <a href="https://www.youtube.com/watch?v=dtjb2OhEQcU,">link to the video</a>.</p>
+
+<p>Here is a frame featuring the Pretzel pendulum.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Pretzel.jpg" vspace="5" /> </p>
+
+<!-- 
+    function grabCode_6d2eb2765ab8436192df2a9fb7512ba8() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='6d2eb2765ab8436192df2a9fb7512ba8 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 6d2eb2765ab8436192df2a9fb7512ba8';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2026 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024b<br />
+</p>
+
+</div>
+
+<!--
+6d2eb2765ab8436192df2a9fb7512ba8 ##### SOURCE BEGIN #####
+%% Double Pendulum
+% I was amazed by two recent YouTube videos about the double pendulum.
+
+%% Double Pendulum
+% The classic double pendulum consists of one pendulum attached to a fixed
+% pivot and a second pendulum attached to the end of the first. The system
+% is governed by Newton's laws, and its motion is completely determined by
+% the initial conditions. There is no randomness.  However, its behavior is
+% sometimes difficult to predict.  It may be _chaotic_.
+
+%% Cleve's Lab
+% Ten years ago, I included the double pendulum in
+% <https://www.mathworks.com/company/technical-articles/introducing-cleves-laboratory.html
+% Cleve's Lab>.
+%
+% <<swinger.gif>>
+%
+
+%% Drew's Campfire
+% Drew's Campfire is one recent video about the double pendulum.
+% Here is a
+% <https://www.youtube.com/watch?v=8jVogdTJESw&t=355s,
+% link to the video>.
+%
+
+%%
+%
+% Here is a sample frame.
+%
+% <<Drew.png>>
+%
+
+%% 2Swap
+% The second video comes from 2Swap.  Here is a
+% <https://www.youtube.com/watch?v=dtjb2OhEQcU,
+% link to the video>.
+%
+
+%%
+%
+% Here is a frame featuring the Pretzel pendulum.
+%
+% <<Pretzel.jpg>>
+%
+##### SOURCE END ##### 6d2eb2765ab8436192df2a9fb7512ba8
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[I was amazed by two recent YouTube videos about the double pendulum.]]></summary></entry><entry><title type="html">SVD Measures Partisanship in the U. S. Senate</title><link href="https://hpc.social/commercial-blog/2026/svd-measures-partisanship-in-the-u-s-senate/" rel="alternate" type="text/html" title="SVD Measures Partisanship in the U. S. Senate" /><published>2026-01-12T16:21:19-07:00</published><updated>2026-01-12T16:21:19-07:00</updated><id>https://hpc.social/commercial-blog/2026/svd-measures-partisanship-in-the-u-s-senate</id><content type="html" xml:base="https://hpc.social/commercial-blog/2026/svd-measures-partisanship-in-the-u-s-senate/"><![CDATA[<div class="content"><!--introduction-->
+<p>My first blog about SVD and Partisanship in the U. S. Senate was <a href="https://blogs.mathworks.com/cleve/2020/08/23/svd-quantifies-increasing-partisanship-in-the-u-s-senate/">five years ago</a>. Today's post updates that to 2025.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#96185607-ec53-489b-a67a-8411f707be80">SVD Measures Partisanship</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#2f5e01d4-f465-45ed-89d7-3bdb991bcf37">The Senate</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#1cc976e3-58fb-4d25-a8ea-0dc5fb83d624">The Data</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#79e14eb8-1749-4ab9-a327-be5284aa1d95">The Matrices</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#dbd932a4-edd0-4ba6-98b4-db3b5db53f4d">Partisanship</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#2ce19fea-83e0-4826-996b-09dc51a3bf25">Compare</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#8c3674d4-e24d-4dc7-bcc3-485585eadef5">Increasing Partisanship</a>
+</li>
+</ul>
+</div>
+
+<h4>SVD Measures Partisanship<a name="96185607-ec53-489b-a67a-8411f707be80"></a>
+</h4>
+<p>Many observers have noted that the United States Senate has become increasingly partisan in recent years. Votes are being made more frequently along strict political party lines. The singular value decomposition, the SVD, of matrices derived from records of roll call votes in the senate can measure this partisanship.</p>
+
+<h4>The Senate<a name="2f5e01d4-f465-45ed-89d7-3bdb991bcf37"></a>
+</h4>
+<p>Senators serve six-year terms and every two years about one-third of the senate stands for reelection or new senators are elected. So, a new "Congress" convenes every two years and has two year-long "Sessions". The first session was in 1789. The 101-st Congress began in 1989 and last year, 2025, is the First Session of the 119-th Congress.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/division2025.png" vspace="5" /> </p>
+
+<p>This bar chart shows the division between the Republican and Democratic parties over our time period. The data from the web site <a href="https://www.senate.gov/history/partydiv.htm">party division</a> comes with the caveat, "The actual number of senators representing a particular party often changes during a Congress, due to the death or resignation of a senator, or as a consequence of a member changing parties."</p>
+
+<h4>The Data<a name="1cc976e3-58fb-4d25-a8ea-0dc5fb83d624"></a>
+</h4>
+<p>The web site <a href="https://www.senate.gov">www.senate.gov</a> has year-by-year records of voting in the senate. We are going to look at 37 years, from 1989 to 2025. For example, the URL</p>
+
+<p>
+<a href="https://www.senate.gov/legislative/LIS/roll_call_votes/vote1162/vote_116_2_00033.xml">https: //www.senate.gov/legislative/LIS/roll_call_votes/vote1162/vote_116_2_00033.xml</a>
+</p>
+
+<p>points to the record of a roll call vote taken in the senate early in 2020. The congress number, 116, and the session, 2, each appear twice. The 33 signifies this is the 33rd vote of this session.</p>
+
+<p>Each roll-call vote is recorded in an XML file. XML is the abbreviation for eXtensible Markup Language, an important standard from the WWW Consortium defining a format for encoding documents that is both human and machine readable. I was pleased to find MATLAB Central File Exchange <a href="https://www.mathworks.com/matlabcentral/fileexchange/28518-xml2struct">28518-xml2struct</a> by Wouter Falkena. As the function name implies, this handy code "converts an XML file into a MATLAB structure for easy access to the data."</p>
+
+<p>You can also use your browser to access the example URL and (a) examine the XML, and (b) see why bills 33 and 34 from year 2020 are not typical measures before the Senate.</p>
+
+<h4>The Matrices<a name="79e14eb8-1749-4ab9-a327-be5284aa1d95"></a>
+</h4>
+<p>Once you find your way through the layers of structure that results from the XML, you will have many details about each senate roll call vote. In particular, for each senator who voted, you will have a structure with fields full name, last name, first name, party, state, vote, and member id.</p>
+
+<p>For each year, we create a matrix of +1s, -1s, and 0s. A +1 is for a vote of "Yea" or "Guilty", a -1 is a "Nay" or "Not Guilty", and a 0 is for anything else, which includes "Not Voting", "Present" (abstain), and something too complicated to explain called "Present, Giving Live Pair". Because there are 100 senators, the matrix has 100 rows. The number of columns is the number of roll call votes taken that year. The matrices range in size from 100-by-163 for 2016 to 100-by-613 for 1995.</p>
+
+<p>The XML is organized using last names of senators in alphabetic order -- Alexander (R-TN), Baldwin (D-WI), Barrasso (R-WY), ..., Young(R-IN). At first, I tried to create matrices with rows in this order. But senators retire or die in midsession, so this ordering proved to be difficult to manage correctly. Ultimately, I decided to order the rows by states. Each state is allocated two rows; the name of the specific senator occupying each row is irrelevant. After the matrix for a given year is complete, I reorder the rows so that all the senators from each party are grouped together. The one or two senators who declare themselves to be independent (but who caucus with a major party) are between the two parties.</p>
+
+<p>Here are the matrices, 37 of them, one for each session from 1989 to 2025. A good way to see the structure of these matrices is to view them as images. Red is "Yea" or "Guilty", gold is "Nay" or "Not Guilty", and white is not present, abstain or other.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/senate_gif1.gif" vspace="5" /> </p>
+
+<h4>Partisanship<a name="dbd932a4-edd0-4ba6-98b4-db3b5db53f4d"></a>
+</h4>
+<p>The SVD of these matrices provides the basis for our analysis. The singular values decrease very rapidly with increasing index, so the matrices can be well approximated by matrices of rank two. When viewed from the record of roll call votes, the U. S. Senate is nearly two-dimensional.</p>
+
+<p>Let <tt>A(y)</tt> be the matrix of 1s, -1s and 0s summarizing the roll call votes in year <tt>y</tt>. Let</p>
+
+<pre class="language-matlab">sigma=svd(A(y))
+</pre>
+<p>Then the <i>partisanship</i> for year <tt>y</tt> is defined usinng the third singular value.</p>
+
+<pre class="language-matlab">partianship=1-sigma(3)/sigma(1)
+</pre>
+<p>This quantity measures how close the voting pattern is to being two-dimensional.</p>
+
+<h4>Compare<a name="2ce19fea-83e0-4826-996b-09dc51a3bf25"></a>
+</h4>
+<p>For example, 1991 is one of the least partisan years in our sample, and 2025 is one of the most partisan years. You can immediately see that 2025 has much less detailed structure than 1991; it is closer to being two-dimensional</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/A1991a.png" vspace="5" /> </p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/A2025.png" vspace="5" /> </p>
+
+<h4>Increasing Partisanship<a name="8c3674d4-e24d-4dc7-bcc3-485585eadef5"></a>
+</h4>
+<p>This animation shows the distribution of the first ten singular values for the years from 1989 to 2025. The singular values are normalized so that <tt>1-sigma(1) = 0</tt>. Then the third singular value is highlighted.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/senate_gif2.gif" vspace="5" /> </p>
+
+<p>Finally, here is this measure of partisanship for each year from 1989 to 2025, and a linear least squares fit. With this much scatter is the values, the exact fit can't be taken too seriously. But there is definitely an upward trend. Partisanship in the U. S. Senate has increased from less than 70% thirty years ago to more than 80% today.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/partisanship_a.png" vspace="5" /> </p>
+
+<!-- 
+    function grabCode_581e808db466464aa3eed7e7508fa69e() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='581e808db466464aa3eed7e7508fa69e ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 581e808db466464aa3eed7e7508fa69e';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2026 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024b<br />
+</p>
+
+</div>
+
+<!--
+581e808db466464aa3eed7e7508fa69e ##### SOURCE BEGIN #####
+%% SVD Measures Partisanship  in the U. S. Senate
+% My first blog about SVD and Partisanship in the U. S. Senate was
+% <https://blogs.mathworks.com/cleve/2020/08/23/svd-quantifies-increasing-partisanship-in-the-u-s-senate/
+% five years ago>.  Today's post updates that to 2025.
+
+%% SVD Measures Partisanship 
+% Many observers have noted that the United States Senate has become
+% increasingly partisan in recent years.  Votes are being made more
+% frequently along strict political party lines.  The singular value 
+% decomposition, the SVD, of matrices derived from records of roll call
+% votes in the senate can measure this partisanship.
+
+%% The Senate
+% Senators serve six-year terms and every two years about one-third
+% of the senate stands for reelection or new senators are elected.
+% So, a new "Congress" convenes every two years and has two year-long
+% "Sessions".  The first session was in 1789.  The 101-st Congress
+% began in 1989 and last year, 2025, is the First Session of the
+% 119-th Congress.
+
+%%
+%
+% <<division2025.png>>
+%
+% This bar chart shows the division between the
+% Republican and Democratic parties over our time period.
+% The data from the web site <https://www.senate.gov/history/partydiv.htm
+% party division> comes with the caveat,
+% "The actual number of senators representing a particular party often
+% changes during a Congress, due to the death or resignation of a senator,
+% or as a consequence of a member changing parties."
+
+%% The Data
+% The web site <https://www.senate.gov www.senate.gov> has
+% year-by-year records of voting in the senate.  We are going to 
+% look at 37 years, from 1989 to 2025.
+% For example, the URL
+%
+% <https://www.senate.gov/legislative/LIS/roll_call_votes/vote1162/vote_116_2_00033.xml
+%   https: //www.senate.gov/legislative/LIS/roll_call_votes/vote1162/vote_116_2_00033.xml>
+%
+% points to the record of a roll call vote taken in the senate early in
+% 2020.  The congress number, 116, and the session, 2, each appear twice. 
+% The 33 signifies this is the 33rd vote of this session.
+
+%%
+% Each roll-call vote is recorded in an XML file. 
+% XML is the abbreviation for eXtensible Markup Language, an important
+% standard from the WWW Consortium defining a format for encoding
+% documents that is both human and machine readable.
+% I was pleased to find MATLAB Central File Exchange
+% <https://www.mathworks.com/matlabcentral/fileexchange/28518-xml2struct
+% 28518-xml2struct> by Wouter Falkena.  As the function name implies,
+% this handy code "converts an XML file into a MATLAB structure for
+% easy access to the data."
+
+%%
+% You can also use your browser to access the example URL and (a) examine 
+% the XML, and (b) see why bills 33 and 34 from year 2020 are not typical
+% measures before the Senate.
+
+%% The Matrices
+% Once you find your way through the layers of structure that results from
+% the  XML, you will have many details about each senate roll call vote.
+% In particular, for each senator who voted, you will have a structure
+% with fields full name, last name, first name, party, state, vote,
+% and member id.
+
+%% 
+% For each year, we create a matrix of +1s, -1s, and 0s.  A +1 is for
+% a vote of "Yea" or "Guilty", a -1 is a "Nay" or "Not Guilty", and a 
+% 0 is for anything else, which includes "Not Voting", "Present" (abstain),
+% and something too complicated to explain called "Present, Giving Live
+% Pair".  Because there are 100 senators, the matrix has 100 rows. 
+% The number of columns is the number of roll call votes taken that year.  
+% The matrices range in size from 100-by-163 for 2016 to 
+% 100-by-613 for 1995.  
+
+%%
+% The XML is organized using last names of senators in alphabetic order REPLACE_WITH_DASH_DASH
+% Alexander (R-TN), Baldwin (D-WI), Barrasso (R-WY), ..., Young(R-IN).
+% At first, I tried to create matrices with rows in this order.   
+% But senators retire or die in midsession, so this ordering proved to be
+% difficult to manage correctly.  Ultimately, I decided to order the rows
+% by states.  Each state is allocated two rows; the name of the specific
+% senator occupying each row is irrelevant.  After the matrix for
+% a given year is complete, I reorder the rows so that all the senators
+% from each party are grouped together.  The one or two senators who
+% declare themselves to be independent (but who caucus with a major party)
+% are between the two parties.
+
+%%
+% Here are the matrices, 37 of them, one for each session from
+% 1989 to 2025.  A good way to see the
+% structure of these matrices is to view them as images.
+% Red is "Yea" or "Guilty", gold is "Nay" or "Not Guilty",
+% and white is not present, abstain or other.
+%
+% <<senate_gif1.gif>>
+%
+
+%% Partisanship
+% The SVD of these matrices provides the basis for our analysis.
+% The singular values decrease very rapidly with increasing index,
+% so the matrices can be well approximated by matrices of rank two.
+% When viewed from the record of roll call votes, the U. S. Senate
+% is nearly two-dimensional.
+
+%%
+% Let |A(y)| be the matrix of 1s, -1s and 0s summarizing the roll call
+% votes in year |y|.  Let
+%
+%   sigma = svd(A(y))
+%
+% Then the _partisanship_ for year |y| is defined usinng the third
+% singular value.
+%
+%   partianship = 1-sigma(3)/sigma(1) 
+%
+% This quantity measures how close the voting pattern is to
+% being two-dimensional.
+
+%% Compare
+% For example, 1991 is one of the least partisan years in our sample,
+% and 2025 is one of the most partisan years.
+% You can immediately see that 2025 has much less detailed structure than
+% 1991; it is closer to being two-dimensional
+% 
+% <<A1991a.png>>
+%
+% <<A2025.png>>
+%
+
+%% Increasing Partisanship
+% This animation shows the distribution of the first ten singular values
+% for the years from 1989 to 2025.  The singular values are
+% normalized so that |1-sigma(1) = 0|. Then the third singular value is
+% highlighted. 
+%
+% <<senate_gif2.gif>>
+%
+% Finally, here is this measure of partisanship for each year from 1989
+% to 2025, and a linear least squares fit.  With this much
+% scatter is the values, the exact fit can't be taken too seriously.
+% But there is definitely an upward trend.  Partisanship in the U. S. Senate
+% has increased from less than 70% thirty years ago to more than 80% today.
+%
+% <<partisanship_a.png>>
+%
+% 
+##### SOURCE END ##### 581e808db466464aa3eed7e7508fa69e
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[My first blog about SVD and Partisanship in the U. S. Senate was five years ago. Today's post updates that to 2025.]]></summary></entry><entry><title type="html">New York Times Colors</title><link href="https://hpc.social/commercial-blog/2025/new-york-times-colors/" rel="alternate" type="text/html" title="New York Times Colors" /><published>2025-12-23T19:28:43-07:00</published><updated>2025-12-23T19:28:43-07:00</updated><id>https://hpc.social/commercial-blog/2025/new-york-times-colors</id><content type="html" xml:base="https://hpc.social/commercial-blog/2025/new-york-times-colors/"><![CDATA[<div class="content"><!--introduction-->
+<p>I admire the color scheme in the New York Times Games section and occasionally make it my <tt>colororder</tt>.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/nytgames.png" vspace="5" /> </p>
+
+<p>
+<a href="https://www.nytco.com/games">https://www.nytco.com/games</a>
+</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#b775e0cc-120e-443e-bfd3-b52055913abf">Colormaps</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#4e281139-12a5-4b45-ab8b-4bfb541d60a8">Palettes</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#d0394ce0-f6ca-4fe6-ba61-8fa91a5ec3bb">Color Order</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#2162adb6-93bd-452b-966c-5a55d0f03577">New York Times Games</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#10ebe126-c13a-4339-9b8e-8756acb5fb71">NYT Color Order</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#76fc404c-4679-445e-97a1-06dc44e4130f">Tangrams</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#8b2a0c9f-2665-4c02-bf8b-9aadc3783225">NYT Qube</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#37f1ab87-cabe-44a9-bf78-64b50ecb933d">Gallery</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#5e5bb717-8b3b-44ec-9916-a9db99920b34"><tt>fftmatrix</tt></a>
+</li>
+</ul>
+</div>
+
+<h4>Colormaps<a name="b775e0cc-120e-443e-bfd3-b52055913abf"></a>
+</h4>
+<p>It is important to distinguish between "color map" and "color order". A <tt>colormap</tt> defines the colors used by surface, image, and patch objects. MATLAB provides 22 color maps. <tt>parula</tt> is the default.</p>
+
+<pre class="codeinput">disp(colormaps)
+</pre>
+<pre class="codeoutput">    "parula"
+    "turbo"
+    "hsv"
+    "hot"
+    "cool"
+    "spring"
+    "summer"
+    "autumn"
+    "winter"
+    "gray"
+    "bone"
+    "copper"
+    "pink"
+    "sky"
+    "abyss"
+    "nebula"
+    "jet"
+    "lines"
+    "colorcube"
+    "prism"
+    "flag"
+    "white"
+</pre>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/colormaps.gif" vspace="5" /> </p>
+
+<h4>Palettes<a name="4e281139-12a5-4b45-ab8b-4bfb541d60a8"></a>
+</h4>
+<p>The <tt>colormap</tt> defines the <tt>palette</tt> of colors used by the <tt>plot</tt> function for multiple lines. MATLAB provides 10 palettes. <tt>gem</tt> is the default.</p>
+
+<pre class="codeinput">disp(palettes')
+</pre>
+<pre class="codeoutput">    "gem"
+    "gem12"
+    "glow"
+    "glow12"
+    "sail"
+    "reef"
+    "meadow"
+    "dye"
+    "earth"
+    "default"
+</pre>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/palettes.gif" vspace="5" /> </p>
+
+<h4>Color Order<a name="d0394ce0-f6ca-4fe6-ba61-8fa91a5ec3bb"></a>
+</h4>
+<p>The colors used by MATLAB for plotting multiple lines need to be well separated. These colors are given by the <tt>colororder</tt> property of the current axes. By default, MATLAB cycles through the seven colors in the <tt>gem</tt> palette.</p>
+
+<pre class="codeinput">gcaco=get(gca,<span class="string">"ColorOrder"</span>);show_rgb(gcaco)
+</pre>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/nytcolors_blog_01.png" vspace="5" /> <pre class="codeinput">close<span class="string">all</span>clear
+</pre>
+<h4>New York Times Games<a name="2162adb6-93bd-452b-966c-5a55d0f03577"></a>
+</h4>
+<p>The New York Times Games originated with the newspaper's crossword puzzle in 1942. NYT Games was established in 2014, with the addition of the Mini Crossword. Wordle was added in 2022 and I have been playing Wordle almost daily since its launch.</p>
+
+<p>NYT Games now has over 10 million daily players. According to one member of staff, "the half joke that is repeated internally is that The New York Times is now a gaming company that also happens to offer news."</p>
+
+<h4>NYT Color Order<a name="10ebe126-c13a-4339-9b8e-8756acb5fb71"></a>
+</h4>
+<p>I like the color scheme that the Times uses in the Games section. It provides a subtler color order than the default <tt>gem</tt>.</p>
+
+<pre class="codeinput">nyt_palette
+</pre>
+<pre class="codeoutput">ans =
+   184   228    68
+   248   211     0
+   121   160   238
+   184   113   198
+   160    82    45
+   235   235   200
+</pre>
+<pre class="codeinput">nytco=nyt_palette/256ribbon(6)set(gcf,<span class="string">'position'</span>,[200200440300])set(gca,<span class="string">'colororder'</span>,nytco)drawnow
+</pre>
+<pre class="codeoutput">nytco =
+    0.7188    0.8906    0.2656
+    0.9688    0.8242         0
+    0.4727    0.6250    0.9297
+    0.7188    0.4414    0.7734
+    0.6250    0.3203    0.1758
+    0.9180    0.9180    0.7812
+</pre>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/nytcolors_blog_02.png" vspace="5" /> <pre class="codeinput">show_rgb(nytco)drawnow
+</pre>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/nytcolors_blog_03.png" vspace="5" /> <h4>Tangrams<a name="76fc404c-4679-445e-97a1-06dc44e4130f"></a>
+</h4>
+<p>In October, I used NYT colors for the kitty in my blog post about <a href="https://blogs.mathworks.com/cleve/2025/10/23/tangram-puzzles">Tangrams</a>.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/kitty.gif" vspace="5" /> </p>
+
+<h4>NYT Qube<a name="8b2a0c9f-2665-4c02-bf8b-9aadc3783225"></a>
+</h4>
+<p>The NYT colors give the <a href="https://blogs.mathworks.com/cleve/2022/05/04/qube-the-movie/">Rubiks Cube</a> a new look.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/nyt_cube.gif" vspace="5" /> </p>
+
+<h4>Gallery<a name="37f1ab87-cabe-44a9-bf78-64b50ecb933d"></a>
+</h4>
+<p>The <a href="https://blogs.mathworks.com/cleve/2023/06/28/minigallery-sampler-of-matlab-test-matrices/">MiniGallery</a> with NYT colors.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/nyt_minigallery.png" vspace="5" /> </p>
+
+<h4>
+<tt>fftmatrix</tt><a name="5e5bb717-8b3b-44ec-9916-a9db99920b34"></a>
+</h4>
+<p>The <a href="https://blogs.mathworks.com/cleve/2014/09/29/finite-fourier-transform-matrix">Fast Finite Fourier Matrix</a> with the NYT colors.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/fftmatrix.gif" vspace="5" /> </p>
+
+<!-- 
+    function grabCode_4f2b9a66df304463b8c4fa2d059695c0() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='4f2b9a66df304463b8c4fa2d059695c0 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 4f2b9a66df304463b8c4fa2d059695c0';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2025 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2025a<br />
+</p>
+
+</div>
+
+<!--
+4f2b9a66df304463b8c4fa2d059695c0 ##### SOURCE BEGIN #####
+%% New York Times Colors
+% I admire the color scheme in the New York Times
+% Games section and occasionally make it my |colororder|.
+%
+% <<nytgames.png>>
+%
+% <https://www.nytco.com/games>
+%
+
+%% Colormaps
+% It is important to distinguish between "color map" 
+% and "color order".
+% A |colormap| defines the colors used by 
+% surface, image, and patch objects.  MATLAB provides 22 color maps.
+% |parula| is the default.
+
+    disp(colormaps)
+
+%%
+%
+% <<colormaps.gif>>
+%
+
+%% Palettes
+% The |colormap| defines the |palette| of colors used by the |plot|
+% function for multiple lines.  MATLAB  provides 10 palettes.
+% |gem| is the default.
+
+     disp(palettes')
+
+%%
+%
+% <<palettes.gif>>
+%
+
+%% Color Order
+% The colors used by MATLAB for plotting multiple lines
+% need to be well separated. 
+% These colors are given by the |colororder| property of
+% the current axes.
+% By default, MATLAB cycles through the seven colors
+% in the |gem| palette.
+
+    gcaco = get(gca,"ColorOrder");
+    show_rgb(gcaco) 
+
+%%
+
+    close all
+    clear
+
+%% New York Times Games
+% The New York Times Games originated with the newspaper's crossword puzzle
+% in 1942.  NYT Games was established in 2014, with the addition of
+% the Mini Crossword.  Wordle was added in 2022 and
+% I have been playing Wordle almost daily since its launch.
+% 
+% NYT Games now has over 10 million daily players. According to one
+% member of staff, "the half joke that is repeated internally is that
+% The New York Times is now a gaming company that also happens to
+% offer news."
+
+%% NYT Color Order
+% I like the color scheme that the Times uses in the
+% Games section.
+% It provides a subtler color order than the default |gem|.
+
+    nyt_palette
+
+%%
+
+    nytco = nyt_palette/256
+    ribbon(6)
+    set(gcf,'position',[200 200 440 300])
+    set(gca,'colororder',nytco)
+    drawnow
+
+%%
+
+    show_rgb(nytco)
+    drawnow
+
+%% Tangrams
+%
+% In October, I used NYT colors for the kitty in my blog post about
+% <https://blogs.mathworks.com/cleve/2025/10/23/tangram-puzzles
+% Tangrams>.
+%
+% <<kitty.gif>>
+%
+
+%% NYT Qube
+% The NYT colors give the
+% <https://blogs.mathworks.com/cleve/2022/05/04/qube-the-movie/
+% Rubiks Cube> a new look.
+%
+% <<nyt_cube.gif>>
+%
+
+%% Gallery
+% The
+% <https://blogs.mathworks.com/cleve/2023/06/28/minigallery-sampler-of-matlab-test-matrices/
+% MiniGallery> with NYT colors.
+%
+% <<nyt_minigallery.png>>
+%
+%
+%% |fftmatrix|
+% The
+% <https://blogs.mathworks.com/cleve/2014/09/29/finite-fourier-transform-matrix
+% Fast Finite Fourier Matrix> with the NYT colors.
+%
+% <<fftmatrix.gif>>
+%
+##### SOURCE END ##### 4f2b9a66df304463b8c4fa2d059695c0
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[I admire the color scheme in the New York Times Games section and occasionally make it my colororder.]]></summary></entry><entry><title type="html">Rob Schreiber</title><link href="https://hpc.social/commercial-blog/2025/rob-schreiber/" rel="alternate" type="text/html" title="Rob Schreiber" /><published>2025-11-29T12:20:44-07:00</published><updated>2025-11-29T12:20:44-07:00</updated><id>https://hpc.social/commercial-blog/2025/rob-schreiber</id><content type="html" xml:base="https://hpc.social/commercial-blog/2025/rob-schreiber/"><![CDATA[<div class="content"><!--introduction-->
+<p>Rob Schrieber is one of my very best friends.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/rob.png" vspace="5" /> </p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#01b280bb-0cd2-4f50-81d9-948d67462c74">Career</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#e8d8358b-11ed-46aa-b38c-580bdb7869e2">Hewlett-Packard</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#db1b942f-24cd-4157-838b-5a1fdd68b124">Sparse</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#373d3283-5be3-406f-9b8d-997efffba330">SIAM</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#52954402-8dce-4a47-80b6-da5d0f5259b3">NAS Benchmarks</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#28c5a96f-1a85-4aa4-95b8-7b087d766ce7">Cerebras</a>
+</li>
+</ul>
+</div>
+
+<h4>Career<a name="01b280bb-0cd2-4f50-81d9-948d67462c74"></a>
+</h4>
+<div>
+<ul>
+<li>1977 Ph. D., Yale.</li>
+<li>1979-1985 Assistant Professor, Stanford.</li>
+<li>1984-1987 Chief Technology Officer, Saxpy Computer Corporation.</li>
+<li>1986-1988 Associate Professor, Rensselaer Polytechnic Institute.</li>
+<li>1988-1995 Senior Scientist, RIACS, NASA Ames Center.</li>
+<li>1995-2017 Distinguished Technologist, Hewlett Packard Corporation.</li>
+<li>2017-present, Distinguished Engineer, Cerebras.</li>
+<li>1996-2019, Soccer Referee.</li>
+</ul>
+</div>
+
+<h4>Hewlett-Packard<a name="e8d8358b-11ed-46aa-b38c-580bdb7869e2"></a>
+</h4>
+<p>Rob worked at Hewlett Packard for more than 20 years, <a href="https://trimaran.org/car/rob_schreiber">https://trimaran.org/car/rob_schreiber</a>.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Rob_2.png" vspace="5" /> </p>
+
+<h4>Sparse<a name="db1b942f-24cd-4157-838b-5a1fdd68b124"></a>
+</h4>
+<p>Iain Duff is known for his work on algorithms and software for sparse matrix computation. In 1990, he visited Stanford and gave a talk in the numerical analysis seminar. I attended the talk. So did John Gilbert, who was then at Xerox Palo Alto Research Center, and Rob Schreiber, from Hewlett Packard Research. We all went to lunch at Stanford's Tresidder Union and there Gilbert, Schreiber and I decided it was about time for MATLAB to support sparse matrices.</p>
+
+<p>In 1992 we introduced <a href="https://www.mathworks.com/help/pdf_doc/otherdocs/simax.pdf">sparse matrices</a>. One of our examples is <a href="https://blogs.mathworks.com/cleve/2020/10/25/notes-on-cr-and-west0479"><tt>west0479</tt></a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/west0479.png" vspace="5" /> </p>
+
+<h4>SIAM<a name="373d3283-5be3-406f-9b8d-997efffba330"></a>
+</h4>
+<p>Rob has been a member of SIAM for 50 years, <a href="https://www.facebook.com/watch/?v=464499592673781">https://www.facebook.com/watch/?v=464499592673781</a>.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Rob_SIAM.png" vspace="5" /> </p>
+
+<h4>NAS Benchmarks<a name="52954402-8dce-4a47-80b6-da5d0f5259b3"></a>
+</h4>
+<p>The NAS Parallel Benchmarks (NPB) are a set of programs designed to evaluate the performance of parallel supercomputers. The benchmarks were developed as part of the Numerical Aerodynamic Simulation (NAS) Program at the NASA Ames Research Center. The benchmarks are derived from computational fluid dynamics applications and consist of five kernels and three pseudo-applications in the original "pencil-and-paper" specification. Rob is one of the 14 authors of the first specification, <a href="https://www.nas.nasa.gov/assets/nas/pdf/techreports/1994/rnr-94-007.pdf">NAS Benchmarks</a>.</p>
+
+<p>The NAS Benchmarks received the Supercomputing Test of Time award at SC15 in Austin. Rob is next to Horst Simon, who holds the award.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/NAS_benchmarks.png" vspace="5" /> </p>
+
+<h4>Cerebras<a name="28c5a96f-1a85-4aa4-95b8-7b087d766ce7"></a>
+</h4>
+<p>Cerebras Systems is a ten-year old Silicon Valley startup. <a href="https://www.cerebras.ai/company">https://www.cerebras.ai/company</a>.</p>
+
+<p>The fellow in the center is holding the Cerebras "chip", an entire silicon wafer. Rob is on the right, in the green shirt.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Cerebras.png" vspace="5" /> </p>
+
+<!-- 
+    function grabCode_1d80b5d88e9a4f18b56eccb7e7bce4d9() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='1d80b5d88e9a4f18b56eccb7e7bce4d9 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 1d80b5d88e9a4f18b56eccb7e7bce4d9';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2025 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024b<br />
+</p>
+
+</div>
+
+<!--
+1d80b5d88e9a4f18b56eccb7e7bce4d9 ##### SOURCE BEGIN #####
+%% Rob Schreiber
+% Rob Schrieber is one of my very best friends.
+%
+% <<rob.png>>
+%
+
+%% Career
+%
+% * 1977 Ph. D., Yale.
+% * 1979-1985 Assistant Professor, Stanford.
+% * 1984-1987 Chief Technology Officer, Saxpy Computer Corporation.
+% * 1986-1988 Associate Professor, Rensselaer Polytechnic Institute.
+% * 1988-1995 Senior Scientist, RIACS, NASA Ames Center.
+% * 1995-2017 Distinguished Technologist, Hewlett Packard Corporation.
+% * 2017-present, Distinguished Engineer, Cerebras.
+% * 1996-2019, Soccer Referee.
+
+%% Hewlett-Packard
+% Rob worked at Hewlett Packard for more than 20 years,
+% <https://trimaran.org/car/rob_schreiber>.
+%
+% <<Rob_2.png>>
+%
+
+%% Sparse
+% Iain Duff is known for
+% his work on algorithms and software for sparse matrix computation.
+% In 1990, he visited Stanford and gave a talk in the numerical
+% analysis seminar. I attended the talk. So did John Gilbert, who was 
+% then at Xerox Palo Alto Research Center, and Rob Schreiber,
+% from Hewlett Packard Research. We all went to lunch
+% at Stanford's Tresidder Union and there Gilbert, Schreiber and I
+% decided it was about time for MATLAB to support sparse matrices.
+%
+% In 1992 we introduced 
+% <https://www.mathworks.com/help/pdf_doc/otherdocs/simax.pdf
+% sparse matrices>.
+% One of our examples is
+% <https://blogs.mathworks.com/cleve/2020/10/25/notes-on-cr-and-west0479
+% |west0479|>
+%
+% <<west0479.png>>
+%
+
+%% SIAM
+% Rob has been a member of SIAM for 50 years,
+% <https://www.facebook.com/watch/?v=464499592673781>.
+%
+% <<Rob_SIAM.png>>
+%
+
+%% NAS Benchmarks
+% The NAS Parallel Benchmarks (NPB) are a set of programs
+% designed to evaluate the performance of parallel supercomputers.
+% The benchmarks were developed as part of
+% the Numerical Aerodynamic Simulation (NAS) Program at
+% the NASA Ames Research Center.
+% The benchmarks are derived from computational fluid dynamics
+% applications and consist of five kernels and three pseudo-applications
+% in the original "pencil-and-paper" specification.
+% Rob is one of the 14 authors of the first specification,
+% <https://www.nas.nasa.gov/assets/nas/pdf/techreports/1994/rnr-94-007.pdf
+% NAS Benchmarks>.
+%
+% The NAS Benchmarks received the Supercomputing Test of Time
+% award at SC15 in Austin.  Rob is next to Horst Simon, who holds
+% the award.
+%
+% <<NAS_benchmarks.png>>
+%
+
+%% Cerebras 
+% Cerebras Systems is a ten-year old Silicon Valley startup.
+% <https://www.cerebras.ai/company>.
+%
+% The fellow in the center is holding the Cerebras "chip",
+% an entire silicon wafer.
+% Rob is on the right, in the green shirt.
+%
+% <<Cerebras.png>>
+%
+##### SOURCE END ##### 1d80b5d88e9a4f18b56eccb7e7bce4d9
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[Rob Schrieber is one of my very best friends.]]></summary></entry><entry><title type="html">Nick Trefethen</title><link href="https://hpc.social/commercial-blog/2025/nick-trefethen/" rel="alternate" type="text/html" title="Nick Trefethen" /><published>2025-11-24T20:09:18-07:00</published><updated>2025-11-24T20:09:18-07:00</updated><id>https://hpc.social/commercial-blog/2025/nick-trefethen</id><content type="html" xml:base="https://hpc.social/commercial-blog/2025/nick-trefethen/"><![CDATA[<div class="content"><!--introduction-->
+<p>Nick Trethen is a world famous computational scientist and my good friend.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Nick-1.png" vspace="5" /> </p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#efaa301d-ab8b-4786-a901-79639752b152">Serra House</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#a8619695-0491-4a92-891a-afe3e51ef000">Nick</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#14eff030-ac3a-44d4-8c57-73e16243061f">Academic Career</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#2ed8b96e-789b-4712-96d3-b9084674eacb">Wilkinson</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#616c54ef-6a0b-4dbb-a34a-97e723492fc1">60th Birthday</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#39d3a2ba-b838-4b8c-a562-0f54e94ba32b">Chebfun</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#b05fdcc4-1f23-4107-bbbc-cf9a6abac0c7">100 Digits</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#6589b835-5e96-4ec3-ad6c-1735f252a983">Lightning Laplace Solver</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#3b2f1099-ebf0-4072-9da1-8dda4aae1a99">AAA</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#9f1e6d2c-395d-4a8b-8273-6e82f53ba65e">Body-Mass Index</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#8151ced0-dad5-48c0-9f2c-0f172b6a7edd">Index Cards</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#6ff5ca97-c7c3-4c13-960b-e5beb855d1d5">Harvard</a>
+</li>
+</ul>
+</div>
+
+<h4>Serra House<a name="efaa301d-ab8b-4786-a901-79639752b152"></a>
+</h4>
+<p>I first met Nick in 1978 at Stanford's Serra House. Serra House was built in 1923 to be the retirement home for President David Starr Jordan. By the late 1970's it had been assigned to the Computer Science Department and housed the Numerical Analysis group. Professors George Forsythe and Gene Golub had their offices there at one time or another, as did various grad students, post docs, and visitors.</p>
+
+<p>There was a lovely patio, a volleyball court and a real feeling of camaraderie in the Serra House group. In the academic year 1978/79 a particularly strong group of grad studies were working in Serra House. Nick Trefethen was one of them. Marsha Berger, Michael Overton and Randy LeVeque were others.</p>
+
+<p>In 1978/79 Gene Golub was away from Stanford on sabbatical and I took his place for the year. I taught the graduate numerical analysis course and used my new Fortran <a href="https://dl.acm.org/doi/pdf/10.1145/3386331">"matrix laboratory"</a>. It was just a primitive matrix calculator. It was not impressive numerical analysis nor impressive computer science.</p>
+
+<p>Nick and Randy were enrolled in that course and Marsha and Michael sat in sometimes. This was their first exposure to MATLAB. It would have to become a more mature tool before they would find it useful. A few grad students from engineering also took my course and found that primitive MATLAB useful for work in areas like control theory and signal processing, areas that I knew nothing about at the time. That eventually led to Jack Little and to MathWorks.</p>
+
+<h4>Nick<a name="a8619695-0491-4a92-891a-afe3e51ef000"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Nick_Lino.png" vspace="5" /> </p>
+
+<h4>Chebfun<a name="39d3a2ba-b838-4b8c-a562-0f54e94ba32b"></a>
+</h4>https://blogs.mathworks.com/cleve/wp-admin/options-permalink.php
+<p>
+<a href="https://www.henkvandervorst.nl/computing.html">https://www.henkvandervorst.nl/computing.html</a>
+</p>
+
+<p>Linocut by Henk van der Vorst.</p>
+
+<p>Nick is a renowned scholar of computational mathematics. His <a href="https://people.maths.ox.ac.uk/trefethen"><i>curriculum vitae</i></a> provides a list of his achievements. He has authored eight books, published hundreds of journal articles and written dozens of essays, He is a fellow of the US National Academy of Engineering and the British Royal Society. He served as president of SIAM and as editor and associate editor for a number of journals.</p>
+
+<p>Here is a sample of a few of his achievements.</p>
+
+<h4>Academic Career<a name="14eff030-ac3a-44d4-8c57-73e16243061f"></a>
+</h4>
+<p>Nick received his Stanford Ph.D.in 1982. His thesis supervisor was Joe Oliger. From 1982 to 1997 he was on the faculty of NYU, MIT and Cornell.</p>
+
+<p>In 1997, he moved to Oxford University to succeed <a href="https://blogs.mathworks.com/cleve/2017/11/20/leslie-fox/">Leslie Fox</a> as Professor of Numerical Analysis and Fellow of Balliol College. Nick's essay <a href="https://people.maths.ox.ac.uk/trefethen/publication/PDF/american.pdf">An American at Oxford</a> is fascinating.</p>
+
+<h4>Wilkinson<a name="2ed8b96e-789b-4712-96d3-b9084674eacb"></a>
+</h4>
+<p>Nick gave this talk about Jim Wilkinson in 1979.</p>
+
+<p>
+<a href="https://www.youtube.com/watch?v=kOMrRn2tdCs">https://www.youtube.com/watch?v=kOMrRn2tdCs</a>
+</p>
+
+<h4>60th Birthday<a name="616c54ef-6a0b-4dbb-a34a-97e723492fc1"></a>
+</h4>
+<p>A conference for Nick's birthday as held in 2015 in Oxford's new Andrew Wiles Building. That's Andre Weideman in the front row with Nick and me.</p>
+
+<p>
+<a href="https://blogs.mathworks.com/cleve/2015/09/07/trip-report-trefethen-birthday-conference">https://blogs.mathworks.com/cleve/2015/09/07/trip-report-trefethen-birthday-conference</a>
+</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/wiles_group_photo.png" vspace="5" /> </p>
+
+<h4>Chebfun<a name="39d3a2ba-b838-4b8c-a562-0f54e94ba32b"></a>
+</h4>
+<p>Chebfun is a powerful system for dealing with functions and operators in the same way MATLAB deals with vectors and matrices. The web site: <a href="https://www.chebfun.org">https://www.chebfun.org</a>.</p>
+
+<p>The logo:</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/logo.png" vspace="5" /> </p>
+
+<p>The original authors, Nick, Toby Driscoll, Ricardo Pach&oacute;n and Rodrigo Platte:</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/chebteamtaxi.png" vspace="5" /> </p>
+
+<h4>100 Digits<a name="b05fdcc4-1f23-4107-bbbc-cf9a6abac0c7"></a>
+</h4>
+<p>In 2002, Nick specified ten problems, each with a numerical solution. He offered a $100 prize to whoever produced the most accurate solutions, measured up to ten significant digits. Ultimately twenty teams solved all of the problems perfectly. An anonymous donor aided in producing the required prize money. The challenge and its solutions were described in detail by Folkmar Bornemann, Dirk Laurie, Stan Wagon and J&ouml;rg Waldvogel in</p>
+
+<p>
+<a href="https://epubs.siam.org/doi/10.1137/1.9780898717969">The SIAM 100-Digit Challenge</a>.</p>
+
+<p>One of the problems is to find the global minimum of</p>
+
+<p>
+<tt>f = @(x,y) exp(sin(50*x)) + sin(60*exp(y)) + sin(70*sin(x)) + sin(sin(80*y)) - sin(10*(x+y)) + (x.^2+y.^2)./4;</tt>
+</p>
+
+<p>Here is a <tt>surf</tt> plot of <tt>f(x,y)</tt>.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/GlobalMinimum.png" vspace="5" /> </p>
+
+<h4>Lightning Laplace Solver<a name="6589b835-5e96-4ec3-ad6c-1735f252a983"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/llogo.png" vspace="5" /> </p>
+
+<p>The Lightning Laplace Solver is a MATLAB code that solves the Laplace equation on a polygon.</p>
+
+<p>
+<a href="https://people.maths.ox.ac.uk/trefethen/lightning.html">https://people.maths.ox.ac.uk/trefethen/lightning.html</a>
+</p>
+
+<h4>AAA<a name="3b2f1099-ebf0-4072-9da1-8dda4aae1a99"></a>
+</h4>
+<p>AAA is a new algorithm for rational approximation. The name AAA stands for &ldquo;adaptive Antoulas-Anderson&rdquo; in honor of the authors who introduced the idea.</p>
+
+<p>
+<a href="https://people.maths.ox.ac.uk/trefethen/AAAfinal.pdf">https://people.maths.ox.ac.uk/trefethen/AAAfinal.pdf</a>
+</p>
+
+<h4>Body-Mass Index<a name="9f1e6d2c-395d-4a8b-8273-6e82f53ba65e"></a>
+</h4>
+<p>In 2013 Nick wrote this one-page note proposing an alternative to the standard Body-Mass Index, which is widely used to assess obesity.</p>
+
+<p>
+<a href="https://people.maths.ox.ac.uk/trefethen/bmi.pdf">https://people.maths.ox.ac.uk/trefethen/bmi.pdf</a>
+</p>
+
+<h4>Index Cards<a name="8151ced0-dad5-48c0-9f2c-0f172b6a7edd"></a>
+</h4>
+<p>Nick writes:</p>
+
+<p>
+<p style="margin-left: 3ex;">
+For many years, since 1970 in fact, I have been writing notes on
+social, mathematical, and other subjects, which I store on index
+cards.  A collection of several hundred of these notes was
+published ... as Trefethen’s Index Cards: Forty Years of Notes
+about  People, Words and Mathematics (World Scientific, 2011).
+</p>
+
+</p>
+
+<p>See: <a href="https://trefethen.net">https://trefethen.net</a>
+</p>
+
+<h4>Harvard<a name="6ff5ca97-c7c3-4c13-960b-e5beb855d1d5"></a>
+</h4>
+<p>In 2023, Nick returned to Harvard, where he had been an undergraduate fifty years earlier. (Bill Gates was in the same class.) This time around, Nick is Professor of Applied Mathematics in Residence at the Harvard John A. Paulson School of Engineering and Applied Sciences (SEAS). The announcement: <a href="https://seas.harvard.edu/news/2023/09/nick-trefethen-returns-harvard">Trefethen Returns to Harvard</a>.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Harvard.png" vspace="5" /> </p>
+
+<!-- 
+    function grabCode_09775c46f2c043e58482eb29602547df() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='09775c46f2c043e58482eb29602547df ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 09775c46f2c043e58482eb29602547df';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2025 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024b<br />
+</p>
+
+</div>
+
+<!--
+09775c46f2c043e58482eb29602547df ##### SOURCE BEGIN #####
+%% Nick Trefethen
+% Nick Trethen is a world famous computational scientist and my good
+% friend.
+%
+% <<Nick.png>>
+%
+
+%% Serra House
+% I first met Nick in 1978 at Stanford's Serra House.
+% Serra House was built in 1923 to be the 
+% retirement home for President David Starr Jordan. By the late 1970's 
+% it had been assigned to the Computer Science Department and housed 
+% the Numerical Analysis group. Professors George Forsythe and 
+% Gene Golub had their offices there at one time or another, 
+% as did various grad students, post docs, and visitors. 
+%
+% There was a lovely patio, a volleyball court and a
+% real feeling of camaraderie in the Serra House group.
+% In the academic year 1978/79 a particularly strong group of grad 
+% studies were working in Serra House. Nick Trefethen was one of them. 
+% Marsha Berger, Michael Overton and Randy LeVeque were others.
+% 
+% In 1978/79 Gene Golub was away from Stanford on sabbatical and I took
+% his place for the year.
+% I taught the graduate numerical analysis course and used my new Fortran
+% <https://dl.acm.org/doi/pdf/10.1145/3386331
+% "matrix laboratory">.
+% It was just a primitive matrix calculator. 
+% It was not impressive numerical analysis nor impressive 
+% computer science.
+%
+% Nick and Randy were enrolled in that course and 
+% Marsha and Michael sat in sometimes. This was their first exposure 
+% to MATLAB.  It would have to become a more mature tool before they 
+% would find it useful. A few grad students from engineering also
+% took my course and found that primitive MATLAB useful for work 
+% in areas like control theory and signal processing, areas that I knew 
+% nothing about at the time. That eventually led to Jack Little and
+% to MathWorks.
+
+%% Nick
+%
+% <<Nick_lino.png>>
+% 
+% <https://www.henkvandervorst.nl/computing.html>
+%
+% Linocut by Henk van der Vorst.
+%
+% Nick is a renowned scholar of computational mathematics.
+% His <https://people.maths.ox.ac.uk/trefethen _curriculum vitae_>
+% provides a list of his achievements.
+% He has authored eight books, published hundreds of journal articles
+% and written dozens of essays, 
+% He is a fellow of the US National Academy of Engineering and
+% the British Royal Society.  He served as president of SIAM and as 
+% editor and associate editor for a number of journals.
+%
+% Here is a sample of a few of his achievements.
+%
+
+%% Academic Career
+% Nick received his Stanford Ph.D.in 1982.  His thesis supervisor
+% was Joe Oliger.  From 1982 to 1997 he was on the faculty
+% of NYU, MIT and Cornell.
+%
+% In 1997, he moved to Oxford University to succeed
+% <https://blogs.mathworks.com/cleve/2017/11/20/leslie-fox/
+% Leslie Fox> as
+% Professor of Numerical Analysis and Fellow of Balliol College.
+% Nick's essay
+% <https://people.maths.ox.ac.uk/trefethen/publication/PDF/american.pdf
+% An American at Oxford> is fascinating.
+%
+
+%% Wilkinson
+% Nick gave this talk about Jim Wilkinson in 1979.
+%
+% <https://www.youtube.com/watch?v=kOMrRn2tdCs>
+%
+
+%% 60th Birthday
+% A conference for Nick's birthday as held in 2015 in Oxford's
+% new Andrew Wiles Building. That's Andre Weideman in the front row
+% with Nick and me.
+%
+% <https://blogs.mathworks.com/cleve/2015/09/07/trip-report-trefethen-birthday-conference>
+%
+% <<wiles_group_photo.png>>
+%
+
+%% Chebfun
+% Chebfun is a powerful system for dealing with functions and operators
+% in the same way MATLAB deals  with vectors and matrices.
+% The web site: <https://www.chebfun.org>.
+%
+% The logo:
+%
+% <<logo.png>>
+%
+% The original authors, Nick, Toby Driscoll,  Ricardo Pachón and
+% Rodrigo Platte:
+%
+% <<chebteamtaxi.png>>
+%
+
+%% 100 Digits
+% In 2002, Nick specified ten problems, each with a numerical solution.
+% He offered a $100 prize to whoever produced the most accurate
+% solutions, measured up to ten significant digits. Ultimately
+% twenty teams solved all of the problems perfectly.  An anonymous 
+% donor aided in producing the required prize money. 
+% The challenge and its solutions were described in detail by
+% Folkmar Bornemann, Dirk Laurie, Stan Wagon and Jörg Waldvogel in
+%
+% <https://epubs.siam.org/doi/10.1137/1.9780898717969
+% The SIAM 100-Digit Challenge>.
+%
+% One of the problems is to find the global minimum of
+%
+% |f = @(x,y) exp(sin(50*x)) + sin(60*exp(y)) + sin(70*sin(x)) +
+% sin(sin(80*y)) - sin(10*(x+y)) + (x.^2+y.^2)./4;|
+% 
+% Here is a |surf| plot of |f(x,y)|.
+%
+% <<GlobalMinimum.png>>
+%
+
+%% Lightning Laplace Solver
+%
+% <<llogo.png>>
+%
+% The Lightning Laplace Solver is a MATLAB code that solves the
+% Laplace equation on a polygon.
+%
+% <https://people.maths.ox.ac.uk/trefethen/lightning.html>
+%
+
+%% AAA
+% AAA is a new algorithm for rational approximation.
+% The name AAA stands for “adaptive Antoulas-Anderson” 
+% in honor of the authors who introduced the idea.
+%
+% <https://people.maths.ox.ac.uk/trefethen/AAAfinal.pdf>
+%
+
+%% Body-Mass Index
+% In 2013 Nick wrote this one-page note proposing an alternative
+% to the standard Body-Mass Index, which is widely used to assess
+% obesity.
+%
+% <https://people.maths.ox.ac.uk/trefethen/bmi.pdf>
+ 
+%% Index Cards
+% Nick writes:
+%
+% <html>
+% <p style="margin-left:3ex;">
+% For many years, since 1970 in fact, I have been writing notes on
+% social, mathematical, and other subjects, which I store on index
+% cards.  A collection of several hundred of these notes was
+% published ... as Trefethen’s Index Cards: Forty Years of Notes
+% about  People, Words and Mathematics (World Scientific, 2011).
+% </p>
+
+% </html>
+%
+% See: <https://trefethen.net>
+%
+
+%% Harvard
+% In 2023, Nick returned to Harvard, where he had been an undergraduate
+% fifty years earlier. (Bill Gates was in the same class.)
+% This time around, Nick is Professor of Applied Mathematics in Residence
+% at the Harvard John A. Paulson School of Engineering and Applied
+% Sciences (SEAS).
+% The announcement:
+% <https://seas.harvard.edu/news/2023/09/nick-trefethen-returns-harvard
+% Trefethen Returns to Harvard>.
+%
+% <<Harvard.png>>
+%
+##### SOURCE END ##### 09775c46f2c043e58482eb29602547df
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[Nick Trethen is a world famous computational scientist and my good friend.]]></summary></entry><entry><title type="html">Jack Dongarra</title><link href="https://hpc.social/commercial-blog/2025/jack-dongarra/" rel="alternate" type="text/html" title="Jack Dongarra" /><published>2025-11-21T19:47:04-07:00</published><updated>2025-11-21T19:47:04-07:00</updated><id>https://hpc.social/commercial-blog/2025/jack-dongarra</id><content type="html" xml:base="https://hpc.social/commercial-blog/2025/jack-dongarra/"><![CDATA[<div class="content"><!--introduction-->
+<p>Jack Dongarra is my student, colleague and friend.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Jack.png" vspace="5" /> </p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#57418509-4148-4c00-ac91-c59f3c68d4cf">Turing Award</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#00e6856d-ff69-4356-8780-68012d37db59">Jack</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#0898ef85-6086-4570-88f9-84c4355575c1">PC-AT</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#d452c4f9-6cbf-46ea-833d-e969f6503194">Argonne</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#b1a2e041-fbad-43c9-80c3-7ae3525b1e8b">New Mexico</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#ae15a3f3-72f9-4c74-8fe6-f7e4ee85ee21">Accidental Benchmark</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#ad07ec60-9ae8-48ba-8a68-8ad4bcfcca7d">Spokesman</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#856292c1-b159-4c68-979e-1229156cf2cc">SC Conference</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#bca056a7-11ee-4188-9699-72502c438f36">ICL</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#9ca24409-f804-4e88-a89e-61b3e2025d0b">Tradition</a>
+</li>
+</ul>
+</div>
+
+<h4>Turing Award<a name="57418509-4148-4c00-ac91-c59f3c68d4cf"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Turing.png" vspace="5" /> </p>
+
+<p>The <a href="https://amturing.acm.org">ACM Turing Award</a> is an annual prize given by the Association% for Computing Machinery (ACM) for contributions of lasting and major technical importance to computer science. It is generally recognized as the highest distinction in the field of computer science and is often referred to as the "Nobel Prize of Computing".</p>
+
+<p>Jack Dongarra won the Turing Award in 2021. Here is his award lecture, a very personal story. <a href="https://amturing.acm.org/vp/dongarra_3406337.cfm">https://amturing.acm.org/vp/dongarra_3406337.cfm</a>
+</p>
+
+<h4>Jack<a name="00e6856d-ff69-4356-8780-68012d37db59"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Jack_Lino.png" vspace="5" /> </p>
+
+<p>
+<a href="https://www.henkvandervorst.nl/computing.html">https://www.henkvandervorst.nl/computing.html</a>
+</p>
+
+<p>Linocut by Henk van der Vorst.</p>
+
+<p>I first met Jack at Argonne in 1970 when we began work on the <a href="https://www.netlib.org/eispack">EISPACK</a> project.</p>
+
+<p>In 1979, he came to the University of New Mexico to work on a Ph.D. degree under my supervision. His <a href="https://www.netlib.org/utk/people/JackDongarra/PAPERS/003_1983_improving-the-accuracy-of-computed-eigenvalues.pdf">thesis</a> is "Improving the Accuracy of Computed Eigenvalues and Eigenvectors".</p>
+
+<h4>PC-AT<a name="0898ef85-6086-4570-88f9-84c4355575c1"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/PC-AT.png" vspace="5" /> </p>
+
+<p>Jack and the IBM PC-AT in 1984.</p>
+
+<p>Jack has been the primary implementor or principal investigator for many libraries including LINPACK, BLAS, LAPACK, ScaLAPACK, PLASMA, MAGMA, and SLATE.</p>
+
+<h4>Argonne<a name="d452c4f9-6cbf-46ea-833d-e969f6503194"></a>
+</h4>
+<p>The LINPACK Guys.</p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Linpack_guys_1.png" vspace="5" /> </p>
+
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Linpack_guys_3.png" vspace="5" /> </p>
+
+<p>The authors of LINPACK -- Jack Dongarra, Cleve Moler, Pete Stewart and Jim Bunch -- at James Lyness's house near Argonne in the summer of 1978.</p>
+
+<p>The first snapshot was in the <i>New York Times</i> when Jack won the Turing Award.</p>
+
+<h4>New Mexico<a name="b1a2e041-fbad-43c9-80c3-7ae3525b1e8b"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/NM79.png" vspace="5" /> </p>
+
+<p>The 1978 New Mexico plate on Jack's Car in the <i>NYT</i> photo is gold. Jack had two 1979 turquoise plates made. He has one of them and he gave the other to me.</p>
+
+<h4>Accidental Benchmark<a name="ae15a3f3-72f9-4c74-8fe6-f7e4ee85ee21"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/linpackbm.png" vspace="5" /> </p>
+
+<p>The LINPACK benchmark is an accidental offspring of the development of the LINPACK software package. We asked two dozen universities and laboratories to test the software on a variety of main frame machines that were then available in central computer centers. We also asked them to measure the time required to solve a 100-by-100 system of simultaneous linear equations.</p>
+
+<p>Appendix B of the LINPACK Users' Guide has the timing results. The hand-written notes shown here are Jack's calculation of the megaflop rate, millions of floating point operations per second. With a matrix of order n , the megaflop rate for a factorization by Gaussian elimination plus two triangular solves is</p>
+
+<p>
+<tt>megaflops = (2/3*n^3 + 2*n^2)/time/10^6</tt>
+</p>
+
+<p>Jack and colleagues have continued to collect results. Twice a year, the <a href="https://en.wikipedia.org/wiki/TOP500">TOP500</a> determines the world's fastest computer.</p>
+
+<h4>Spokesman<a name="ad07ec60-9ae8-48ba-8a68-8ad4bcfcca7d"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Titan.png" vspace="5" /> </p>
+
+<p>Jack has become a spokeman for high performance computing. He is often quoted by main-stream media.</p>
+
+<h4>SC Conference<a name="856292c1-b159-4c68-979e-1229156cf2cc"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/SC22.png" vspace="5" /> </p>
+
+<p>Jack has been very active in the Super Computer Conferences. SC22 gave him a rousing local-kid-makes-good welcome after he won the Turing Award.</p>
+
+<h4>ICL<a name="bca056a7-11ee-4188-9699-72502c438f36"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/ICL.png" vspace="5" /> </p>
+
+<p>Jack established the Innovative Computing Laboratory in 1989 when he accepted a dual appointment as a Distinguished Professor at the University of Tennessee and a Distinguished Scientist at Oak Ridge National Laboratory. Since then, ICL has grown into an internationally recognized research laboratory, specializing in Numerical Linear Algebra, Distributed Computing, and Performance Evaluation and Benchmarking. The lab now employs nearly twenty researchers, students, and staff.</p>
+
+<h4>Tradition<a name="9ca24409-f804-4e88-a89e-61b3e2025d0b"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/SC2018.png" vspace="5" /> </p>
+
+<p>John Gilbert, Jack, me and Rob Shriber traditionally meet for dinner once a year at the Super Computer conference. This photo was at SC18 in Dallas.</p>
+
+<!-- 
+    function grabCode_97606da2c36c420890dd509fe7385c72() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='97606da2c36c420890dd509fe7385c72 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 97606da2c36c420890dd509fe7385c72';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2025 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024b<br />
+</p>
+
+</div>
+
+<!--
+97606da2c36c420890dd509fe7385c72 ##### SOURCE BEGIN #####
+%% Jack Dongarra
+% Jack Dongarra is my student, colleague and friend.
+%
+% <<Jack.png>>
+
+%% Turing Award
+%
+% <<Turing.png>>
+%
+% The <https://amturing.acm.org ACM Turing Award> is an annual prize
+% given by the Association% for Computing Machinery (ACM)
+% for contributions of lasting and major
+% technical importance to computer science. It is generally recognized
+% as the highest distinction in the field of computer science and is
+% often referred to as the "Nobel Prize of Computing".
+%
+% Jack Dongarra won the Turing Award in 2021.
+% Here is his award lecture, a very personal story.
+% <https://amturing.acm.org/vp/dongarra_3406337.cfm>
+
+%% Jack
+%
+% <<Jack_Lino.png>>
+% 
+% <https://www.henkvandervorst.nl/computing.html>
+%
+% Linocut by Henk van der Vorst.
+%
+% I first met Jack at Argonne in 1970 when we began work on the
+% <https://www.netlib.org/eispack EISPACK> project.
+%
+% In 1979, he came to the University of New Mexico to work on a 
+% Ph.D. degree under my supervision.  His 
+% <https://www.netlib.org/utk/people/JackDongarra/PAPERS/003_1983_improving-the-accuracy-of-computed-eigenvalues.pdf
+% thesis> is "Improving the Accuracy of Computed Eigenvalues and
+% Eigenvectors".
+
+%% PC-AT
+%
+% <<PC-AT.png>>
+%
+% Jack and the IBM PC-AT in 1984.
+%
+% Jack has been the primary implementor or principal investigator for
+% many libraries including LINPACK, BLAS, LAPACK, ScaLAPACK, PLASMA,
+% MAGMA, and SLATE. 
+
+%% Argonne
+% The LINPACK Guys.
+%
+% <<Linpack_guys_1.png>>
+%
+%
+% <<Linpack_guys_3.png>>
+%
+% The authors of LINPACK REPLACE_WITH_DASH_DASH Jack Dongarra, Cleve Moler, Pete Stewart
+% and Jim Bunch REPLACE_WITH_DASH_DASH at James Lyness's house near Argonne
+% in the summer of 1978. 
+%
+% The first snapshot was in the _New York Times_ when Jack won the
+% Turing Award.
+
+%% New Mexico
+%
+% <<NM79.png>>
+%
+% The 1978 New Mexico plate on Jack's Car in the _NYT_ photo is gold.
+% Jack had two 1979 turquoise plates made.  He has one of them
+% and he gave the other to me.
+
+%% Accidental Benchmark
+%
+% <<linpackbm.png>>
+%
+% The LINPACK benchmark is an accidental offspring of the development
+% of the LINPACK software package.
+% We asked two dozen universities and
+% laboratories to test the software on a variety of main frame machines
+% that were then available in central computer centers.
+% We also asked them to measure the time required
+% to solve a 100-by-100 system of simultaneous linear equations. 
+%
+% Appendix B of the LINPACK Users' Guide has the timing results. 
+% The hand-written notes shown here are Jack's calculation of the
+% megaflop rate, millions of floating point operations per second. 
+% With a matrix of order n , the megaflop rate for a factorization 
+% by Gaussian elimination plus two triangular solves is
+%
+% |megaflops = (2/3*n^3 + 2*n^2)/time/10^6|
+%
+% Jack and colleagues have continued to collect results.
+% Twice a year, the <https://en.wikipedia.org/wiki/TOP500 TOP500>
+% determines the world's fastest computer.
+
+%% Spokesman
+%
+% <<Titan.png>>
+%
+% Jack has become a spokeman for high performance computing.
+% He is often quoted by main-stream media.
+
+%% SC Conference
+%
+% <<SC22.png>>
+%
+% Jack has been very active in the Super Computer Conferences.
+% SC22 gave him a rousing local-kid-makes-good welcome after he won the
+% Turing Award.
+
+
+%% ICL
+%
+% <<ICL.png>>
+%
+% Jack established the Innovative Computing Laboratory in 1989 when
+% he accepted a dual appointment as a Distinguished Professor at the
+% University of Tennessee and a Distinguished Scientist at Oak Ridge
+% National Laboratory. Since then, ICL has grown into an internationally
+% recognized research laboratory, specializing in Numerical Linear
+% Algebra, Distributed Computing, and Performance Evaluation and 
+% Benchmarking. The lab now employs nearly twenty researchers, students,
+% and staff.
+
+%% Tradition 
+%
+% <<SC2018.png>>
+%
+% John Gilbert, Jack, me and Rob Shriber traditionally meet for dinner once
+% a year at the Super Computer conference.  This photo was at SC18
+% in Dallas.
+
+
+##### SOURCE END ##### 97606da2c36c420890dd509fe7385c72
+-->]]></content><author><name>MathWorks Blogs</name></author><category term="mathworks" /><summary type="html"><![CDATA[Jack Dongarra is my student, colleague and friend.]]></summary></entry></feed>
