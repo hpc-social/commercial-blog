@@ -4,3 +4,31 @@
     - https://feeds.feedburner.com/mathworks/moler
   url: https://blogs.mathworks.com/matlab/
   image: https://www.mathworks.com/images/responsive/global/pic-header-mathworks-logo.svg
+- name: "RedHat Hybrid cloud blog"
+  tag: "redhat"
+  feed: https://cloud.redhat.com/blog/rss.xml
+  url: https://cloud.redhat.com/blog/tag/hpc
+  image: https://static.redhat.com/libs/redhat/brand-assets/latest/products/red-hat-hybrid-cloud--stacked--on-dark.svg
+- name: "The Linux Cluster"
+  tag: "linuxcluster"
+  feed: https://thelinuxcluster.com/feed.xml
+  url: https://thelinuxcluster.com
+  image: https://linuxcluster.files.wordpress.com/2020/05/cropped-wooden_pigeon.jpg
+- name: "NVIDIA High Performance Computing"
+  tag: "nvidia"
+  feed: https://feeds.feedburner.com/nvidiablog 
+  url: https://blogs.nvidia.com/blog/tag/high-performance-computing/
+# Could not find feed
+# - name: "The ARM High Performance Computing Blog"
+#  tag: "arm"
+#  feed: 
+#  url: https://community.arm.com/arm-community-blogs/b/high-performance-computing-blog
+# - name: "AWS HPC Blog"
+#  tag: "aws"
+#  feed: 
+#  url: https://aws.amazon.com/blogs/hpc/
+# - name: "vmware High Performance Computing"
+#  tag: "vmware"
+#  feed: 
+#  url: https://octo.vmware.com/tag/hpc/ 
+
