@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>A Million Dollar Matrix - hpc.social - Aggregated Commercial Blog</title>
+        <meta name="description" content="Vendor and commercial posts in the hpc.social community">
+        <meta name="keywords" content="">
+        <base href="https://hpc.social/commercial-blog" />
+        
+        <meta content="2025-06-12T20:32:59-06:00" property="article:published_time">
+        <meta content="https://hpc.social/about/" property="article:author">
+          
+        <meta property="og:site_name" content="hpc.social - Aggregated Commercial Blog">
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://hpc.social/commercial-blog/2025/a-million-dollar-matrix/"/>
+        <meta property="og:title" content="A Million Dollar Matrix - hpc.social - Aggregated Commercial Blog" />
+        <meta property="og:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="og:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"/>
+        <meta name="twitter:site" content="@hpc_social" />
+        <meta name="twitter:creator" content="@hpc_social" /> 
+        <meta name="twitter:card" content="summary"/>
+        <meta property="twitter:title" content="A Million Dollar Matrix - hpc.social - Aggregated Commercial Blog" />
+        <meta property="twitter:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="twitter:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="stylesheet" href="/commercial-blog/assets/css/highlight.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300&display=swap" rel="stylesheet"> 
+
+        <link rel="stylesheet" href="/commercial-blog/assets/css/style.css">
+        <link rel="shortcut icon" href="/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="alternate" type="application/atom+xml" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/atom.xml">
+        <link rel="alternate" type="application/json" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/feed.json" />
+        <link rel="sitemap" type="application/xml" title="sitemap" href="https://hpc.social/commercial-blog/sitemap.xml" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"hpc.social"},"description":"Vendor and commercial posts in the hpc.social community","headline":"hpc.social - Aggregated Commercial Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"},"name":"hpc.social"},"sameAs":["https://twitter.com/","https://github.com/"],"url":"https://hpc.social/commercial-blog"}</script>
+    </head>
+<body>
+
+<div class="container">
+	<div class="profile">
+		<a href="https://hpc.social/commercial-blog/"><img src="/commercial-blog/assets/images/hpc-social-blue.png" class="profile-image"></a>
+		<div class="profile-about">
+			<h2 style="margin-bottom: 0; font-weight: 700;">hpc.social</h2>
+			
+			
+				<a href="https://twitter.com/hpc_social" target="_blank"><img src="/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+			
+			
+			
+			
+				<a href="https://github.com/hpc-social" target="_blank"><img src="/commercial-blog/assets/images/icon/github.svg" class="social-icon"></a>
+			
+			
+			<a href="/commercial-blog/about/"><img src="/commercial-blog/assets/images/icon/me.svg" class="social-icon"></a>
+			<br>
+			High Performance Computing <br> Practitioners <br> and friends /#hpc
+			<br>
+			<div class="mode" id="mode-switcher" onclick="toggleNightMode();">
+				<span></span>
+			</div>
+		</div>
+	</div>
+	
+<div class="post-header">
+	<div class="post-date">12.06.2025  &middot; <span class="reading-time" title="Estimated read time">
+  
+   20 mins  read </span>
+</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://hpc.social/a-million-dollar-matrix&amp;text=A Million Dollar Matrix - https://hpc.social/a-million-dollar-matrix" target="_blank"><img src="https://hpc.social/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+<div class="tags-container" style="padding:10px; font-size:18px; font-style:italic">
+        This is a crosspost from &nbsp; <a target="_blank" href="https://blogs.mathworks.com/cleve">Cleve’s Corner: Cleve Moler on Mathematics and Computing</a>&nbsp;Cleve Moler is the author of the first MATLAB, one of the founders of MathWorks, and is currently Chief Mathematician at the company. He writes here about MATLAB, scientific computing and interesting mathematics..&nbsp;See the original post&nbsp;<a target="_blank" href="https://blogs.mathworks.com/cleve/2025/06/12/a-million-dollar-matrix/?s_tid=feedtopost">here</a>.</div>
+
+<div class="blog-post-content">
+	<h1>A Million Dollar Matrix</h1>
+	<div class="content"><!--introduction-->
+<p>The twenty-second Householder Symposium on Numerical Linear Algebra is this week, June 8 - June 13, 2025 at Cornell. My talk on Wednesday had the provocative title "A Million-Dollar Matrix". A PDF of the slides available at <a href="https://blogs.mathworks.com/cleve/files/HXXII.pdf">link_1</a>. The talk covers posts in the Cleve's Corner blog last fall. <a href="https://blogs.mathworks.com/cleve/2024/09/23/redheffer-mertens-and-one-million-dollars/">link_2</a>, <a href="https://blogs.mathworks.com/cleve/2024/09/27/redheffer-and-mertens-continued/">link_3</a>, <a href="https://blogs.mathworks.com/cleve/2024/09/30/redheffer-and-mertens-accelerated/">link_4</a>.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#25b2aace-84e9-4d9a-a27c-15d5539a37ad">Redheffer Matrix</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#993f7c88-74fd-4966-9744-f4de4727cefb">M&ouml;bius Function</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#7d219b38-27c3-4b59-a878-b38207378b02">Mertens Function</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#f3c157c6-623e-40a9-b49b-6875c174e6ee">Redheffer = Mertens</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#c6cc0275-d896-4240-878d-0b4526b1469c">Mertens Conjecture</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#7dd4489a-97fd-4d39-8241-3fcea4971a9b">Riemann Hypothesis</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#40745ff7-a37f-4842-86aa-25f0466f3025">Riemann Computations</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#4b7c91ee-a863-443f-9d89-949e74e4e76f">$1M</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#13d73959-3607-481b-9f91-0aa84ef5374d">Spoiler</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#48fabfd4-1898-452d-bf69-8ecad8633faf">Redheffer Matrix</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#a137a9e0-5a74-42e6-a581-2263656a7922">Eigenvalues</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#961b7e39-1b1c-4228-8efc-b933a413c337">Characteristic polynomial</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#720a334a-f1dd-4bcb-b9f0-b4a90b8cc462">Jordan Canonical Form</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#40944e0c-0e4d-40f7-af80-eb42f70047c0">Code</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#d3753176-600f-4555-8df8-79b0e1bd0041">Sparse Redheffer</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#c399ff75-6de0-431a-a7cf-0123a6b76cd4">Five Ways</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#d8f77259-0ebb-4c0f-83ba-045268e8f55e">Complexity</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#42aa9cf9-a26a-4397-87ea-76deefa34f22">Timing</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#484631b3-76b0-4785-8239-045c0efe4492">References</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#33b645c0-16b0-4849-88e1-05e50cb538c2">Thanks</a>
+</li>
+</ul>
+</div>
+
+<h4>Redheffer Matrix<a name="25b2aace-84e9-4d9a-a27c-15d5539a37ad"></a>
+</h4>
+<p>Ray Redheffer (1921-2005) was a professor of mathematics at UCLA from 1950 until 2000. The Redheffer matrix, which he introduced in 1977, is n-by-n, with elements</p>
+
+<pre>   R(k,j) = 1, if j = 1 or k divides j,
+          = 0, otherwise</pre>
+<p>Here is a <tt>spy</tt> plot for n = 64. The nonzero elements lie in the first column and on diagonals with integer-valued slopes.</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/redheffer.png" vspace="5" /> </p>
+
+<h4>M&ouml;bius Function<a name="993f7c88-74fd-4966-9744-f4de4727cefb"></a>
+</h4>
+<p>August M&ouml;bius (1790-1868) was an eminent 19th-century German mathematician. His M&ouml;bius function is a fundamental tool in the study of prime numbers.</p>
+
+<pre>   mu(k) = 1 if k has an even number of distinct prime factors,
+         = 0 if k has a repeated prime factor,
+         = -1 if k has an odd number of distinct prime factors</pre>
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/mobius.png" vspace="5" /> </p>
+
+<h4>Mertens Function<a name="7d219b38-27c3-4b59-a878-b38207378b02"></a>
+</h4>
+<p>Franz Mertens (1840-1927) was born in the Grand Duchy of Posen in the Kingdom of Prussia, which is now Poland. He lived much his life in Vienna, Austria. The Mertens function is the cumulative sum of the M&ouml;bius function.</p>
+
+<p>$$ M(n) = \sum_{k = 1}^{n} \mu(k) $$</p>
+
+<p>M(n) is a running count of the integers that have an even number of prime factors, minus those with an odd number of prime factors.</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/mertens.png" vspace="5" /> </p>
+
+<h4>Redheffer = Mertens<a name="f3c157c6-623e-40a9-b49b-6875c174e6ee"></a>
+</h4>
+<p>The determinant of the Redheffer matrix is equal to the Mertens function.</p>
+
+<p>
+<b>det(R(n)) = M(n)</b>
+</p>
+
+<p>Plots of M(n) are also plots of det(R(n)).</p>
+
+<h4>Mertens Conjecture<a name="c6cc0275-d896-4240-878d-0b4526b1469c"></a>
+</h4>
+<p>How fast does M(n) grow as n increases? Here are plots of M(n) for n in powers of 10 from n = 10 to n = 10^8, together with plots of sqrt(n) and -sqrt(n).</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/mertens2x4.png" vspace="5" /> </p>
+
+<p>We see that, at least for n &lt; 10^8,</p>
+
+<pre>   |M(n)| &lt; &radic;n</pre>
+<p>The Mertens conjecture is that this inequality holds for all n as n &rarr; &infin;. This conjecture is of interest because it implies the Riemann hypothesis.</p>
+
+<h4>Riemann Hypothesis<a name="7dd4489a-97fd-4d39-8241-3fcea4971a9b"></a>
+</h4>
+<p>The Riemann hypothesis has been called the &ldquo;Most important unsolved problem in mathematics". Its resolution is the objective of a Clay Millenium Prize valued at one-million dollars. The hypothesis, proposed by G. F. Bernard Riemann in 1859, concerns the zeta function ζ(z) and the location of its zeros.</p>
+
+<h4>Riemann Computations<a name="40745ff7-a37f-4842-86aa-25f0466f3025"></a>
+</h4>
+<p>Computation of the first N non-trivial zeros of ζ(s).</p>
+
+<pre>                authors                    year                     N
+   ____________________________________    ____    __________________
+   Riemann                                 1854                     ?
+   Gram                                    1903                    10
+   Backlund                                1914                    79
+   Hutchinson                              1925                   138
+   Titchmarsh                              1936                 1,041
+   Turing                                  1953                 1,104
+   Lehmer                                  1956                25,000
+   Meller                                  1958                35,337
+   Lehman                                  1966               250,000
+   Rosser, Yohe, Schoenfield               1969             3,502,500
+   Brent                                   1977            40,000,000
+   Brent                                   1979            81,000,001
+   Brent, Van_de_Lune, Te_Riele, Winter    1982           200,000,001
+   Van_de_Lune, Te_Riele, Winter           1986         1,500,000,001
+   Van_de_Lune                             2001       100,000,000,000
+   Wedeniwski                              2003       250,000,000,000
+   Gourdon                                 2004    10,000,000,000,000</pre>
+<h4>$1M<a name="4b7c91ee-a863-443f-9d89-949e74e4e76f"></a>
+</h4>
+<p>The Mertens conjecture</p>
+
+<pre>  |M(n)| &lt; &radic;n</pre>
+<p>implies the Riemann hypothesis and is worth $1M.</p>
+
+<p>So, a proof that</p>
+
+<pre>  |det(R(n)| &lt; &radic;n</pre>
+<p>would earn R the title "Million-Dollar Matrix".</p>
+
+<h4>Spoiler<a name="13d73959-3607-481b-9f91-0aa84ef5374d"></a>
+</h4>
+<p>The Mertens conjecture is false.</p>
+
+<p>Andrew Odlyzko and Herman te Riele (1985) prove</p>
+
+<pre>  limsup n&rarr;&infin; M(n)/&radic;n &gt; 1.06</pre>
+<p>This proves the existence of infinitely many values of <tt>n</tt> for which</p>
+
+<pre>  |det(R(n))| &gt; 1.06 &radic;n</pre>
+<p>The proof is indirect. Nobody knows an actual value of <tt>n</tt>. Estimates are</p>
+
+<pre>  n &gt;&gt; 10^30</pre>
+<h4>Redheffer Matrix<a name="48fabfd4-1898-452d-bf69-8ecad8633faf"></a>
+</h4>
+<p>Even though it is not worth a million dollars, Nick Higham included the Redheffer matrix in the original MATLAB <tt>gallery</tt>. The command</p>
+
+<pre>  help private/redheff</pre>
+<p>says</p>
+
+<pre>  A has N-FLOOR(LOG2(N))-1 eigenvalues equal to 1,
+  a real eigenvalue approximately SQRT(N),
+  a negative eigenvalue approximately -SQRT(N),
+  and the remaining eigenvalues are provably "small".</pre>
+<p>For n = 64, this becomes</p>
+
+<pre>  R(64) has 57 eigenvalues equal to 1,
+  a real eigenvalue approximately 8.0,
+  a negative eigenvalue approximately -8.0,
+  and the remaining eigenvalues are provably "small".</pre>
+<h4>Eigenvalues<a name="a137a9e0-5a74-42e6-a581-2263656a7922"></a>
+</h4>
+<p>The eigenvalues of R(64) are</p>
+
+<pre>   eig(redheffer(64))</pre>
+<pre>   10.0445 + 0.0000i
+   -5.5442 + 0.0000i
+    0.0726 + 0.0000i
+    0.3213 + 0.4487i
+    0.3213 - 0.4487i
+    0.8923 + 0.1262i
+    0.8923 - 0.1262i</pre>
+<pre>   followed by</pre>
+<pre>    1.0000 + 0.0000i</pre>
+<pre>   repeated 57 times.</pre>
+<h4>Characteristic polynomial<a name="961b7e39-1b1c-4228-8efc-b933a413c337"></a>
+</h4>
+<p>The characteristic polynomial of R(64) is</p>
+
+<pre>  p(z) * (z &ndash; 1)^57</pre>
+<p>where</p>
+
+<pre>  p(z) = z^7 - 7^z^6 - 42*z^5 + 127*z^4 - 130*z^3 + 67*z^2 - 18*z + 1</pre>
+<h4>Jordan Canonical Form<a name="720a334a-f1dd-4bcb-b9f0-b4a90b8cc462"></a>
+</h4>
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/jcf64.png" vspace="5" /> </p>
+
+<h4>Code<a name="40944e0c-0e4d-40f7-af80-eb42f70047c0"></a>
+</h4>
+<pre class="codeinput">type<span class="string">mobius.m</span>
+</pre>
+<pre class="codeoutput">
+function mu = mobius(n)
+    % mu = mobius(n)
+    mu = ones(1,n);
+    mu(1) = -1;
+    for p = primes(n)
+        mu(p^2:p^2:n) = 0;
+        mu(p:p:n) = -mu(p:p:n);
+    end
+end
+</pre>
+<pre class="codeinput">type<span class="string">mertens.m</span>
+</pre>
+<pre class="codeoutput">
+function M = mertens(n)
+    % M = mertens(n)
+    mu = mobius(n);
+    M = cumsum([1 mu(2:n)]);
+end
+</pre>
+<pre class="codeinput">type<span class="string">redheffer.m</span>
+</pre>
+<pre class="codeoutput">
+function R = redheffer(n)
+    % R = redheffer(n)
+    k = 1:n;
+    R = mod(k,k') == 0;
+    R(:,1) = 1;
+    R = double(R);
+end
+</pre>
+<pre class="codeinput">type<span class="string">sparse_redheffer.m</span>
+</pre>
+<pre class="codeoutput">
+function S = sparse_redheffer(n)
+    % S = sparse_redheffer(n)
+    j(1:n) = (1:n)';
+    k(1:n) = 1;
+    m = n;
+    for i = 2:n
+        t = [1 i:i:n]';
+        p = length(t);
+        j(m+(1:p)) = t;
+        k(m+(1:p)) = i;
+        m = m+p;
+    end
+    S = sparse(k,j,1,n,n);
+end
+</pre>
+<h4>Sparse Redheffer<a name="d3753176-600f-4555-8df8-79b0e1bd0041"></a>
+</h4>
+<pre>     n    tictoc            bytes            nnz      sparsity      det    |det|/&radic;n
+  10^1     0.000              664             36     0.3600000       -1      0.316
+  10^2     0.000           10,104            581     0.0581000        1      0.100
+  10^3     0.003          137,096          8,068     0.0080680        2      0.063
+  10^4     0.021        1,738,680        103,667     0.0010367      -23      0.230
+  10^5     0.216       21,067,992      1,266,749     0.0001267      -48      0.152
+  10^6     2.515      247,520,536     14,970,033     0.0000150      212      0.212
+  10^7    32.429    2,843,605,816    172,725,363     0.0000017     1037      0.328</pre>
+<h4>Five Ways<a name="c399ff75-6de0-431a-a7cf-0123a6b76cd4"></a>
+</h4>
+<pre class="codeinput">type<span class="string">fiveways</span>
+</pre>
+<pre class="codeoutput">
+function M = fiveways(n)
+    % Five Ways to Compute the Mertens/Redheffer Function 
+    %1 
+        R = redheffer(n);
+        M(1) = det(R);
+    %2 
+        R =  sparse_redheffer(n);
+        [L,U,P,Q] = lu(R);
+        M(2) = det(L)*det(U)*det(P)*det(Q);
+    %3
+        R =  sparse_redheffer(n);
+        R(:,[1 n]) = R(:,[n 1]);
+        M(3) = -det(R);
+    %4
+        R =  sparse_redheffer(n);
+        T = R(2:n,2:n);
+        e = ones(1,n-1);
+        M(4) = 1 - e*(T\e');
+    %5 
+        mu = mobius(n);
+        cmu = cumsum([1 mu(2:end)]);
+        M(5) = cmu(n);
+end   
+</pre>
+<h4>Complexity<a name="d8f77259-0ebb-4c0f-83ba-045268e8f55e"></a>
+</h4>
+<pre>     redheffer function  dets  complexity      M</pre>
+<pre>  #1 full      gallery     1   n^3             1
+  #2 sparse    lu          4   n*log(n)^2      1
+  #3 sparse    swap        1   n*log(n)^2      1
+  #4 sparse    \           0   n*log(n)        1
+  #5 none      primes      0   n*log(log(n))  many</pre>
+<h4>Timing<a name="42aa9cf9-a26a-4397-87ea-76deefa34f22"></a>
+</h4>
+<pre>         2e4     2e5     2e6     2e7</pre>
+<pre>   #1   26.33     -       -       -
+   #2    0.36   21.53     -       -
+   #3    0.08    1.29   16.71     -
+   #4    0.05    0.57    6.32   70.85
+   #5    0.01    0.03    0.27    3.18</pre>
+<pre>               Time (seconds)</pre>
+<h4>References<a name="484631b3-76b0-4785-8239-045c0efe4492"></a>
+</h4>
+<div>
+<ul>
+<li>M&ouml;bius (1832), Journal f&uuml;r die reine und angewandte Mathematik.9:105&ndash;123.</li>
+<li>Riemann (1859), "Ueber die Anzahl der Primzahlen unter einer gegebenen Gr&ouml;sse", Monatsberichte der Berliner Akademie (1892).</li>
+<li>Mertens (1897), Akademie Wissenschaftlicher Wien Mathematik-Naturlich, IIA.106:761&ndash;830.</li>
+<li>Redheffer (1977), Numerische Methoden bei Optimierungsaufgaben, Band 3: 213&ndash;216.</li>
+<li>Odlyzko &amp; te Riele (1985), Journal f&uuml;r die reine und angewandte Mathematik 357: 138&ndash;160.</li>
+<li>Barrett &amp; Jarvis (1992), Linear Algebra and Its Applications: 162&ndash;164.</li>
+<li>Borwein (2009), <a href="https://www.cecm.sfu.ca/~pborwein/course/math08/lecture.pdf">https://www.cecm.sfu.ca/~pborwein/course/math08/lecture.pdf</a>
+</li>
+</ul>
+</div>
+
+<h4>Thanks<a name="33b645c0-16b0-4849-88e1-05e50cb538c2"></a>
+</h4>
+<div>
+<ul>
+<li>Tim Davis</li>
+<li>John Gilbert</li>
+<li>Pat Quillen</li>
+<li>Steve Lord</li>
+<li>Jan van Lent</li>
+<li>Frank Stenger</li>
+<li>Claude</li>
+</ul>
+</div>
+
+<!-- 
+    function grabCode_e40ab05a928f42b9956d24c156a2b00f() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='e40ab05a928f42b9956d24c156a2b00f ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' e40ab05a928f42b9956d24c156a2b00f';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2025 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024b<br />
+</p>
+
+</div>
+
+<!--
+e40ab05a928f42b9956d24c156a2b00f ##### SOURCE BEGIN #####
+    %% My Talk at Householder XXII
+% The twenty-second Householder Symposium on 
+% Numerical Linear Algebra is this week,
+% June 8 - June 13, 2025 at Cornell.
+% My talk on Wednesday had the provocative title
+% "A Million-Dollar Matrix".
+% A PDF of the slides available at
+% <https://blogs.mathworks.com/cleve/files/HXXII.pdf
+% link_1>.
+% The talk covers posts in the Cleve's Corner blog last fall.
+% <https://blogs.mathworks.com/cleve/2024/09/23/redheffer-mertens-and-one-million-dollars/
+% link_2>,
+% <https://blogs.mathworks.com/cleve/2024/09/27/redheffer-and-mertens-continued/
+% link_3>,
+% <https://blogs.mathworks.com/cleve/2024/09/30/redheffer-and-mertens-accelerated/
+% link_4>.
+
+%% Redheffer Matrix
+% Ray Redheffer (1921-2005) was a professor of mathematics
+% at UCLA from 1950 until 2000.  The Redheffer matrix, which
+% he introduced in 1977, is n-by-n, with elements
+%
+%     R(k,j) = 1, if j = 1 or k divides j,
+%            = 0, otherwise
+%
+% Here is a |spy| plot for n = 64.  The nonzero elements lie
+% in the first column and on diagonals with integer-valued slopes.
+% 
+% <<redheffer.png>>
+%
+
+%% Möbius Function 
+% August Möbius (1790-1868) was an eminent 19th-century German
+% mathematician.  His Möbius function is a fundamental tool in
+% the study of prime numbers.
+% 
+%     mu(k) = 1 if k has an even number of distinct prime factors,
+%           = 0 if k has a repeated prime factor,
+%           = -1 if k has an odd number of distinct prime factors
+%
+% <<mobius.png>>
+%
+
+%% Mertens Function
+% Franz Mertens (1840-1927) was born in the Grand Duchy of Posen
+% in the Kingdom of Prussia, which is now Poland.  He lived much
+% his life in Vienna, Austria.  The Mertens function is the
+% cumulative sum of the Möbius function.
+%
+% $$ M(n) = \sum_{k = 1}^{n} \mu(k) $$
+%
+% M(n) is a running count of the integers that have
+% an even number of prime factors, minus those with
+% an odd number of prime factors.
+%
+% <<mertens.png>>
+%
+
+%% Redheffer = Mertens
+% The determinant of the Redheffer matrix is equal to the Mertens
+% function.
+%
+% *det(R(n)) = M(n)*
+%
+% Plots of M(n) are also plots of det(R(n)).
+
+%% Mertens Conjecture
+% How  fast does M(n) grow as n increases?
+% Here are plots of M(n) for n in powers of 10 from n = 10 to n = 10^8,
+% together with plots of sqrt(n) and -sqrt(n). 
+%
+% <<mertens2x4.png>>
+%
+
+%%
+% We see that, at least for n < 10^8,
+%
+%     |M(n)| < √n
+%
+% The Mertens conjecture is that this inequality holds for all n as n → ∞.
+% This conjecture is of interest because it
+% implies the Riemann hypothesis.
+
+%% Riemann Hypothesis
+% The Riemann hypothesis has been called the “Most important unsolved 
+% problem in mathematics".  Its resolution is the objective of a
+% Clay Millenium Prize valued at one-million dollars.
+% The hypothesis, proposed by G. F. Bernard Riemann in 1859,
+% concerns the zeta function ζ(z) and the location of its zeros.
+%
+
+%% Riemann Computations
+% Computation of the first N non-trivial zeros of ζ(s).
+%
+%                  authors                    year                     N       
+%     ____________________________________    ____    __________________
+%     Riemann                                 1854                     ?
+%     Gram                                    1903                    10
+%     Backlund                                1914                    79
+%     Hutchinson                              1925                   138
+%     Titchmarsh                              1936                 1,041
+%     Turing                                  1953                 1,104
+%     Lehmer                                  1956                25,000
+%     Meller                                  1958                35,337
+%     Lehman                                  1966               250,000
+%     Rosser, Yohe, Schoenfield               1969             3,502,500
+%     Brent                                   1977            40,000,000
+%     Brent                                   1979            81,000,001
+%     Brent, Van_de_Lune, Te_Riele, Winter    1982           200,000,001
+%     Van_de_Lune, Te_Riele, Winter           1986         1,500,000,001
+%     Van_de_Lune                             2001       100,000,000,000
+%     Wedeniwski                              2003       250,000,000,000
+%     Gourdon                                 2004    10,000,000,000,000
+
+%% $1M
+% The Mertens conjecture
+%
+%    |M(n)| < √n
+%
+% implies the Riemann hypothesis and is worth $1M. 
+%
+% So, a proof that
+%
+%    |det(R(n)| < √n
+%
+% would earn R the title "Million-Dollar Matrix".
+
+%% Spoiler
+% The Mertens conjecture is false.
+%
+% Andrew Odlyzko and Herman te Riele (1985) prove
+%
+%    limsup n→∞ M(n)/√n > 1.06
+%
+% This proves the existence of infinitely many values
+% of |n| for which
+%
+%    |det(R(n))| > 1.06 √n
+%
+% The proof is indirect.  Nobody knows an actual value of |n|.
+% Estimates are 
+%
+%    n >> 10^30
+%
+
+%% Redheffer Matrix
+% Even though it is not worth a million dollars,
+% Nick Higham included the Redheffer matrix in the original
+% MATLAB |gallery|. The command
+%
+%    help private/redheff
+% 
+% says
+%
+%    A has N-FLOOR(LOG2(N))-1 eigenvalues equal to 1,
+%    a real eigenvalue approximately SQRT(N),
+%    a negative eigenvalue approximately -SQRT(N),
+%    and the remaining eigenvalues are provably "small".
+%
+% For n = 64, this becomes
+%
+%    R(64) has 57 eigenvalues equal to 1,
+%    a real eigenvalue approximately 8.0,
+%    a negative eigenvalue approximately -8.0,
+%    and the remaining eigenvalues are provably "small".
+%
+
+%% Eigenvalues
+% The eigenvalues of R(64) are
+%
+%     eig(redheffer(64))
+%   
+%     10.0445 + 0.0000i
+%     -5.5442 + 0.0000i
+%      0.0726 + 0.0000i
+%      0.3213 + 0.4487i
+%      0.3213 - 0.4487i
+%      0.8923 + 0.1262i
+%      0.8923 - 0.1262i  
+%
+%     followed by
+%
+%      1.0000 + 0.0000i
+%
+%     repeated 57 times.
+%
+
+%% Characteristic polynomial
+% The characteristic polynomial of R(64) is
+% 
+%    p(z) * (z – 1)^57
+%
+% where 
+%
+%    p(z) = z^7 - 7^z^6 - 42*z^5 + 127*z^4 - 130*z^3 + 67*z^2 - 18*z + 1
+%
+
+%% Jordan Canonical Form
+%
+% <<jcf64.png>>
+
+
+%% Code
+%
+    type mobius.m
+
+%%
+%
+    type mertens.m
+
+%%
+%
+    type redheffer.m
+
+%%
+%
+    type sparse_redheffer.m
+
+%% Sparse Redheffer
+%  
+%       n    tictoc            bytes            nnz      sparsity      det    |det|/√n
+%    10^1     0.000              664             36     0.3600000       -1      0.316
+%    10^2     0.000           10,104            581     0.0581000        1      0.100
+%    10^3     0.003          137,096          8,068     0.0080680        2      0.063
+%    10^4     0.021        1,738,680        103,667     0.0010367      -23      0.230
+%    10^5     0.216       21,067,992      1,266,749     0.0001267      -48      0.152
+%    10^6     2.515      247,520,536     14,970,033     0.0000150      212      0.212
+%    10^7    32.429    2,843,605,816    172,725,363     0.0000017     1037      0.328
+%        
+
+%% Five Ways
+%
+    type fiveways
+  
+%% Complexity
+
+%%
+%
+%       redheffer function  dets  complexity      M
+%
+%    #1 full      gallery     1   n^3             1
+%    #2 sparse    lu          4   n*log(n)^2      1
+%    #3 sparse    swap        1   n*log(n)^2      1
+%    #4 sparse    \           0   n*log(n)        1
+%    #5 none      primes      0   n*log(log(n))  many
+
+%% Timing
+
+%%
+%           2e4     2e5     2e6     2e7
+%
+%     #1   26.33     -       -       -
+%     #2    0.36   21.53     -       -
+%     #3    0.08    1.29   16.71     -
+%     #4    0.05    0.57    6.32   70.85
+%     #5    0.01    0.03    0.27    3.18
+%
+%                 Time (seconds)
+
+%% References
+%
+% * Möbius (1832), Journal für die reine und angewandte Mathematik.9:105–123.
+% * Riemann (1859), "Ueber die Anzahl der Primzahlen unter einer gegebenen Grösse",
+%   Monatsberichte der Berliner Akademie (1892).
+% * Mertens (1897), Akademie Wissenschaftlicher Wien Mathematik-Naturlich, IIA.106:761–830.
+% * Redheffer (1977), Numerische Methoden bei Optimierungsaufgaben, Band 3: 213–216.
+% * Odlyzko & te Riele (1985), Journal für die reine und angewandte Mathematik 357: 138–160.
+% * Barrett & Jarvis (1992), Linear Algebra and Its Applications: 162–164.
+% * Borwein (2009), https://www.cecm.sfu.ca/~pborwein/course/math08/lecture.pdf
+
+%% Thanks
+% * Tim Davis
+% * John Gilbert
+% * Pat Quillen
+% * Steve Lord
+% * Jan van Lent
+% * Frank Stenger
+% * Claude
+##### SOURCE END ##### e40ab05a928f42b9956d24c156a2b00f
+-->
+
+</div>
+<div class="tags-container">
+	
+</div>
+<style>
+#uppy {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: darkturquoise;
+  color: black;
+  cursor: pointer;
+  margin:15px;
+  border-radius: 10px;
+  width: 100px;
+  height: 20px;
+}
+
+#returnTop:hover {
+  background-color: #555;
+}
+</style>
+
+<button id="uppy" title="Return to Top" class="btn btn-lg">Back to top</button>
+
+<script>
+(function() {
+
+var scrollTop = function() {
+    window.scrollTo(0, 0);
+};
+
+document.getElementById('uppy').onclick = scrollTop;
+
+})();
+</script>
+
+
+<div class="navigation">
+	
+		<a class="prev" href="/commercial-blog/2025/revolving-century-puzzle-and-magic-squares/">< Revolving Century Puzzle and Magic Squares</a>
+	 
+	<a class="next" href="/commercial-blog/2025/trip-report-householder-xxii/">Trip Report, Householder XXII ></a>
+
+</div>
+
+	<div class="footer">
+		<span style="padding-right:10px"><font color="red">©️ </font><a href="https://hpc.social"><b>hpc.social</b> community</a></span> 
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/archive/">Archive</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/">Posts</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/about/">About</a>
+		| <a style="padding-left:10px; padding-right:10px" href="https://hpc.social/blog">hpc.social blogs</a>
+		| <a style="padding-left:37%;" target="_blank" href="https://github.com/hpc-social/commercial-blog">Add Your Blog</a>
+	</div>
+</div>
+    <script src="/commercial-blog/assets/scripts.js"></script>
+    <script type="text/javascript">
+        if (localStorage.theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('mode-switcher').classList.add('active');
+        } else if (localStorage.theme === 'dark' || localStorage.theme === '' || (!('theme' in localStorage))) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('mode-switcher').classList.add('active');
+        }
+    </script>
+</body>
+</html>
+

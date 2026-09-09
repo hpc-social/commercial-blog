@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>My Chat With ChatGPT - hpc.social - Aggregated Commercial Blog</title>
+        <meta name="description" content="Vendor and commercial posts in the hpc.social community">
+        <meta name="keywords" content="">
+        <base href="https://hpc.social/commercial-blog" />
+        
+        <meta content="2023-02-22T02:06:53-07:00" property="article:published_time">
+        <meta content="https://hpc.social/about/" property="article:author">
+          
+        <meta property="og:site_name" content="hpc.social - Aggregated Commercial Blog">
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://hpc.social/commercial-blog/2023/my-chat-with-chatgpt/"/>
+        <meta property="og:title" content="My Chat With ChatGPT - hpc.social - Aggregated Commercial Blog" />
+        <meta property="og:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="og:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"/>
+        <meta name="twitter:site" content="@hpc_social" />
+        <meta name="twitter:creator" content="@hpc_social" /> 
+        <meta name="twitter:card" content="summary"/>
+        <meta property="twitter:title" content="My Chat With ChatGPT - hpc.social - Aggregated Commercial Blog" />
+        <meta property="twitter:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="twitter:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="stylesheet" href="/commercial-blog/assets/css/highlight.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300&display=swap" rel="stylesheet"> 
+
+        <link rel="stylesheet" href="/commercial-blog/assets/css/style.css">
+        <link rel="shortcut icon" href="/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="alternate" type="application/atom+xml" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/atom.xml">
+        <link rel="alternate" type="application/json" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/feed.json" />
+        <link rel="sitemap" type="application/xml" title="sitemap" href="https://hpc.social/commercial-blog/sitemap.xml" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"hpc.social"},"description":"Vendor and commercial posts in the hpc.social community","headline":"hpc.social - Aggregated Commercial Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"},"name":"hpc.social"},"sameAs":["https://twitter.com/","https://github.com/"],"url":"https://hpc.social/commercial-blog"}</script>
+    </head>
+<body>
+
+<div class="container">
+	<div class="profile">
+		<a href="https://hpc.social/commercial-blog/"><img src="/commercial-blog/assets/images/hpc-social-blue.png" class="profile-image"></a>
+		<div class="profile-about">
+			<h2 style="margin-bottom: 0; font-weight: 700;">hpc.social</h2>
+			
+			
+				<a href="https://twitter.com/hpc_social" target="_blank"><img src="/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+			
+			
+			
+			
+				<a href="https://github.com/hpc-social" target="_blank"><img src="/commercial-blog/assets/images/icon/github.svg" class="social-icon"></a>
+			
+			
+			<a href="/commercial-blog/about/"><img src="/commercial-blog/assets/images/icon/me.svg" class="social-icon"></a>
+			<br>
+			High Performance Computing <br> Practitioners <br> and friends /#hpc
+			<br>
+			<div class="mode" id="mode-switcher" onclick="toggleNightMode();">
+				<span></span>
+			</div>
+		</div>
+	</div>
+	
+<div class="post-header">
+	<div class="post-date">22.02.2023  &middot; <span class="reading-time" title="Estimated read time">
+  
+   10 mins  read </span>
+</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://hpc.social/my-chat-with-chatgpt&amp;text=My Chat With ChatGPT - https://hpc.social/my-chat-with-chatgpt" target="_blank"><img src="https://hpc.social/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+<div class="tags-container" style="padding:10px; font-size:18px; font-style:italic">
+        This is a crosspost from &nbsp; <a target="_blank" href="https://blogs.mathworks.com/cleve">Cleve’s Corner: Cleve Moler on Mathematics and Computing</a>&nbsp;Cleve Moler is the author of the first MATLAB, one of the founders of MathWorks, and is currently Chief Mathematician at the company. He writes here about MATLAB, scientific computing and interesting mathematics..&nbsp;See the original post&nbsp;<a target="_blank" href="https://blogs.mathworks.com/cleve/2023/02/21/my-chat-with-chatgpt/?s_tid=feedtopost">here</a>.</div>
+
+<div class="blog-post-content">
+	<h1>My Chat With ChatGPT</h1>
+	<div class="content"><!--introduction--><p>While it is still fresh in my mind, I want to describe the conversation I had with <a href="https://openai.com/blog/chatgpt/">a publicly available version of ChatGPT</a>, the much-discussed large language model, LLM, for conversational artificial intelligence.</p>
+<!--/introduction--><h3>Contents</h3><div><ul><li><a href="https://feeds.feedburner.com/mathworks/moler#5c070bbf-dca9-48a1-8be7-ac106737302f">Mixed Reception</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#6bc024ea-c1ab-40ea-b7de-687748c50bc9">Where Is Sydney?</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#bfe0d37b-cc5a-4998-9d8d-f16c425327f8">Me and AI</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#d44eee64-c400-46cb-ae9e-b18066fe1fb8">Me and ChatGPT</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#3fca7af1-1ac0-4481-8135-c47e5a3db750">AI Winters</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#ecb671af-be78-4da3-b321-d89f60308ce3">Truth</a></li></ul></div>
+<h4>Mixed Reception<a name="5c070bbf-dca9-48a1-8be7-ac106737302f"></a></h4><p>A newer version of ChatGPT than the one I used is available to selected journalists and computer industry observers. Their reaction has been, shall I say, mixed. At first, some of the reports were positive and even ecstatic. Most of these early reports were from people whose primary concern is the stock market, not AI technology. Many of the more recent and more careful reports have been negative and critical.</p>
+<h4>Where Is Sydney?<a name="6bc024ea-c1ab-40ea-b7de-687748c50bc9"></a></h4><p>I have given ChatGPT the nickname "Chad". Some early users of one of Chad's competitors asked deliberately provocative questions and encountered a cranky alter-ego named "Sydney".  I didn't ask my Chad any unfair questions and didn't encounter any Sydney's.</p>
+<h4>Me and AI<a name="bfe0d37b-cc5a-4998-9d8d-f16c425327f8"></a></h4><p>I have been a long-time observer of -- although not a contributor to -- artificial intelligence research.</p>
+<div><ul><li>I took AI courses at Stanford from the inventor of   the field, John McCarthy.</li></ul></div>
+<div><ul><li>Bill McKeeman and I entered McCarthy's chess program in   a <i>San Francisco Chronicle's</i> by-mail chess contest.   (The computer did not fair well.)</li></ul></div>
+<div><ul><li>I used Joe Weizenbaum's computer program Eliza,   the very first Chat Bot.</li></ul></div>
+<div><ul><li>I was once married to someone with a PhD in AI.</li></ul></div>
+<div><ul><li>Symbolic Math, like MathWorks now does in our Toolbox, and which   we used to do with Macsyma and Maple, was once considered AI.</li></ul></div>
+<div><ul><li>The wild animal trail cameras project that I did a few years ago with   Heather Gorr and Jim Sanderson uses modern machine learning and AI.</li></ul></div>
+<h4>Me and ChatGPT<a name="d44eee64-c400-46cb-ae9e-b18066fe1fb8"></a></h4><p>I talked to -- I should say chatted with, or actually typed at -- Chad for most of an hour on a recent evening. Think of Stephen Hawking in a Web Browser. Chad's responses were always courteous and conversational. And the majority of Chad's responses were factually correct.</p>
+<p>However, a surprising number of Chad's answers were just plain wrong. Some examples:</p>
+<div><ul><li>I was neither born in, nor raised in, rural New Mexico.</li></ul></div>
+<div><ul><li>I did not get a PhD from the University of Michigan.   Neither did my wife, Patsy.</li></ul></div>
+<div><ul><li>Patsy is not the mother of my daughter Kam,   nor of my sister Betsy.</li></ul></div>
+<div><ul><li>Patsy is not an expert in   computational fluid dynamics.</li></ul></div>
+<div><ul><li>Ken Kennedy did not coin the term "embarrassingly parallel."</li></ul></div>
+<div><ul><li>Pam McCorduck never worked for the Santa Fe Institute.</li></ul></div>
+<div><ul><li>I cannot find any reference to the guys Chad claimed   improved Sympletic Spacewar.</li></ul></div>
+<p>All of Chad's incorrect responses could have been fact-checked by simple Google queries.</p>
+<h4>AI Winters<a name="3fca7af1-1ac0-4481-8135-c47e5a3db750"></a></h4><p>Everybody wants to combine the conversational style offered by large language models with the reliability and breadth provided by Google.  Now THAT sounds like a really good idea.</p>
+<p>Artificial intelligence has a history of flush successes interspersed with fallow periods known as AI Winters.  I am afraid that continued obsession with Chat Bots might lead to another AI Winter.</p>
+<h4>Truth<a name="ecb671af-be78-4da3-b321-d89f60308ce3"></a></h4><p>Steve Eddins revealed the Truth behind ChatGPT with this internal MathWorks Yammer post.</p>
+<p><img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/ChatGPT_truth.jpg" vspace="5" /> </p>
+<!-- 
+    function grabCode_49d101acd4414820a4f6fe4b080b1113() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='49d101acd4414820a4f6fe4b080b1113 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 49d101acd4414820a4f6fe4b080b1113';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2023 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --><p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;"><br /><a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript></span></a><br /><br />
+      Published with MATLAB&reg; R2023a<br /></p>
+</div>
+<!--
+49d101acd4414820a4f6fe4b080b1113 ##### SOURCE BEGIN #####
+%% My Chat with ChatGPT
+% While it is still fresh in my mind, I want to describe the conversation
+% I had with
+% <https://openai.com/blog/chatgpt/ 
+% a publicly available version of ChatGPT>, the much-discussed
+% large language model, LLM, for conversational artificial intelligence.
+
+%% Mixed Reception
+% A newer version of ChatGPT than the one I used is
+% available to selected journalists and computer industry observers.
+% Their reaction has been, shall I say, mixed.
+% At first, some of the reports were positive and even ecstatic.
+% Most of these early reports were from people whose primary concern
+% is the stock market, not AI technology. Many of the more recent and
+% more careful reports have been negative and critical.
+
+%% Where Is Sydney?
+% I have given ChatGPT the nickname "Chad".
+% Some early users of one of Chad's competitors asked
+% deliberately provocative questions and encountered a cranky alter-ego
+% named "Sydney".  I didn't ask my Chad any unfair questions and 
+% didn't encounter any Sydney's. 
+
+%% Me and AI
+% I have been a long-time observer of REPLACE_WITH_DASH_DASH although not a contributor to REPLACE_WITH_DASH_DASH
+% artificial intelligence research.
+%
+% * I took AI courses at Stanford from the inventor of 
+%   the field, John McCarthy.
+%
+% * Bill McKeeman and I entered McCarthy's chess program in
+%   a _San Francisco Chronicle's_ by-mail chess contest.
+%   (The computer did not fair well.)
+%
+% * I used Joe Weizenbaum's computer program Eliza, 
+%   the very first Chat Bot. 
+%
+% * I was once married to someone with a PhD in AI.
+% 
+% * Symbolic Math, like MathWorks now does in our Toolbox, and which
+%   we used to do with Macsyma and Maple, was once considered AI.
+%
+% * The wild animal trail cameras project that I did a few years ago with
+%   Heather Gorr and Jim Sanderson uses modern machine learning and AI.
+
+%% Me and ChatGPT
+% I talked to REPLACE_WITH_DASH_DASH I should say chatted with, or actually typed at REPLACE_WITH_DASH_DASH
+% Chad for most of an hour on a recent evening.
+% Think of Stephen Hawking in a Web Browser.
+% Chad's responses were always courteous and conversational.
+% And the majority of Chad's responses were factually correct.
+% 
+% However, a surprising number of Chad's answers were just plain wrong.
+% Some examples:
+%
+% * I was neither born in, nor raised in, rural New Mexico. 
+%
+% * I did not get a PhD from the University of Michigan.
+%   Neither did my wife, Patsy. 
+% 
+% * Patsy is not the mother of my daughter Kam, 
+%   nor of my sister Betsy.
+% 
+% * Patsy is not an expert in
+%   computational fluid dynamics.
+%
+% * Ken Kennedy did not coin the term "embarrassingly parallel."
+%
+% * Pam McCorduck never worked for the Santa Fe Institute.
+%
+% * I cannot find any reference to the guys Chad claimed
+%   improved Sympletic Spacewar.
+%
+% All of Chad's incorrect responses could have been fact-checked
+% by simple Google queries.  
+
+%% AI Winters
+% Everybody wants to combine the conversational style offered by
+% large language models with the reliability and breadth provided
+% by Google.  Now THAT sounds like a really good idea.
+% 
+% Artificial intelligence has a history of flush successes interspersed
+% with fallow periods known as AI Winters.  I am afraid that
+% continued obsession with Chat Bots might lead to another AI Winter.
+
+%% Truth
+% Steve Eddins revealed the Truth behind ChatGPT with this internal
+% MathWorks Yammer post.
+%
+% <<ChatGPT_truth.jpg>>
+##### SOURCE END ##### 49d101acd4414820a4f6fe4b080b1113
+-->
+
+</div>
+<div class="tags-container">
+	
+</div>
+<style>
+#uppy {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: darkturquoise;
+  color: black;
+  cursor: pointer;
+  margin:15px;
+  border-radius: 10px;
+  width: 100px;
+  height: 20px;
+}
+
+#returnTop:hover {
+  background-color: #555;
+}
+</style>
+
+<button id="uppy" title="Return to Top" class="btn btn-lg">Back to top</button>
+
+<script>
+(function() {
+
+var scrollTop = function() {
+    window.scrollTo(0, 0);
+};
+
+document.getElementById('uppy').onclick = scrollTop;
+
+})();
+</script>
+
+
+<div class="navigation">
+	
+		<a class="prev" href="/commercial-blog/2023/grafix-users-guide/">< Grafix Users Guide</a>
+	 
+	<a class="next" href="/commercial-blog/2023/r2-d2-rotations-and-dilations-in-two-dimensions/">R2-D2, Rotations and Dilations in Two Dimensions ></a>
+
+</div>
+
+	<div class="footer">
+		<span style="padding-right:10px"><font color="red">©️ </font><a href="https://hpc.social"><b>hpc.social</b> community</a></span> 
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/archive/">Archive</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/">Posts</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/about/">About</a>
+		| <a style="padding-left:10px; padding-right:10px" href="https://hpc.social/blog">hpc.social blogs</a>
+		| <a style="padding-left:37%;" target="_blank" href="https://github.com/hpc-social/commercial-blog">Add Your Blog</a>
+	</div>
+</div>
+    <script src="/commercial-blog/assets/scripts.js"></script>
+    <script type="text/javascript">
+        if (localStorage.theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('mode-switcher').classList.add('active');
+        } else if (localStorage.theme === 'dark' || localStorage.theme === '' || (!('theme' in localStorage))) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('mode-switcher').classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
