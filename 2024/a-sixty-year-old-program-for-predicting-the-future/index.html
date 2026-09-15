@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>A Sixty-Year Old Program for Predicting the Future - hpc.social - Aggregated Commercial Blog</title>
+        <meta name="description" content="Vendor and commercial posts in the hpc.social community">
+        <meta name="keywords" content="">
+        <base href="https://hpc.social/commercial-blog" />
+        
+        <meta content="2024-05-19T16:55:03-06:00" property="article:published_time">
+        <meta content="https://hpc.social/about/" property="article:author">
+          
+        <meta property="og:site_name" content="hpc.social - Aggregated Commercial Blog">
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://hpc.social/commercial-blog/2024/a-sixty-year-old-program-for-predicting-the-future/"/>
+        <meta property="og:title" content="A Sixty-Year Old Program for Predicting the Future - hpc.social - Aggregated Commercial Blog" />
+        <meta property="og:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="og:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"/>
+        <meta name="twitter:site" content="@hpc_social" />
+        <meta name="twitter:creator" content="@hpc_social" /> 
+        <meta name="twitter:card" content="summary"/>
+        <meta property="twitter:title" content="A Sixty-Year Old Program for Predicting the Future - hpc.social - Aggregated Commercial Blog" />
+        <meta property="twitter:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="twitter:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="stylesheet" href="/commercial-blog/assets/css/highlight.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300&display=swap" rel="stylesheet"> 
+
+        <link rel="stylesheet" href="/commercial-blog/assets/css/style.css">
+        <link rel="shortcut icon" href="/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="alternate" type="application/atom+xml" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/atom.xml">
+        <link rel="alternate" type="application/json" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/feed.json" />
+        <link rel="sitemap" type="application/xml" title="sitemap" href="https://hpc.social/commercial-blog/sitemap.xml" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"hpc.social"},"description":"Vendor and commercial posts in the hpc.social community","headline":"hpc.social - Aggregated Commercial Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"},"name":"hpc.social"},"sameAs":["https://twitter.com/","https://github.com/"],"url":"https://hpc.social/commercial-blog"}</script>
+    </head>
+<body>
+
+<div class="container">
+	<div class="profile">
+		<a href="https://hpc.social/commercial-blog/"><img src="/commercial-blog/assets/images/hpc-social-blue.png" class="profile-image"></a>
+		<div class="profile-about">
+			<h2 style="margin-bottom: 0; font-weight: 700;">hpc.social</h2>
+			
+			
+				<a href="https://twitter.com/hpc_social" target="_blank"><img src="/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+			
+			
+			
+			
+				<a href="https://github.com/hpc-social" target="_blank"><img src="/commercial-blog/assets/images/icon/github.svg" class="social-icon"></a>
+			
+			
+			<a href="/commercial-blog/about/"><img src="/commercial-blog/assets/images/icon/me.svg" class="social-icon"></a>
+			<br>
+			High Performance Computing <br> Practitioners <br> and friends /#hpc
+			<br>
+			<div class="mode" id="mode-switcher" onclick="toggleNightMode();">
+				<span></span>
+			</div>
+		</div>
+	</div>
+	
+<div class="post-header">
+	<div class="post-date">19.05.2024  &middot; <span class="reading-time" title="Estimated read time">
+  
+   15 mins  read </span>
+</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://hpc.social/a-sixty-year-old-program-for-predicting-the-future&amp;text=A Sixty-Year Old Program for Predicting the Future - https://hpc.social/a-sixty-year-old-program-for-predicting-the-future" target="_blank"><img src="https://hpc.social/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+<div class="tags-container" style="padding:10px; font-size:18px; font-style:italic">
+        This is a crosspost from &nbsp; <a target="_blank" href="https://blogs.mathworks.com/cleve">Cleve’s Corner: Cleve Moler on Mathematics and Computing</a>&nbsp;Cleve Moler is the author of the first MATLAB, one of the founders of MathWorks, and is currently Chief Mathematician at the company. He writes here about MATLAB, scientific computing and interesting mathematics..&nbsp;See the original post&nbsp;<a target="_blank" href="https://blogs.mathworks.com/cleve/2024/05/19/a-sixty-year-old-program-for-predicting-the-future/?s_tid=feedtopost">here</a>.</div>
+
+<div class="blog-post-content">
+	<h1>A Sixty-Year Old Program for Predicting the Future</h1>
+	<div class="content"><!--introduction-->
+<p>The graphics in <a href="https://blogs.mathworks.com/cleve/2024/05/04/r-squared-is-bigger-better/">my post about <tt>R^2</tt></a> were produced by an updated version of a sixty-year old program involving the U.S. census. Originally, the program was based on census data from 1900 to 1960 and sought to predict the population in 1970. The software back then was written in Fortran, the predominate technical programming language a half century ago. I have updated the MATLAB version of the program so that it now uses census data from 1900 to 2020.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#e46c5c76-356a-4c77-aea9-20aae3e00d62"><tt>censusapp2024</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#80c94327-eb2c-492a-8542-388485d68adc">Risky Business</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#97d3b2b7-4a14-4003-85b6-c7f854fc8d56">Splines</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#c8daccba-8dbe-4dbf-a0c6-6bb0b66a1e38">Exponentials</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#b1af50c9-b8ea-4211-884b-79f28e12d34f">Predictions</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#acb134fb-dc9a-43cb-840b-0e7934c63e24">Conclusion</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#d945ac16-2ef7-4c75-a529-d64d03f50776">Blogs</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#c7c11668-f0eb-404b-b951-52729c417b5c">FMM</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#906b81f5-b694-47e8-9dee-fb0586a19671">Software</a>
+</li>
+</ul>
+</div>
+
+<h4>
+<tt>censusapp2024</tt><a name="e46c5c76-356a-4c77-aea9-20aae3e00d62"></a>
+</h4>
+<p>The latest version of the census application is now available at <a href="https://blogs.mathworks.com/cleve/files/censusapp_2024.m">censusapp2024</a>. Here are the data and the opening screenshot.</p>
+
+<pre class="codeinput">[t,p]=UScensus;fprintf(<span class="string">'%12d%12.3f\n'</span>,[t,p]')
+</pre>
+<pre class="codeoutput">        1900      75.995
+        1910      91.972
+        1920     105.711
+        1930     123.203
+        1940     131.669
+        1950     150.697
+        1960     179.323
+        1970     203.212
+        1980     226.505
+        1990     249.633
+        2000     281.422
+        2010     308.746
+        2020     331.449
+</pre>
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/screenshot.png" vspace="5" /> </p>
+
+<h4>Risky Business<a name="80c94327-eb2c-492a-8542-388485d68adc"></a>
+</h4>
+<p>Today, MATLAB makes it easier to vary parameters and visualize results, but the underlying mathematical principles are unchanged:</p>
+
+<div>
+<ul>
+<li>Using polynomials to predict the future by extrapolating data is a risky business.</li>
+</ul>
+</div>
+
+<p>One new observation is added to the data every 10 years, when the United States does the decennial census. Originally there were only 7 observations; today there are 13. The program now allows you to fit the data exactly by interpolation with a polynomial of degree 12 or fit it approximately by polynomials of degree less than 12.</p>
+
+<p>Here are the least-squares fits with linear, cubic, and degree seven polynomials and the interpolating polynomial. As the polynomial degree increases, so does <tt>R^2</tt>, until <tt>R^2</tt> reaches one with the exact fit.</p>
+
+<p>Do any of these fits look like they could be used to predict future population growth?</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/polys.png" vspace="5" /> </p>
+
+<h4>Splines<a name="97d3b2b7-4a14-4003-85b6-c7f854fc8d56"></a>
+</h4>
+<p>In addition to polynomials, you can choose interpolation by three different <a href="https://blogs.mathworks.com/cleve/2019/04/29/makima-piecewise-cubic-interpolation/">piecewise Hermite cubics</a>.</p>
+
+<div>
+<ul>
+<li>
+<tt>spline</tt> Continuous second derivate, "not-a-knot" end condition.</li>
+<li>
+<tt>pchip</tt> Continuous first derivative, strictly shape-preserving.</li>
+<li>
+<tt>makima</tt> Continuous first derivative, relaxed shape-preserving.</li>
+</ul>
+</div>
+
+<p>Since these fits interpolate the data, all their <tt>R^2</tt> values are one. But before 1900 and after 2020 these functions are cubic polynomials that are not designed for extrapolation.</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/splines.png" vspace="5" /> </p>
+
+<h4>Exponentials<a name="c8daccba-8dbe-4dbf-a0c6-6bb0b66a1e38"></a>
+</h4>
+<p>It is also possible to do nonlinear least squares fits by an exponential, a logistic sigmoid, and an exponential of an exponetial known as the Gompertz model.</p>
+
+<div>
+<ul>
+<li>
+<tt>exponential exp(b*t+c)</tt>
+</li>
+<li>
+<tt>logistic a./(1+exp(-b*(t-c)))</tt>
+</li>
+<li>
+<tt>gompertz a*exp(-b*exp(-c*t))</tt>
+</li>
+</ul>
+</div>
+
+<p>An article by Kathleen and Even Tj&oslash;rve, from the Inland Norway University of Applied Sciences in Elverum, Norway, in the journal <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178691">PLOS ONE</a> has this to say about Gompertz. "The Gompertz model has been in use as a growth model even longer than its better known relative, the logistic model. The model, referred to at the time as the Gompertz theoretical law of mortality, was first suggested and first applied by Mr. Benjamin Gompertz in 1825. He fitted it to the relationship between increasing death rate and age, what he referred to as 'the average exhaustions of a man&rsquo;s power to avoid death&rdquo; or the 'portion of his remaining power to oppose destruction.' "</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/expos.png" vspace="5" /> </p>
+
+<h4>Predictions<a name="b1af50c9-b8ea-4211-884b-79f28e12d34f"></a>
+</h4>
+<p>Which fits are suitable for predicting future population size?</p>
+
+<p>Despite their large R^2 values, polynomials of any degree are not suitable because outside of the time interval they behave like polynomials and do not provide realistic predictions.</p>
+
+<p>Splines were never intended for extrapolation.</p>
+
+<p>That leaves the exponentials. The simple exponential model grows exponentially and is not suitable. The Gompertz fit does approach a finite asymptotic limit, but the value is an astronimical <tt>a</tt> = 2101, corresponding to 2.1 $\times 10^9$ inhabitants. Hopefully, that is out of the question.</p>
+
+<p>The logistic fit has an asymptotic limit of <tt>a</tt> = 655.7. We recently passed the value of <tt>t</tt> where <tt>p(t)</tt> reaches <tt>a/2</tt>, namely <tt>c</tt> = 2018. So, the logistic model predicts that the long-term size of the U.S. population will be about twice its current value. Is that realistic? Probably not.</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/expos_future.png" vspace="5" /> </p>
+
+<h4>Conclusion<a name="acb134fb-dc9a-43cb-840b-0e7934c63e24"></a>
+</h4>
+<p>The British statistician George Box once said, "all models are wrong, some are useful." This is true of the models of the U. S. Census that I have discussed over the past sixty years.</p>
+
+<p>Here is <tt>censusapp2024</tt> after all its buttons have been pushed. The extrapolation date is set to 2040. White noise has been added to the data. The model is a fourth-degree polynomial with an <tt>R^2</tt> = 0.99. The <tt>R^2</tt> value and the error estimates produced by <tt>errs</tt> account for errors in the data, but not in the model.</p>
+
+<p>This particular model does a lousy job of predicting even twenty years in the future. Some of the other models are better, many are worse. Hopefully, their study is worthwhile.</p>
+
+<p>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/predict.png" vspace="5" /> </p>
+
+<h4>Blogs<a name="d945ac16-2ef7-4c75-a529-d64d03f50776"></a>
+</h4>
+<p>I have made blog posts about the census before, in <a href="https://blogs.mathworks.com/cleve/2020/11/06/anticipating-official-u-s-census-for-2020">2020</a> and in <a href="https://blogs.mathworks.com/cleve/2017/01/05/fitting-and-extrapolating-us-census-data">2017</a>.</p>
+
+<h4>FMM<a name="c7c11668-f0eb-404b-b951-52729c417b5c"></a>
+</h4>
+<p>Predicting population growth is featured in <i>Computer Methods for Mathematical Computations</i>, by George Forsythe, Mike Malcolm and myself, published by Prentice-Hall in 1977. That textbook is now available from an interesting smorgasbord of sources, including <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=rldfxOMAAAAJ&amp;citation_for_view=rldfxOMAAAAJ:buQ7SEKw-1sC">Google Scholar</a>, <a href="https://www.amazon.com/exec/obidos/ASIN/0131653326/acmorg-20">Amazon</a>, <a href="https://www.etsy.com/listing/1676520741/vintage-textbook-computer-methods-for">dizhasneatstuff</a>, <a href="https://www.abebooks.com/servlet/BookDetailsPL?bi=22650690419">Abe Books</a>, <a href="https://archive.org/details/computermethodsf00fors/page/18/mode/2up">Internet Archive</a>, <a href="https://www.pdas.com/fmm.html">PDAS</a>, <a href="https://search.worldcat.org/title/1150302502">WorldCat (Chinese)</a>.</p>
+
+<h4>Software<a name="906b81f5-b694-47e8-9dee-fb0586a19671"></a>
+</h4>
+<p>
+<tt>censusapp2024</tt> is available at <a href="https://blogs.mathworks.com/cleve/files/censusapp_2024.m">censusapp2024</a>.</p>
+
+<!-- 
+    function grabCode_02c7b1cd1f114211a874bb3dcae61323() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='02c7b1cd1f114211a874bb3dcae61323 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 02c7b1cd1f114211a874bb3dcae61323';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+02c7b1cd1f114211a874bb3dcae61323 ##### SOURCE BEGIN #####
+%% A Sixty-Year Old Program for Predicting the Future
+% The graphics in
+% <https://blogs.mathworks.com/cleve/2024/05/04/r-squared-is-bigger-better/
+% my post about |R^2|> were produced by an updated version of
+% a sixty-year old program involving the U.S. census.
+% Originally, the program was based on census data from 1900 to 1960
+% and sought to predict the population in 1970.
+% The software back then was written in Fortran, 
+% the predominate technical programming language a half century ago. 
+% I have updated the MATLAB version of the program
+% so that it now uses census data from 1900 to 2020.
+
+%% |censusapp2024|
+% The latest version of the census application is now available at
+% <https://blogs.mathworks.com/cleve/files/censusapp_2024.m
+% censusapp2024>.  Here are the data and the opening screenshot.
+
+   [t,p] = UScensus; fprintf('%12d%12.3f\n',[t,p]')
+
+%%
+% <<screenshot.png>>
+
+%% Risky Business
+% Today, MATLAB makes it easier to  vary parameters and visualize
+% results, but the underlying mathematical principles are unchanged:
+%
+% * Using polynomials to predict
+%    the future by extrapolating data is a risky business.
+%
+% One new observation is added to the data 
+% every 10 years, when the United States does the decennial census.  
+% Originally there were only 7 observations; today there are 13.
+% The program now allows you to fit the data exactly by interpolation with
+% a polynomial of degree 12 or fit it approximately by
+% polynomials of degree less than 12. 
+%
+% Here are the least-squares fits with linear, cubic, and degree seven 
+% polynomials and the interpolating polynomial.
+% As the polynomial degree increases, so does |R^2|, until |R^2| reaches
+% one with the exact fit.  
+%
+% Do any of these fits look like they could be used to predict future
+% population growth?
+%
+% <<polys.png>>
+
+%% Splines
+% In addition to polynomials, you can choose
+% interpolation by three different 
+% <https://blogs.mathworks.com/cleve/2019/04/29/makima-piecewise-cubic-interpolation/
+% piecewise Hermite cubics>.
+%
+% * |spline|    Continuous second derivate, "not-a-knot" end condition.
+% * |pchip|     Continuous first derivative, strictly shape-preserving.
+% * |makima|    Continuous first derivative, relaxed shape-preserving.
+%
+% Since these fits interpolate the data, all their |R^2| values are one.
+% But before 1900 and after 2020 these functions are cubic polynomials
+% that are not designed for extrapolation.
+%
+% <<splines.png>>
+
+%% Exponentials
+% It is also possible to do nonlinear least squares fits by an exponential,
+% a logistic sigmoid, and an exponential of an exponetial known as the
+% Gompertz model.
+%
+% * |exponential   exp(b*t+c)|
+% * |logistic      a./(1+exp(-b*(t-c)))|
+% * |gompertz      a*exp(-b*exp(-c*t))|
+% 
+% An article by Kathleen and Even Tjørve, from the 
+% Inland Norway University of Applied Sciences in Elverum, Norway,
+% in the journal
+% <https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178691
+% PLOS ONE> has this to say about Gompertz.
+% "The Gompertz model has been in use as a growth model even longer
+% than its better known relative, the logistic model. The model, 
+% referred to at the time as the Gompertz theoretical law of mortality, was 
+% first suggested and first applied by Mr. Benjamin Gompertz in 1825. 
+% He fitted it to the relationship between increasing death rate and age, 
+% what he referred to as 'the average exhaustions of a man’s power to 
+% avoid death” or the 'portion of his remaining power to oppose 
+% destruction.' "
+%
+% <<expos.png>>
+
+%% Predictions
+% Which fits are suitable for predicting future population size?
+%
+% Despite their large R^2 values, polynomials of any degree
+% are not suitable because outside of the time interval they behave
+% like polynomials and do not provide realistic predictions.
+%
+% Splines were never intended for extrapolation.
+%
+% That leaves the exponentials. The simple exponential model grows
+% exponentially and is not suitable. The Gompertz fit does approach
+% a finite asymptotic limit, but the value is an astronimical |a| = 2101,
+% corresponding to 2.1 $\times 10^9$ inhabitants. Hopefully, that is
+% out of the question.
+%
+% The logistic fit has an asymptotic limit of |a| = 655.7.
+% We recently passed the value of |t| where |p(t)| reaches |a/2|,
+% namely |c| = 2018.  So, the logistic model predicts that
+% the long-term size of the U.S. population will be about twice its
+% current value.  Is that realistic?  Probably not.
+%
+% <<expos_future.png>>
+%
+
+%% Conclusion
+% The British statistician George Box once said, "all models are wrong,
+% some are useful."  This is true of the models of the
+% U. S. Census that I have discussed over the past sixty years.
+%
+% Here is |censusapp2024| after all its buttons have been pushed.
+% The extrapolation date is set to 2040.
+% White noise has been added to the data.
+% The model is a fourth-degree polynomial with an |R^2| = 0.99.
+% The |R^2| value and the error estimates produced by |errs|
+% account for errors in the data, but not in the model.
+%
+% This particular model does a lousy job of predicting even twenty
+% years in the future.
+% Some of the other models are better, many are worse.
+% Hopefully, their study is worthwhile.
+%
+% <<predict.png>>
+
+%% Blogs
+% I have made blog posts about the census before, in
+% <https://blogs.mathworks.com/cleve/2020/11/06/anticipating-official-u-s-census-for-2020
+% 2020> and in
+% <https://blogs.mathworks.com/cleve/2017/01/05/fitting-and-extrapolating-us-census-data
+% 2017>.
+
+%% FMM
+% Predicting population growth is featured in
+% _Computer Methods for Mathematical Computations_, 
+% by George Forsythe, Mike Malcolm and myself,
+% published by Prentice-Hall in 1977.
+% That textbook is now available from an interesting smorgasbord of 
+% sources, including
+% <https://scholar.google.com/citations?view_op=view_citation&hl=en&user=rldfxOMAAAAJ&citation_for_view=rldfxOMAAAAJ:buQ7SEKw-1sC
+% Google Scholar>,
+% <https://www.amazon.com/exec/obidos/ASIN/0131653326/acmorg-20 Amazon>,
+% <https://www.etsy.com/listing/1676520741/vintage-textbook-computer-methods-for
+% dizhasneatstuff>,
+% <https://www.abebooks.com/servlet/BookDetailsPL?bi=22650690419
+% Abe  Books>,
+% <https://archive.org/details/computermethodsf00fors/page/18/mode/2up
+% Internet Archive>,
+% <https://www.pdas.com/fmm.html PDAS>,
+% <https://search.worldcat.org/title/1150302502 WorldCat (Chinese)>.
+
+%% Software
+% |censusapp2024| is available at
+% <https://blogs.mathworks.com/cleve/files/censusapp_2024.m
+% censusapp2024>.
+##### SOURCE END ##### 02c7b1cd1f114211a874bb3dcae61323
+-->
+
+</div>
+<div class="tags-container">
+	
+</div>
+<style>
+#uppy {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: darkturquoise;
+  color: black;
+  cursor: pointer;
+  margin:15px;
+  border-radius: 10px;
+  width: 100px;
+  height: 20px;
+}
+
+#returnTop:hover {
+  background-color: #555;
+}
+</style>
+
+<button id="uppy" title="Return to Top" class="btn btn-lg">Back to top</button>
+
+<script>
+(function() {
+
+var scrollTop = function() {
+    window.scrollTo(0, 0);
+};
+
+document.getElementById('uppy').onclick = scrollTop;
+
+})();
+</script>
+
+
+<div class="navigation">
+	
+		<a class="prev" href="/commercial-blog/2024/r-squared-is-bigger-better/">< R-squared.  Is Bigger Better?</a>
+	 
+	<a class="next" href="/commercial-blog/2024/ibm-hexadecimal-floating-point/">IBM Hexadecimal Floating Point ></a>
+
+</div>
+
+	<div class="footer">
+		<span style="padding-right:10px"><font color="red">©️ </font><a href="https://hpc.social"><b>hpc.social</b> community</a></span> 
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/archive/">Archive</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/">Posts</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/about/">About</a>
+		| <a style="padding-left:10px; padding-right:10px" href="https://hpc.social/blog">hpc.social blogs</a>
+		| <a style="padding-left:37%;" target="_blank" href="https://github.com/hpc-social/commercial-blog">Add Your Blog</a>
+	</div>
+</div>
+    <script src="/commercial-blog/assets/scripts.js"></script>
+    <script type="text/javascript">
+        if (localStorage.theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('mode-switcher').classList.add('active');
+        } else if (localStorage.theme === 'dark' || localStorage.theme === '' || (!('theme' in localStorage))) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('mode-switcher').classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
