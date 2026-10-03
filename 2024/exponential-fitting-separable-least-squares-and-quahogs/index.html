@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Exponential Fitting, Separable Least Squares, and Quahogs - hpc.social - Aggregated Commercial Blog</title>
+        <meta name="description" content="Vendor and commercial posts in the hpc.social community">
+        <meta name="keywords" content="">
+        <base href="https://hpc.social/commercial-blog" />
+        
+        <meta content="2024-01-12T16:35:32-07:00" property="article:published_time">
+        <meta content="https://hpc.social/about/" property="article:author">
+          
+        <meta property="og:site_name" content="hpc.social - Aggregated Commercial Blog">
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://hpc.social/commercial-blog/2024/exponential-fitting-separable-least-squares-and-quahogs/"/>
+        <meta property="og:title" content="Exponential Fitting, Separable Least Squares, and Quahogs - hpc.social - Aggregated Commercial Blog" />
+        <meta property="og:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="og:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"/>
+        <meta name="twitter:site" content="@hpc_social" />
+        <meta name="twitter:creator" content="@hpc_social" /> 
+        <meta name="twitter:card" content="summary"/>
+        <meta property="twitter:title" content="Exponential Fitting, Separable Least Squares, and Quahogs - hpc.social - Aggregated Commercial Blog" />
+        <meta property="twitter:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="twitter:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="stylesheet" href="/commercial-blog/assets/css/highlight.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300&display=swap" rel="stylesheet"> 
+
+        <link rel="stylesheet" href="/commercial-blog/assets/css/style.css">
+        <link rel="shortcut icon" href="/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="alternate" type="application/atom+xml" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/atom.xml">
+        <link rel="alternate" type="application/json" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/feed.json" />
+        <link rel="sitemap" type="application/xml" title="sitemap" href="https://hpc.social/commercial-blog/sitemap.xml" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"hpc.social"},"description":"Vendor and commercial posts in the hpc.social community","headline":"hpc.social - Aggregated Commercial Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"},"name":"hpc.social"},"sameAs":["https://twitter.com/","https://github.com/"],"url":"https://hpc.social/commercial-blog"}</script>
+    </head>
+<body>
+
+<div class="container">
+	<div class="profile">
+		<a href="https://hpc.social/commercial-blog/"><img src="/commercial-blog/assets/images/hpc-social-blue.png" class="profile-image"></a>
+		<div class="profile-about">
+			<h2 style="margin-bottom: 0; font-weight: 700;">hpc.social</h2>
+			
+			
+				<a href="https://twitter.com/hpc_social" target="_blank"><img src="/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+			
+			
+			
+			
+				<a href="https://github.com/hpc-social" target="_blank"><img src="/commercial-blog/assets/images/icon/github.svg" class="social-icon"></a>
+			
+			
+			<a href="/commercial-blog/about/"><img src="/commercial-blog/assets/images/icon/me.svg" class="social-icon"></a>
+			<br>
+			High Performance Computing <br> Practitioners <br> and friends /#hpc
+			<br>
+			<div class="mode" id="mode-switcher" onclick="toggleNightMode();">
+				<span></span>
+			</div>
+		</div>
+	</div>
+	
+<div class="post-header">
+	<div class="post-date">12.01.2024  &middot; <span class="reading-time" title="Estimated read time">
+  
+   15 mins  read </span>
+</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://hpc.social/exponential-fitting-separable-least-squares-and-quahogs&amp;text=Exponential Fitting, Separable Least Squares, and Quahogs - https://hpc.social/exponential-fitting-separable-least-squares-and-quahogs" target="_blank"><img src="https://hpc.social/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+<div class="tags-container" style="padding:10px; font-size:18px; font-style:italic">
+        This is a crosspost from &nbsp; <a target="_blank" href="https://blogs.mathworks.com/cleve">Cleve’s Corner: Cleve Moler on Mathematics and Computing</a>&nbsp;Cleve Moler is the author of the first MATLAB, one of the founders of MathWorks, and is currently Chief Mathematician at the company. He writes here about MATLAB, scientific computing and interesting mathematics..&nbsp;See the original post&nbsp;<a target="_blank" href="https://blogs.mathworks.com/cleve/2024/01/12/exponential-fitting-separable-least-squares-and-quahogs/?s_tid=feedtopost">here</a>.</div>
+
+<div class="blog-post-content">
+	<h1>Exponential Fitting, Separable Least Squares, and Quahogs</h1>
+	<div class="content"><!--introduction--><p>We have been investigating a recent bug report about <tt>fitnlm</tt>, the Statistics and Machine Learning Toolbox function for robust fitting of nonlinear models.</p>
+<!--/introduction--><h3>Contents</h3><div><ul><li><a href="https://feeds.feedburner.com/mathworks/moler#e8d5954f-4051-48dd-9888-3729cc8d6313">Quahogs</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#1fd80451-cc63-4160-8fcc-b1a1448c7382">Acidification</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#faab8af3-c8dd-48bf-8621-b7fa14ade2fb">Separable Least Squares</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#8afd06c3-7aca-4df8-b636-b7d660a3b6ca">Centering Data</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#b8434e53-14a6-412e-97d9-39485ad02c07">Exponential Fitting</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#e6bd554c-66fa-4ebc-b3d4-2cd14229bed0">Results</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#dd10ff5a-44a4-4ad7-9ddb-7cb103a943eb">Software</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#7e09ac26-71d6-47be-aa47-13da26bc9755">Thanks</a></li></ul></div>
+<h4>Quahogs<a name="e8d5954f-4051-48dd-9888-3729cc8d6313"></a></h4><p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/quahogs.png" vspace="5" /> </p>
+<p>The bug report comes from Greg Pelletier, an independent research scientist and biogeochemical modeler in Olympia, Washington. Greg has been studying the vulnerability of sensitive marine organisms to increases in ocean acidification.  One of the most important of these organisms is <a href="https://en.wikipedia.org/wiki/Hard_clam">Mercenaria mercenaria</a>, the hard clam.</p>
+<p>Especially here in New England, hard clams are known by their traditional Native American name, <i>quahog</i>. They have a well-deserved reputation for making excellent clam chowder.</p>
+<h4>Acidification<a name="1fd80451-cc63-4160-8fcc-b1a1448c7382"></a></h4><p>We are all aware of increasing levels of carbon dioxide in the earth's atmosphere.  We may not be as aware of the effect this increase has on the health of the earth's oceans.  According to <a href="https://www.noaa.gov/education/resource-collections/ocean-coasts/ocean-acidification">NOAA</a>, the ocean absorbs about 30% of the atmospheric carbon dioxide.</p>
+<p>A definitive and controversial 2009 paper by Justin Ries and colleagues, then at the Woods Hole Oceanographic Institution, is "Marine calcifiers exhibit mixed responses to CO2-induced ocean acidification", <a href="https://doi.org/10.1130/G30210A.1">https://doi.org/10.1130/G30210A.1</a>. The hard clam example in Greg's bug report comes from figure 1K in the Ries et al. paper.</p>
+<p>The independent variable in experiments is the ratio of alkalinity of sea water to the concentration of dissolved inorganic carbon. The dependent variable is the calcification rate, which compares how fast the organism builds its shells to how fast the shells are dissolving.</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/Ries_et_al.png" vspace="5" /> </p>
+<h4>Separable Least Squares<a name="faab8af3-c8dd-48bf-8621-b7fa14ade2fb"></a></h4><p>The model chosen by Ries at al. is</p>
+<p>$$ y \approx \beta_1 + \beta_2 e^{\lambda t} $$</p>
+<p>where $t$ is the ratio of alkalinity to dissolved carbon and $y$ is the calcification rate. The data have only four distinct values of $t$, with several observations of $y$ at each value.</p>
+<p>The parameters $\beta_1$, $\beta_2$ and $\lambda$ are determined by least squares curve fit.  This is a <i>separable least squares</i> problem. For any given value of $\lambda$, the parameters $\beta_1$ and $\beta_2$ occur linearly and the least squares solution can be obtained by MATLAB's backslash.</p>
+<p>Gene Golub and Victor Pereyra described separable least squares in 1973 and proposed solving it by a <i>variable projection algorithm</i>. Since 1973 a number of people, including Pereyra, Linda Kaufman, Fred Krogh, John Bolstadt and David Gay, have contributed to the development of a series of Fortran programs named <tt>varpro</tt>. In 2011, Dianne O'Leary and Burt Rust created a MATLAB version of <tt>varpro</tt>.  Their report, <a href="https://www.cs.umd.edu/~oleary/software/varpro/">https://www.cs.umd.edu/~oleary/software/varpro/</a>, is a good background source, as well as documentation for <tt>varpro.m</tt>.</p>
+<p>I have a section on separable least squares, and an example, <tt>expfitdemo</tt>, in NCM, <a href="https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/leastsquares.pdf">Numerical Computing with MATLAB</a>. I have modified <tt>expfitdemo</tt> to work on Greg's quahogs problem.</p>
+<h4>Centering Data<a name="8afd06c3-7aca-4df8-b636-b7d660a3b6ca"></a></h4><p>It turns out that the problem Greg encountered can be traced to the fact that the data are not centered.  The given values of $t$ are all positive.  This causes <tt>fitnlm</tt> to print a warning message and attempt to rectify the situation by changing the degrees of freedom from 22 to 23, but this only makes the situation worse. (We should take another look at the portion of <tt>fitnlm</tt> that adjusts the degrees of freedom.)</p>
+<p>It is always a good idea in curve fitting to center the data with something like</p>
+<pre>  t = t - mean(t)</pre><p>The values of $y$ are already pretty well centered. Rescaling $y$ with</p>
+<pre>  y = 10000*y</pre><p>makes interpretation of results easier.</p>
+<h4>Exponential Fitting<a name="b8434e53-14a6-412e-97d9-39485ad02c07"></a></h4><p>With the data centered and scaled, we have three different ways of tackling Greg's problem.  All three methods agree on the results they compute.</p>
+<div><ul><li><tt>fitnlm</tt>. Treats all parameters as if they were nonlinear.      Computes statistical quantities such as R-squared and      RMS Error.</li></ul></div>
+<div><ul><li><tt>varpro</tt>. Venerable software history.      Only one nonlinear parameter for the quahogs problem.      Delivers additional statistical quantities in <tt>Regression</tt> structure.</li></ul></div>
+<div><ul><li><tt>quahogsfit</tt>. Textbook separable least squares code.      Modification for the quahogs problem of <tt>expfitdemo</tt> from NCM.      Only one nonlinear parameter.  No statistics.</li></ul></div>
+<h4>Results<a name="e6bd554c-66fa-4ebc-b3d4-2cd14229bed0"></a></h4><div><ul><li><tt>fitnlm</tt></li></ul></div>
+<pre>Nonlinear regression model:
+    y ~ param1 + param2*exp(param3*xval)</pre><pre>Estimated Coefficients:
+              Estimate      SE        tStat       pValue
+              ________    _______    _______    __________</pre><pre>    param1     0.69536     0.1657     4.1964    0.00037344
+    param2    -0.26482    0.19909    -1.3302       0.19709
+    param3     -22.218     8.1494    -2.7263      0.012327</pre><pre>Number of observations: 25, Error degrees of freedom: 22
+Root Mean Squared Error: 0.307
+R-Squared: 0.828,  Adjusted R-Squared 0.813
+F-statistic vs. constant model: 53, p-value = 3.86e-09</pre><div><ul><li><tt>varpro</tt></li></ul></div>
+<pre>Linear Parameters:
+  0.695367   -0.264837
+Nonlinear Parameters:
+ -22.217495</pre><pre>Norm         of weighted residual  =   1.438935
+Norm         of data vector        =   3.545820
+Expected error of observations     =   0.306782
+Coefficient of determination       =   0.828145</pre><pre>Regression.t_ratio
+    4.1962
+   -1.3301
+   -2.7264</pre><pre>Regression.std_param
+    0.1657
+    0.1991
+    8.1490</pre><div><ul><li><tt>quahogsfit</tt></li></ul></div>
+<pre>lambda =
+  -22.2180
+condX =
+    4.3882
+beta =
+    0.6954
+   -0.2648
+normres =
+    1.4389</pre><p><tt>quahogsfit</tt> produces this plot, which can be compared with figure 1K from Ries et al, reproduced above.</p>
+<p><img alt="" hspace="5" src="https://blogs.mathworks.com/cleve/files/quahogsfit.png" vspace="5" /> </p>
+<h4>Software<a name="dd10ff5a-44a4-4ad7-9ddb-7cb103a943eb"></a></h4><p>The codes for this post are available here <a href="https://blogs.mathworks.com/cleve/files/quahogs_driver.m">quahogs_driver.m</a> and here <a href="https://blogs.mathworks.com/cleve/files/varpro.m">varpro.m</a>.</p>
+<h4>Thanks<a name="7e09ac26-71d6-47be-aa47-13da26bc9755"></a></h4><p>Thanks to Greg Pelletier for the bug report and to Tom Lane for his statistical expertise.</p>
+<!-- 
+    function grabCode_0a292e90c48540ba9ef9da619b32e8e7() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='0a292e90c48540ba9ef9da619b32e8e7 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 0a292e90c48540ba9ef9da619b32e8e7';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --><p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;"><br /><a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript></span></a><br /><br />
+      Published with MATLAB&reg; R2023a<br /></p>
+</div>
+<!--
+0a292e90c48540ba9ef9da619b32e8e7 ##### SOURCE BEGIN #####
+%% Exponential Fitting, Separable Least Squares, and Quahogs
+% We have been investigating a recent bug report about |fitnlm|,
+% the Statistics and Machine Learning Toolbox function
+% for robust fitting of nonlinear models.
+
+%% Quahogs
+% <<quahogs.png>>
+%
+% The bug report comes from Greg Pelletier, an independent research
+% scientist and biogeochemical modeler in Olympia, Washington.
+% Greg has been studying the 
+% vulnerability of sensitive marine organisms to increases in ocean
+% acidification.  One of the most important of these organisms is
+% <https://en.wikipedia.org/wiki/Hard_clam Mercenaria mercenaria>,
+% the hard clam.
+% 
+% Especially here in New England, hard clams are known
+% by their traditional Native American name, _quahog_.
+% They have a well-deserved reputation for making excellent
+% clam chowder.
+
+%% Acidification
+% We are all aware of increasing levels of carbon dioxide in the earth's
+% atmosphere.  We may not be as aware of the effect this increase has
+% on the health of the earth's oceans.  According to
+% <https://www.noaa.gov/education/resource-collections/ocean-coasts/ocean-acidification
+% NOAA>, the ocean absorbs about 30% of the atmospheric carbon dioxide. 
+%
+% A definitive and controversial 2009 paper
+% by Justin Ries and colleagues,
+% then at the Woods Hole Oceanographic Institution, is
+% "Marine calcifiers exhibit mixed responses to CO2-induced ocean
+% acidification", <https://doi.org/10.1130/G30210A.1>.
+% The hard clam example in Greg's bug report comes from 
+% figure 1K in the Ries et al. paper.
+%
+% The independent variable in experiments is the
+% ratio of alkalinity of sea water
+% to the concentration of dissolved inorganic carbon.
+% The dependent variable is the calcification rate, which compares
+% how fast the organism builds its shells 
+% to how fast the shells are dissolving.
+%
+% <<Ries_et_al.png>>
+%
+%% Separable Least Squares
+% The model chosen by Ries at al. is
+%
+% $$ y \approx \beta_1 + \beta_2 e^{\lambda t} $$
+%
+% where $t$ is the ratio of alkalinity to dissolved carbon and $y$ is the 
+% calcification rate. The data have only four distinct values of $t$, with 
+% several observations of $y$ at each value.
+%
+% The parameters $\beta_1$, $\beta_2$ and $\lambda$ are determined by
+% least squares curve fit.  This is a _separable least squares_ problem.
+% For any given value of $\lambda$, the parameters $\beta_1$ and $\beta_2$
+% occur linearly and the least squares solution can be obtained by 
+% MATLAB's backslash.
+% 
+% Gene Golub and Victor Pereyra described separable least squares in 1973
+% and proposed solving it by a _variable projection algorithm_.
+% Since 1973 a number of people, including Pereyra, Linda Kaufman,
+% Fred Krogh, John Bolstadt and David Gay, have contributed to the
+% development of a series of Fortran programs named |varpro|.
+% In 2011, Dianne O'Leary and Burt Rust created a MATLAB version of
+% |varpro|.  Their report,
+% <https://www.cs.umd.edu/~oleary/software/varpro></https://www.cs.umd.edu/~oleary/software/varpro>, is a good background
+% source, as well as documentation for |varpro.m|.
+%
+% I have a section on separable least squares, and an example,
+% |expfitdemo|, in NCM,
+% <https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/leastsquares.pdf
+% Numerical Computing with MATLAB>. I have modified |expfitdemo| to
+% work on Greg's quahogs problem.
+
+%% Centering Data
+% It turns out that the problem Greg encountered can be traced to the 
+% fact that the data are not centered.  The given values of $t$ are all
+% positive.  This causes |fitnlm| to print a warning message and attempt
+% to rectify the situation by changing the degrees of freedom  
+% from 22 to 23, but this only makes the situation worse.
+% (We should take another look at the portion of |fitnlm| that adjusts 
+% the degrees of freedom.)
+%
+% It is always a good idea in curve fitting to center the 
+% data with something like
+%
+%    t = t - mean(t)
+%
+% The values of $y$ are already pretty well centered.
+% Rescaling $y$ with
+%
+%    y = 10000*y
+%
+% makes interpretation of results easier.
+
+%% Exponential Fitting
+% With the data centered and scaled, we have three different 
+% ways of tackling Greg's problem.  All three methods
+% agree on the results they compute.
+% 
+% * |fitnlm|. Treats all parameters as if they were nonlinear.
+%      Computes statistical quantities such as R-squared and
+%      RMS Error.
+% 
+% * |varpro|. Venerable software history.
+%      Only one nonlinear parameter for the quahogs problem.
+%      Delivers additional statistical quantities in |Regression| structure.
+%  
+% * |quahogsfit|. Textbook separable least squares code.
+%      Modification for the quahogs problem of |expfitdemo| from NCM.
+%      Only one nonlinear parameter.  No statistics.
+%
+
+%% Results
+% * |fitnlm| 
+%
+%  Nonlinear regression model:
+%      y ~ param1 + param2*exp(param3*xval)
+%  
+%  Estimated Coefficients:
+%                Estimate      SE        tStat       pValue  
+%                ________    _______    _______    __________
+%  
+%      param1     0.69536     0.1657     4.1964    0.00037344
+%      param2    -0.26482    0.19909    -1.3302       0.19709
+%      param3     -22.218     8.1494    -2.7263      0.012327
+%  
+%  
+%  Number of observations: 25, Error degrees of freedom: 22
+%  Root Mean Squared Error: 0.307
+%  R-Squared: 0.828,  Adjusted R-Squared 0.813
+%  F-statistic vs. constant model: 53, p-value = 3.86e-09
+%
+% * |varpro|
+%   
+%  Linear Parameters:
+%    0.695367   -0.264837
+%  Nonlinear Parameters:
+%   -22.217495
+%   
+%  Norm         of weighted residual  =   1.438935
+%  Norm         of data vector        =   3.545820
+%  Expected error of observations     =   0.306782
+%  Coefficient of determination       =   0.828145
+%
+%  Regression.t_ratio
+%      4.1962
+%     -1.3301
+%     -2.7264
+%
+%  Regression.std_param
+%      0.1657
+%      0.1991
+%      8.1490
+%
+% * |quahogsfit|
+%
+%  lambda =
+%    -22.2180
+%  condX =
+%      4.3882
+%  beta =
+%      0.6954
+%     -0.2648
+%  normres =
+%      1.4389
+%
+% |quahogsfit| produces this plot, which can be compared with
+% figure 1K from Ries et al, reproduced above.
+%
+% <<quahogsfit.png>>
+%
+
+%% Software
+% The codes for this post are available here
+% <https://blogs.mathworks.com/cleve/files/quahogs_driver.m  quahogs_driver.m>
+% and here 
+% <https://blogs.mathworks.com/cleve/files/varpro.m  varpro.m>.
+
+%% Thanks
+% Thanks to Greg Pelletier for the bug report and
+% to Tom Lane for his statistical expertise.
+
+##### SOURCE END ##### 0a292e90c48540ba9ef9da619b32e8e7
+-->
+
+</div>
+<div class="tags-container">
+	
+</div>
+<style>
+#uppy {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: darkturquoise;
+  color: black;
+  cursor: pointer;
+  margin:15px;
+  border-radius: 10px;
+  width: 100px;
+  height: 20px;
+}
+
+#returnTop:hover {
+  background-color: #555;
+}
+</style>
+
+<button id="uppy" title="Return to Top" class="btn btn-lg">Back to top</button>
+
+<script>
+(function() {
+
+var scrollTop = function() {
+    window.scrollTo(0, 0);
+};
+
+document.getElementById('uppy').onclick = scrollTop;
+
+})();
+</script>
+
+
+<div class="navigation">
+	
+		<a class="prev" href="/commercial-blog/2023/season-s-greetings/">< Season’s Greetings</a>
+	 
+	<a class="next" href="/commercial-blog/2024/nick-higham-1961-2024/">Nick Higham (1961-2024) ></a>
+
+</div>
+
+	<div class="footer">
+		<span style="padding-right:10px"><font color="red">©️ </font><a href="https://hpc.social"><b>hpc.social</b> community</a></span> 
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/archive/">Archive</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/">Posts</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/about/">About</a>
+		| <a style="padding-left:10px; padding-right:10px" href="https://hpc.social/blog">hpc.social blogs</a>
+		| <a style="padding-left:37%;" target="_blank" href="https://github.com/hpc-social/commercial-blog">Add Your Blog</a>
+	</div>
+</div>
+    <script src="/commercial-blog/assets/scripts.js"></script>
+    <script type="text/javascript">
+        if (localStorage.theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('mode-switcher').classList.add('active');
+        } else if (localStorage.theme === 'dark' || localStorage.theme === '' || (!('theme' in localStorage))) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('mode-switcher').classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
