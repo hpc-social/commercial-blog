@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>modfun, A Short Program Produces Impressive Graphics - hpc.social - Aggregated Commercial Blog</title>
+        <meta name="description" content="Vendor and commercial posts in the hpc.social community">
+        <meta name="keywords" content="">
+        <base href="https://hpc.social/commercial-blog" />
+        
+        <meta content="2022-10-17T23:17:12-06:00" property="article:published_time">
+        <meta content="https://hpc.social/about/" property="article:author">
+          
+        <meta property="og:site_name" content="hpc.social - Aggregated Commercial Blog">
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://hpc.social/commercial-blog/2022/modfun-a-short-program-produces-impressive-graphics/"/>
+        <meta property="og:title" content="modfun, A Short Program Produces Impressive Graphics - hpc.social - Aggregated Commercial Blog" />
+        <meta property="og:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="og:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"/>
+        <meta name="twitter:site" content="@hpc_social" />
+        <meta name="twitter:creator" content="@hpc_social" /> 
+        <meta name="twitter:card" content="summary"/>
+        <meta property="twitter:title" content="modfun, A Short Program Produces Impressive Graphics - hpc.social - Aggregated Commercial Blog" />
+        <meta property="twitter:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="twitter:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="stylesheet" href="/commercial-blog/assets/css/highlight.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300&display=swap" rel="stylesheet"> 
+
+        <link rel="stylesheet" href="/commercial-blog/assets/css/style.css">
+        <link rel="shortcut icon" href="/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="alternate" type="application/atom+xml" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/atom.xml">
+        <link rel="alternate" type="application/json" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/feed.json" />
+        <link rel="sitemap" type="application/xml" title="sitemap" href="https://hpc.social/commercial-blog/sitemap.xml" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"hpc.social"},"description":"Vendor and commercial posts in the hpc.social community","headline":"hpc.social - Aggregated Commercial Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"},"name":"hpc.social"},"sameAs":["https://twitter.com/","https://github.com/"],"url":"https://hpc.social/commercial-blog"}</script>
+    </head>
+<body>
+
+<div class="container">
+	<div class="profile">
+		<a href="https://hpc.social/commercial-blog/"><img src="/commercial-blog/assets/images/hpc-social-blue.png" class="profile-image"></a>
+		<div class="profile-about">
+			<h2 style="margin-bottom: 0; font-weight: 700;">hpc.social</h2>
+			
+			
+				<a href="https://twitter.com/hpc_social" target="_blank"><img src="/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+			
+			
+			
+			
+				<a href="https://github.com/hpc-social" target="_blank"><img src="/commercial-blog/assets/images/icon/github.svg" class="social-icon"></a>
+			
+			
+			<a href="/commercial-blog/about/"><img src="/commercial-blog/assets/images/icon/me.svg" class="social-icon"></a>
+			<br>
+			High Performance Computing <br> Practitioners <br> and friends /#hpc
+			<br>
+			<div class="mode" id="mode-switcher" onclick="toggleNightMode();">
+				<span></span>
+			</div>
+		</div>
+	</div>
+	
+<div class="post-header">
+	<div class="post-date">17.10.2022  &middot; <span class="reading-time" title="Estimated read time">
+  
+   4 mins  read </span>
+</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://hpc.social/modfun-a-short-program-produces-impressive-graphics&amp;text=modfun, A Short Program Produces Impressive Graphics - https://hpc.social/modfun-a-short-program-produces-impressive-graphics" target="_blank"><img src="https://hpc.social/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+<div class="tags-container" style="padding:10px; font-size:18px; font-style:italic">
+        This is a crosspost from &nbsp; <a target="_blank" href="https://blogs.mathworks.com/cleve">Cleve’s Corner: Cleve Moler on Mathematics and Computing</a>&nbsp;Cleve Moler is the author of the first MATLAB, one of the founders of MathWorks, and is currently Chief Mathematician at the company. He writes here about MATLAB, scientific computing and interesting mathematics..&nbsp;See the original post&nbsp;<a target="_blank" href="https://blogs.mathworks.com/cleve/2022/10/17/modfun-a-short-program-produces-impressive-graphics/?s_tid=feedtopost">here</a>.</div>
+
+<div class="blog-post-content">
+	<h1>modfun, A Short Program Produces Impressive Graphics</h1>
+	<div class="content"><!--introduction--><p>This nifty graphics gem started with a contribution by Paul Villain to the MATLAB 2022 Mini Hack, currently taking place on <a href="https://www.mathworks.com/matlabcentral/contests.html">MATLAB Central</a>.</p>
+<!--/introduction--><h3>Contents</h3><div><ul><li><a href="https://feeds.feedburner.com/mathworks/moler#56a0ec8a-8f48-4d49-951d-ede8fd35a5a3"><tt>modfun</tt></a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#a4a42958-572e-4506-9fd6-fd5704698093">code</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#580b1824-d2ab-4ea9-883a-1aa69d0c8bb1">Animation</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#24d1d844-3760-4a2d-bd68-8671d9ff55b6">Gallery</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#b5cd86af-e8cd-4db6-9341-fa63d035cc3d">Quiz</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#336d3ee4-5965-44e5-bc73-926eb724f3f4">Software</a></li></ul></div>
+<h4><tt>modfun</tt><a name="56a0ec8a-8f48-4d49-951d-ede8fd35a5a3"></a></h4><p>Villain's contribution is <a href="https://www.mathworks.com/matlabcentral/communitycontests/contests/5/entries/9880">102 mod 500</a> .  My rewrite is <a href="https://www.mathworks.com/matlabcentral/communitycontests/contests/5/entries/11093"><tt>modfun</tt></a>. Villain's <tt>102</tt> and <tt>500</tt> become the parameters <tt>m</tt> and <tt>n</tt>.</p>
+<pre>  modfun(m,n) connects n points, z(j), equally spaced
+  around the complex unit circle, by n+1 straight lines.
+  The j-th line connects z(j+1) to z(mod(j*m,n)+1).</pre><h4>code<a name="a4a42958-572e-4506-9fd6-fd5704698093"></a></h4><p>The basic code uses complex arithmetic and is only eight lines long. When the graphics is done with <tt>line</tt> instead of <tt>plot</tt>, it is not necessary to use <tt>hold on</tt>.</p>
+<pre>  function modfun(m,n)
+      init_fig
+      z = exp(2i*pi*(0:n)/n);
+      for j = 0:n
+          zj = [z(j+1),z(mod(j*m,n)+1)];
+          line(real(zj),imag(zj))
+      end
+  end</pre><p>The initialization makes <tt>line</tt> possible.</p>
+<pre>  function init_fig
+      axis([-1 1 -1 1])
+      axis square
+      axis off
+  end</pre><h4>Animation<a name="580b1824-d2ab-4ea9-883a-1aa69d0c8bb1"></a></h4><p>This animation of <tt>modfun(105,200)</tt> has one frame for every five lines.</p>
+<p><img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/modfun105.gif" vspace="5" /> </p>
+<h4>Gallery<a name="24d1d844-3760-4a2d-bd68-8671d9ff55b6"></a></h4><p>A sample.</p>
+<p><img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/modfuns1.png" vspace="5" /> </p>
+<p><img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/modfuns2.png" vspace="5" /> </p>
+<h4>Quiz<a name="b5cd86af-e8cd-4db6-9341-fa63d035cc3d"></a></h4><p>Match these calls to <tt>modfun</tt> to the plots in the Gallery.</p>
+<pre>  modfun(88,179)
+  modfun(89,220)
+  modfun(99,200)
+  modfun(101,200)
+  modfun(111,200)
+  modfun(113,188)
+  modfun(126,188)
+  modfun(126,200)</pre><h4>Software<a name="336d3ee4-5965-44e5-bc73-926eb724f3f4"></a></h4><p>An interactive <tt>modfun</tt>.</p>
+<p><a href="https://blogs.mathworks.com/cleve/files/modfun.m">modfun.m</a>.</p>
+<!-- 
+    function grabCode_ce8d1e93d27746db8cedca87febedacd() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='ce8d1e93d27746db8cedca87febedacd ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' ce8d1e93d27746db8cedca87febedacd';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2022 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --><p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;"><br /><a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript></span></a><br /><br />
+      Published with MATLAB&reg; R2022a<br /></p>
+</div>
+<!--
+ce8d1e93d27746db8cedca87febedacd ##### SOURCE BEGIN #####
+%% |modfun|, A Short Program Produces Impressive Graphics
+% This nifty graphics gem started with a contribution by Paul Villain
+% to the MATLAB 2022 Mini Hack, currently taking place on
+% <https://www.mathworks.com/matlabcentral/contests.html MATLAB Central>.
+
+%% |modfun|
+% Villain's contribution is
+% <https://www.mathworks.com/matlabcentral/communitycontests/contests/5/entries/9880
+% 102 mod 500> .  My rewrite is
+% <https://www.mathworks.com/matlabcentral/communitycontests/contests/5/entries/11093
+% |modfun|>.
+% Villain's |102| and |500| become the parameters |m| and |n|.
+%
+%    modfun(m,n) connects n points, z(j), equally spaced
+%    around the complex unit circle, by n+1 straight lines.
+%    The j-th line connects z(j+1) to z(mod(j*m,n)+1).
+%
+%% code
+% The basic code uses complex arithmetic and is only eight lines long.
+% When the graphics is done with |line| instead of |plot|, 
+% it is not necessary to use |hold on|.
+%
+%    function modfun(m,n)
+%        init_fig
+%        z = exp(2i*pi*(0:n)/n);
+%        for j = 0:n
+%            zj = [z(j+1),z(mod(j*m,n)+1)];
+%            line(real(zj),imag(zj))
+%        end
+%    end
+% 
+% The initialization makes |line| possible. 
+%
+%    function init_fig
+%        axis([-1 1 -1 1])
+%        axis square
+%        axis off
+%    end
+
+%% Animation
+% This animation of |modfun(105,200)| has one frame for every five lines.
+%
+% <<modfun105.gif>>
+%
+
+%% Gallery
+% A sample.
+%
+% <<modfuns1.png>>
+%
+% <<modfuns2.png>>
+
+%% Quiz
+% Match these calls to |modfun| to the plots in the Gallery.
+%
+%    modfun(88,179)
+%    modfun(89,220)
+%    modfun(99,200)
+%    modfun(101,200)
+%    modfun(111,200)
+%    modfun(113,188)
+%    modfun(126,188)
+%    modfun(126,200)
+
+%% Software
+% An interactive |modfun|.
+% 
+% <https://blogs.mathworks.com/cleve/files/modfun.m modfun.m>.
+##### SOURCE END ##### ce8d1e93d27746db8cedca87febedacd
+-->
+
+</div>
+<div class="tags-container">
+	
+</div>
+<style>
+#uppy {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: darkturquoise;
+  color: black;
+  cursor: pointer;
+  margin:15px;
+  border-radius: 10px;
+  width: 100px;
+  height: 20px;
+}
+
+#returnTop:hover {
+  background-color: #555;
+}
+</style>
+
+<button id="uppy" title="Return to Top" class="btn btn-lg">Back to top</button>
+
+<script>
+(function() {
+
+var scrollTop = function() {
+    window.scrollTo(0, 0);
+};
+
+document.getElementById('uppy').onclick = scrollTop;
+
+})();
+</script>
+
+
+<div class="navigation">
+	
+		<a class="prev" href="/commercial-blog/2022/trio-a-wooden-puzzle-from-the-czech-republic/">< Trio, A Wooden Puzzle from the Czech Republic</a>
+	 
+	<a class="next" href="/commercial-blog/2022/an-interactive-version-of-colorcubes/">An Interactive Version of colorcubes ></a>
+
+</div>
+
+	<div class="footer">
+		<span style="padding-right:10px"><font color="red">©️ </font><a href="https://hpc.social"><b>hpc.social</b> community</a></span> 
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/archive/">Archive</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/">Posts</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/about/">About</a>
+		| <a style="padding-left:10px; padding-right:10px" href="https://hpc.social/blog">hpc.social blogs</a>
+		| <a style="padding-left:37%;" target="_blank" href="https://github.com/hpc-social/commercial-blog">Add Your Blog</a>
+	</div>
+</div>
+    <script src="/commercial-blog/assets/scripts.js"></script>
+    <script type="text/javascript">
+        if (localStorage.theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('mode-switcher').classList.add('active');
+        } else if (localStorage.theme === 'dark' || localStorage.theme === '' || (!('theme' in localStorage))) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('mode-switcher').classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
