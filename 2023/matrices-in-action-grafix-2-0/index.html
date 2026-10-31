@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Matrices In Action, Grafix 2.0 - hpc.social - Aggregated Commercial Blog</title>
+        <meta name="description" content="Vendor and commercial posts in the hpc.social community">
+        <meta name="keywords" content="">
+        <base href="https://hpc.social/commercial-blog" />
+        
+        <meta content="2023-02-04T13:00:33-07:00" property="article:published_time">
+        <meta content="https://hpc.social/about/" property="article:author">
+          
+        <meta property="og:site_name" content="hpc.social - Aggregated Commercial Blog">
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://hpc.social/commercial-blog/2023/matrices-in-action-grafix-2-0/"/>
+        <meta property="og:title" content="Matrices In Action, Grafix 2.0 - hpc.social - Aggregated Commercial Blog" />
+        <meta property="og:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="og:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"/>
+        <meta name="twitter:site" content="@hpc_social" />
+        <meta name="twitter:creator" content="@hpc_social" /> 
+        <meta name="twitter:card" content="summary"/>
+        <meta property="twitter:title" content="Matrices In Action, Grafix 2.0 - hpc.social - Aggregated Commercial Blog" />
+        <meta property="twitter:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="twitter:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="stylesheet" href="/commercial-blog/assets/css/highlight.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300&display=swap" rel="stylesheet"> 
+
+        <link rel="stylesheet" href="/commercial-blog/assets/css/style.css">
+        <link rel="shortcut icon" href="/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="alternate" type="application/atom+xml" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/atom.xml">
+        <link rel="alternate" type="application/json" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/feed.json" />
+        <link rel="sitemap" type="application/xml" title="sitemap" href="https://hpc.social/commercial-blog/sitemap.xml" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"hpc.social"},"description":"Vendor and commercial posts in the hpc.social community","headline":"hpc.social - Aggregated Commercial Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"},"name":"hpc.social"},"sameAs":["https://twitter.com/","https://github.com/"],"url":"https://hpc.social/commercial-blog"}</script>
+    </head>
+<body>
+
+<div class="container">
+	<div class="profile">
+		<a href="https://hpc.social/commercial-blog/"><img src="/commercial-blog/assets/images/hpc-social-blue.png" class="profile-image"></a>
+		<div class="profile-about">
+			<h2 style="margin-bottom: 0; font-weight: 700;">hpc.social</h2>
+			
+			
+				<a href="https://twitter.com/hpc_social" target="_blank"><img src="/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+			
+			
+			
+			
+				<a href="https://github.com/hpc-social" target="_blank"><img src="/commercial-blog/assets/images/icon/github.svg" class="social-icon"></a>
+			
+			
+			<a href="/commercial-blog/about/"><img src="/commercial-blog/assets/images/icon/me.svg" class="social-icon"></a>
+			<br>
+			High Performance Computing <br> Practitioners <br> and friends /#hpc
+			<br>
+			<div class="mode" id="mode-switcher" onclick="toggleNightMode();">
+				<span></span>
+			</div>
+		</div>
+	</div>
+	
+<div class="post-header">
+	<div class="post-date">04.02.2023  &middot; <span class="reading-time" title="Estimated read time">
+  
+   15 mins  read </span>
+</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://hpc.social/matrices-in-action-grafix-2-0&amp;text=Matrices In Action, Grafix 2.0 - https://hpc.social/matrices-in-action-grafix-2-0" target="_blank"><img src="https://hpc.social/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+<div class="tags-container" style="padding:10px; font-size:18px; font-style:italic">
+        This is a crosspost from &nbsp; <a target="_blank" href="https://blogs.mathworks.com/cleve">Cleve’s Corner: Cleve Moler on Mathematics and Computing</a>&nbsp;Cleve Moler is the author of the first MATLAB, one of the founders of MathWorks, and is currently Chief Mathematician at the company. He writes here about MATLAB, scientific computing and interesting mathematics..&nbsp;See the original post&nbsp;<a target="_blank" href="https://blogs.mathworks.com/cleve/2023/02/04/matrices-in-action-grafix-2-0/?s_tid=feedtopost">here</a>.</div>
+
+<div class="blog-post-content">
+	<h1>Matrices In Action, Grafix 2.0</h1>
+	<div class="content"><!--introduction--><p>The 4-by-4 matrices in the panels on the following screenshots are at the heart of computer graphics. They describe objects moving in three-dimensional space and are essential to MATLAB's Handle Graphics, to CAD (Computer Added Design) packages, to CGI (Computer Graphics Imagery) in  films, and to most popular video games.</p>
+<!--/introduction--><h3>Contents</h3><div><ul><li><a href="https://feeds.feedburner.com/mathworks/moler#4c54a017-4a2d-4bd0-b5de-085c77696298">Grafix 2.0</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#19ccc0f8-ccd0-45a3-a624-c4f466eea2af">Rotations</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#4028a6e9-0449-4846-8e6e-c9a2c5ad64b6">Pitch, Roll, and Yaw</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#e6dc8b74-fe6e-4fb5-a343-2b8fbfe28558">Translations</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#9dbcd88d-756a-475c-bd7e-237261a3cdbe">Horizontal and Vertical</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#54cb3b88-904f-441b-9c61-91dca0a68c0d">Scalings</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#9bfb2311-6f44-4f2b-85aa-f09554da0cc6">Larger and Smaller</a></li><li><a href="https://feeds.feedburner.com/mathworks/moler#ef53d281-53a4-437e-80f0-93b331367abf">Suggestions</a></li></ul></div>
+<h4>Grafix 2.0<a name="4c54a017-4a2d-4bd0-b5de-085c77696298"></a></h4><p>Here is the opening screen from version 2.0 of <tt>Grafix</tt>, my tool for investigating the matrices involved in 3-D computer graphics. The MATLAB code for <tt>Grafix</tt> <a href="https://blogs.mathworks.com/cleve/files/Grafix_mzip.m">is availble here.</a></p>
+<p>I am interested in the matrix in the panel, which I call <tt>M</tt>. Many matrices like this one describe the dyamic transformations to be made on a set of target objects in a complex three-dimensional scene. This particular <tt>M</tt> is the product of a scaling and a rotation that results in the size and orientation of the plane shown.</p>
+<p>I also want to point out the coordinate axes being used. This is <tt>view(3)</tt>, MATLAB's default 3-D cordinate system.  The positive $x$-axis goes up and to the right on the screen, the positive $y$-axis up and to the left, and the positive $z$-axis goes straight up.</p>
+<p><img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/grafix.png" vspace="5" /> </p>
+<h4>Rotations<a name="19ccc0f8-ccd0-45a3-a624-c4f466eea2af"></a></h4><p>The <i>homogeneous coordinates</i> system used in modern computer graphics makes it possible to describe rotations, translations and many other operations with 4-by-4 matrices.  These matrices operate on vectors with the position of an object in the first three components and, for now, a one as the fourth component, eg.  [ $x$, $y$, $z$, 1 ]',</p>
+<p>Rotations are described by products of these matrices, each of which operates on only two of the first three components of the vector.  The first matrix, $R_x$, leaves $x$ unchanged while it rotates $y$ and $z$.  The second matrix, $R_y$, leaves $y$ unchanged while it rotates $x$ and $z$.  And the third matrix, $R_z$, leaves $z$ unchanged while it rotates $x$ and $y$.</p>
+<p>$$ R_x(\theta) = \left[ \begin{array}{rrrr}
+  1  &amp;             0  &amp;              0  &amp;  0 \\
+  0  &amp;  \cos{\theta}  &amp;  -\sin{\theta}  &amp;  0 \\
+  0  &amp;  \sin{\theta}  &amp;   \cos{\theta}  &amp;  0 \\
+  0  &amp;             0  &amp;              0  &amp;  1
+  \end{array}  \right] $$</p>
+<p>$$ R_y(\theta) = \left[ \begin{array}{rrrr}
+    \cos{\theta}  &amp;  0  &amp; -\sin{\theta}  &amp;  0 \\
+               0  &amp;  1  &amp;             0  &amp;  0 \\
+    \sin{\theta}  &amp;  0  &amp;  \cos{\theta}  &amp;  0 \\
+               0  &amp;  0  &amp;             0  &amp;  1
+  \end{array}  \right] $$</p>
+<p>$$ R_z(\theta) = \left[ \begin{array}{rrrr}
+   \cos{\theta}  &amp;  -\sin{\theta}  &amp;  0  &amp;  0 \\
+   \sin{\theta}  &amp;   \cos{\theta}  &amp;  0  &amp;  0 \\
+              0  &amp;              0  &amp;  1  &amp;  0 \\
+              0  &amp;              0  &amp;  0  &amp;  1
+  \end{array}  \right] $$</p>
+<h4>Pitch, Roll, and Yaw<a name="4028a6e9-0449-4846-8e6e-c9a2c5ad64b6"></a></h4><p>The terms <i>pitch</i>, <i>roll</i> and  <i>yaw</i> are often used to describe the motion of vehicles like aircraft, marine craft, and spacecraft. Pitch is $R_x$, rotation about the $x$-axis.</p>
+<p><img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/pitchgif.gif" vspace="5" /> </p>
+<p>Roll is $R_y$, rotation about the $y$-axis.</p>
+<p><img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/rollgif.gif" vspace="5" /> </p>
+<p>And yaw is $R_z$, rotation about the $z$-axis.</p>
+<p><img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/yawgif.gif" vspace="5" /> </p>
+<h4>Translations<a name="e6dc8b74-fe6e-4fb5-a343-2b8fbfe28558"></a></h4><p>Translations are described by matrices with values in the fourth column. Multiplying a vector by one of these matrices produces a translation in the direction of the corresponding axis.</p>
+<p>$$ T_x(\delta) = \left[ \begin{array}{rrrr}
+   1  &amp;  0  &amp;  0  &amp;  \delta \\
+   0  &amp;  1  &amp;  0  &amp;         0 \\
+   0  &amp;  0  &amp;  1  &amp;         0 \\
+   0  &amp;  0  &amp;  0  &amp;         1
+  \end{array}  \right] $$</p>
+<p>$$ T_y(\delta) = \left[ \begin{array}{rrrr}
+   1  &amp;  0  &amp;  0  &amp;         0 \\
+   0  &amp;  1  &amp;  0  &amp;  \delta \\
+   0  &amp;  0  &amp;  1  &amp;         0 \\
+   0  &amp;  0  &amp;  0  &amp;         1
+  \end{array}  \right] $$</p>
+<p>$$ T_z(\delta) = \left[ \begin{array}{rrrr}
+   1  &amp;  0  &amp;  0  &amp;         0 \\
+   0  &amp;  1  &amp;  0  &amp;         0 \\
+   0  &amp;  0  &amp;  1  &amp;  \delta \\
+   0  &amp;  0  &amp;  0  &amp;         1
+  \end{array}  \right] $$</p>
+<p>While it is true that translations could be accomplished simply by adding the increment to the specified coordiate, the use of matrix multiplication allows translations to be combined in a uniform way with rotations and other operations.  The arithmetic units on today's Graphics Processing Units, GPUs, are designed to do 4-by-4 matrix multiplications at speeds hundreds of times faster than general purpose Central Processing Units, CPUs.</p>
+<h4>Horizontal and Vertical<a name="9dbcd88d-756a-475c-bd7e-237261a3cdbe"></a></h4><p>Inspired by David Singmaster's notation for Rubik's cubes, L, R, B, F, U, and D, we can use the descriptive terms <i>left</i> and <i>right</i> for horizontal motion in the $x$ direction; <i>back</i> and <i>forth</i> for horizontal motion in the $y$ direction; and <i>up</i> and <i>down</i> for vertical motion in the $z$ direction.</p>
+<p>$T_x$, left and right.</p>
+<p><img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/Txgif.gif" vspace="5" /> </p>
+<p>$T_y$, back and forth.</p>
+<p><img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/Tygif.gif" vspace="5" /> </p>
+<p>$T_z$, up and down.</p>
+<p><img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/Tzgif.gif" vspace="5" /> </p>
+<h4>Scalings<a name="54cb3b88-904f-441b-9c61-91dca0a68c0d"></a></h4><p>This matrix applies a single scaling factor to all three axes.</p>
+<p>$$ S(\sigma) = \left[ \begin{array}{rrrr}
+   \sigma  &amp;  0  &amp;  0    &amp;  0 \\
+     0 &amp; \sigma  &amp;  0    &amp;  0 \\
+     0 &amp;   0  &amp;  \sigma  &amp;  0 \\
+     0  &amp;  0  &amp;     0    &amp;  1
+  \end{array}  \right] $$</p>
+<h4>Larger and Smaller<a name="9bfb2311-6f44-4f2b-85aa-f09554da0cc6"></a></h4><p>$S$</p>
+<p><img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/Sgif.gif" vspace="5" /> </p>
+<h4>Suggestions<a name="ef53d281-53a4-437e-80f0-93b331367abf"></a></h4><p>Refresh your browser to syncronize the animations.</p>
+<p>Download your own self-archiving copies of</p>
+<div><ul><li><a href="https://blogs.mathworks.com/cleve/files/Grafix_mzip.m">Grafix</a></li><li><a href="https://blogs.mathworks.com/cleve/files/Qube_mzip-1.m">Qube</a></li></ul></div>
+<!-- 
+    function grabCode_b13c7ab1c73c4ad7909fa2d7cd9764f2() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='b13c7ab1c73c4ad7909fa2d7cd9764f2 ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' b13c7ab1c73c4ad7909fa2d7cd9764f2';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2023 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     --><p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;"><br /><a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript></span></a><br /><br />
+      Published with MATLAB&reg; R2023a<br /></p>
+</div>
+<!--
+b13c7ab1c73c4ad7909fa2d7cd9764f2 ##### SOURCE BEGIN #####
+%% Matrices In Action, Grafix 2.0
+% The 4-by-4 matrices in the panels on the following screenshots
+% are at the heart of computer graphics.
+% They describe objects moving in three-dimensional
+% space and are essential to MATLAB's Handle Graphics,
+% to CAD (Computer Added Design) packages, 
+% to CGI (Computer Graphics Imagery) in  films,
+% and to most popular video games.
+%
+
+%% Grafix 2.0
+% Here is the opening screen from version 2.0 of |Grafix|,
+% my tool for investigating the matrices involved in 3-D computer graphics.
+% The MATLAB code for |Grafix|
+% <https://blogs.mathworks.com/cleve/files/Grafix_mzip.m is availble here.>
+
+%%
+% I am interested in the matrix in the panel, which I call |M|.
+% Many matrices like this one describe the dyamic transformations to be
+% made on a set of target objects in a complex three-dimensional scene.
+% This particular |M| is the product of a scaling and a rotation that 
+% results in the size and orientation of the plane shown.
+%
+% I also want to point out the coordinate axes being used.
+% This is |view(3)|, MATLAB's default 3-D cordinate system.  The positive
+% $x$-axis goes up and to the right on the screen, the positive $y$-axis
+% up and to the left, and the positive $z$-axis goes straight up.
+%
+% <<grafix.png>>
+%
+
+%% Rotations
+% The _homogeneous coordinates_ system used in modern computer graphics
+% makes it possible to describe rotations, translations
+% and many other operations with 4-by-4 matrices.  These matrices
+% operate on vectors with the position of an object
+% in the first three components and, for now, a one as the
+% fourth component, eg.  [ $x$, $y$, $z$, 1 ]',
+%
+% Rotations are described by products of these matrices,
+% each of which operates on only two of the first three components of
+% the vector.  The first matrix, $R_x$, leaves $x$ unchanged while it 
+% rotates $y$ and $z$.  The second matrix, $R_y$, leaves $y$ unchanged
+% while it rotates $x$ and $z$.  And the third matrix, $R_z$,
+% leaves $z$ unchanged while it rotates $x$ and $y$.
+%
+% $$ R_x(\theta) = \left[ \begin{array}{rrrr}
+%   1  &             0  &              0  &  0 \\
+%   0  &  \cos{\theta}  &  -\sin{\theta}  &  0 \\
+%   0  &  \sin{\theta}  &   \cos{\theta}  &  0 \\
+%   0  &             0  &              0  &  1 
+%   \end{array}  \right] $$
+%   
+%
+% $$ R_y(\theta) = \left[ \begin{array}{rrrr}
+%     \cos{\theta}  &  0  & -\sin{\theta}  &  0 \\
+%                0  &  1  &             0  &  0 \\ 
+%     \sin{\theta}  &  0  &  \cos{\theta}  &  0 \\
+%                0  &  0  &             0  &  1 
+%   \end{array}  \right] $$
+%   
+%
+% $$ R_z(\theta) = \left[ \begin{array}{rrrr}
+%    \cos{\theta}  &  -\sin{\theta}  &  0  &  0 \\
+%    \sin{\theta}  &   \cos{\theta}  &  0  &  0 \\
+%               0  &              0  &  1  &  0 \\
+%               0  &              0  &  0  &  1 
+%   \end{array}  \right] $$
+%
+
+%% Pitch, Roll, and Yaw
+% The terms _pitch_, _roll_ and  _yaw_ are often used to describe
+% the motion of vehicles like aircraft, marine craft, and spacecraft.
+% Pitch is $R_x$, rotation about the $x$-axis.
+%
+% <<pitchgif.gif>>
+%
+
+%%
+% Roll is $R_y$, rotation about the $y$-axis.
+%
+% <<rollgif.gif>>
+%
+
+%%
+% And yaw is $R_z$, rotation about the $z$-axis.
+%
+% <<yawgif.gif>>
+%
+
+%% Translations
+% Translations are described by matrices with values in the fourth column.
+% Multiplying a vector by one of these matrices produces a translation
+% in the direction of the corresponding axis.
+%
+% $$ T_x(\delta) = \left[ \begin{array}{rrrr}
+%    1  &  0  &  0  &  \delta \\
+%    0  &  1  &  0  &         0 \\
+%    0  &  0  &  1  &         0 \\
+%    0  &  0  &  0  &         1 
+%   \end{array}  \right] $$
+%
+% $$ T_y(\delta) = \left[ \begin{array}{rrrr}
+%    1  &  0  &  0  &         0 \\
+%    0  &  1  &  0  &  \delta \\
+%    0  &  0  &  1  &         0 \\
+%    0  &  0  &  0  &         1 
+%   \end{array}  \right] $$
+%
+% $$ T_z(\delta) = \left[ \begin{array}{rrrr}
+%    1  &  0  &  0  &         0 \\
+%    0  &  1  &  0  &         0 \\
+%    0  &  0  &  1  &  \delta \\
+%    0  &  0  &  0  &         1 
+%   \end{array}  \right] $$
+%
+% While it is true that translations could be accomplished simply by
+% adding the increment to the specified coordiate, the use of matrix
+% multiplication allows translations to be combined in a uniform way
+% with rotations and other operations.  The arithmetic units on today's
+% Graphics Processing Units, GPUs, are designed to do 4-by-4 matrix
+% multiplications at speeds hundreds of times faster than general
+% purpose Central Processing Units, CPUs.
+
+%% Horizontal and Vertical
+% Inspired by David Singmaster's notation for Rubik's cubes, 
+% L, R, B, F, U, and D,
+% we can use the descriptive terms _left_ and _right_ for
+% horizontal motion in the $x$ direction; _back_ and _forth_
+% for horizontal motion in the $y$ direction; and _up_ and _down_
+% for vertical motion in the $z$ direction.
+%
+% $T_x$, left and right.
+%
+% <<Txgif.gif>>
+%
+%
+% $T_y$, back and forth.
+%
+% <<Tygif.gif>>
+%
+% $T_z$, up and down.
+%
+% <<Tzgif.gif>>
+%
+
+%% Scalings
+% This matrix applies a single scaling factor to all three axes. 
+%
+% $$ S(\sigma) = \left[ \begin{array}{rrrr}
+%    \sigma  &  0  &  0    &  0 \\
+%      0 & \sigma  &  0    &  0 \\
+%      0 &   0  &  \sigma  &  0 \\
+%      0  &  0  &     0    &  1 
+%   \end{array}  \right] $$
+
+%% Larger and Smaller
+%
+% $S$
+%
+% <<Sgif.gif>>
+%
+
+%% Suggestions
+% Refresh your browser to syncronize the animations.
+% 
+% Download your own self-archiving copies of
+%
+% * <https://blogs.mathworks.com/cleve/files/Grafix_mzip.m Grafix>
+% * <https://blogs.mathworks.com/cleve/files/Qube_mzip-1.m Qube>
+%
+##### SOURCE END ##### b13c7ab1c73c4ad7909fa2d7cd9764f2
+-->
+
+</div>
+<div class="tags-container">
+	
+</div>
+<style>
+#uppy {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: darkturquoise;
+  color: black;
+  cursor: pointer;
+  margin:15px;
+  border-radius: 10px;
+  width: 100px;
+  height: 20px;
+}
+
+#returnTop:hover {
+  background-color: #555;
+}
+</style>
+
+<button id="uppy" title="Return to Top" class="btn btn-lg">Back to top</button>
+
+<script>
+(function() {
+
+var scrollTop = function() {
+    window.scrollTo(0, 0);
+};
+
+document.getElementById('uppy').onclick = scrollTop;
+
+})();
+</script>
+
+
+<div class="navigation">
+	
+		<a class="prev" href="/commercial-blog/2023/singular-matrix-pencils-and-the-qz-algorithm-update/">< Singular Matrix Pencils and the QZ Algorithm, Update</a>
+	 
+	<a class="next" href="/commercial-blog/2023/grafix-users-guide/">Grafix Users Guide ></a>
+
+</div>
+
+	<div class="footer">
+		<span style="padding-right:10px"><font color="red">©️ </font><a href="https://hpc.social"><b>hpc.social</b> community</a></span> 
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/archive/">Archive</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/">Posts</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/about/">About</a>
+		| <a style="padding-left:10px; padding-right:10px" href="https://hpc.social/blog">hpc.social blogs</a>
+		| <a style="padding-left:37%;" target="_blank" href="https://github.com/hpc-social/commercial-blog">Add Your Blog</a>
+	</div>
+</div>
+    <script src="/commercial-blog/assets/scripts.js"></script>
+    <script type="text/javascript">
+        if (localStorage.theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('mode-switcher').classList.add('active');
+        } else if (localStorage.theme === 'dark' || localStorage.theme === '' || (!('theme' in localStorage))) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('mode-switcher').classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
