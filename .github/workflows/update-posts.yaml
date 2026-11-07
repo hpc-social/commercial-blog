@@ -12,13 +12,16 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    - uses: conda-incubator/setup-miniconda@v3
+      with:
+        activate-environment: ""
+
     - name: Create conda environment
       run: conda create --quiet -c conda-forge --name hpc python pip requests
 
     - name: Update posts
       run: |
         echo "Looking for new posts..."
-        export PATH="/usr/share/miniconda/bin:$PATH"
         conda run -n hpc python -m pip install -r .github/requirements.txt
         conda run -n hpc python scripts/generate_posts.py ./_data/authors.yml --output ./_posts/
         
