@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Redheffer and Mertens, Continued - hpc.social - Aggregated Commercial Blog</title>
+        <meta name="description" content="Vendor and commercial posts in the hpc.social community">
+        <meta name="keywords" content="">
+        <base href="https://hpc.social/commercial-blog" />
+        
+        <meta content="2024-09-27T12:28:39-06:00" property="article:published_time">
+        <meta content="https://hpc.social/about/" property="article:author">
+          
+        <meta property="og:site_name" content="hpc.social - Aggregated Commercial Blog">
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://hpc.social/commercial-blog/2024/redheffer-and-mertens-continued/"/>
+        <meta property="og:title" content="Redheffer and Mertens, Continued - hpc.social - Aggregated Commercial Blog" />
+        <meta property="og:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="og:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"/>
+        <meta name="twitter:site" content="@hpc_social" />
+        <meta name="twitter:creator" content="@hpc_social" /> 
+        <meta name="twitter:card" content="summary"/>
+        <meta property="twitter:title" content="Redheffer and Mertens, Continued - hpc.social - Aggregated Commercial Blog" />
+        <meta property="twitter:description" content="Vendor and commercial posts in the hpc.social community" />
+        <meta property="twitter:image" content="https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="stylesheet" href="/commercial-blog/assets/css/highlight.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@300&display=swap" rel="stylesheet"> 
+
+        <link rel="stylesheet" href="/commercial-blog/assets/css/style.css">
+        <link rel="shortcut icon" href="/commercial-blog/assets/images/hpc-social-blue.png" />
+        <link rel="alternate" type="application/atom+xml" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/atom.xml">
+        <link rel="alternate" type="application/json" title="hpc.social - Aggregated Commercial Blog" href="https://hpc.social/commercial-blog/feed.json" />
+        <link rel="sitemap" type="application/xml" title="sitemap" href="https://hpc.social/commercial-blog/sitemap.xml" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"hpc.social"},"description":"Vendor and commercial posts in the hpc.social community","headline":"hpc.social - Aggregated Commercial Blog","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://hpc.social/commercial-blog/assets/images/hpc-social-blue.png"},"name":"hpc.social"},"sameAs":["https://twitter.com/","https://github.com/"],"url":"https://hpc.social/commercial-blog"}</script>
+    </head>
+<body>
+
+<div class="container">
+	<div class="profile">
+		<a href="https://hpc.social/commercial-blog/"><img src="/commercial-blog/assets/images/hpc-social-blue.png" class="profile-image"></a>
+		<div class="profile-about">
+			<h2 style="margin-bottom: 0; font-weight: 700;">hpc.social</h2>
+			
+			
+				<a href="https://twitter.com/hpc_social" target="_blank"><img src="/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+			
+			
+			
+			
+				<a href="https://github.com/hpc-social" target="_blank"><img src="/commercial-blog/assets/images/icon/github.svg" class="social-icon"></a>
+			
+			
+			<a href="/commercial-blog/about/"><img src="/commercial-blog/assets/images/icon/me.svg" class="social-icon"></a>
+			<br>
+			High Performance Computing <br> Practitioners <br> and friends /#hpc
+			<br>
+			<div class="mode" id="mode-switcher" onclick="toggleNightMode();">
+				<span></span>
+			</div>
+		</div>
+	</div>
+	
+<div class="post-header">
+	<div class="post-date">27.09.2024  &middot; <span class="reading-time" title="Estimated read time">
+  
+   8 mins  read </span>
+</div>
+	<div class="post-share">
+		Share:&nbsp; 
+		<a href="https://twitter.com/intent/tweet?source=tweetbutton&amp;original_referer=https://hpc.social/redheffer-and-mertens-continued&amp;text=Redheffer and Mertens, Continued - https://hpc.social/redheffer-and-mertens-continued" target="_blank"><img src="https://hpc.social/commercial-blog/assets/images/icon/twitter.svg" class="social-icon"></a>
+	</div>
+</div>
+
+<div class="tags-container" style="padding:10px; font-size:18px; font-style:italic">
+        This is a crosspost from &nbsp; <a target="_blank" href="https://blogs.mathworks.com/cleve">Cleve’s Corner: Cleve Moler on Mathematics and Computing</a>&nbsp;Cleve Moler is the author of the first MATLAB, one of the founders of MathWorks, and is currently Chief Mathematician at the company. He writes here about MATLAB, scientific computing and interesting mathematics..&nbsp;See the original post&nbsp;<a target="_blank" href="https://blogs.mathworks.com/cleve/2024/09/27/redheffer-and-mertens-continued/?s_tid=feedtopost">here</a>.</div>
+
+<div class="blog-post-content">
+	<h1>Redheffer and Mertens, Continued</h1>
+	<div class="content"><!--introduction-->
+<p>Shortly after I posted <a href="https://blogs.mathworks.com/cleve/2024/09/23/redheffer-mertens-and-one-million-dollars/">Redheffer, Mertens and One-Million Dollars</a> a few days ago, Mathworks' Pat Quillen made an important observation about computing the Mertens function.</p>
+
+<!--/introduction-->
+<h3>Contents</h3>
+<div>
+<ul>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#f3fcd244-9ad3-4849-93ca-a831a5999c61"><tt>mertens</tt></a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#22db8fd3-aa25-4f76-9360-af77b6b20726">Mertens function</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#9ebbd5e7-4600-435d-8b80-56634f314af3">Mertens computation</a>
+</li>
+<li>
+<a href="https://feeds.feedburner.com/mathworks/moler#d25d727c-f7fb-41b5-a32e-eab8c9e0caae">Mertens conjecture</a>
+</li>
+</ul>
+</div>
+
+<h4>
+<tt>mertens</tt><a name="f3fcd244-9ad3-4849-93ca-a831a5999c61"></a>
+</h4>
+<p>The elements in the first column of the Redheffer matrix, <tt>A = redheffer(n)</tt>, are all equal to one. That dense column does not make MATLAB happy about computing <tt>det(A)</tt> . However, the last column of <tt>A</tt> has only a few nonzero elements and so Pat suggested interchanging the first and last columns before computing the determinant. This makes a world of difference. (Thanks, Pat.)</p>
+
+<pre class="codeinput">type<span class="string">mertens</span>
+</pre>
+<pre class="codeoutput">
+function M = mertens(n)
+    if n &gt; 1
+        A = redheffer(n);
+        A(:,[1 n]) = A(:,[n 1]);
+        M = -round(det(A));
+    else
+        M = 1;
+    end
+end
+</pre>
+<p>The time required to compute <tt>det(A)</tt> varies with the sparsity of the last column, but it is only a little more than the time to compute <tt>redheffer(n)</tt> in the first place.</p>
+
+<pre class="codeinput">mertens2_time
+</pre>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/mertens2_blog_01.png" vspace="5" /> <h4>Mertens function<a name="22db8fd3-aa25-4f76-9360-af77b6b20726"></a>
+</h4>
+<p>Pat's change makes it possible to take <tt>n</tt> up to a quarter of a million, and beyond. Here is a new plot of the Mertens function <tt>M(n)</tt> and the <tt>sqrt(n)</tt> bounds of the Mertens conjecture.</p>
+
+<pre class="codeinput">mertens_plot
+</pre>
+<img alt="" hspace="5" src="http://blogs.mathworks.com/cleve/files/mertens2_blog_02.png" vspace="5" /> <p>There are a quarter of a million points in the data for this plot. Fortunately, the .PNG file used for the blog only needs to sample the data.</p>
+
+<h4>Mertens computation<a name="9ebbd5e7-4600-435d-8b80-56634f314af3"></a>
+</h4>
+<p>The job that I ran on my laptop to compute one-quarter of a million values of <tt>M(n)</tt> is still running. It currently is past 0.35 million and takes less than two seconds for each value. I may keep the job running over the weekend, just to see how far it gets.</p>
+
+<p>The task is embarrassingly parallel. If I had a pool with a million processors, I could have each processor compute one value. I would then just have to collect the results, but that doesn't involve any arithmetic.</p>
+
+<h4>Mertens conjecture<a name="d25d727c-f7fb-41b5-a32e-eab8c9e0caae"></a>
+</h4>
+<p>You can see from the plot why late 19th- and early 20th-century mathematicians believed that the Mertens conjecture,</p>
+
+<pre>   |M(n)| &lt; sqrt(n) for all n,</pre>
+<p>might be true. It is hard to imagine that the plot of <tt>M(n)</tt> ever escapes <tt>sqrt(n)</tt>.</p>
+
+<p>We now know that <tt>M(n)</tt> eventually does escape, but only barely and only briefly. We also know that all the computation we can do with determinants of Redheffer's matrix will never prove or disprove the conjecture or win that million-dollar prize.</p>
+
+<!-- 
+    function grabCode_1007044f00b340cd8467bc0b1324ad0e() {
+        // Remember the title so we can use it in the new page
+        title = document.title;
+
+        // Break up these strings so that their presence
+        // in the Javascript doesn't mess up the search for
+        // the MATLAB code.
+        t1='1007044f00b340cd8467bc0b1324ad0e ' + '##### ' + 'SOURCE BEGIN' + ' #####';
+        t2='##### ' + 'SOURCE END' + ' #####' + ' 1007044f00b340cd8467bc0b1324ad0e';
+    
+        b=document.getElementsByTagName('body')[0];
+        i1=b.innerHTML.indexOf(t1)+t1.length;
+        i2=b.innerHTML.indexOf(t2);
+ 
+        code_string = b.innerHTML.substring(i1, i2);
+        code_string = code_string.replace(/REPLACE_WITH_DASH_DASH/g,'--');
+
+        // Use /x3C/g instead of the less-than character to avoid errors 
+        // in the XML parser.
+        // Use '\x26#60;' instead of '<' so that the XML parser
+        // doesn't go ahead and substitute the less-than character. 
+        code_string = code_string.replace(/\x3C/g, '\x26#60;');
+
+        copyright = 'Copyright 2024 The MathWorks, Inc.';
+
+        w = window.open();
+        d = w.document;
+        d.write('<pre>\n');
+        d.write(code_string);
+
+        // Add copyright line at the bottom if specified.
+        if (copyright.length > 0) {
+            d.writeln('');
+            d.writeln('%%');
+            if (copyright.length > 0) {
+                d.writeln('% _' + copyright + '_');
+            }
+        }
+
+        d.write('</pre>\n');
+
+        d.title = title + ' (MATLAB code)';
+        d.close();
+    }   
+     -->
+<p style="text-align: right; font-size: xx-small; font-weight: lighter; font-style: italic; color: gray;">
+<br />
+<a href=""><span style="font-size: x-small; font-style: italic;">Get 
+      the MATLAB code <noscript>(requires JavaScript)</noscript>
+</span></a>
+<br />
+<br />
+      Published with MATLAB&reg; R2024a<br />
+</p>
+
+</div>
+
+<!--
+1007044f00b340cd8467bc0b1324ad0e ##### SOURCE BEGIN #####
+%% Redheffer and Mertens, Continued
+% Shortly after I posted
+% <https://blogs.mathworks.com/cleve/2024/09/23/redheffer-mertens-and-one-million-dollars/
+% Redheffer, Mertens and One-Million Dollars>
+% a few days ago, Mathworks' Pat Quillen made an important observation
+% about computing the Mertens function.
+
+%% |mertens|
+% The elements in the first column of the Redheffer matrix,
+% |A = redheffer(n)|, are all equal to one.  That dense column 
+% does not make MATLAB happy about computing |det(A)| .
+% However, the last column of |A| has only a few nonzero elements and so
+% Pat suggested interchanging the first and last columns
+% before computing the determinant.  This makes a world of difference.
+% (Thanks, Pat.)
+
+       type mertens
+
+%% 
+% The time required to compute |det(A)| varies with the sparsity of
+% the last column, but it is only a little more than the time
+% to compute |redheffer(n)| in the first place. 
+
+   mertens2_time
+
+%% Mertens function
+% Pat's change makes it possible to take |n| up to a quarter of a million,
+% and beyond.  Here is a new plot of the Mertens function |M(n)| and the
+% |sqrt(n)| bounds of the Mertens conjecture.
+
+   mertens_plot
+
+%% 
+% There are a quarter of a million points in the data for this plot.
+% Fortunately, the .PNG file used for the blog only needs to sample
+% the data.
+
+%% Mertens computation
+% The job that I ran on my laptop to compute one-quarter of
+% a million values of |M(n)| is still running.  It currently
+% is past 0.35 million and takes less than two seconds for each value.
+% I may keep the job running over the weekend, just to see how
+% far it gets.
+%
+% The task is embarrassingly parallel.  If I had a pool with 
+% a million processors, I could have each processor compute one
+% value.  I would then just have to collect the results, but that
+% doesn't involve any arithmetic.
+
+%% Mertens conjecture
+% You can see from the plot why late 19th- and early 20th-century
+% mathematicians believed that the Mertens conjecture,
+%
+%     |M(n)| < sqrt(n) for all n,
+%
+% might be true.
+% It is hard to imagine that the plot of |M(n)| ever escapes
+% |sqrt(n)|.  
+%
+% We now know that |M(n)| eventually does escape,
+% but only barely and only briefly.  We also know that all the
+% computation we can do with determinants of Redheffer's matrix
+% will never prove or disprove the conjecture or win that
+% million-dollar prize.
+
+##### SOURCE END ##### 1007044f00b340cd8467bc0b1324ad0e
+-->
+
+</div>
+<div class="tags-container">
+	
+</div>
+<style>
+#uppy {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: darkturquoise;
+  color: black;
+  cursor: pointer;
+  margin:15px;
+  border-radius: 10px;
+  width: 100px;
+  height: 20px;
+}
+
+#returnTop:hover {
+  background-color: #555;
+}
+</style>
+
+<button id="uppy" title="Return to Top" class="btn btn-lg">Back to top</button>
+
+<script>
+(function() {
+
+var scrollTop = function() {
+    window.scrollTo(0, 0);
+};
+
+document.getElementById('uppy').onclick = scrollTop;
+
+})();
+</script>
+
+
+<div class="navigation">
+	
+		<a class="prev" href="/commercial-blog/2024/redheffer-mertens-and-one-million-dollars/">< Redheffer, Mertens and One-Million Dollars</a>
+	 
+	<a class="next" href="/commercial-blog/2024/redheffer-and-mertens-accelerated/">Redheffer and Mertens, Accelerated ></a>
+
+</div>
+
+	<div class="footer">
+		<span style="padding-right:10px"><font color="red">©️ </font><a href="https://hpc.social"><b>hpc.social</b> community</a></span> 
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/archive/">Archive</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/">Posts</a>
+		| <a style="padding-left:10px; padding-right:10px" href="/commercial-blog/about/">About</a>
+		| <a style="padding-left:10px; padding-right:10px" href="https://hpc.social/blog">hpc.social blogs</a>
+		| <a style="padding-left:37%;" target="_blank" href="https://github.com/hpc-social/commercial-blog">Add Your Blog</a>
+	</div>
+</div>
+    <script src="/commercial-blog/assets/scripts.js"></script>
+    <script type="text/javascript">
+        if (localStorage.theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('mode-switcher').classList.add('active');
+        } else if (localStorage.theme === 'dark' || localStorage.theme === '' || (!('theme' in localStorage))) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('mode-switcher').classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
